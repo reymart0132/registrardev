@@ -162,7 +162,7 @@ $view = new view();
                                         <b>Confirm Registration of Alumni Info</b>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to <b>submit the following details?</b>
+                                        Are you sure you want to <b>submit</b> the following  <b>details</b>?
                                     </div>
 
                                     <div class="modal-footer">
