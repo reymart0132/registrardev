@@ -1,4 +1,7 @@
 <?php
+require_once '/resource/php/class/db/view.php';
+$view = new view;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +41,10 @@
                                       <label for="studentN">Student Number(Optional)</label>
                                       <input type="text" class="form-control" id="studentN" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student Number">
                                     </div>
+                                    <div class="form-group col-5">
+                                      <label for="studentN">Year Graduated or Last Enrolled</label>
+                                      <input type="text" class="form-control" id="studentN" name="ygle" aria-describedby="emailHelp" placeholder="Enter  Year Graduated or Last Enrolled" required>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -65,9 +72,7 @@
                                     <div class="form-group col-4">
                                       <label for="Course" >Course</label>
                                           <select id="Course" name="Course" class="selectpicker form-control" data-live-search="true">
-                                            <option data-tokens="BSIT" value="BSIT">BSIT</option>
-                                            <option data-tokens="TC" value="BSBF">BSC Banking and Finance</option>
-                                            <option data-tokens="Authentication" value="BSITTM">BSITTM</option>
+                                            <?php $view->degreeCourseSP();?>
                                           </select>
                                     </div>
                                     <div class="form-group col-4">
@@ -94,19 +99,21 @@
                             <td>
                                 <div class="row">
                                     <div class="form-group col-4">
+                                      <label for="request" >College</label>
+                                          <select id="request" name="College" class="selectpicker form-control" data-live-search="true" multiple>
+                                            <?php $view->collegeSP();?>
+                                          </select>
+                                    </div>
+                                    <div class="form-group col-4">
                                       <label for="request" >Requesting for:</label>
                                           <select id="request" name="request[]" class="selectpicker form-control" data-live-search="true" multiple>
-                                            <option data-tokens="TOR">TOR</option>
-                                            <option data-tokens="TC">TC</option>
-                                            <option data-tokens="Authentication">Authentication</option>
+                                            <?php $view->requestingForSP();?>
                                           </select>
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="Purpose" >Reason for Requesting</label>
                                           <select id="Purpose" name="Purpose" class="selectpicker form-control" data-live-search="true" >
-                                            <option data-tokens="abroad">Abroad</option>
-                                            <option data-tokens="reference">Reference</option>
-                                            <option data-tokens="Board Exam">Board Exam</option>
+                                            <?php $view->reasonFA();?>
                                           </select>
                                     </div>
                                 </div>
@@ -114,20 +121,18 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="row">
-                                    <div class="form-group  col-4">
-                                     <label for="request" >Date Requested</label>
-                                     <input type="date" name="dr" min="1000-01-01"
-                                            max="3000-12-31" class="form-control " value="<?php $now = new DateTime();echo $now->format('Y-m-d') ?>" required>
-                                    </div>
-                                    <div class="form-group  col-4">
-                                     <label for="request" >Date Due</label>
-                                     <input type="date" name="dd" min="1000-01-01"
-                                            max="3000-12-31" class="form-control" value="<?php $now = $now->add(new DateInterval('P11D'));echo $now->format('Y-m-d');?>"required>
-                                    </div>
-                                    <div class="form-group col-4">
+                                <div class="row justify-content-center">
+                                    <div class="form-group col-5">
                                         <label  >&nbsp;</label>
-                                     <input type="submit" value="Submit Request" class=" form-control btn btn-dark" />
+                                     <input type="submit" value="Submit Request" class=" form-control btn btn-primary" />
+                                    </div>
+                                    <div class="form-group col-7">
+                                        <label  >&nbsp;</label>
+                                        <small id="emailHelp" class="form-text text-muted">In compliance to<b> DATA PRIVACY ACT of 2012 (<em>R.A. No. 10173, Ch. 1 Sec 2)</em></b>.
+                                            <p>If Client cannot come personally, the following are the requirements of Authorized Person:</p>
+                                            <p class="mb-0">1. Authorization Letter</p>
+                                            <p class="mb-0">2. ID of the Applicant and Authorized person with specimen signature(Xerox Copy)</p>
+                                        </small>
                                     </div>
                                 </div>
                             </td>
