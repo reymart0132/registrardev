@@ -1,3 +1,9 @@
+
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
 .ib{
     display: inline-block;
     margin-left: 15px;
