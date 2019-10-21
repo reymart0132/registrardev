@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-dark bg-white shadow-sm">
           <a class="navbar-brand" href="https://malolos.ceu.edu.ph/">
-            <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
+            <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top "
               alt="mdb logo"><h3 class="ib">
           </a>
              <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>

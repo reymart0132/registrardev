@@ -1,5 +1,5 @@
 <?php
-require_once '/resource/php/class/db/view.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new view;
 
 ?>
@@ -16,7 +16,7 @@ $view = new view;
 
 </head>
 <body>
-        <nav class="navbar navbar-dark bg-white shadow-sm">
+        <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
           <a class="navbar-brand" href="https://malolos.ceu.edu.ph/">
             <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
               alt="mdb logo"><h3 class="ib">
@@ -25,13 +25,17 @@ $view = new view;
              <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
              <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
         </nav>
-        <div class="container mt-4">
+        <div class="container mt-4 puff-in-center">
             <div class="row">
                 <div class="col-12">
                     <h1 class="text-center">New Transaction</h1>
                 </div>
+                <?php if (!empty($_GET)) {
+                    require_once '/resource/php/functions/funct.php';
+                    CheckSuccess($_GET['status']);
+                }?>
             </div>
-            <form action="" method="POST">
+            <form action="/registrardev/resource/php/registerTransaction.php" method="POST">
             <div class="row">
                 <table class="table ">
                         <tr>
@@ -43,7 +47,7 @@ $view = new view;
                                     </div>
                                     <div class="form-group col-5">
                                       <label for="studentN">Year Graduated or Last Enrolled</label>
-                                      <input type="text" class="form-control" id="studentN" name="ygle" aria-describedby="emailHelp" placeholder="Enter  Year Graduated or Last Enrolled" required>
+                                      <input type="number" min="1900" max="2099" step="1" value="2019" class="form-control" id="studentN" name="ygle" aria-describedby="emailHelp" placeholder="Enter  Year Graduated or Last Enrolled" required>
                                     </div>
                                 </div>
                             </td>
@@ -77,7 +81,7 @@ $view = new view;
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="ContactNumber">Contact Number</label>
-                                      <input type="text" class="form-control" id="ContactNumber" name="ContactNumber" aria-describedby="emailHelp" placeholder="Enter Contact Number" required>
+                                      <input type="number" class="form-control" id="ContactNumber" name="ContactNumber" aria-describedby="emailHelp" placeholder="Enter Contact Number" required>
                                     </div>
                                     <div class="form-group col-4">
                                         <label for="ContactNumber">Status</label>
@@ -87,8 +91,8 @@ $view = new view;
                                               <label class="form-check-label" for="Graduate">Graduate</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                              <input class="form-check-input" type="radio" name="Status" id="Undergraduate" value="Undergraduate">
-                                              <label class="form-check-label" for="Undergraduate">UnderGraduate</label>
+                                              <input class="form-check-input" type="radio" name="Status" id="Undergraduate" value="Undergrad">
+                                              <label class="form-check-label" for="Undergraduate">Undergraduate</label>
                                             </div>
                                         </div>
                                     </div>
@@ -99,8 +103,8 @@ $view = new view;
                             <td>
                                 <div class="row">
                                     <div class="form-group col-4">
-                                      <label for="request" >College</label>
-                                          <select id="request" name="College" class="selectpicker form-control" data-live-search="true" multiple>
+                                      <label for="College" >College</label>
+                                          <select id="College" name="College" class="selectpicker form-control" data-live-search="true">
                                             <?php $view->collegeSP();?>
                                           </select>
                                     </div>
@@ -143,7 +147,7 @@ $view = new view;
         </div>
 </body>
 
-<footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom">
+<footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom  slide-in-right">
   <div class="container text-center">
       <div class="row">
           <div class="col col-sm-5 text-left">
