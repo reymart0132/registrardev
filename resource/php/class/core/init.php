@@ -21,4 +21,5 @@ spl_autoload_register(function($class){
 
 });
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/functions/sanitize.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/functions/funct.php';
  ?>

@@ -31,7 +31,6 @@ $view = new view;
                     <h1 class="text-center">New Transaction</h1>
                 </div>
                 <?php if (!empty($_GET)) {
-                    require_once '/resource/php/functions/funct.php';
                     CheckSuccess($_GET['status']);
                 }?>
             </div>
@@ -43,7 +42,7 @@ $view = new view;
                                 <div class="row">
                                     <div class="form-group col-5">
                                       <label for="studentN">Student Number(Optional)</label>
-                                      <input type="text" class="form-control" id="studentN" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student Number">
+                                      <input type="number" class="form-control" id="studentN" value="" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student Number">
                                     </div>
                                     <div class="form-group col-5">
                                       <label for="studentN">Year Graduated or Last Enrolled</label>

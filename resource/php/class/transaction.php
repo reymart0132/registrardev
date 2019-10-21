@@ -28,6 +28,8 @@ class transaction{
         $sql1 = "INSERT INTO `applications`(`StudentNo`,`LastName`,`FirstName`,`MI`,`Course`,`contact_no`,`Status`,`Applied_For`,`purposes`,`Date_App`,`Due_date`,`updated`,`created`,`Encoded_by`,`Date_Grad`)VALUES('$this->studentN','$this->Lastname','$this->Firstname','$this->Middlename','$this->Course','$this->ContactNumber','$this->Status','$this->requests','$this->Purpose','$this->da','$this->dd',NOW(),NOW(),4,'$this->ygle')";
         $data1 = $con-> prepare($sql1);
         $data1 ->execute();
+        var_dump($data1);
+        echo "success";
     }
 
     public function insertWork(){
@@ -40,6 +42,7 @@ class transaction{
         $sql1 = "INSERT INTO `work`(`id`,`StudentNo`,`LastName`,`FirstName`,`MI`,`Course`,`contact_no`,`Status`,`Applied_For`,`purposes`,`College`,`Date_App`,`Due_date`,`Date_Grad`)VALUES($id,'$this->studentN','$this->Lastname','$this->Firstname','$this->Middlename','$Course','$this->ContactNumber','$this->Status','$this->requests','$purpose','$College','$this->da','$this->dd','$this->ygle')";
         $data1 = $con-> prepare($sql1);
         $data1 ->execute();
+        echo "success";
     }
     public function findCourse(){
         $config = new config;

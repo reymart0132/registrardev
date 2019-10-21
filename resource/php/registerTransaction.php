@@ -22,13 +22,6 @@ $dd = $dd->format('Y-m-d');
 $transaction = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests,$da,$dd);
 $transaction->insertTransaction();
 $transaction->insertWork();
-header("location:../../nTransaction.php?status=Success");
-
-
-
-
-    // $aI = new alumniInfo($sno,$lname,$fname,$mname,$dc,$cno,$dob,$nt,$cs,$mg,$yg,$addr,$hno,$hfno,$eaddr,$octype,$emp,$baddr,$ofno,$emppos);
-    // $aI->insertAlumniInfo();
-    // header("location:../../index.php");
-    }
+ header("location:../../nTransaction.php?status=Success");
+}
   ?>
