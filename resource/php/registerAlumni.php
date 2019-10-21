@@ -1,5 +1,5 @@
 <?php
-require_once 'class/db/alumniInfo.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 if(!empty($_POST)) {
     $sno = $_POST['sno'];
     $lname = $_POST['lname'];

@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/db/view.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new view();
  ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ $view = new view();
             <div class="container-fluid bga mt-4">
                 <div class="jumbotrona">
                     <h1 class="display-4 text-center"> Alumni <span class="ceucolor2">Information</span></h1>
-                    <form class="text-center border border-light p-5" action="/registrardev/resource/php/register.php" method="post" id="myCoolForm">
+                    <form class="text-center border border-light p-5" action="/registrardev/resource/php/registerAlumni.php" method="post" id="myCoolForm">
 
                         <div class="form-row mb-4">
                             <div class="col">
