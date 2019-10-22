@@ -116,6 +116,19 @@ class view extends config{
                   echo 'success';
                 }
         }
+        public function collegeSP2(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `collegeschool`";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+                foreach ($rows as $row) {
+                  echo '<option data-tokens=".'.$row->college_school.'." value="'.$row->college_school.'">'.$row->college_school.'</option>';
+                  echo 'success';
+                }
+        }
+
 
 
 
