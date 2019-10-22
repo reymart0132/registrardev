@@ -1,5 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
+$result = DB::getInstance()->query("SELECT * FROM `applications` WHERE `id` = ?",array(2));
+var_dump($result);
+
  ?>
 
 <!DOCTYPE html>
