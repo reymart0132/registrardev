@@ -34,22 +34,22 @@ $input->nullData();
           <br />
           <br />
           <p><b>To Whom it May Concern,</b></p>
-          <p style="padding-left:50px">
-            &nbsp;  &nbsp;  &nbsp;This is to certify that <?php $input->combineName()?>has
+          <p style="text-align: justify; " >
+            &nbsp;  &nbsp;  &nbspThis is to certify that <?php $input->combineName()?>has
             completed all the requirements prescribed by the Office of Private Education,
             Department of Instruction and has satisfactorily passed all the required
             examinations to obtain the degree of  <?php $input->showDegree()?>
             on  <?php $input->showDateGraduated()?> in this University.
           </p>
-          <p style="padding-left:50px">
+          <p style="text-align: justify; " >
               &nbsp;  &nbsp;  &nbsp;This is to certify further that he/she was given a Special Order (B) No. <?php $input->showSpecialOrder() ?>
             s. dated  <?php $input->showDateIssued()?> issued by the Office of Private
             Education, Department of Instruction, Manila.
           </p>
 
-          <p style="float:right">
+          <p style="float:right;text-align: center">
             <?php $input->RegistrarName(); ?>
-              <br />
+            <br />
             University Registrar/Registrar
           </p>
         </div>

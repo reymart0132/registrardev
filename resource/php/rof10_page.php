@@ -76,12 +76,16 @@ $input->viewData();
                         <td>
                             <div class="row">
                               <div class="form-group col-4">
+                                <label for="DateToday">Course</label>
+                                <input type="text" class="form-control" id="Course" name="Course" aria-describedby="emailHelp" placeholder="Enter Course" required>
+                              </div>
+                              <div class="form-group col-4">
                                 <label for="DateToday">Date Issued</label>
-                                <input type="date" class="form-control" id="Lastname" name="DateIssued" aria-describedby="emailHelp" placeholder="Enter Date" required>
+                                <input type="date" class="form-control" id="DateIssued" name="DateIssued" aria-describedby="emailHelp" placeholder="Enter Date" required>
                               </div>
                                 <div class="form-group col-4">
                                   <label for="Rname">Registrar Full Name</label>
-                                  <input type="text" class="form-control" id="Lastname" name="Rname" aria-describedby="emailHelp" placeholder="Enter Name" required>
+                                  <input type="text" class="form-control" id="Rname" name="Rname" aria-describedby="emailHelp" placeholder="Enter Name" required>
                                 </div>
                         </td>
                     </tr>

@@ -9,6 +9,7 @@ class inputForm{
       $dateToday = $_POST['DateToday'];
       $dateGraduated = $_POST['DateGraduated'];
       $specialOrder = $_POST['SpecialOrder'];
+      $course = $_POST['Course'];
       $dateIssued = $_POST['DateIssued'];
       $rName = $_POST['Rname'];
       $_SESSION['Lastname'] = $lName;
@@ -16,6 +17,7 @@ class inputForm{
       $_SESSION['Middlename'] = $middleName;
       $_SESSION['DateToday'] = $dateToday;
       $_SESSION['DateGraduated'] = $dateGraduated;
+      $_SESSION['Course'] = $course;
       $_SESSION['SpecialOrder'] = $specialOrder;
       $_SESSION['DateIssued'] = $dateIssued;
       $_SESSION['Rname'] = $rName;
@@ -51,14 +53,17 @@ class inputForm{
     $dateToday = $_SESSION['DateToday'];
     if(isset($dateToday)){
       // echo'<b>'. $dateToday.'</b>';
-      echo '<b>'.$dateToday.'</b>';
+      // echo '<b>'.$dateToday.'</b>';
+      $output = date('F j, Y',strtotime($dateToday));
+      echo '<b>'.$output.'</b>';
     }
   }
 
   public function showDateGraduated(){
     $dateGraduated = $_SESSION['DateGraduated'];
     if(isset($dateGraduated)){
-        echo'<b>'. $dateGraduated.'</b>';
+      $output = date('F j, Y',strtotime($dateGraduated));
+      echo '<b>'.$output.'</b>';
     }
   }
 
@@ -72,7 +77,8 @@ class inputForm{
   public function showDateIssued(){
     $dateIssued = $_SESSION['DateIssued'];
     if(isset($dateIssued)){
-      echo'<b>'. $dateIssued.'</b>';
+      $output = date('F j, Y',strtotime($dateIssued));
+      echo '<b>'.$output.'</b>';
     }
   }
 
