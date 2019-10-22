@@ -55,9 +55,13 @@ $input->nullData();
         </div>
       </div>
     </body>
-    <div class="footer">
-      <img src="resource\img\footer.png" >
-    </div>
+
   </div>
 </body>
+<footer id="sticky-footer" class=" fixed-bottom">
+  <div class="container text-center">
+    <img src="../../resource/img/footer.jpg" height="150" >
+
+  </div>
+</footer>
 </html>
