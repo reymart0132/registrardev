@@ -55,20 +55,13 @@ $input->nullData();
         </div>
       </div>
     </body>
-    <div class="footer">
-    </div>
+
   </div>
 </body>
-<footer id="sticky-footer" class=" foot fixed-bottom">
+<footer id="sticky-footer" class=" fixed-bottom">
   <div class="container text-center">
     <img src="../../resource/img/footer.jpg" height="150" >
-      <!-- <div class="row">
-          <div class="col col-sm-5 text-left">
-                  </div>
-          <div class="col text-right">
 
-          </div>
-      </div> -->
   </div>
 </footer>
 </html>
