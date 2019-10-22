@@ -36,14 +36,85 @@ class DB{
             $this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
             $this->_count = $this->_query->rowCount();
         }else{
-            $this->error = true;
+            $this->_error = true;
         }
         return $this;
     }
 
     public function error(){
-        return $this->error;
+        return $this->_error;
     }
+
+    public function action($action,$table,$where=array()){
+        if(count($where) ===3){
+            $operators = array('=','>','<','>=','<=');
+            $field      =$where[0];
+            $operator   =$where[1];
+            $value      =$where[2];
+            var_dump($value);
+            if(in_array($operator,$operators)){
+                $sql ="{$action} FROM {$table} WHERE {$field}{$operator} ?";
+                if(!$this->query($sql, array($value))->error()){
+                    return $this;
+                }
+            }
+        }
+        return false;
+    }
+
+    public function get($table,$where){
+        return $this->action('SELECT *',$table, $where);
+    }
+
+    public function delete($table,$where){
+        return $this->action('DELETE *',$table, $where);
+    }
+    public function count(){
+        return $this->_count;
+    }
+    public function result(){
+        return $this->_results;
+    }
+    public function first(){
+        return $this->result()[0];
+    }
+    public function insert($table,$fields =array()){
+
+            $keys = array_keys($fields);
+            $values = '';
+            $x= 1;
+
+            foreach ($fields as $field) {
+                $values .= '?';
+                if($x <count($fields)){
+                    $values .= ', ';
+                }
+                $x++;
+            }
+            $sql = "INSERT INTO `tbl_accounts` (`".implode('`,`',$keys)."`)VALUES({$values})";
+            if(!$this->query($sql,$fields)->error()){
+                return true;
+            }
+        return false;
+    }
+
+    public function update($table,$id,$fields){
+        $set = '';
+        $x = 1;
+        foreach ($fields as $name => $value) {
+            $set .="`{$name}`=?";
+            if($x <count($fields)){
+                $set .= ', ';
+            }
+            $x++;
+        }
+        $sql ="UPDATE {$table} SET {$set}='newpassword' where `id` = {$id}";
+        if(!$this->query($sql,$fields)->error()){
+            return true;
+        }
+        return false;
+    }
+
 
 }
 

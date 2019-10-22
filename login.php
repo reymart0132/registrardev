@@ -1,8 +1,10 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
-$result = DB::getInstance()->query("SELECT * FROM `applications` WHERE `id` = ?",array(2));
-var_dump($result);
-
+$result = DB::getInstance()->update('tbl_accounts',3, array(
+    'password' => 'newpassword',
+    'name'=>'Dale Garrets',
+    'salt' => 'salt'
+));
  ?>
 
 <!DOCTYPE html>
