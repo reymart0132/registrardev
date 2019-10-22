@@ -1,0 +1,29 @@
+.footer {
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+header{
+  padding: 20px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+.jumbotronax {
+  padding-top: 1%;
+}
+
+.btn-xl {
+    width:50%;
+}
+.jumbotrona {
+
+margin-top: -5vh;
+  padding: 3%;
+}
+
+.letter{
+  height: 70vh;
+}
