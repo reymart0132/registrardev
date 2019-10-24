@@ -1,15 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new view;
-
-if(input::exists()){
-    $validate = $validate->check($_POST,array(
-        'username'=>array(),
-        'password'=>array(),
-        'password_again'=>array(),
-        'name'=>array()
-    ));
-}
 ?>
 
 
@@ -43,22 +34,25 @@ if(input::exists()){
                      <h1 class="text-center">Register New Student Records Assistant</h1>
                  </div>
             </div>
-            <form action="" method="POST">
+            <?php
+                vald();
+            ?>
+            <form action="" method="post">
                 <table class="table ">
                     <tr>
                         <td>
                             <div class="row justify-content-center">
                                 <div class="form-group col-4">
                                  <label for = "username" class=""> Username:</label>
-                                 <input class="form-control"  type = "text" name="username" id="username" value ="" autocomplete="off"/>
+                                 <input class="form-control"  type = "text" name="username" id="username" value ="<?php echo input::get('username');?>" autocomplete="off" required />
                                 </div>
                                 <div class="form-group col-4">
                                  <label for = "password"> Password:</label>
-                                 <input type="password" class="form-control" name="password" id="password" value ="" autocomplete="off"/>
+                                 <input type="password" class="form-control" name="password" id="password" value ="<?php echo input::get('password');?>" autocomplete="off"required/>
                                 </div>
                                 <div class="form-group col-4">
                                  <label for = "ConfirmPassword"> Confirm Password:</label>
-                                 <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" value ="" autocomplete="off"/>
+                                 <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" value ="<?php echo input::get('ConfirmPassword');?>" autocomplete="off"required/>
                                 </div>
                              </div>
                         </td>
@@ -68,11 +62,11 @@ if(input::exists()){
                             <div class="row justify-content-center">
                                 <div class="form-group col-5">
                                  <label for = "fullName" class=""> Full Name</label>
-                                 <input class="form-control"  type = "text" name="fullName" id="fullName" value =""/>
+                                 <input class="form-control"  type = "text" name="fullName" id="fullName" value ="<?php echo input::get('fullName');?>"/required>
                                 </div>
                                 <div class="form-group col-5">
                                   <label for="College" >College/s to handle</label>
-                                      <select id="College" name="College[]" class="selectpicker form-control" data-live-search="true" multiple>
+                                      <select id="College" name="College[]" class="selectpicker form-control" data-live-search="true" multiple required>
                                         <?php $view->collegeSP2();?>
                                       </select>
                                 </div>
@@ -84,6 +78,7 @@ if(input::exists()){
                             <div class="row justify-content-center">
                                 <div class="form-group col-7">
                                     <label  >&nbsp;</label>
+                                <input type="hidden" name ="Token" value="<?php echo Token::generate();?>" />
                                  <input type="submit" value="Register New SRA" class=" form-control btn btn-primary" />
                                 </div>
                             </div>
