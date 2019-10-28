@@ -1,5 +1,34 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
+if(Input::exists()){
+    if(Token::check(Input::get('token'))){
+        $validate = new Validate();
+        $validation = $validate->check($_POST,array(
+            'username' => array('required'=>true),
+            'password'=> array('required'=>true)
+        ));
+        if($validation->passed()){
+            $user = new User();
+            $login = $user->login(Input::get('username'),Input::get('password'));
+
+            if($login){
+                if($user->data()->groups == 1){
+                     Redirect::to('home.php');
+                    echo $user->data()->groups;
+                }else{
+                     Redirect::to('admin.php');
+                    echo $user->data()->groups;
+                }
+            }else{
+                echo '<p>sorry login failed</p>';
+            }
+        }else{
+            foreach($validation->errors() as $error){
+                echo $error.'<br />';
+            }
+        }
+    }
+}
  ?>
 
 <!DOCTYPE html>
@@ -25,10 +54,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
            <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-8 ">
-                    <form class="text-center border border-light p-5 shadow puff-in-center" action="#!">
+                    <form class="text-center border border-light p-5 shadow puff-in-center" action="" method="post" >
                     <p class="h4 mb-4">Sign in</p>
-                    <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
-                    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+                    <input type="text" id="username" class="form-control mb-4" name="username" placeholder="Enter Username" required>
+                    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Enter Password" name ="password" required>
                     <div class="d-flex justify-content-around">
                         <div>
                             <div class="custom-control custom-checkbox">
@@ -37,7 +66,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-dark btn-block my-4" type="submit">Sign in</button>
+                    <input type =hidden name="token" value="<?php echo Token::generate(); ?>">
+                    <input  type="submit"  class="btn btn-dark btn-block my-4"value="Login"/>
                     </form>
                     <footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom slide-in-right">
                       <div class="container text-center">

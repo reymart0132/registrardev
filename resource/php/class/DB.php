@@ -51,7 +51,6 @@ class DB{
             $field      =$where[0];
             $operator   =$where[1];
             $value      =$where[2];
-            var_dump($value);
             if(in_array($operator,$operators)){
                 $sql ="{$action} FROM {$table} WHERE {$field}{$operator} ?";
                 if(!$this->query($sql, array($value))->error()){
@@ -73,7 +72,7 @@ class DB{
         return $this->_count;
     }
     public function result(){
-        return $this->_results;
+        return $this->_result;
     }
     public function first(){
         return $this->result()[0];
@@ -83,7 +82,6 @@ class DB{
             $keys = array_keys($fields);
             $values = '';
             $x= 1;
-
             foreach ($fields as $field) {
                 $values .= '?';
                 if($x <count($fields)){
@@ -91,10 +89,11 @@ class DB{
                 }
                 $x++;
             }
-            $sql = "INSERT INTO `tbl_accounts` (`".implode('`,`',$keys)."`)VALUES({$values})";
+            $sql = "INSERT INTO `$table` (`".implode('`,`',$keys)."`)VALUES({$values})";
             if(!$this->query($sql,$fields)->error()){
                 return true;
             }
+
         return false;
     }
 
