@@ -128,11 +128,192 @@ class view extends config{
                   echo 'success';
                 }
         }
+        public function viewtodolist(){
+          $config = new config;
+          $con = $config->con();
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING'";
+          $data = $con-> prepare($sql);
+          $data ->execute();
+          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              // var_dump($rows);
+
+              echo "<table class='table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5' style=width:100%>";
+           echo '<tr>';
+           echo '
+           <td class="text-center" style= font-weight:bold;>Student Number</td>
+
+           <td class="text-center" style= font-weight:bold;>Full Name</td>
+
+           <td class="text-center" style= font-weight:bold;>Course</td>
+           <td class="text-center" style= font-weight:bold;>Contact Number</td>
+           <td class="text-center" style= font-weight:bold;>Status</td>
+           <td class="text-center" style= font-weight:bold;>Date Graduated</td>
+           <td class="text-center" style= font-weight:bold;>Applied For</td>
+           <td class="text-center" style= font-weight:bold;>Purpose</td>
+           <td class="text-center" style= font-weight:bold;>Due Date</td>
+           <td class="text-center" style= font-weight:bold;>Remarks</td>
+           <td class="text-center" style= font-weight:bold;>Actions</td>
+           ';
+           echo '</tr>';
+           foreach ($rows as $row) {
+             echo '<tr>';
+               // echo '<td class="text-center">'.$row ->id.'</td>';
+               echo '<td class="text-center">'.$row ->StudentNo.'</td>';
+               echo '<td class="text-center">'.$row ->FirstName.$row ->LastName.$row ->MI.'</td>';
+               echo '<td class="text-center">'.$row ->Course.'</br></td>';
+               echo '<td class="text-center">'.$row ->contact_no.'</td>';
+               echo '<td class="text-center">'.$row ->Status.'</td>';
+               echo '<td class="text-center">'.$row ->Date_Grad.'</td>';
+               echo '<td class="text-center">'.$row ->Applied_For.'</td>';
+               echo '<td class="text-center">'.$row ->purposes.'</td>';
+               echo '<td class="text-center">'.$row ->Due_Date.'</td>';
+               echo '<td class="text-center">'.$row ->remarks.'</br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
 
 
+                 echo '</tr>';
+             }
+             echo '</table>';
+        }
+        public function viewprinted(){
+          $config = new config;
+          $con = $config->con();
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED'";
+          $data = $con-> prepare($sql);
+          $data ->execute();
+          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+
+                        echo "<table class='table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5' style=width:100%>";
+                     echo '<tr>';
+                     echo '
+                     <td class="text-center" style= font-weight:bold;>Student Number</td>
+
+                     <td class="text-center" style= font-weight:bold;>Full Name</td>
+
+                     <td class="text-center" style= font-weight:bold;>Course</td>
+                     <td class="text-center" style= font-weight:bold;>Contact Number</td>
+                     <td class="text-center" style= font-weight:bold;>Status</td>
+                     <td class="text-center" style= font-weight:bold;>Date Graduated</td>
+                     <td class="text-center" style= font-weight:bold;>Applied For</td>
+                     <td class="text-center" style= font-weight:bold;>Purpose</td>
+                     <td class="text-center" style= font-weight:bold;>Due Date</td>
+                     <td class="text-center" style= font-weight:bold;>Remarks</td>
+                     <td class="text-center" style= font-weight:bold;>Actions</td>
+                     ';
+                     echo '</tr>';
+                     foreach ($rows as $row) {
+                       echo '<tr>';
+                         // echo '<td class="text-center">'.$row ->id.'</td>';
+                         echo '<td class="text-center">'.$row ->StudentNo.'</td>';
+                         echo '<td class="text-center">'.$row ->FirstName.$row ->LastName.$row ->MI.'</td>';
+                         echo '<td class="text-center">'.$row ->Course.'</br></td>';
+                         echo '<td class="text-center">'.$row ->contact_no.'</td>';
+                         echo '<td class="text-center">'.$row ->Status.'</td>';
+                         echo '<td class="text-center">'.$row ->Date_Grad.'</td>';
+                         echo '<td class="text-center">'.$row ->Applied_For.'</td>';
+                         echo '<td class="text-center">'.$row ->purposes.'</td>';
+                         echo '<td class="text-center">'.$row ->Due_Date.'</td>';
+                         echo '<td class="text-center">'.$row ->remarks.'</br></td>';
+                         echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
 
 
+                           echo '</tr>';
+                       }
+                       echo '</table>';
+        }
+        public function viewverified(){
+          $config = new config;
+          $con = $config->con();
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
+          $data = $con-> prepare($sql);
+          $data ->execute();
+          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
 
+                        echo "<table class='table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5' style=width:100%>";
+                     echo '<tr>';
+                     echo '
+                     <td class="text-center" style= font-weight:bold;>Student Number</td>
+
+                     <td class="text-center" style= font-weight:bold;>Full Name</td>
+
+                     <td class="text-center" style= font-weight:bold;>Course</td>
+                     <td class="text-center" style= font-weight:bold;>Contact Number</td>
+                     <td class="text-center" style= font-weight:bold;>Status</td>
+                     <td class="text-center" style= font-weight:bold;>Date Graduated</td>
+                     <td class="text-center" style= font-weight:bold;>Applied For</td>
+                     <td class="text-center" style= font-weight:bold;>Purpose</td>
+                     <td class="text-center" style= font-weight:bold;>Due Date</td>
+                     <td class="text-center" style= font-weight:bold;>Remarks</td>
+                     <td class="text-center" style= font-weight:bold;>Actions</td>
+                     ';
+                     echo '</tr>';
+                     foreach ($rows as $row) {
+                       echo '<tr>';
+                         // echo '<td class="text-center">'.$row ->id.'</td>';
+                         echo '<td class="text-center">'.$row ->StudentNo.'</td>';
+                         echo '<td class="text-center">'.$row ->FirstName.$row ->LastName.$row ->MI.'</td>';
+                         echo '<td class="text-center">'.$row ->Course.'</br></td>';
+                         echo '<td class="text-center">'.$row ->contact_no.'</td>';
+                         echo '<td class="text-center">'.$row ->Status.'</td>';
+                         echo '<td class="text-center">'.$row ->Date_Grad.'</td>';
+                         echo '<td class="text-center">'.$row ->Applied_For.'</td>';
+                         echo '<td class="text-center">'.$row ->purposes.'</td>';
+                         echo '<td class="text-center">'.$row ->Due_Date.'</td>';
+                         echo '<td class="text-center">'.$row ->remarks.'</br></td>';
+                         echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
+
+
+                           echo '</tr>';
+                       }
+                       echo '</table>';
+        }
+        public function viewreleased(){
+          $config = new config;
+          $con = $config->con();
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
+          $data = $con-> prepare($sql);
+          $data ->execute();
+          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              // var_dump($rows);
+
+                            echo "<table class='table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5' style=width:100%>";
+                         echo '<tr>';
+                         echo '
+                         <td class="text-center" style= font-weight:bold;>Student Number</td>
+
+                         <td class="text-center" style= font-weight:bold;>Full Name</td>
+
+                         <td class="text-center" style= font-weight:bold;>Course</td>
+                         <td class="text-center" style= font-weight:bold;>Contact Number</td>
+                         <td class="text-center" style= font-weight:bold;>Status</td>
+                         <td class="text-center" style= font-weight:bold;>Date Graduated</td>
+                         <td class="text-center" style= font-weight:bold;>Applied For</td>
+                         <td class="text-center" style= font-weight:bold;>Purpose</td>
+                         <td class="text-center" style= font-weight:bold;>Due Date</td>
+                         <td class="text-center" style= font-weight:bold;>Remarks</td>
+                         <td class="text-center" style= font-weight:bold;>Actions</td>
+                         ';
+                         echo '</tr>';
+                         foreach ($rows as $row) {
+                           echo '<tr>';
+                             // echo '<td class="text-center">'.$row ->id.'</td>';
+                             echo '<td class="text-center">'.$row ->StudentNo.'</td>';
+                             echo '<td class="text-center">'.$row ->FirstName.$row ->LastName.$row ->MI.'</td>';
+                             echo '<td class="text-center">'.$row ->Course.'</br></td>';
+                             echo '<td class="text-center">'.$row ->contact_no.'</td>';
+                             echo '<td class="text-center">'.$row ->Status.'</td>';
+                             echo '<td class="text-center">'.$row ->Date_Grad.'</td>';
+                             echo '<td class="text-center">'.$row ->Applied_For.'</td>';
+                             echo '<td class="text-center">'.$row ->purposes.'</td>';
+                             echo '<td class="text-center">'.$row ->Due_Date.'</td>';
+                             echo '<td class="text-center">'.$row ->remarks.'</br></td>';
+                             echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
+
+
+                               echo '</tr>';
+                           }
+                           echo '</table>';
+        }
 
 }
  ?>
