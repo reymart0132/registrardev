@@ -214,12 +214,11 @@ class view extends config{
                          echo '<td class="text-center">'.$row ->purposes.'</td>';
                          echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                          echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-                         echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="printed.php?verified='.$row ->id.'">Verified </a></br></td>';
 
-
-                           echo '</tr>';
-                       }
-                       echo '</table>';
+                 echo '</tr>';
+             }
+             echo '</table>';
         }
         public function viewverified(){
           $config = new config;
@@ -260,12 +259,10 @@ class view extends config{
                          echo '<td class="text-center">'.$row ->purposes.'</td>';
                          echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                          echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-                         echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
-
-
-                           echo '</tr>';
-                       }
-                       echo '</table>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="verified.php?released='.$row ->id.'">Released </a></br></td>';
+                 echo '</tr>';
+             }
+             echo '</table>';
         }
         public function viewreleased(){
           $config = new config;
@@ -291,7 +288,7 @@ class view extends config{
                          <td class="text-center" style= font-weight:bold;>Purpose</td>
                          <td class="text-center" style= font-weight:bold;>Due Date</td>
                          <td class="text-center" style= font-weight:bold;>Remarks</td>
-                         <td class="text-center" style= font-weight:bold;>Actions</td>
+                      
                          ';
                          echo '</tr>';
                          foreach ($rows as $row) {
@@ -307,12 +304,11 @@ class view extends config{
                              echo '<td class="text-center">'.$row ->purposes.'</td>';
                              echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                              echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-                             echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
 
 
-                               echo '</tr>';
-                           }
-                           echo '</table>';
+                 echo '</tr>';
+             }
+             echo '</table>';
         }
 
 }
