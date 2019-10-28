@@ -72,7 +72,7 @@ class DB{
         return $this->_count;
     }
     public function result(){
-        return $this->_results;
+        return $this->_result;
     }
     public function first(){
         return $this->result()[0];
