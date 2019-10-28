@@ -13,10 +13,10 @@ if(Input::exists()){
 
             if($login){
                 if($user->data()->groups == 1){
-                     Redirect::to('home.php');
+                     Redirect::to('pending.php');
                     echo $user->data()->groups;
                 }else{
-                     Redirect::to('admin.php');
+                     Redirect::to('view_pending.php');
                     echo $user->data()->groups;
                 }
             }else{
