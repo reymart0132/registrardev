@@ -32,20 +32,12 @@ $view = new viewReport;
               <input type="date" name="dateFrom" data-date-format="YYYY MMMM DD" />
               <label for="dateTo">To: </label>
               <input type="date" name="dateTo" />
-              <label for="record">Record Type:</label>
-
-              <select name="record">
-                <option value="TOR">TOR</option>
-                <option value="Cert of Candidacy">Certificate of Candidacy</option>
-              </select>
-              <input type="text" name="remark" />
-
               <input type="submit" name="submit" value="Filter">
             </form>
             <?php
             if (isset($_POST['submit'])) {
 
-              $viewDate = new viewReport($_POST['dateFrom'],$_POST['dateTo'],$_POST['remark']);
+              $viewDate = new viewReport($_POST['dateFrom'],$_POST['dateTo']);
               $viewDate->viewByCriteria();
 
             }else {

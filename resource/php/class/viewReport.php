@@ -4,12 +4,10 @@ require_once 'config.php';
 class viewReport extends config{
   public $dateFrom;
   public $dateTo;
-  public $record;
-  public $remark;
-  function __construct($dateFrom=null,$dateTo=null,$remark=null){
+
+  function __construct($dateFrom=null,$dateTo=null){
     $this->dateFrom = $dateFrom;
     $this->dateTo = $dateTo;
-    $this->remark = $remark;
   }
 
   public function viewData(){
@@ -50,14 +48,12 @@ class viewReport extends config{
 
   public function viewByCriteria(){
 
-    if (isset($_POST['dateFrom']) && isset($_POST['dateTo'])  && isset($_POST['remark'])) {
+    if (isset($_POST['dateFrom']) && isset($_POST['dateTo'])) {
       $config = new config;
       $con = $config->con();
       $dateFrom = $this->dateFrom;
       $dateTo = $this->dateTo;
-      $record = $this->record;
-      $remark = $this->remark;
-      $sql = "SELECT * FROM work WHERE Date_App >= '$dateFrom' AND Date_App <= '$dateTo'  OR `remarks` = '$remark'";
+      $sql = "SELECT * FROM work WHERE Date_App >= '$dateFrom' AND Date_App <= '$dateTo'";
       $data = $con->prepare($sql);
       $data ->execute();
       $rows =$data-> fetchAll(PDO::FETCH_OBJ);
