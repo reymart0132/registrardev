@@ -173,7 +173,7 @@ class view extends config{
                echo '<td class="text-center">'.$row ->purposes.'</td>';
                echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?pending='.$row ->id.'">Printed </a></br></td>';
 
 
                  echo '</tr>';
@@ -223,7 +223,7 @@ class view extends config{
                          echo '<td class="text-center">'.$row ->purposes.'</td>';
                          echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                          echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="verified.php?verified='.$row ->id.'">Verified </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?pending='.$row ->id.'">Verified </a></br></td>';
 
                  echo '</tr>';
              }
@@ -272,7 +272,7 @@ class view extends config{
                          echo '<td class="text-center">'.$row ->purposes.'</td>';
                          echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                          echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="released.php?released='.$row ->id.'">Released </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?pending='.$row ->id.'">Released </a></br></td>';
                  echo '</tr>';
              }
              echo '</table>';
