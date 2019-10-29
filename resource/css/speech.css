@@ -11,7 +11,7 @@
 .sb:after{
   content: '';
 	position: absolute;
-	left: 0;
+	left: -7%;
 	top: 50%;
 	width: 0;
 	height: 0;
@@ -25,4 +25,47 @@
   height: 100px;
   width: 100px;
   border-radius: 50%;
+}
+
+.out{
+  color: #c9c9c9;
+}
+
+.sn{
+    box-shadow: 2px 5px #ebebeb;
+}
+
+.logobody{
+  height: 60px;
+  width:120px;
+}
+
+.cbody{
+  background-color: white;
+  border: 1px solid #c9c9c9;
+}
+
+.bubble-speech{
+  color:#DC65A1;
+}
+
+.tabitem{
+  background-color: #DC65A1;
+}
+
+.nav-link{
+  color: #DC65A1;
+}
+
+.cbodytext{
+  font-size: 12px;
+  color: #DC65A1;
+}
+
+.insertname{
+  color: #c9c9c9;
+}
+
+.out:hover{
+    color: #DC65A1;
 }

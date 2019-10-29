@@ -37,32 +37,37 @@ if(isset($_GET['verified'])){
         <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
         <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
    </nav>
+ <!--  -->
    <div class="container-fluid mt-4">
      <div class="row">
        <!--  -->
-       <div class="profile-img-container">
+       <div class="profile-img-container pl-3">
           <img src="resource/img/user.jpg" alt="" class="img" id="dp">
        </div>
-        <input id="uploadfile" class="d-none" type="file" />
        <!--  -->
-       <div class="speech pl-4 pt-2">
+       <div class="speech pl-4 pt-2 ">
          <div class="box sb pt-1">
-           <p>I'll work hard today!</p>
+           <p class="bubble-speech">I'll work hard today!</p>
          </div>
-         <div class="logout pt-3 pl-2">
+         <div class="logout pl-2 pt-2">
+           <div class="name pl-3 pt-2">
+             <p class="insertname" style="color: #dc65a1;">Welcome, Insert Name</p>
+           </div>
            <a href="" class="out "><span  class="fas fa-sign-out-alt " href="#"></span>&nbsp;Logout</a>
          </div>
        </div>
        <!--  -->
-   <div class="ml-2 row">
+        <div class="ml-5 pl-4 row">
          <div class="status pl-5 pt-4">
-           <div class="row no-gutters">
+           <div class="row no-gutters sn">
              <div class="col-auto">
-               <img src="resource/img/user.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+               <img src="resource/img/pending.jpg" class="img-fluid logo" style="height: 60px; width:60px;"alt="">
              </div>
                <div class="col">
                    <div class="card-block">
-                     <div class="bg-primary" style="height: 60px; width:120px;">
+                     <div class="cbody" style="height: 60px; width:120px;">
+                       <p class="text-center cbodytext">Insert Data Here</p>
+                       <p class="text-center cbodytext">Pending</p>
                      </div>
                    </div>
                </div>
@@ -70,13 +75,15 @@ if(isset($_GET['verified'])){
          </div>
          <!--  -->
          <div class="status pl-5 pt-4">
-           <div class="row no-gutters">
+           <div class="row no-gutters sn">
              <div class="col-auto">
-               <img src="resource/img/user.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+               <img src="resource/img/signature.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
              </div>
                <div class="col">
                    <div class="card-block">
-                     <div class="bg-primary" style="height: 60px; width:120px;">
+                     <div class="cbody" style="height: 60px; width:120px;">
+                       <p class="text-center cbodytext">Insert Data Here</p>
+                       <p class="text-center cbodytext">For Signature</p>
                      </div>
                    </div>
                </div>
@@ -84,13 +91,15 @@ if(isset($_GET['verified'])){
          </div>
       <!--  -->
       <div class="status pl-5 pt-4">
-        <div class="row no-gutters">
+        <div class="row no-gutters sn">
           <div class="col-auto">
-            <img src="resource/img/user.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+            <img src="resource/img/forrelease.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
           </div>
             <div class="col">
                 <div class="card-block">
-                  <div class="bg-primary" style="height: 60px; width:120px;">
+                  <div class="cbody" style="height: 60px; width:120px;">
+                    <p class="text-center cbodytext">Insert Data Here</p>
+                    <p class="text-center cbodytext">For Release</p>
                   </div>
                 </div>
             </div>
@@ -98,32 +107,35 @@ if(isset($_GET['verified'])){
     </div>
     <!--  -->
     <div class="status pl-5 pt-4">
-      <div class="row no-gutters">
+      <div class="row no-gutters sn">
         <div class="col-auto">
-          <img src="resource/img/user.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+          <img src="resource/img/released.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
         </div>
           <div class="col">
               <div class="card-block">
-                <div class="bg-primary" style="height: 60px; width:120px;">
+                <div class="cbody" style="height: 60px; width:120px;">
+                  <p class="text-center cbodytext">Insert Data Here</p>
+                  <p class="text-center cbodytext">Released</p>
                 </div>
               </div>
           </div>
       </div>
     </div>
    </div>
+ </div>
    <!--  -->
    <div class="container-fluid mt-4">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
+        <li class="nav-item ">
           <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item  ">
           <a class="nav-link" id="profile-tab" data-toggle="tab" href="#printed" role="tab" aria-controls="profile" aria-selected="false">For Signature</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="contact" aria-selected="false">For Release</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#released" role="tab" aria-controls="contact" aria-selected="false">Released</a>
         </li>
       </ul>
@@ -139,7 +151,7 @@ if(isset($_GET['verified'])){
    <div class="container text-center">
        <div class="row">
            <div class="col col-sm-5 text-left">
-               <small>Copyright &copy;Centro Escolar University     Office of the Registrar 2019</small>
+               <small>Copyright &copy;Centro Escolar University Office of the Registrar 2019</small>
            </div>
            <div class="col text-right">
                <small>Created by: Reymart Bolasoc, Amelia Valencia , James Mangalile, Kenneth De Leon , Pamela Reyes , Ellen Mijares</small>
@@ -151,10 +163,5 @@ if(isset($_GET['verified'])){
      <script src="vendor/js/popper.js"></script>
      <script src="vendor/js/bootstrap.min.js"></script>
      <script src="vendor/js/bootstrap-select.min.js"></script>
-     <script>
-      $('.profile-img-container img').click(function(){
-        $('#uploadfile').click();
-      });
-     </script>
  </body>
  </html>
