@@ -189,7 +189,6 @@ class view extends config{
                      <td class="text-center" style= font-weight:bold;>Student Number</td>
 
                      <td class="text-center" style= font-weight:bold;>Full Name</td>
-
                      <td class="text-center" style= font-weight:bold;>Course</td>
                      <td class="text-center" style= font-weight:bold;>Contact Number</td>
                      <td class="text-center" style= font-weight:bold;>Status</td>
