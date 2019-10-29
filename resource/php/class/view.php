@@ -142,7 +142,7 @@ class view extends config{
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               // var_dump($rows);
 
-              echo "<table class='table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5' style=width:100%>";
+              echo "<table class='table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5' style=width:100%; >";
            echo '<tr>';
            echo '
            <td class="text-center" style= font-weight:bold;>Student Number</td>
@@ -173,7 +173,7 @@ class view extends config{
                echo '<td class="text-center">'.$row ->purposes.'</td>';
                echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?pending='.$row ->id.'">Printed </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
 
 
                  echo '</tr>';
@@ -223,7 +223,7 @@ class view extends config{
                          echo '<td class="text-center">'.$row ->purposes.'</td>';
                          echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                          echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?pending='.$row ->id.'">Verified </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?verified='.$row ->id.'">Verified </a></br></td>';
 
                  echo '</tr>';
              }
@@ -272,7 +272,7 @@ class view extends config{
                          echo '<td class="text-center">'.$row ->purposes.'</td>';
                          echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                          echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?pending='.$row ->id.'">Released </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row ->id.'">Released </a></br></td>';
                  echo '</tr>';
              }
              echo '</table>';

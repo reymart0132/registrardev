@@ -9,6 +9,10 @@ if(isset($_GET['released'])){
   $release = new released($_GET['released']);
   $release->release();
 }
+if(isset($_GET['verified'])){
+  $print = new verified($_GET['verified']);
+  $print->verify();
+}
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -49,28 +53,85 @@ if(isset($_GET['released'])){
            <a href="" class="out "><span  class="fas fa-sign-out-alt " href="#"></span>&nbsp;Logout</a>
          </div>
        </div>
-     </div>
-     <!--  -->
+       <!--  -->
+   <div class="ml-2 row">
+         <div class="status pl-5 pt-4">
+           <div class="row no-gutters">
+             <div class="col-auto">
+               <img src="resource/img/user.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+             </div>
+               <div class="col">
+                   <div class="card-block">
+                     <div class="bg-primary" style="height: 60px; width:120px;">
+                     </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+         <!--  -->
+         <div class="status pl-5 pt-4">
+           <div class="row no-gutters">
+             <div class="col-auto">
+               <img src="resource/img/user.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+             </div>
+               <div class="col">
+                   <div class="card-block">
+                     <div class="bg-primary" style="height: 60px; width:120px;">
+                     </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+      <!--  -->
+      <div class="status pl-5 pt-4">
+        <div class="row no-gutters">
+          <div class="col-auto">
+            <img src="resource/img/user.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+          </div>
+            <div class="col">
+                <div class="card-block">
+                  <div class="bg-primary" style="height: 60px; width:120px;">
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="status pl-5 pt-4">
+      <div class="row no-gutters">
+        <div class="col-auto">
+          <img src="resource/img/user.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+        </div>
+          <div class="col">
+              <div class="card-block">
+                <div class="bg-primary" style="height: 60px; width:120px;">
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
    </div>
+   <!--  -->
    <div class="container-fluid mt-4">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pending</a>
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">For Signature</a>
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#printed" role="tab" aria-controls="profile" aria-selected="false">For Signature</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Signed</a>
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="contact" aria-selected="false">For Release</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="contact" aria-selected="false">For Releasing</a>
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#released" role="tab" aria-controls="contact" aria-selected="false">Released</a>
         </li>
       </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><?php $view ->viewtodolist(); ?></div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">  <?php $view ->viewverified(); ?></div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewreleased(); ?></div>
+      <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="home-tab"><?php $view ->viewtodolist(); ?></div>
+      <div class="tab-pane fade" id="printed" role="tabpanel" aria-labelledby="profile-tab">  <?php $view ->viewprinted(); ?></div>
+      <div class="tab-pane fade" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewverified(); ?></div>
+        <div class="tab-pane fade" id="released" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewreleased(); ?></div>
     </div>
   </div>
  </body>

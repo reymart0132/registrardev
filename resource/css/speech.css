@@ -19,25 +19,10 @@
 	border-right-color: #DC65A1;
 	border-left: 0;
 	border-bottom: 0;
-	margin-top: -6.5px;
-	margin-left: -13px;
 }
 
-#dp{
-  height:120px;
-  width:120px;
+.img{
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
-}
-
-.box p{
-    color: #DC65A1;
-}
-
-.profile-img-container:hover{
-  opacity: 0.5;
-}
-
-.out{
-  color: #DC65A1;
-  font-size: 18px;
 }
