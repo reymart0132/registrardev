@@ -5,9 +5,9 @@ if(isset($_GET['printed'])){
   $print = new printed($_GET['printed']);
   $print->print();
 }
-if(isset($_GET['verified'])){
-  $print = new verified($_GET['verified']);
-  $print->verify();
+if(isset($_GET['released'])){
+  $release = new released($_GET['released']);
+  $release->release();
 }
  ?>
  <!DOCTYPE html>
@@ -50,24 +50,26 @@ if(isset($_GET['verified'])){
          </div>
        </div>
      </div>
-
      <!--  -->
    </div>
    <div class="container-fluid mt-4">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Printed</a>
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pending</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Verified</a>
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">For Signature</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Released</a>
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Signed</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#" role="tab" aria-controls="contact" aria-selected="false">For Releasing</a>
         </li>
       </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><?php $view ->viewtodolist(); ?></div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><?php $view ->viewprinted(); ?></div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">  <?php $view ->viewverified(); ?></div>
       <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewreleased(); ?></div>
     </div>
   </div>

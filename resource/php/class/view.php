@@ -198,6 +198,7 @@ class view extends config{
                      <td class="text-center" style= font-weight:bold;>Student Number</td>
 
                      <td class="text-center" style= font-weight:bold;>Full Name</td>
+
                      <td class="text-center" style= font-weight:bold;>Course</td>
                      <td class="text-center" style= font-weight:bold;>Contact Number</td>
                      <td class="text-center" style= font-weight:bold;>Status</td>
@@ -222,7 +223,7 @@ class view extends config{
                          echo '<td class="text-center">'.$row ->purposes.'</td>';
                          echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                          echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="printed.php?verified='.$row ->id.'">Verified </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="verified.php?verified='.$row ->id.'">Verified </a></br></td>';
 
                  echo '</tr>';
              }
@@ -271,7 +272,7 @@ class view extends config{
                          echo '<td class="text-center">'.$row ->purposes.'</td>';
                          echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                          echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="verified.php?released='.$row ->id.'">Released </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="released.php?released='.$row ->id.'">Released </a></br></td>';
                  echo '</tr>';
              }
              echo '</table>';
