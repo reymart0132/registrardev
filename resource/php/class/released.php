@@ -9,7 +9,7 @@ class released extends config{
   public function release(){
       $config = new config;
       $con = $config->con();
-      var_dump($this->released);
+
 
       $sql = "UPDATE `work` SET `remarks`='RELEASED' WHERE `id` = $this->released";
       $data = $con-> prepare($sql);

@@ -22,7 +22,7 @@
              <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
         </nav>
         <div class="container mt-4 puff-in-center">
-            <!----dito kayo!!!!!----->
+z
         </div>
 </body>
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom  slide-in-right">
