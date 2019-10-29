@@ -18,6 +18,14 @@ function Success(){
             </button>
         </div>';
     }
+function loginError(){
+        echo '<div class="alert alert-danger alert-dismissible fade show col-12" role="alert">
+                <b>Error!</b> Invalid Username/Password
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>';
+        }
 
 function pError($error){
     echo '<div class="alert alert-danger alert-dismissible fade show col-12" role="alert">
@@ -98,8 +106,41 @@ function vald(){
                 }
             }
         }
-    }else{
-        return false;
-    }
-}
+            }else{
+                return false;
+            }
+        }
+
+        function logd(){
+            if(Input::exists()){
+                if(Token::check(Input::get('token'))){
+                    $validate = new Validate();
+                    $validation = $validate->check($_POST,array(
+                        'username' => array('required'=>true),
+                        'password'=> array('required'=>true)
+                    ));
+                    if($validation->passed()){
+                        $user = new User();
+                        $login = $user->login(Input::get('username'),Input::get('password'));
+
+                        if($login){
+                            if($user->data()->groups == 1){
+                                 Redirect::to('pending.php');
+                                echo $user->data()->groups;
+                            }else{
+                                 Redirect::to('view_pending_requests.php');
+                                echo $user->data()->groups;
+                            }
+                        }else{
+                            loginError();
+                        }
+                    }else{
+                        foreach($validation->errors() as $error){
+                            echo $error.'<br />';
+                        }
+                    }
+                }
+            }
+        }
+
  ?>

@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 require_once 'config.php';
 class view extends config{
 
@@ -131,7 +132,11 @@ class view extends config{
         public function viewtodolist(){
           $config = new config;
           $con = $config->con();
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING'";
+          $user = new User();
+          $college1 = $user->data()->colleges;
+          $college2 = explode(',',$college1);
+          $college12 ="'".implode('\',\'',$college2)."'";
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
@@ -178,7 +183,11 @@ class view extends config{
         public function viewprinted(){
           $config = new config;
           $con = $config->con();
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED'";
+          $user = new User();
+          $college1 = $user->data()->colleges;
+          $college2 = explode(',',$college1);
+          $college12 ="'".implode('\',\'',$college2)."'";
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
@@ -213,17 +222,20 @@ class view extends config{
                          echo '<td class="text-center">'.$row ->purposes.'</td>';
                          echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                          echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-                         echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="printed.php?verified='.$row ->id.'">Verified </a></br></td>';
 
-
-                           echo '</tr>';
-                       }
-                       echo '</table>';
+                 echo '</tr>';
+             }
+             echo '</table>';
         }
         public function viewverified(){
           $config = new config;
           $con = $config->con();
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
+            $user = new User();
+          $college1 = $user->data()->colleges;
+          $college2 = explode(',',$college1);
+          $college12 ="'".implode('\',\'',$college2)."'";
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12)";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
@@ -259,17 +271,19 @@ class view extends config{
                          echo '<td class="text-center">'.$row ->purposes.'</td>';
                          echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                          echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-                         echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
-
-
-                           echo '</tr>';
-                       }
-                       echo '</table>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="verified.php?released='.$row ->id.'">Released </a></br></td>';
+                 echo '</tr>';
+             }
+             echo '</table>';
         }
         public function viewreleased(){
           $config = new config;
           $con = $config->con();
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
+          $user = new User();
+          $college1 = $user->data()->colleges;
+          $college2 = explode(',',$college1);
+          $college12 ="'".implode('\',\'',$college2)."'";
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `College` IN($college12)";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
@@ -290,7 +304,7 @@ class view extends config{
                          <td class="text-center" style= font-weight:bold;>Purpose</td>
                          <td class="text-center" style= font-weight:bold;>Due Date</td>
                          <td class="text-center" style= font-weight:bold;>Remarks</td>
-                         <td class="text-center" style= font-weight:bold;>Actions</td>
+
                          ';
                          echo '</tr>';
                          foreach ($rows as $row) {
@@ -306,12 +320,11 @@ class view extends config{
                              echo '<td class="text-center">'.$row ->purposes.'</td>';
                              echo '<td class="text-center">'.$row ->Due_Date.'</td>';
                              echo '<td class="text-center">'.$row ->remarks.'</br></td>';
-                             echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row ->id.'">Printed </a></br></td>';
 
 
-                               echo '</tr>';
-                           }
-                           echo '</table>';
+                 echo '</tr>';
+             }
+             echo '</table>';
         }
 
 }

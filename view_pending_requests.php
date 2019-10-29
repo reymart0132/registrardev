@@ -1,24 +1,23 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/viewReport.php';
-$view = new viewReport;
-
- ?>
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/viewPending.php';
+$view= new viewPending;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrar Portal</title>
-  <link rel="stylesheet" type="text/css"  href="../../vendor/css/bootstrap.min.css">
-  <link href="../../vendor/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css"  href="../../resource/css/styles.css">
-  <link rel="stylesheet" type="text/css"  href="../../vendor/css/bootstrap-select.min.css">
+  <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap.min.css">
+  <link href="vendor/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
+  <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
 
 </head>
-<body>
+<body class="">
         <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
           <a class="navbar-brand" href="https://malolos.ceu.edu.ph/">
-            <img src="../../resource/img/logo.jpg" height="70" class="d-inline-block align-top"
+            <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
               alt="mdb logo"><h3 class="ib">
           </a>
              <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
@@ -26,22 +25,21 @@ $view = new viewReport;
              <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
         </nav>
         <div class="container-fluid mt-4 puff-in-center">
-            <!--dito kayo!!!!!----->
-            <form action="" method="post">
-              <label for="dateFrom">From: </label>
-              <input type="date" name="dateFrom" data-date-format="YYYY MMMM DD" />
-              <label for="dateTo">To: </label>
-              <input type="date" name="dateTo" />
-              <input type="submit" name="submit" value="Filter">
+            <!-- dito kayo!!!!!- -->
+            <form class="" action="" method="post">
+
+              <select class="" name="sort">
+                 <option value="" disabled selected>Order By:</option>
+                <option value="ASC">ASC</option>
+                <option value="DESC">DESC</option>
+              </select>
+              <input type="submit" name="submit" />
             </form>
             <?php
-            if (isset($_POST['submit'])) {
-
-              $viewDate = new viewReport($_POST['dateFrom'],$_POST['dateTo']);
-              $viewDate->viewByCriteria();
-
+            if (isset($_POST['sort'])) {
+              $view->viewSort();
             }else {
-              $view-> viewData();
+              $view->viewData();
             }
              ?>
         </div>
