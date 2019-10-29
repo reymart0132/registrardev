@@ -305,7 +305,7 @@ class view extends config{
                          <td class="text-center" style= font-weight:bold;>Purpose</td>
                          <td class="text-center" style= font-weight:bold;>Due Date</td>
                          <td class="text-center" style= font-weight:bold;>Remarks</td>
-                      
+
                          ';
                          echo '</tr>';
                          foreach ($rows as $row) {
