@@ -34,8 +34,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
                     <div class="d-flex justify-content-around">
                         <div>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                                <input type="checkbox" class="custom-control-input" name ="remember"id="remember">
+                                <label class="custom-control-label" for="remember">Remember me</label>
                             </div>
                         </div>
                     </div>

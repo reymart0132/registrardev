@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new view;
+isLogin();
 if(isset($_GET['printed'])){
   $print = new printed($_GET['printed']);
   $print->print();
@@ -41,33 +42,35 @@ if(isset($_GET['verified'])){
    <div class="container-fluid mt-4">
      <div class="row">
        <!--  -->
-       <div class="profile-img-container pl-3">
-          <img src="resource/img/user.jpg" alt="" class="img" id="dp">
-       </div>
-       <!--  -->
-       <div class="speech pl-4 pt-2 ">
-         <div class="box sb pt-1">
-           <p class="bubble-speech">I'll work hard today!</p>
-         </div>
-         <div class="logout pl-2 pt-2">
-           <div class="name pl-3 pt-2">
-             <p class="insertname" style="color: #dc65a1;">Welcome, Insert Name</p>
+       <div class="col-5 ">
+         <div class="row">
+           <div class="col-4 ">
+               <img class="rounded-circle profpic img-thumbnail" alt="100x100" src="resource/img/user.jpg"  />
+               <a href="updateprofile.php" class="out "><span class="fas fa-id-card mt-3 " href="#"></span>&nbsp;Update Info</a>
+               <a href="changepassword.php" class="out "><span class="fas fa-lock " href="#"></span>&nbsp;Change Password</a>
+               <a href="logout.php" class="out "><span class="fas fa-sign-out-alt " href="#"></span>&nbsp;Logout</a>
            </div>
-           <a href="" class="out "><span  class="fas fa-sign-out-alt " href="#"></span>&nbsp;Logout</a>
-         </div>
-       </div>
+           <div class="col-8">
+               <p class="name mt-2" style="color: #dc65a1;"><b><?php $view->getNameSRA()?></b></p>
+               <div class="speech-bubble">
+                   <p>I like work: it fascinates me. I can sit and look at it for hours.</p>
+               </div>
+           </div>
+        </div>
+      </div>
        <!--  -->
-        <div class="ml-5 pl-4 row">
-         <div class="status pl-5 pt-4">
+       <div class="col-7 pt-5">
+        <div class="ml-5 pl-4 row ">
+         <div class="status pl-5 pt-4 ">
            <div class="row no-gutters sn">
              <div class="col-auto">
-               <img src="resource/img/pending.jpg" class="img-fluid logo" style="height: 60px; width:60px;"alt="">
+               <img src="resource/img/pending.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
              </div>
                <div class="col">
                    <div class="card-block">
                      <div class="cbody" style="height: 60px; width:120px;">
-                       <p class="text-center cbodytext">Insert Data Here</p>
-                       <p class="text-center cbodytext">Pending</p>
+                       <h4 class="counter ml-5 "><b><?php echo $view->ctodolist();?></b></h4>
+                       <p class="text-center cbodytext"><b>Pending</b></p>
                      </div>
                    </div>
                </div>
@@ -82,8 +85,8 @@ if(isset($_GET['verified'])){
                <div class="col">
                    <div class="card-block">
                      <div class="cbody" style="height: 60px; width:120px;">
-                       <p class="text-center cbodytext">Insert Data Here</p>
-                       <p class="text-center cbodytext">For Signature</p>
+                       <h4 class="counter ml-5 "><b><?php echo $view->cprinted();?></b></h4>
+                       <p class="text-center cbodytext"><b>For Signature</b></p>
                      </div>
                    </div>
                </div>
@@ -98,8 +101,8 @@ if(isset($_GET['verified'])){
             <div class="col">
                 <div class="card-block">
                   <div class="cbody" style="height: 60px; width:120px;">
-                    <p class="text-center cbodytext">Insert Data Here</p>
-                    <p class="text-center cbodytext">For Release</p>
+                     <h4 class="counter ml-5 "><b><?php echo $view->cverified();?></b></h4>
+                    <p class="text-center cbodytext"><b>For Release</b></p>
                   </div>
                 </div>
             </div>
@@ -114,8 +117,8 @@ if(isset($_GET['verified'])){
           <div class="col">
               <div class="card-block">
                 <div class="cbody" style="height: 60px; width:120px;">
-                  <p class="text-center cbodytext">Insert Data Here</p>
-                  <p class="text-center cbodytext">Released</p>
+                   <h4 class="counter ml-5 "><b><?php echo $view->creleased();?></b></h4>
+                  <p class="text-center cbodytext"><b>Released</b></p>
                 </div>
               </div>
           </div>
@@ -123,6 +126,7 @@ if(isset($_GET['verified'])){
     </div>
    </div>
  </div>
+</div>
    <!--  -->
    <div class="container-fluid mt-4">
       <ul class="nav nav-tabs" id="myTab" role="tablist">

@@ -164,7 +164,7 @@ class view extends config{
              echo '<tr>';
                // echo '<td class="text-center">'.$row ->id.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName.$row ->LastName.$row->MI.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
@@ -214,7 +214,7 @@ class view extends config{
                        echo '<tr style="background-color:white;">';
                          // echo '<td class="text-center">'.$row ->id.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName.$row ->LastName.$row->MI.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
@@ -262,7 +262,7 @@ class view extends config{
                        echo '<tr style="background-color:white;">';
                          // echo '<td class="text-center">'.$row ->id.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName.$row ->LastName.$row ->MI.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
@@ -310,7 +310,7 @@ class view extends config{
                            echo '<tr style="background-color:white;">';
                              // echo '<td class="text-center">'.$row ->id.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-                             echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName.$row ->LastName.$row ->MI.'</td>';
+                             echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
@@ -326,5 +326,66 @@ class view extends config{
              echo '</table>';
         }
 
+        public function getNameSRA(){
+            $user = new user();
+            echo $user->data()->name;
+        }
+
+        public function ctodolist(){
+          $config = new config;
+          $con = $config->con();
+          $user = new User();
+          $college1 = $user->data()->colleges;
+          $college2 = explode(',',$college1);
+          $college12 ="'".implode('\',\'',$college2)."'";
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
+          $data = $con-> prepare($sql);
+          $data ->execute();
+          $rows =$data->rowCount();
+          return $rows;
+              // var_dump($rows);
+        }
+
+        public function cprinted(){
+          $config = new config;
+          $con = $config->con();
+          $user = new User();
+          $college1 = $user->data()->colleges;
+          $college2 = explode(',',$college1);
+          $college12 ="'".implode('\',\'',$college2)."'";
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
+          $data = $con-> prepare($sql);
+          $data ->execute();
+          $rows =$data->rowCount();
+          return $rows;
+          }
+
+          public function cverified(){
+            $config = new config;
+            $con = $config->con();
+              $user = new User();
+            $college1 = $user->data()->colleges;
+            $college2 = explode(',',$college1);
+            $college12 ="'".implode('\',\'',$college2)."'";
+            $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12)";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data->rowCount();
+            return $rows;
+          }
+          public function creleased(){
+            $config = new config;
+            $con = $config->con();
+            $user = new User();
+            $college1 = $user->data()->colleges;
+            $college2 = explode(',',$college1);
+            $college12 ="'".implode('\',\'',$college2)."'";
+            $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `College` IN($college12) AND  MONTH(`Date_app`) = MONTH(CURRENT_DATE()) AND YEAR(`Date_app`) = YEAR(CURRENT_DATE())";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data->rowCount();
+            return $rows;
+          }
 }
+
  ?>
