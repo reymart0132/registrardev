@@ -26,6 +26,14 @@ function loginError(){
                 </button>
             </div>';
         }
+function curpassError(){
+        echo '<div class="alert alert-danger alert-dismissible fade show col-12" role="alert">
+                <b>Error!</b> Invalid Current Password
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>';
+        }
 
 function pError($error){
     echo '<div class="alert alert-danger alert-dismissible fade show col-12" role="alert">
@@ -121,7 +129,8 @@ function vald(){
                     ));
                     if($validation->passed()){
                         $user = new User();
-                        $login = $user->login(Input::get('username'),Input::get('password'));
+                        $remember = (Input::get('remember') ==='on') ? true :false;
+                        $login = $user->login(Input::get('username'),Input::get('password'),$remember);
 
                         if($login){
                             if($user->data()->groups == 1){
@@ -140,6 +149,13 @@ function vald(){
                         }
                     }
                 }
+            }
+        }
+
+        function isLogin(){
+            $user = new User();
+            if(!$user->isLoggedIn()){
+                Redirect::to('login.php');
             }
         }
 

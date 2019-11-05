@@ -66,7 +66,7 @@ class DB{
     }
 
     public function delete($table,$where){
-        return $this->action('DELETE *',$table, $where);
+        return $this->action('DELETE',$table, $where);
     }
     public function count(){
         return $this->_count;
@@ -89,7 +89,7 @@ class DB{
                 }
                 $x++;
             }
-            $sql = "INSERT INTO `$table` (`".implode('`,`',$keys)."`)VALUES({$values})";
+            $sql = "INSERT INTO {$table} (`".implode('`,`',$keys)."`)VALUES({$values})";
             if(!$this->query($sql,$fields)->error()){
                 return true;
             }
@@ -107,7 +107,7 @@ class DB{
             }
             $x++;
         }
-        $sql ="UPDATE {$table} SET {$set}='newpassword' where `id` = {$id}";
+        $sql ="UPDATE {$table} SET {$set} where `id` = {$id}";
         if(!$this->query($sql,$fields)->error()){
             return true;
         }
