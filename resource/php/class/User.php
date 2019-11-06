@@ -113,7 +113,7 @@ class User{
             $id = $this->data()->id;
         }
         if(!$this->_db->update('tbl_accounts',$id,$fields)){
-            throw new Exception('There was a problem updateing your profile');
+            throw new Exception('There was a problem updating your profile');
         }else{
 
         }

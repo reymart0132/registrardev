@@ -330,6 +330,10 @@ class view extends config{
             $user = new user();
             echo $user->data()->name;
         }
+        public function getquote(){
+            $user = new user();
+            echo $user->data()->quote;
+        }
 
         public function ctodolist(){
           $config = new config;

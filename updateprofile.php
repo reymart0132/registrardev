@@ -26,6 +26,9 @@ if(input::exists()){
         ),
         'College'=>array(
             'required'=>'true'
+        ),
+        'quote'=>array(
+            'required'=>'true'
         )));
 
         if($validate->passed()){
@@ -35,7 +38,8 @@ if(input::exists()){
                 $user->update(array(
                     'username'=>input::get('username'),
                     'name'=> input::get('fullName'),
-                    'colleges'=> input::get('College')
+                    'colleges'=> input::get('College'),
+                    'quote'=> input::get('quote')
                 ));
             } catch (Exception $e) {
                 die($e->getMessage());
@@ -88,11 +92,15 @@ if(input::exists()){
                             <div class="row justify-content-center">
                                 <div class="form-group col-4">
                                  <label for = "username" class=""> Username:</label>
-                                 <input class="form-control"  type = "text" name="username" id="username" value ="<?php echo escape($user->data()->username); ?>" autocomplete="off" required />
+                                 <input class="form-control"  type = "text" name="username" id="username" value ="<?php echo escape($user->data()->username); ?>" autocomplete="off"  />
                                 </div>
                                 <div class="form-group col-5">
                                  <label for = "fullName" class=""> Full Name</label>
                                  <input class="form-control"  type = "text" name="fullName" id="fullName" value ="<?php echo escape($user->data()->name); ?>"/required>
+                                </div>
+                                <div class="form-group col-5">
+                                 <label for = "fullName" class=""> User Status</label>
+                                 <input class="form-control"  type = "text" name="quote" id="fullName" value ="<?php echo escape($user->data()->quote); ?>"/required>
                                 </div>
                              </div>
                         </td>

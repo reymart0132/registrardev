@@ -23,6 +23,7 @@ if(isset($_GET['verified'])){
    <title>Registrar Portal</title>
    <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap.min.css">
    <link href="vendor/css/all.css" rel="stylesheet">
+   <link href="resource\css\animation-rami.css" rel="stylesheet">
    <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
    <link rel="stylesheet" type="text/css"  href="resource/css/speech.css">
    <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
@@ -52,8 +53,8 @@ if(isset($_GET['verified'])){
            </div>
            <div class="col-8">
                <p class="name mt-2" style="color: #dc65a1;"><b><?php $view->getNameSRA()?></b></p>
-               <div class="speech-bubble">
-                   <p>I like work: it fascinates me. I can sit and look at it for hours.</p>
+               <div class="speech-bubble css-typing typewriter">
+                   <p><?php $view->getquote()?></p>
                </div>
            </div>
         </div>
