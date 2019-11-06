@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new view;
+$user = new user();
 isLogin();
 if(isset($_GET['printed'])){
   $print = new printed($_GET['printed']);
@@ -46,7 +47,9 @@ if(isset($_GET['verified'])){
        <div class="col-5 ">
          <div class="row">
            <div class="col-4 ">
-               <img class="rounded-circle profpic img-thumbnail" alt="100x100" src="resource/img/user.jpg"  />
+              <?php
+                profilePic();
+              ?>
                <a href="updateprofile.php" class="out "><span class="fas fa-id-card mt-3 " href="#"></span>&nbsp;Update Info</a>
                <a href="changepassword.php" class="out "><span class="fas fa-lock " href="#"></span>&nbsp;Change Password</a>
                <a href="logout.php" class="out "><span class="fas fa-sign-out-alt " href="#"></span>&nbsp;Logout</a>

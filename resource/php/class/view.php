@@ -330,6 +330,14 @@ class view extends config{
             $user = new user();
             echo $user->data()->name;
         }
+        public function getMmSRA(){
+            $user = new user();
+             return $user->data()->mm;
+        }
+        public function getdpSRA(){
+            $user = new user();
+            return $user->data()->dp;
+        }
         public function getquote(){
             $user = new user();
             echo $user->data()->quote;

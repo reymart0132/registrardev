@@ -159,4 +159,59 @@ function vald(){
             }
         }
 
+function profilePic(){
+    $view = new view();
+    if($view->getdpSRA()!==""){
+        echo "<img class='rounded-circle profpic img-thumbnail' alt='100x100' src='data:".$view->getMmSRA().";base64,".base64_encode($view->getdpSRA())."'/>";
+    }else{
+        echo "<img class='rounded-circle profpic img-thumbnail' alt='100x100' src='resource/img/user.jpg'/>";
+    }
+}
+
+function updateProfile(){
+    if(input::exists()){
+        if(!empty($_POST['College'])){
+            $_POST['College'] = implode(',',input::get('College'));
+        }else{
+           $_POST['College'] ="";
+        }
+
+        $validate = new Validate;
+        $validate = $validate->check($_POST,array(
+            'username'=>array(
+                'required'=>'true',
+                'min'=>4,
+                'max'=>20,
+                'unique'=>'tbl_accounts'
+            ),
+            'fullName'=>array(
+                'required'=>'true',
+                'min'=>2,
+                'max'=>50,
+            ),
+            'College'=>array(
+                'required'=>'true'
+            )));
+
+            if($validate->passed()){
+                $user = new User();
+
+                try {
+                    $user->update(array(
+                        'username'=>input::get('username'),
+                        'name'=> input::get('fullName'),
+                        'colleges'=> input::get('College')
+                    ));
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+                Redirect::to('pending.php');
+            }else{
+                foreach ($validate->errors()as $error) {
+                pError($error);
+                }
+        }
+
+    }
+}
  ?>

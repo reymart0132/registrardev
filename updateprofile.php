@@ -4,54 +4,8 @@ isLogin();
 $view = new view;
 $user = new user();
 
-if(input::exists()){
-    if(!empty($_POST['College'])){
-        $_POST['College'] = implode(',',input::get('College'));
-    }else{
-       $_POST['College'] ="";
-    }
+updateProfile();
 
-    $validate = new Validate;
-    $validate = $validate->check($_POST,array(
-        'username'=>array(
-            'required'=>'true',
-            'min'=>4,
-            'max'=>20,
-            'unique'=>'tbl_accounts'
-        ),
-        'fullName'=>array(
-            'required'=>'true',
-            'min'=>2,
-            'max'=>50,
-        ),
-        'College'=>array(
-            'required'=>'true'
-        ),
-        'quote'=>array(
-            'required'=>'true'
-        )));
-
-        if($validate->passed()){
-            $user = new User();
-
-            try {
-                $user->update(array(
-                    'username'=>input::get('username'),
-                    'name'=> input::get('fullName'),
-                    'colleges'=> input::get('College'),
-                    'quote'=> input::get('quote')
-                ));
-            } catch (Exception $e) {
-                die($e->getMessage());
-            }
-            Redirect::to('pending.php');
-        }else{
-            foreach ($validate->errors()as $error) {
-            pError($error);
-            }
-    }
-
-}
 
  ?>
 
@@ -65,6 +19,7 @@ if(input::exists()){
    <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap.min.css">
    <link href="vendor/css/all.css" rel="stylesheet">
    <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
+   <link rel="stylesheet" type="text/css"  href="resource/css/speech.css">
    <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
 
  </head>
@@ -98,39 +53,46 @@ if(input::exists()){
                                  <label for = "fullName" class=""> Full Name</label>
                                  <input class="form-control"  type = "text" name="fullName" id="fullName" value ="<?php echo escape($user->data()->name); ?>"/required>
                                 </div>
-                                <div class="form-group col-5">
-                                 <label for = "fullName" class=""> User Status</label>
-                                 <input class="form-control"  type = "text" name="quote" id="fullName" value ="<?php echo escape($user->data()->quote); ?>"/required>
-                                </div>
                              </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div class="row justify-content-center">
-
                                 <div class="form-group col-5">
                                   <label for="College" >College/s to handle</label>
                                       <select id="College" name="College[]" class="selectpicker form-control" data-live-search="true" multiple required>
                                         <?php $view->collegeSP2();?>
                                       </select>
                                 </div>
-                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row justify-content-center">
-                                <div class="form-group col-7">
+                                <div class="form-group col-5">
                                     <label  >&nbsp;</label>
                                 <input type="hidden" name ="Token" value="<?php echo Token::generate();?>" />
                                  <input type="submit" value="Update your profile" class=" form-control btn btn-primary" />
                                 </div>
-                            </div>
+                             </div>
                         </td>
                     </tr>
                 </table>
              </form>
+             <form action="updatepropic.php" method="post" enctype="multipart/form-data">
+                 <table class="table">
+                     <tr>
+                         <td>
+                             <div class="row justify-content-center">
+                                 <div class="form-group col-4 text-right">
+                                        <?php profilePic(); ?>
+                                 </div>
+                                 <div class="form-group col-6">
+                                     <label for="myfile">Upload your Picture</label>
+                                         <input id="myfile" type="file" name="myfile" class="form-control-file" />
+                                         <input type="submit" name="pic" value="Update your Picture" class=" mt-4  form-control btn btn-success" />
+                                 </div>
+                             </div>
+                         </td>
+                     </tr>
+                 </table>
+              </form>
          </div>
  </body>
  <footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom  slide-in-right">
