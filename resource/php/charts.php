@@ -6,7 +6,7 @@ $view = new view;
 <script type="text/javascript">
 window.onload = function () {
 
-var chart = new CanvasJS.Chart("chartPending", {
+var pending = new CanvasJS.Chart("chartPending", {
 theme: "light1", // "light2", "dark1", "dark2"
 animationEnabled: true, // change to true
 title:{
@@ -17,23 +17,38 @@ data: [
  // Change type to "bar", "area", "spline", "pie",etc.
  type: "column",
  dataPoints: [
- <?php $view->chartpending() ?>
+ <?php $view->chartPending() ?>
  ]
 }
 ]
 });
-chart.render();
+pending.render();
 
-}
-</script>
-<script type="text/javascript">
-window.onload = function () {
 
-var chart = new CanvasJS.Chart("chartReleased", {
+var signature = new CanvasJS.Chart("chartForSignature", {
 theme: "light1", // "light2", "dark1", "dark2"
 animationEnabled: true, // change to true
 title:{
- text: "Released charts"
+ text: "For Signature charts"
+},
+data: [
+{
+ // Change type to "bar", "area", "spline", "pie",etc.
+ type: "column",
+ dataPoints: [
+ <?php $view->chartForSignature() ?>
+ ]
+}
+]
+});
+signature.render();
+
+
+var release = new CanvasJS.Chart("chartReleased", {
+theme: "light1", // "light2", "dark1", "dark2"
+animationEnabled: true, // change to true
+title:{
+ text: "Release charts"
 },
 data: [
 {
@@ -45,7 +60,7 @@ data: [
 }
 ]
 });
-chart.render();
+release.render();
 
 }
 </script>

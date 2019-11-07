@@ -139,9 +139,12 @@ if(isset($_GET['verified'])){
    <div class="container-fluid my-4 mb-5 pb-5">
       <div id="chartPending" style="height: 370px; width: 100%;"></div>
   </div>
-  <!-- <div class="container-fluid my-4 mb-5 pb-5">
-     <div id="chartReleased" style="height: 370px; width: 100%;"></div>
- </div> -->
+  <div class="container-fluid my-4 mb-5 pb-5">
+     <div id="chartForSignature" style="height: 370px; width: 100%;"></div>
+ </div>
+ <div class="container-fluid my-4 mb-5 pb-5">
+    <div id="chartReleased" style="height: 370px; width: 100%;"></div>
+</div>
  </body>
  <footer id="footer" class="py-4 bg-dark text-white-50 fixed-bottom mt-5 slide-in-right">
    <div class="container text-center">
