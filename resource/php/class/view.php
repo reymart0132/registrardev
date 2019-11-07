@@ -457,6 +457,44 @@ class view extends config{
             $rows =$data->rowCount();
             return $rows;
           }
+          public function chartpending(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            foreach ($rows as $row) {
+              $college1 = $row->colleges;
+              $college2 = explode(',',$college1);
+              $college12 ="'".implode('\',\'',$college2)."'";
+              $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $results =$data->rowCount();
+              // return $results;
+                echo'  { label: "'.$row->username.'", y:'.$results.' },';
+            }
+          }
+          public function chartReleased(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            foreach ($rows as $row) {
+              $college1 = $row->colleges;
+              $college2 = explode(',',$college1);
+              $college12 ="'".implode('\',\'',$college2)."'";
+              $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `College` IN($college12)";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $results =$data->rowCount();
+              // return $results;
+                echo'  { label: "'.$row->username.'", y:'.$results.' },';
+            }
+          }
 }
 
  ?>
