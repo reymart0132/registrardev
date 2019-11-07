@@ -162,7 +162,7 @@ function vald(){
 function profilePic(){
     $view = new view();
     if($view->getdpSRA()!==""){
-        echo "<img class='rounded-circle profpic img-thumbnail' alt='100x100' src='data:".$view->getMmSRA().";base64,".base64_encode($view->getdpSRA())."'/>";
+        echo "<img class='rounded-circle profpic img-thumbnail ml-3' alt='100x100' src='data:".$view->getMmSRA().";base64,".base64_encode($view->getdpSRA())."'/>";
     }else{
         echo "<img class='rounded-circle profpic img-thumbnail' alt='100x100' src='resource/img/user.jpg'/>";
     }
@@ -212,6 +212,46 @@ function updateProfile(){
                 }
         }
 
+    }
+}
+
+function changeP(){
+    if(input::exists()){
+        $validate = new Validate;
+        $validate = $validate->check($_POST,array(
+            'password_current'=>array(
+                'required'=>'true',
+            ),
+            'password'=>array(
+                'required'=>'true',
+                'min'=>6,
+            ),
+            'ConfirmPassword'=>array(
+                'required'=>'true',
+                'matches'=>'password'
+            )));
+
+            if($validate->passed()){
+                if(Hash::make(input::get('password_current'),$user->data()->salt) !== $user->data()->password){
+                    curpassError();
+                }else{
+                    $user = new User();
+                    $salt = Hash::salt(32);
+                    try {
+                        $user->update(array(
+                            'password'=>Hash::make(input::get('password'),$salt),
+                            'salt'=>$salt
+                        ));
+                    } catch (Exception $e) {
+                        die($e->getMessage());
+                    }
+                    Redirect::to('pending.php');
+                }
+            }else{
+                foreach ($validate->errors()as $error) {
+                pError($error);
+                }
+        }
     }
 }
  ?>

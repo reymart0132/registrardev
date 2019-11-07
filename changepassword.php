@@ -3,45 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
 isLogin();
 $view = new view;
 $user = new user();
-
-if(input::exists()){
-    $validate = new Validate;
-    $validate = $validate->check($_POST,array(
-        'password_current'=>array(
-            'required'=>'true',
-        ),
-        'password'=>array(
-            'required'=>'true',
-            'min'=>6,
-        ),
-        'ConfirmPassword'=>array(
-            'required'=>'true',
-            'matches'=>'password'
-        )));
-
-        if($validate->passed()){
-            if(Hash::make(input::get('password_current'),$user->data()->salt) !== $user->data()->password){
-                curpassError();
-            }else{
-                $user = new User();
-                $salt = Hash::salt(32);
-                try {
-                    $user->update(array(
-                        'password'=>Hash::make(input::get('password'),$salt),
-                        'salt'=>$salt
-                    ));
-                } catch (Exception $e) {
-                    die($e->getMessage());
-                }
-                Redirect::to('pending.php');
-            }
-        }else{
-            foreach ($validate->errors()as $error) {
-            pError($error);
-            }
-    }
-}
-
+changeP();
  ?>
 
 
@@ -63,6 +25,7 @@ if(input::exists()){
              <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
                alt="mdb logo"><h3 class="ib">
            </a>
+              <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
               <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
               <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
               <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>

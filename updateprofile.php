@@ -29,6 +29,7 @@ updateProfile();
              <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
                alt="mdb logo"><h3 class="ib">
            </a>
+              <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
               <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
               <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
               <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
@@ -86,7 +87,7 @@ updateProfile();
                                  <div class="form-group col-6">
                                      <label for="myfile">Upload your Picture</label>
                                          <input id="myfile" type="file" name="myfile" class="form-control-file" />
-                                         <input type="submit" name="pic" value="Update your Picture" class=" mt-4  form-control btn btn-success" />
+                                         <input type="submit" name="pic" value="Update your Picture" class=" mt-4  form-control btn btn-success" accept=".jpg" />
                                  </div>
                              </div>
                          </td>
