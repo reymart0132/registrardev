@@ -173,7 +173,7 @@ class view extends config{
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'">Printed </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
 
 
                  echo '</tr>';
@@ -223,7 +223,7 @@ class view extends config{
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'">Verified </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
 
                  echo '</tr>';
              }
@@ -236,7 +236,7 @@ class view extends config{
           $college1 = $user->data()->colleges;
           $college2 = explode(',',$college1);
           $college12 ="'".implode('\',\'',$college2)."'";
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12)";
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
@@ -271,7 +271,7 @@ class view extends config{
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'">Released </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
                  echo '</tr>';
              }
              echo '</table>';
@@ -318,7 +318,7 @@ class view extends config{
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'">Released </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
                  echo '</tr>';
              }
              echo '</table>';

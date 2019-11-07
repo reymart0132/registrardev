@@ -138,27 +138,28 @@ if(isset($_GET['verified'])){
    <div class="container-fluid mt-4 mb-5">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item ">
-          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending</a>
+          <a class="nav-link <?php if(empty($_GET['tab'])){echo "active";}elseif($_GET['tab']=="view"){echo "active";}?>" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending</a>
         </li>
         <li class="nav-item  ">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#printed" role="tab" aria-controls="profile" aria-selected="false">For Signature</a>
+          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="printed"){echo "active";}} ?>" id="profile-tab" data-toggle="tab" href="#printed" role="tab" aria-controls="profile" aria-selected="false">For Signature</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="contact" aria-selected="false">For Release</a>
+            <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease2"){echo "active";}} ?>" id="contact-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="contact" aria-selected="false">For Release </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="contact" aria-selected="false">For Release (ALL)</a>
+          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "active";}} ?>" id="contact-tab" data-toggle="tab" href="#verifiedall" role="tab" aria-controls="contact2" aria-selected="false">For Release (ALL)</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#released" role="tab" aria-controls="contact" aria-selected="false">Released</a>
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#released" role="tab" aria-controls="contact3" aria-selected="false">Released</a>
         </li>
       </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="home-tab"><?php $view ->viewtodolist(); ?></div>
-      <div class="tab-pane fade" id="printed" role="tabpanel" aria-labelledby="profile-tab">  <?php $view ->viewprinted(); ?></div>
-      <div class="tab-pane fade" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewverified(); ?></div>
-      <div class="tab-pane fade" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewverified2(); ?></div>
-        <div class="tab-pane fade" id="released" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewreleased(); ?></div>
+      <div class="tab-pane fade <?php if(empty($_GET['tab'])){ echo "show active"; }elseif($_GET['tab']=="view"){ echo "show active";}?>" id="pending" role="tabpanel" aria-labelledby="home-tab"><?php $view ->viewtodolist(); ?></div>
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="printed"){echo "show active";}} ?>" id="printed" role="tabpanel" aria-labelledby="profile-tab">  <?php $view ->viewprinted(); ?></div>
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease2"){echo "show active";}} ?>" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewverified();?></div>
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "show active";}} ?>" id="verifiedall" role="tabpanel" aria-labelledby="contact2-tab"><?php $view ->viewverified2(); ?></div>
+
+        <div class="tab-pane fade" id="released" role="tabpanel" aria-labelledby="contact3-tab"><?php $view ->viewreleased(); ?></div>
     </div>
   </div>
  </body>
