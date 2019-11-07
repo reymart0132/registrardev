@@ -137,13 +137,21 @@ if(isset($_GET['verified'])){
 </div>
    <!--  -->
    <div class="container-fluid my-4 mb-5 pb-5">
-      <div id="chartPending" style="height: 370px; width: 100%;"></div>
-  </div>
-  <div class="container-fluid my-4 mb-5 pb-5">
-     <div id="chartForSignature" style="height: 370px; width: 100%;"></div>
- </div>
- <div class="container-fluid my-4 mb-5 pb-5">
-    <div id="chartReleased" style="height: 370px; width: 100%;"></div>
+     <div class="row">
+       <div class="col">
+         <canvas id="pending"></canvas>
+       </div>
+       <div class="col">
+         <canvas id="forSignature"></canvas>
+       </div>
+       <div class="col">
+         <canvas id="release"></canvas>
+       </div>
+       <!-- <div class="col">
+         <canvas id="release"></canvas>
+       </div> -->
+     </div>
+
 </div>
  </body>
  <footer id="footer" class="py-4 bg-dark text-white-50 fixed-bottom mt-5 slide-in-right">
@@ -162,6 +170,11 @@ if(isset($_GET['verified'])){
      <script src="vendor/js/popper.js"></script>
      <script src="vendor/js/bootstrap.min.js"></script>
      <script src="vendor/js/bootstrap-select.min.js"></script>
-     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+     <script src="vendor/canvasjs/canvasjs.min.js"></script>
+     <script src="vendor/canvasjs/canvasjs.react.js"></script>
+     <script src="vendor/canvasjs/jquery.canvasjs.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
  </body>
  </html>
