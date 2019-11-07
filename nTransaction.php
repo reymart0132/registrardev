@@ -42,7 +42,7 @@ $view = new view;
                                 <div class="row">
                                     <div class="form-group col-5">
                                       <label for="studentN">Student Number(Optional)</label>
-                                      <input type="number" class="form-control" id="studentN" value="" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student Number">
+                                      <input type="number" class="form-control" id="studentN" onkeypress="return isNumber(event)" value="" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student Number">
                                     </div>
                                     <div class="form-group col-5">
                                       <label for="studentN">Year Graduated or Last Enrolled</label>
@@ -56,19 +56,21 @@ $view = new view;
                                 <div class="row">
                                     <div class="form-group col-4">
                                       <label for="Lastname">Lastname</label>
-                                      <input type="text" class="form-control" id="Lastname" name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname" required>
+                                      <input type="text" class="form-control" id="Lastname" oninput="this.value = this.value.toUpperCase()"  name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname" required>
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="Firstname">Firstname</label>
-                                      <input type="text" class="form-control" id="Firstname" name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname" required>
+                                      <input type="text" class="form-control" id="Firstname" oninput="this.value = this.value.toUpperCase()"  name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname" required>
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="Middlename">Middlename</label>
-                                      <input type="text" class="form-control" id="Middlename" name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" required>
+                                      <input type="text" class="form-control" id="Middlename" oninput="this.value = this.value.toUpperCase()"  name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" required>
                                     </div>
                                 </div>
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>
                                 <div class="row">
@@ -162,5 +164,8 @@ $view = new view;
     <script src="vendor/js/popper.js"></script>
     <script src="vendor/js/bootstrap.min.js"></script>
     <script src="vendor/js/bootstrap-select.min.js"></script>
+    <script src="resource/js/studentnumber-chua.js"></script>
+
+
 </body>
 </html>
