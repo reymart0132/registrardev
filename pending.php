@@ -4,15 +4,15 @@ $view = new view;
 $user = new user();
 isLogin();
 if(isset($_GET['printed'])){
-  $print = new printed($_GET['printed']);
+  $print = new printed($_GET['printed'],$_GET['id']);
   $print->print();
 }
 if(isset($_GET['released'])){
-  $release = new released($_GET['released']);
+  $release = new released($_GET['released'],$_GET['id']);
   $release->release();
 }
 if(isset($_GET['verified'])){
-  $print = new verified($_GET['verified']);
+  $print = new verified($_GET['verified'],$_GET['id']);
   $print->verify();
 }
  ?>
@@ -36,6 +36,9 @@ if(isset($_GET['verified'])){
          alt="mdb logo">
          <h3 class="ib">
      </a>
+        <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+        <a href="ntransaction.php"><i class="fas fa-file-upload ceucolor"></i></a>
+        <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
         <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
         <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
         <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
@@ -132,7 +135,7 @@ if(isset($_GET['verified'])){
  </div>
 </div>
    <!--  -->
-   <div class="container-fluid mt-4">
+   <div class="container-fluid mt-4 mb-5">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item ">
           <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending</a>
@@ -144,6 +147,9 @@ if(isset($_GET['verified'])){
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="contact" aria-selected="false">For Release</a>
         </li>
         <li class="nav-item ">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="contact" aria-selected="false">For Release (ALL)</a>
+        </li>
+        <li class="nav-item ">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#released" role="tab" aria-controls="contact" aria-selected="false">Released</a>
         </li>
       </ul>
@@ -151,11 +157,12 @@ if(isset($_GET['verified'])){
       <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="home-tab"><?php $view ->viewtodolist(); ?></div>
       <div class="tab-pane fade" id="printed" role="tabpanel" aria-labelledby="profile-tab">  <?php $view ->viewprinted(); ?></div>
       <div class="tab-pane fade" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewverified(); ?></div>
+      <div class="tab-pane fade" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewverified2(); ?></div>
         <div class="tab-pane fade" id="released" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewreleased(); ?></div>
     </div>
   </div>
  </body>
- <footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom  slide-in-right">
+ <footer id="footer" class="py-4 bg-dark text-white-50 fixed-bottom mt-5 slide-in-right">
    <div class="container text-center">
        <div class="row">
            <div class="col col-sm-5 text-left">
