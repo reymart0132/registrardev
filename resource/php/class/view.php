@@ -173,7 +173,7 @@ class view extends config{
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'">Printed </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
 
 
                  echo '</tr>';
@@ -223,8 +223,55 @@ class view extends config{
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'">Verified </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
 
+                 echo '</tr>';
+             }
+             echo '</table>';
+        }
+        public function viewverified2(){
+          $config = new config;
+          $con = $config->con();
+            $user = new User();
+          $college1 = $user->data()->colleges;
+          $college2 = explode(',',$college1);
+          $college12 ="'".implode('\',\'',$college2)."'";
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
+          $data = $con-> prepare($sql);
+          $data ->execute();
+          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+                  echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+                     echo '<thead class="thead" style="background-color:#DC65A1;">';
+                     echo '
+                     <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
+
+                     <th class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
+
+                     <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Status</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Date Graduated</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
+                     ';
+                     echo '</head>';
+                     foreach ($rows as $row) {
+                       echo '<tr style="background-color:white;">';
+                         // echo '<td class="text-center">'.$row ->id.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
                  echo '</tr>';
              }
              echo '</table>';
@@ -271,7 +318,7 @@ class view extends config{
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'">Released </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
                  echo '</tr>';
              }
              echo '</table>';
@@ -283,7 +330,7 @@ class view extends config{
           $college1 = $user->data()->colleges;
           $college2 = explode(',',$college1);
           $college12 ="'".implode('\',\'',$college2)."'";
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `College` IN($college12)";
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
@@ -298,10 +345,10 @@ class view extends config{
                          <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Status</td>
-                         <th class="text-center" style= "font-weight:bold; color:white;">Date Graduated</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+                         <th class="text-center" style= "font-weight:bold; color:white;">Released By</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
 
                          ';
@@ -314,10 +361,10 @@ class view extends config{
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
-                             echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                             echo '<td class="text-center" style="color:#DC65A1;">'.$this->getSname($row->releasedby).'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
 
 
@@ -325,10 +372,26 @@ class view extends config{
              }
              echo '</table>';
         }
-
+        public function getSName($number){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_accounts` WHERE `id` = $number";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            return $rows[0]->name;
+        }
         public function getNameSRA(){
             $user = new user();
             echo $user->data()->name;
+        }
+        public function getMmSRA(){
+            $user = new user();
+             return $user->data()->mm;
+        }
+        public function getdpSRA(){
+            $user = new user();
+            return $user->data()->dp;
         }
         public function getquote(){
             $user = new user();
@@ -381,10 +444,14 @@ class view extends config{
             $config = new config;
             $con = $config->con();
             $user = new User();
+            $id = $user->data()->id;
+            $date = date('Y-m-d');
+            $fd=date('Y-m-01', strtotime($date));
+            $ld=date('Y-m-t', strtotime($date));
             $college1 = $user->data()->colleges;
             $college2 = explode(',',$college1);
             $college12 ="'".implode('\',\'',$college2)."'";
-            $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `College` IN($college12) AND  MONTH(`Date_app`) = MONTH(CURRENT_DATE()) AND YEAR(`Date_app`) = YEAR(CURRENT_DATE())";
+            $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby`=$id AND (`released_date` BETWEEN '$fd' AND '$ld')";
             $data = $con-> prepare($sql);
             $data ->execute();
             $rows =$data->rowCount();

@@ -11,10 +11,10 @@
 	content: '';
 	position: absolute;
 	left: 0;
-	top: 50%;
+	top: 68%;
 	width: 0;
 	height: 0;
-	border: 20px solid transparent;
+	border: 15px solid transparent;
 	border-right-color: #DC65A1;
 	border-left: 0;
 	margin-top: -20px;
@@ -24,10 +24,14 @@
 
 .counter{
   color:#DC65A1;
+  text-align:center;
+  margin-right: 40%;
+  margin-top: 5%;
 }
 .profpic{
-    height: 12rem;
-    width: auto;
+    height: 140px;
+    width: 140px;
+    object-fit: cover;
 }
 .out,
 .out:visited{
