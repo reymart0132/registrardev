@@ -80,7 +80,7 @@ $view = new view;
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="ContactNumber">Contact Number</label>
-                                      <input type="number" class="form-control" id="ContactNumber" name="ContactNumber" aria-describedby="emailHelp" placeholder="Enter Contact Number" required>
+                                      <input type="text" class="form-control" id="txtChar" name="ContactNumber" onkeydown="return isNumberKey(event)" aria-describedby="emailHelp" placeholder="Enter Contact Number" required>
                                     </div>
                                     <div class="form-group col-4">
                                         <label for="ContactNumber">Status</label>
@@ -162,5 +162,6 @@ $view = new view;
     <script src="vendor/js/popper.js"></script>
     <script src="vendor/js/bootstrap.min.js"></script>
     <script src="vendor/js/bootstrap-select.min.js"></script>
+    <script src="resource/js/noletter-waris.js"></script>
 </body>
 </html>
