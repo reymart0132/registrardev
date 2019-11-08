@@ -45,113 +45,36 @@ if(isset($_GET['verified'])){
         <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
    </nav>
  <!--  -->
-   <div class="container-fluid mt-4">
+ <div class="container-fluid mt-4 slide-in-left">
      <div class="row">
-       <!--  -->
-       <div class="col-5 ">
-         <div class="row">
-           <div class="col-4 ">
-              <?php
-                profilePic();
-              ?>
-               <a href="updateprofile.php" class="out "><span class="fas fa-id-card mt-3 " href="#"></span>&nbsp;Update Info</a>
-               <a href="changepassword.php" class="out "><span class="fas fa-lock " href="#"></span>&nbsp;Change Password</a>
-               <a href="logout.php" class="out "><span class="fas fa-sign-out-alt " href="#"></span>&nbsp;Logout</a>
-           </div>
-           <div class="col-8">
-               <p class="name mt-2" style="color: #dc65a1;"><b><?php $view->getNameSRA()?></b></p>
-               <div class="speech-bubble css-typing typewriter">
-                   <p><?php $view->getquote()?></p>
-               </div>
-           </div>
-        </div>
-      </div>
-       <!--  -->
-       <div class="col-7 pt-5">
-        <div class="ml-5 pl-4 row ">
-         <div class="status pl-5 pt-4 ">
-           <div class="row no-gutters sn">
-             <div class="col-auto">
-               <img src="resource/img/pending.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
-             </div>
-               <div class="col">
-                   <div class="card-block">
-                     <div class="cbody" style="height: 60px; width:120px;">
-                       <h4 class="counter ml-5 "><b><?php echo $view->ctodolist();?></b></h4>
-                       <p class="text-center cbodytext"><b>Pending</b></p>
-                     </div>
-                   </div>
-               </div>
-           </div>
+         <div class="col-12">
+             <h1 class="text-center">Productivity Report for Today</h1>
          </div>
-         <!--  -->
-         <div class="status pl-5 pt-4">
-           <div class="row no-gutters sn">
-             <div class="col-auto">
-               <img src="resource/img/signature.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
-             </div>
-               <div class="col">
-                   <div class="card-block">
-                     <div class="cbody" style="height: 60px; width:120px;">
-                       <h4 class="counter ml-5 "><b><?php echo $view->cprinted();?></b></h4>
-                       <p class="text-center cbodytext"><b>For Signature</b></p>
-                     </div>
-                   </div>
-               </div>
-           </div>
-         </div>
-      <!--  -->
-      <div class="status pl-5 pt-4">
-        <div class="row no-gutters sn">
-          <div class="col-auto">
-            <img src="resource/img/forrelease.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
-          </div>
-            <div class="col">
-                <div class="card-block">
-                  <div class="cbody" style="height: 60px; width:120px;">
-                     <h4 class="counter ml-5 "><b><?php echo $view->cverified();?></b></h4>
-                    <p class="text-center cbodytext"><b>For Release</b></p>
-                  </div>
-                </div>
-            </div>
-        </div>
     </div>
-    <!--  -->
-    <div class="status pl-5 pt-4">
-      <div class="row no-gutters sn">
-        <div class="col-auto">
-          <img src="resource/img/released.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
-        </div>
-          <div class="col">
-              <div class="card-block">
-                <div class="cbody" style="height: 60px; width:120px;">
-                   <h4 class="counter ml-5 "><b><?php echo $view->creleased();?></b></h4>
-                  <p class="text-center cbodytext"><b>Released</b></p>
-                </div>
-              </div>
-          </div>
-      </div>
-    </div>
-   </div>
- </div>
-</div>
    <!--  -->
    <div class="container-fluid my-4 mb-5 pb-5">
-     <div class="row">
-       <div class="col">
-         <canvas id="pending"></canvas>
-       </div>
-       <div class="col">
-         <canvas id="forSignature"></canvas>
-       </div>
-       <div class="col">
-         <canvas id="release"></canvas>
-       </div>
-       <!-- <div class="col">
-         <canvas id="release"></canvas>
-       </div> -->
-     </div>
+     <div class="row justify-content-center mb-5">
+         <div class="col-4">
+             <h6 class="text-center"> Total Transactions Received </h6>
+           <canvas id="twork"></canvas>
+         </div>
 
+       <div class="col-4">
+           <h6 class="text-center"> Total Completed Transactions </h6>
+         <canvas id="cwork"></canvas>
+       </div>
+     </div>
+     <div class="row mb-5 justify-content-center">
+         <div class="col-4">
+             <h6 class="text-center"> Total of Pending Transactions </h6>
+           <canvas id="pending"></canvas>
+         </div>
+       <div class="col-4">
+           <h6 class="text-center"> Total of Transactions Released </h6>
+         <canvas id="released"></canvas>
+       </div>
+     </div>
+    </div>
 </div>
  </body>
  <footer id="footer" class="py-4 bg-dark text-white-50 fixed-bottom mt-5 slide-in-right">
@@ -171,7 +94,6 @@ if(isset($_GET['verified'])){
      <script src="vendor/js/bootstrap.min.js"></script>
      <script src="vendor/js/bootstrap-select.min.js"></script>
      <script src="vendor/js/chartjs.js"></script>
-     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script> -->
      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
  </body>

@@ -3,15 +3,37 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new view;
  ?>
- <script> window.onload = function () {
+ <script>
+ window.onload = function () {
+
+     var twork = document.getElementById("twork").getContext('2d');
+     var myChart3 = new Chart(twork, {
+         type: 'horizontalBar',
+         data: {
+             labels: [<?php $view->chartlabel(); ?>],
+             datasets: [{
+                 label: 'Number of Work Received',
+                 data: [<?php $view->twork(); ?>],
+                 backgroundColor: [
+                   'rgb(220, 101, 161)',
+              'rgb(220, 101, 161)',
+                'rgb(220, 101, 161)',
+                'rgb(220, 101, 161)',
+                  'rgb(220, 101, 161)',
+                'rgb(220, 101, 161)',
+                  ],
+             }]
+         },
+     });
+
      var pending = document.getElementById("pending").getContext('2d');
-     var myChart = new Chart(pending, {
+     var myChart1 = new Chart(pending, {
          type: 'horizontalBar',
          data: {
              labels: [<?php $view->chartlabel(); ?>],
              datasets: [{
-                 label: 'Pending Charts',
-                 data: [<?php $view->chartPendingdata(); ?>],
+                 label: 'Released Transaction',
+                 data: [<?php $view->cpending(); ?>],
                  backgroundColor: [
                    'rgb(220, 101, 161)',
               'rgb(220, 101, 161)',
@@ -23,14 +45,36 @@ $view = new view;
              }]
          },
      });
-     var forsign = document.getElementById("forSignature").getContext('2d');
-     var myChart = new Chart(forsign, {
+
+     var released = document.getElementById("released").getContext('2d');
+     var myChart = new Chart(released, {
          type: 'horizontalBar',
          data: {
              labels: [<?php $view->chartlabel(); ?>],
              datasets: [{
-                 label: 'For Signature Charts',
-                 data: [<?php $view->chartForSignaturedata(); ?>],
+                 label: 'Released Transaction',
+                 data: [<?php $view->chartreleased(); ?>],
+                 backgroundColor: [
+                   'rgb(220, 101, 161)',
+              'rgb(220, 101, 161)',
+                'rgb(220, 101, 161)',
+                'rgb(220, 101, 161)',
+                  'rgb(220, 101, 161)',
+                'rgb(220, 101, 161)',
+                  ],
+             }]
+         },
+
+     });
+
+     var cwork = document.getElementById("cwork").getContext('2d');
+     var myChart2 = new Chart(cwork, {
+         type: 'horizontalBar',
+         data: {
+             labels: [<?php $view->chartlabel(); ?>],
+             datasets: [{
+                 label: 'Completed transactions',
+                 data: [<?php $view->cwork(); ?>],
                  backgroundColor: [
                    'rgb(220, 101, 161)',
               'rgb(220, 101, 161)',
@@ -42,24 +86,7 @@ $view = new view;
              }]
          },
      });
-     var release = document.getElementById("release").getContext('2d');
-     var myChart = new Chart(release, {
-         type: 'horizontalBar',
-         data: {
-             labels: [<?php $view->chartlabel(); ?>],
-             datasets: [{
-                 label: 'Released Charts',
-                 data: [<?php $view->chartReleasedata(); ?>],
-                 backgroundColor: [
-                   'rgb(220, 101, 161)',
-              'rgb(220, 101, 161)',
-                'rgb(220, 101, 161)',
-                'rgb(220, 101, 161)',
-                  'rgb(220, 101, 161)',
-                'rgb(220, 101, 161)',
-                  ],
-             }]
-         },
-     });
- }
- ;</script>
+
+     
+ };
+</script>

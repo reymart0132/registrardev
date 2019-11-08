@@ -60,15 +60,19 @@ $view = new view;
                     <tr>
                         <td>
                             <div class="row justify-content-center">
-                                <div class="form-group col-5">
+                                <div class="form-group col-4">
                                  <label for = "fullName" class=""> Full Name</label>
                                  <input class="form-control"  type = "text" name="fullName" id="fullName" value ="<?php echo input::get('fullName');?>"/required>
                                 </div>
-                                <div class="form-group col-5">
+                                <div class="form-group col-4">
                                   <label for="College" >College/s to handle</label>
                                       <select id="College" name="College[]" class="selectpicker form-control" data-live-search="true" multiple required>
                                         <?php $view->collegeSP2();?>
                                       </select>
+                                </div>
+                                <div class="form-group col-4">
+                                 <label for = "email" class=""> Email Address</label>
+                                 <input class="form-control"  type = "text" name="email" id="email" value ="<?php echo input::get('email');?>"/required>
                                 </div>
                              </div>
                         </td>

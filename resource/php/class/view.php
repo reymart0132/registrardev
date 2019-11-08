@@ -441,7 +441,44 @@ class view extends config{
             echo '"'.$row->username.'",';
             }
           }
-          public function chartPendingdata(){
+          public function twork(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            foreach ($rows as $row) {
+              $college1 = $row->colleges;
+              $college2 = explode(',',$college1);
+              $college12 ="'".implode('\',\'',$college2)."'";
+              $sql = "SELECT * FROM `work` WHERE `Date_app` = CURDATE() AND `College` IN($college12)";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $results =$data->rowCount();
+              echo $results.',';
+            }
+          }
+          public function cwork(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            foreach ($rows as $row) {
+              $college1 = $row->colleges;
+              $college2 = explode(',',$college1);
+              $id = $row->id;
+              $college12 ="'".implode('\',\'',$college2)."'";
+              $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND `printeddate` = CURDATE()";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $results =$data->rowCount();
+              echo $results.',';
+            }
+          }
+          public function cpending(){
             $config = new config;
             $con = $config->con();
             $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
@@ -459,7 +496,8 @@ class view extends config{
               echo $results.',';
             }
           }
-          public function chartForSignaturedata(){
+
+          public function chartreleased(){
             $config = new config;
             $con = $config->con();
             $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
@@ -470,31 +508,15 @@ class view extends config{
               $college1 = $row->colleges;
               $college2 = explode(',',$college1);
               $college12 ="'".implode('\',\'',$college2)."'";
-              $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
+              $id = $row->id;
+              $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = $id AND `released_date` = CURDATE()";
               $data = $con-> prepare($sql);
               $data ->execute();
               $results =$data->rowCount();
               echo $results.',';
             }
           }
-          public function chartReleasedata(){
-            $config = new config;
-            $con = $config->con();
-            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
-            $data = $con-> prepare($sql);
-            $data ->execute();
-            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
-            foreach ($rows as $row) {
-              $college1 = $row->colleges;
-              $college2 = explode(',',$college1);
-              $college12 ="'".implode('\',\'',$college2)."'";
-              $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `College` IN($college12)";
-              $data = $con-> prepare($sql);
-              $data ->execute();
-              $results =$data->rowCount();
-              echo $results.',';
-            }
-          }
+
 
 }
  ?>
