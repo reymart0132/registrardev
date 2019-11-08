@@ -1,10 +1,13 @@
 <?php
- if(empty($_GET['tab'])){
-    echo "active";
-    }elseif($_GET['tab']=="view"){
-    echo "active";
+$proponents = "CMT,CELAS,CHM,COMPASS";
+$proponentA = explode(',',$proponents);
+
+var_dump($proponentA);
+
+foreach ($proponentA as $proponent) {
+    echo $proponent."<br />";
 }
-?>
 
-
-<?php if(!empty($_GET['tab'])){if($_GET['tab']=="printed"){echo "active2";}}?>
+$proponentB = implode(',',$proponentA);
+var_dump($proponentB);
+ ?>

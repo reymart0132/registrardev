@@ -170,10 +170,8 @@ if(isset($_GET['verified'])){
      <script src="vendor/js/popper.js"></script>
      <script src="vendor/js/bootstrap.min.js"></script>
      <script src="vendor/js/bootstrap-select.min.js"></script>
-     <script src="vendor/canvasjs/canvasjs.min.js"></script>
-     <script src="vendor/canvasjs/canvasjs.react.js"></script>
-     <script src="vendor/canvasjs/jquery.canvasjs.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+     <script src="vendor/js/chartjs.js"></script>
+     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script> -->
      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
  </body>
