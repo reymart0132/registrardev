@@ -264,4 +264,7 @@ function changeP(){
         }
     }
 }
+ function blocker(){
+     echo '<div class="container-fluid screen2"></div>';
+ }
  ?>

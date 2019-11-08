@@ -14,6 +14,7 @@ $view = new view();
   <link rel="icon" type="image/png" href="https://media.glassdoor.com/sqll/926973/centro-escolar-university-squarelogo-1519376571278.png">
 </head>
 <body>
+    <?php blocker()?>
     <header class="alumni">
         <nav class="navbar navbar-dark bg-white shadow-sm fixed-top">
           <a class="navbar-brand" href="index.php">

@@ -1,3 +1,16 @@
+
+.screen2{
+    background-image: url(../img/block.jpg);
+	background-size: cover;
+	background-position: center;
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+    position:absolute;
+    overflow: hidden;
+
+}
+
 .puff-in-center {
 	-webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 	        animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
@@ -284,4 +297,20 @@ header{
     -webkit-animation-timing-function: ease-out;
             animation-timing-function: ease-out;
   }
+}
+
+@media (max-width: 1320px) {
+   nav{
+       visibility: hidden;
+   }
+   footer{
+       visibility: hidden;
+   }
+
+}
+@media (min-width: 1320px) {
+    .screen2{
+        visibility:hidden;
+    }
+
 }
