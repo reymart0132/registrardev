@@ -1,6 +1,24 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/viewPending.php';
-$view= new viewPending;
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
+$viewP= new viewPending;
+$view = new view;
+$user = new user();
+isLogin();
+if(isset($_GET['printed'])){
+  $print = new printed($_GET['printed'],$_GET['id']);
+  $print->print();
+}
+if(isset($_GET['released'])){
+  $release = new released($_GET['released'],$_GET['id']);
+  $release->release();
+}
+if(isset($_GET['verified'])){
+  $print = new verified($_GET['verified'],$_GET['id']);
+  $print->verify();
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,9 +28,10 @@ $view= new viewPending;
   <title>Registrar Portal</title>
   <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap.min.css">
   <link href="vendor/css/all.css" rel="stylesheet">
+  <link href="resource\css\animation-rami.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
+  <link rel="stylesheet" type="text/css"  href="resource/css/speech.css">
   <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
-
 </head>
 <body class="">
         <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
@@ -24,22 +43,108 @@ $view= new viewPending;
              <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
              <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
         </nav>
+        <div class="container-fluid mt-4">
+          <div class="row">
+            <!--  -->
+            <div class="col-5 ">
+              <div class="row">
+                <div class="col-4 ">
+                   <?php
+                     profilePic();
+                   ?>
+                    <a href="resource\php\AdminSra.php" class="out "><span class="fas fa-id-card mt-3 " href="#"></span>&nbsp;View SRA</a>
+                    <a href="updateprofile.php" class="out "><span class="fas fa-id-card mt-3 " href="#"></span>&nbsp;Update Info</a>
+                    <a href="changepassword.php" class="out "><span class="fas fa-lock " href="#"></span>&nbsp;Change Password</a>
+                    <a href="logout.php" class="out "><span class="fas fa-sign-out-alt " href="#"></span>&nbsp;Logout</a>
+                </div>
+                <div class="col-8">
+                    <p class="name mt-2" style="color: #dc65a1;"><b><?php $view->getNameSRA()?></b></p>
+                    <div class="speech-bubble css-typing typewriter">
+                        <p><?php $view->getquote()?></p>
+                    </div>
+                </div>
+             </div>
+           </div>
+            <!--  -->
+            <div class="col-7 pt-5">
+             <div class="ml-5 pl-4 row ">
+              <div class="status pl-5 pt-4 ">
+                <div class="row no-gutters sn">
+                  <div class="col-auto">
+                    <img src="resource/img/pending.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+                  </div>
+                    <div class="col">
+                        <div class="card-block">
+                          <div class="cbody" style="height: 60px; width:120px;">
+                            <h4 class="counter ml-5 "><b><?php echo $view->ctodolist();?></b></h4>
+                            <p class="text-center cbodytext"><b>Pending</b></p>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <!--  -->
+              <div class="status pl-5 pt-4">
+                <div class="row no-gutters sn">
+                  <div class="col-auto">
+                    <img src="resource/img/signature.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+                  </div>
+                    <div class="col">
+                        <div class="card-block">
+                          <div class="cbody" style="height: 60px; width:120px;">
+                            <h4 class="counter ml-5 "><b><?php echo $view->cprinted();?></b></h4>
+                            <p class="text-center cbodytext"><b>For Signature</b></p>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+           <!--  -->
+           <div class="status pl-5 pt-4">
+             <div class="row no-gutters sn">
+               <div class="col-auto">
+                 <img src="resource/img/forrelease.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+               </div>
+                 <div class="col">
+                     <div class="card-block">
+                       <div class="cbody" style="height: 60px; width:120px;">
+                          <h4 class="counter ml-5 "><b><?php echo $view->cverified();?></b></h4>
+                         <p class="text-center cbodytext"><b>For Release</b></p>
+                       </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <!--  -->
+         <div class="status pl-5 pt-4">
+           <div class="row no-gutters sn">
+             <div class="col-auto">
+               <img src="resource/img/released.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+             </div>
+               <div class="col">
+                   <div class="card-block">
+                     <div class="cbody" style="height: 60px; width:120px;">
+                        <h4 class="counter ml-5 "><b><?php echo $view->creleased();?></b></h4>
+                       <p class="text-center cbodytext"><b>Released</b></p>
+                     </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+        </div>
+      </div>
+     </div>
         <div class="container-fluid mt-4 puff-in-center">
+
             <!-- dito kayo!!!!!- -->
             <form class="" action="" method="post">
-
-              <select class="" name="sort">
-                 <option value="" disabled selected>Order By:</option>
-                <option value="ASC">ASC</option>
-                <option value="DESC">DESC</option>
-              </select>
               <input type="submit" name="submit" />
             </form>
             <?php
             if (isset($_POST['sort'])) {
-              $view->viewSort();
+              $viewP->viewSort();
             }else {
-              $view->viewData();
+              $viewP->viewData();
             }
              ?>
         </div>

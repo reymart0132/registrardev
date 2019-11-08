@@ -215,6 +215,45 @@ function updateProfile(){
     }
 }
 
+function updateuote(){
+    if(input::exists()){
+        if(!empty($_POST['College'])){
+            $_POST['College'] = implode(',',input::get('College'));
+        }else{
+           $_POST['College'] ="";
+        }
+
+        $validate = new Validate;
+        $validate = $validate->check($_POST,array(
+
+            'quote'=>array(
+                'required'=>'true'
+            )));
+
+            if($validate->passed()){
+                $user = new User();
+
+                try {
+                    $user->update(array(
+
+                        'quote'=> input::get('quote')
+                    ));
+                } catch (Exception $e) {
+                    die($e->getMessage());
+                }
+                Redirect::to('resource\php\AdminSra.php');
+            }else{
+                foreach ($validate->errors()as $error) {
+                pError($error);
+                }
+        }
+
+    }
+}
+
+
+
+
 function changeP(){
     if(input::exists()){
         $validate = new Validate;

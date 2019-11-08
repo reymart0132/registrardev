@@ -3,6 +3,21 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
 require_once 'config.php';
 class view extends config{
 
+
+   public function edit(){
+    if (isset($_POST['quote'])) {
+      $id = $_GET['id'];
+      $quote = $_POST['quote'];
+      $config = new config;
+      $con = $config->con();
+      $sql = "UPDATE `tb_accounts` SET `quote` ='$quote' WHERE `id` = '$id'";
+      $data = $con-> prepare($sql);
+      $data ->execute();
+
+
+    }
+  }
+
     public function degreeCourse(){
         $config = new config;
         $con = $config->con();
@@ -368,6 +383,30 @@ class view extends config{
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
 
 
+                 echo '</tr>';
+             }
+             echo '</table>';
+        }
+        public function viewSRA(){
+
+          $config = new config;
+          $con = $config->con();
+          $user = new User();
+          $sql = "SELECT * FROM tbl_accounts";
+          $data = $con-> prepare($sql);
+          $data->execute();
+          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              // var_dump($rows);
+               echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+                         echo '<thead class="thead" style="background-color:#DC65A1;">';
+                         echo '
+                         <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>   ';
+                         echo '</thead>';
+                         foreach ($rows as $row) {
+                           echo '<tr style="background-color:white;">';
+                             // echo '<td class="text-center">'.$row ->id.'</td>';
+                             echo '<td class="text-center" style="color:#DC65A1;">'.$row->name.'</td>';
+                             echo '<td class="text-center"><a class="btn btn-outline-danger" href=updateQuote.php?id='.$row->id.'>Quote</a></td>';
                  echo '</tr>';
              }
              echo '</table>';
