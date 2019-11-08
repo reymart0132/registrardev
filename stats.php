@@ -49,7 +49,7 @@ if(isset($_GET['verified'])){
  <div class="container-fluid mt-4 slide-in-left">
      <div class="row">
          <div class="col-12">
-             <h1 class="text-center">Productivity Report for Today</h1>
+             <h1 class="text-center">Productivity Report for Today( <?php echo $today = date("F j, Y");  ?> )</h1>
          </div>
     </div>
    <!--  -->
@@ -65,7 +65,7 @@ if(isset($_GET['verified'])){
          <canvas id="cwork"></canvas>
        </div>
      </div>
-     <div class="row mb-5 justify-content-center">
+     <div class="row mb-2 justify-content-center">
          <div class="col-4">
              <h6 class="text-center"> Total of Pending Transactions </h6>
            <canvas id="pending"></canvas>
@@ -75,21 +75,15 @@ if(isset($_GET['verified'])){
          <canvas id="released"></canvas>
        </div>
      </div>
+        <form method="post" action="export.php">
+            <button type="submit" name="export" class="btn btn-primary export heartbeat icon-2x">
+                <i class="fas fa-download"></i>
+            </button>
+        </form>
     </div>
 </div>
  </body>
- <footer id="footer" class="py-4 bg-dark text-white-50 fixed-bottom mt-5 slide-in-right">
-   <div class="container text-center">
-       <div class="row">
-           <div class="col col-sm-5 text-left">
-               <small>Copyright &copy;Centro Escolar University Office of the Registrar 2019</small>
-           </div>
-           <div class="col text-right">
-               <small>Created by: Reymart Bolasoc, Amelia Valencia , James Mangalile, Kenneth De Leon , Pamela Reyes , Ellen Mijares</small>
-           </div>
-       </div>
-   </div>
- </footer>
+
      <script src="vendor/js/jquery.js"></script>
      <script src="vendor/js/popper.js"></script>
      <script src="vendor/js/bootstrap.min.js"></script>
