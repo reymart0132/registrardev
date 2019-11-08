@@ -192,7 +192,7 @@ class view extends config{
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
               echo '<li id = "pagelink" class="page-item">';
-              echo  '<a class = "page-link" href="?page='.$p.'">'.$p;
+              echo  '<a class= "page-link" href="?tab=view&page='.$p.'">'.$p;
               echo  '</a>';
               echo '</li>';
              }
@@ -299,8 +299,9 @@ class view extends config{
 
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
+              $printed  = "printed";
               echo '<li class="page-item">';
-              echo  '<a class = "page-link" href="?page='.$p.'">'.$p;
+              echo  '<a class= "page-link" href="?tab='.$printed.'&page='.$p.'">'.$p;
               echo  '</a>';
               echo '</li>';
              }

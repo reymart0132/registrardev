@@ -5,8 +5,13 @@ class Search extends config{
 
   public function searchPending(){
 
+    if(!empty($_GET['dateFrom'])){
     $dateFrom = $_GET['dateFrom'];
-    $dateTo = $_GET['dateTo'];
+    };
+    if(!empty($_GET['dateTo'])){
+      $dateTo = $_GET['dateTo'];
+    };
+
     $criteria = $_GET['criteria'];
     $search = $_GET['search'];
 
@@ -35,41 +40,40 @@ class Search extends config{
     $data ->execute();
     $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-    // paginationqueryhere
-    // $limit = 1;
-    //
-    // if (!isset($_GET['page'])) {
-    //       $page = 1;
-    //   }else{
-    //       $page = $_GET['page'];
-    // }
-    //
-    // $start = ($page-1)*$limit;
-    //
-    // $total_results = $data->rowCount();
-    // $total_pages = ceil($total_results/$limit);
-    //
-    // $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
-    //
-    // if(empty($search)){
-    //     $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12) LIMIT $start,$limit";
-    // }
-    //
-    // if (!empty($search) && !empty($criteria)) {
-    //   $sql2 .= "AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
-    // }
-    //
-    // if (!empty($dateFrom) && !empty($dateTo)) {
-    //   $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' LIMIT $start,$limit";
-    // }
-    //
-    // if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-    //   $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
-    // }
-    //
-    // $data2 = $con->prepare($sql2);
-    // $data2 ->execute();
-    // $rows2 = $data2->fetchAll(PDO::FETCH_OBJ);
+    $limit = 1;
+
+    if (!isset($_GET['page'])) {
+          $page = 1;
+      }else{
+          $page = $_GET['page'];
+    }
+
+    $start = ($page-1)*$limit;
+
+    $total_results = $data->rowCount();
+    $total_pages = ceil($total_results/$limit);
+
+    $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
+
+    if(empty($search)){
+        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12) LIMIT $start,$limit";
+    }
+
+    if (!empty($search) && !empty($criteria)) {
+      $sql2 .= "AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
+    }
+
+    if (!empty($dateFrom) && !empty($dateTo)) {
+      $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' LIMIT $start,$limit";
+    }
+
+    if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+      $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
+    }
+
+    $data2 = $con->prepare($sql2);
+    $data2 ->execute();
+    $rows2 = $data2->fetchAll(PDO::FETCH_OBJ);
 
 
     echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
@@ -91,7 +95,7 @@ class Search extends config{
     ';
     echo '</thead>';
 
-    foreach ($rows as $row) {
+    foreach ($rows2 as $row) {
       echo '<tr>';
         // echo '<td class="text-center">'.$row ->id.'</td>';
         echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
@@ -110,14 +114,14 @@ class Search extends config{
       }
     echo '</table>';
 
-    // echo '<ul class="pagination ml-2">';
-    // for ($p=1; $p <=$total_pages; $p++) {
-    //  echo '<li class="page-item" >';
-    //  echo  '<a class= "page-link" href="?search='.$search.'&criteria='.$criteria.'&page='.$p.'">'.$p;
-    //  echo  '</a>';
-    //  echo '</li>';
-    // }
-    //  echo '</ul>';
+    echo '<ul class="pagination ml-2">';
+    for ($p=1; $p <=$total_pages; $p++) {
+     echo '<li class="page-item" >';
+     echo  '<a class= "page-link" href="?search='.$search.'&criteria='.$criteria.'&page='.$p.'">'.$p;
+     echo  '</a>';
+     echo '</li>';
+    }
+     echo '</ul>';
 
     echo '
     <div class="container-fluid mt-4">
@@ -147,7 +151,7 @@ class Search extends config{
          </div>
          <div class="col-sm mt-4 pt-2">
            <label for="submit"></label>
-           <input type="submit" class="btn text-white" name="submit" value="Submit" style="background-color:#DC65A1;">
+           <input type="submit" class="btn text-white" name="submitPending" value="Submit" style="background-color:#DC65A1;">
          </div>
        </div>
      </form>
@@ -156,11 +160,20 @@ class Search extends config{
 
 
       public function searchPrinted(){
-
+        if(!empty($_GET['dateFrom'])){
         $dateFrom = $_GET['dateFrom'];
-        $dateTo = $_GET['dateTo'];
-        $criteria = $_GET['criteria'];
-        $search = $_GET['search'];
+        };
+        if(!empty($_GET['dateTo'])){
+          $dateTo = $_GET['dateTo'];
+        };
+
+        if (!empty($_GET['criteria'])) {
+          $criteria = $_GET['criteria'];
+        }
+        if (!empty($_GET['search'])){
+          $search = $_GET['search'];
+        }
+
 
         $config = new config;
         $con = $config->con();
@@ -170,6 +183,9 @@ class Search extends config{
         $college12 ="'".implode('\',\'',$college2)."'";
         $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
 
+        if(empty($search)){
+            $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
+        }
 
         if (!empty($search) && !empty($criteria)) {
           $sql .= "AND `$criteria` LIKE '%$search%'";
@@ -188,40 +204,40 @@ class Search extends config{
         $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
         // paginationqueryhere
-        // $limit = 1;
-        //
-        // if (!isset($_GET['page'])) {
-        //       $page = 1;
-        //   }else{
-        //       $page = $_GET['page'];
-        // }
-        //
-        // $start = ($page-1)*$limit;
-        //
-        // $total_results = $data->rowCount();
-        // $total_pages = ceil($total_results/$limit);
-        //
-        // $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
-        //
-        // if(empty($search)){
-        //     $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12) LIMIT $start,$limit";
-        // }
-        //
-        // if (!empty($search) && !empty($criteria)) {
-        //   $sql2 .= "AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
-        // }
-        //
-        // if (!empty($dateFrom) && !empty($dateTo)) {
-        //   $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' LIMIT $start,$limit";
-        // }
-        //
-        // if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-        //   $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
-        // }
-        //
-        // $data2 = $con->prepare($sql2);
-        // $data2 ->execute();
-        // $rows2 = $data2->fetchAll(PDO::FETCH_OBJ);
+        $limit = 1;
+
+        if (!isset($_GET['page'])) {
+              $page = 1;
+          }else{
+              $page = $_GET['page'];
+        }
+
+        $start = ($page-1)*$limit;
+
+        $total_results = $data->rowCount();
+        $total_pages = ceil($total_results/$limit);
+
+        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
+
+        if(empty($search)){
+            $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12) LIMIT $start,$limit";
+        }
+
+        if (!empty($search) && !empty($criteria)) {
+          $sql2 .= "AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
+        }
+
+        if (!empty($dateFrom) && !empty($dateTo)) {
+          $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' LIMIT $start,$limit";
+        }
+
+        if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+          $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
+        }
+
+        $data2 = $con->prepare($sql2);
+        $data2 ->execute();
+        $rows2 = $data2->fetchAll(PDO::FETCH_OBJ);
 
 
         echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
@@ -243,7 +259,7 @@ class Search extends config{
         ';
         echo '</thead>';
 
-        foreach ($rows as $row) {
+        foreach ($rows2 as $row) {
           echo '<tr>';
             // echo '<td class="text-center">'.$row ->id.'</td>';
             echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
@@ -262,14 +278,14 @@ class Search extends config{
           }
         echo '</table>';
 
-        // echo '<ul class="pagination ml-2">';
-        // for ($p=1; $p <=$total_pages; $p++) {
-        //  echo '<li class="page-item" >';
-        //  echo  '<a class= "page-link" href="?search='.$search.'&criteria='.$criteria.'&page='.$p.'">'.$p;
-        //  echo  '</a>';
-        //  echo '</li>';
-        // }
-        //  echo '</ul>';
+        echo '<ul class="pagination ml-2">';
+        for ($p=1; $p <=$total_pages; $p++) {
+         echo '<li class="page-item" >';
+         echo  '<a class= "page-link" href="?search='.$search.'&tab=printed&submit=submitPrinted&criteria='.$criteria.'&page='.$p.'&submitPrinted=Submit#printed">'.$p;
+         echo  '</a>';
+         echo '</li>';
+        }
+         echo '</ul>';
 
         echo '
         <div class="container-fluid mt-4">
