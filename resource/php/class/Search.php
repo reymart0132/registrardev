@@ -5,12 +5,12 @@ class Search extends config{
 
   public function searchPending(){
 
-    if(!empty($_GET['dateFrom'])){
+
     $dateFrom = $_GET['dateFrom'];
-    };
-    if(!empty($_GET['dateTo'])){
+
+
       $dateTo = $_GET['dateTo'];
-    };
+
 
     $criteria = $_GET['criteria'];
     $search = $_GET['search'];
@@ -160,19 +160,23 @@ class Search extends config{
 
 
       public function searchPrinted(){
+
         if(!empty($_GET['dateFrom'])){
         $dateFrom = $_GET['dateFrom'];
         };
         if(!empty($_GET['dateTo'])){
           $dateTo = $_GET['dateTo'];
         };
+        if(!empty($_GET['criteria'])){
+         $criteria = $_GET['criteria'];
+        };
+        if(!empty($_GET['search'])){
+            $search = $_GET['search'];
+        };
 
-        if (!empty($_GET['criteria'])) {
-          $criteria = $_GET['criteria'];
-        }
-        if (!empty($_GET['search'])){
-          $search = $_GET['search'];
-        }
+
+
+
 
 
         $config = new config;
@@ -278,14 +282,28 @@ class Search extends config{
           }
         echo '</table>';
 
+
         echo '<ul class="pagination ml-2">';
         for ($p=1; $p <=$total_pages; $p++) {
-         echo '<li class="page-item" >';
-         echo  '<a class= "page-link" href="?search='.$search.'&tab=printed&submit=submitPrinted&criteria='.$criteria.'&page='.$p.'&submitPrinted=Submit#printed">'.$p;
-         echo  '</a>';
-         echo '</li>';
+          if (!empty($search) && !empty($criteria)) {
+            echo '<li class="page-item" >';
+            echo  '<a class= "page-link" href="?search='.$search.'&tab=printed&submit=submitPrinted&criteria='.$criteria.'&page='.$p.'&submitPrinted=Submit#printed">'.$p;
+            echo  '</a>';
+            echo '</li>';
+          }
         }
-         echo '</ul>';
+        echo '</ul>';
+
+        echo '<ul class="pagination ml-2">';
+        for ($p=1; $p <=$total_pages; $p++) {
+          if (!empty($dateFrom) && !empty($dateTo)) {
+            echo '<li class="page-item" >';
+           echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=printed&submit=submitPrinted&dateTo='.$dateTo.'&page='.$p.'&submitPrinted=Submit#printed">'.$p;
+            echo  '</a>';
+            echo '</li>';
+          }
+        }
+        echo '</ul>';
 
         echo '
         <div class="container-fluid mt-4">
