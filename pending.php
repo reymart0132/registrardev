@@ -172,44 +172,37 @@ if(isset($_GET['verified'])){
           $view->viewprinted();
         }?>
       </div>
-      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease2"){echo "show active";}} ?>" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewverified();?></div>
-      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "show active";}} ?>" id="verifiedall" role="tabpanel" aria-labelledby="contact2-tab"><?php $view ->viewverified2(); ?></div>
-      <div class="tab-pane fade" id="released" role="tabpanel" aria-labelledby="contact3-tab"><?php $view ->viewreleased(); ?></div>
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease2"){echo "show active";}} ?>" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php
+      if(isset($_GET['submitVerfied'])){
+        $searchQ = new Search;
+        $searchQ->searchVerified();
+      }else{
+        $view ->viewverified();
+      }
+    ?></div>
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "show active";}} ?>" id="verifiedall" role="tabpanel" aria-labelledby="contact2-tab">
+        <?php
+
+        if(isset($_GET['submitVerfiedAll'])){
+          $searchQ = new Search;
+          $searchQ->searchVerifiedAll();
+        }else{
+          $view ->viewverified2();
+        }
+        ?>
+      </div>
+      <div class="tab-pane fade" id="released" role="tabpanel" aria-labelledby="contact3-tab"><?php
+      if(isset($_GET['submitReleased'])){
+        $searchQ = new Search;
+        $searchQ->searchReleased();
+      }else{
+        $view ->viewreleased();
+      }
+       ?>
+     </div>
     </div>
   </div>
  </body>
- <!-- <div class="container-fluid mt-4">
-    <form class="" action="" method="get">
-      <div class="row">
-        <div class="col-sm">
-          <label for="dateFrom">From:</label>
-          <input  class="form-control" type="date" name="dateFrom"data-date-format="YYYY MMMM DD">
-        </div>
-        <div class="col-sm">
-          <label for="dateTo">To:</label>
-          <input  class="form-control" type="date" name="dateTo" >
-        </div>
-        <div class="col-sm">
-          <label for="criteria">Filter By:</label>
-          <select class="form-control" name="criteria">
-            <option value="LastName">Last Name</option>
-            <option value="Course">Course</option>
-            <option value="Status">Status</option>
-            <option value="Applied_For">Applied For</option>
-            <option value="purposes">Reason For Applying</option>
-          </select>
-        </div>
-        <div class="col-sm mt-2">
-          <label for="search"></label>
-          <input class="form-control" type="text" name="search" placeholder="Search Here.."/>
-        </div>
-        <div class="col-sm mt-4 pt-2">
-          <label for="submit"></label>
-          <input type="submit" class="btn text-white" name="submit" value="Submit" style="background-color:#DC65A1;">
-        </div>
-      </div>
-    </form>
- </div> -->
  <footer id="footer" class="py-4 bg-dark text-white-50 fixed-bottom mt-5 slide-in-right">
    <div class="container text-center">
        <div class="row">
