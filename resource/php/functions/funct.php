@@ -73,6 +73,9 @@ function vald(){
                 'min'=>2,
                 'max'=>50,
             ),
+            'email'=>array(
+                'required'=>'true'
+            ),
             'College'=>array(
                 'required'=>'true'
             )));
@@ -88,7 +91,8 @@ function vald(){
                         'name'=> input::get('fullName'),
                         'joined'=>date('Y-m-d H:i:s'),
                         'groups'=>1,
-                        'colleges'=> input::get('College')
+                        'colleges'=> input::get('College'),
+                        'email'=> input::get('email'),
                     ));
 
                     $user->createC(array(
@@ -161,7 +165,7 @@ function vald(){
 
 function profilePic(){
     $view = new view();
-    if($view->getdpSRA()!==""){
+    if($view->getdpSRA()!=="" || $view->getdpSRA()!==NULL){
         echo "<img class='rounded-circle profpic img-thumbnail ml-3' alt='100x100' src='data:".$view->getMmSRA().";base64,".base64_encode($view->getdpSRA())."'/>";
     }else{
         echo "<img class='rounded-circle profpic img-thumbnail' alt='100x100' src='resource/img/user.jpg'/>";
@@ -189,6 +193,11 @@ function updateProfile(){
                 'min'=>2,
                 'max'=>50,
             ),
+            'email'=>array(
+                'required'=>'true',
+                'min'=>5,
+                'max'=>50,
+            ),
             'College'=>array(
                 'required'=>'true'
             )));
@@ -200,7 +209,8 @@ function updateProfile(){
                     $user->update(array(
                         'username'=>input::get('username'),
                         'name'=> input::get('fullName'),
-                        'colleges'=> input::get('College')
+                        'colleges'=> input::get('College'),
+                        'email'=> input::get('email')
                     ));
                 } catch (Exception $e) {
                     die($e->getMessage());
@@ -254,4 +264,7 @@ function changeP(){
         }
     }
 }
+ function blocker(){
+     echo '<div class="container-fluid screen2"></div>';
+ }
  ?>

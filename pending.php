@@ -30,6 +30,7 @@ if(isset($_GET['verified'])){
    <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
  </head>
  <body>
+     <?php blocker()?>
    <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
      <a class="navbar-brand" href="https://malolos.ceu.edu.ph/">
        <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
