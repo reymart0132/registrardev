@@ -151,7 +151,7 @@ if(isset($_GET['verified'])){
           <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "active";}} ?>" id="contact-tab" data-toggle="tab" href="#verifiedall" role="tab" aria-controls="contact2" aria-selected="false">For Release (ALL)</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#released" role="tab" aria-controls="contact3" aria-selected="false">Released</a>
+          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="released"){echo "show active";}} ?>" id="contact-tab" data-toggle="tab" href="#released" role="tab" aria-controls="contact3" aria-selected="false">Released</a>
         </li>
       </ul>
     <div class="tab-content" id="myTabContent">
@@ -183,7 +183,6 @@ if(isset($_GET['verified'])){
     ?></div>
       <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "show active";}} ?>" id="verifiedall" role="tabpanel" aria-labelledby="contact2-tab">
         <?php
-
         if(isset($_GET['submitVerfiedAll'])){
           $searchQ = new Search;
           $searchQ->searchVerifiedAll();
@@ -192,7 +191,7 @@ if(isset($_GET['verified'])){
         }
         ?>
       </div>
-      <div class="tab-pane fade" id="released" role="tabpanel" aria-labelledby="contact3-tab"><?php
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="released"){echo "show active";}} ?>" id="released" role="tabpanel" aria-labelledby="contact3-tab"><?php
       if(isset($_GET['submitReleased'])){
         $searchQ = new Search;
         $searchQ->searchReleased();

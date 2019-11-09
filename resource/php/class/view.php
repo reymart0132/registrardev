@@ -139,10 +139,17 @@ class view extends config{
            // paginationqueryhere
            $limit = 1;
 
-           if (!isset($_GET['page'])) {
+           if (!isset($_GET['Ppage'])) {
                  $page = 1;
              } else{
-                 $page = $_GET['page'];
+                 $page = $_GET['Ppage'];
+           }
+
+           if(isset($_GET['Ppage']) > 1){
+             $_GET['V1page'] = 1;
+             $_GET['PRpage'] = 1;
+             $_GET['V2page'] = 1;
+             $_GET['Rpage'] = 1;
            }
 
            $start = ($page-1)*$limit;
@@ -192,7 +199,7 @@ class view extends config{
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
               echo '<li id = "pagelink" class="page-item">';
-              echo  '<a class= "page-link" href="?tab=view&page='.$p.'">'.$p;
+              echo  '<a class= "page-link" href="?tab=view&Ppage='.$p.'">'.$p;
               echo  '</a>';
               echo '</li>';
              }
@@ -248,10 +255,17 @@ class view extends config{
 
           $limit = 1;
 
-          if (!isset($_GET['page'])) {
+          if (!isset($_GET['PRpage'])) {
                 $page = 1;
             } else{
-                $page = $_GET['page'];
+                $page = $_GET['PRpage'];
+          }
+
+          if(isset($_GET['PRpage']) > 1){
+            $_GET['Ppage'] = 1;
+            $_GET['V1'] = 1;
+            $_GET['V2page'] = 1;
+            $_GET['Rpage'] = 1;
           }
 
           $start = ($page-1)*$limit;
@@ -302,7 +316,7 @@ class view extends config{
              for ($p=1; $p <=$total_pages; $p++) {
               $printed  = "printed";
               echo '<li class="page-item">';
-              echo  '<a class= "page-link" href="?tab='.$printed.'&page='.$p.'">'.$p;
+              echo  '<a class= "page-link" href="?tab='.$printed.'&PRpage='.$p.'">'.$p;
               echo  '</a>';
               echo '</li>';
              }
@@ -358,10 +372,17 @@ class view extends config{
 
           $limit = 1;
 
-          if (!isset($_GET['page'])) {
+          if (!isset($_GET['V2page'])) {
                 $page = 1;
             } else{
-                $page = $_GET['page'];
+                $page = $_GET['V2page'];
+          }
+
+          if(isset($_GET['V2page']) > 1){
+            $_GET['Ppage'] = 1;
+            $_GET['PRpage'] = 1;
+            $_GET['V1page'] = 1;
+            $_GET['Rpage'] = 1;
           }
 
           $start = ($page-1)*$limit;
@@ -411,7 +432,7 @@ class view extends config{
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
               echo '<li class="page-item">';
-              echo  '<a class= "page-link" href="?tab=forrelease1&page='.$p.'">'.$p;
+              echo  '<a class= "page-link" href="?tab=forrelease1&V2page='.$p.'">'.$p;
               echo  '</a>';
               echo '</li>';
              }
@@ -467,10 +488,17 @@ class view extends config{
 
           $limit = 1;
 
-          if (!isset($_GET['page'])) {
+          if (!isset($_GET['V1page'])) {
                 $page = 1;
             } else{
-                $page = $_GET['page'];
+                $page = $_GET['V1page'];
+          }
+
+          if(isset($_GET['V1page']) > 1){
+            $_GET['Ppage'] = 1;
+            $_GET['PRpage'] = 1;
+            $_GET['V2page'] = 1;
+            $_GET['Rpage'] = 1;
           }
 
           $start = ($page-1)*$limit;
@@ -519,7 +547,7 @@ class view extends config{
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
               echo '<li class="page-item">';
-              echo  '<a class= "page-link" href="?tab=forrelease2&page='.$p.'">'.$p;
+              echo  '<a class= "page-link" href="?tab=forrelease2&V1page='.$p.'">'.$p;
               echo  '</a>';
               echo '</li>';
              }
@@ -575,12 +603,18 @@ class view extends config{
 
           $limit = 1;
 
-          if (!isset($_GET['page'])) {
+          if (!isset($_GET['Rpage'])) {
               $page = 1;
           } else{
-          $page = $_GET['page'];
+          $page = $_GET['Rpage'];
           }
 
+          if(isset($_GET['Rpage']) > 1){
+            $_GET['Ppage'] = 1;
+            $_GET['PRpage'] = 1;
+            $_GET['V2page'] = 1;
+            $_GET['V1page'] = 1;
+          }
           $start = ($page-1)*$limit;
 
           $total_results = $data->rowCount();
@@ -628,7 +662,7 @@ class view extends config{
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
               echo '<li class="page-item">';
-              echo  '<a class= "page-link" href="?tab=&page='.$p.'">'.$p;
+              echo  '<a class= "page-link" href="?tab=released&Rpage='.$p.'">'.$p;
               echo  '</a>';
               echo '</li>';
              }

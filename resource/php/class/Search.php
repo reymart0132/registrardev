@@ -18,6 +18,7 @@ class Search extends config{
       $search = $_GET['search'];
     };
 
+
     $config = new config;
     $con = $config->con();
     $user = new User();
@@ -41,10 +42,17 @@ class Search extends config{
 
     $limit = 1;
 
-    if (!isset($_GET['page'])) {
+    if (!isset($_GET['Ppage'])) {
           $page = 1;
       }else{
-          $page = $_GET['page'];
+          $page = $_GET['Ppage'];
+    }
+
+    if(isset($_GET['Ppage']) > 1){
+      $_GET['V1page'] = 1;
+      $_GET['PRpage'] = 1;
+      $_GET['V2page'] = 1;
+      $_GET['Rpage'] = 1;
     }
 
     $start = ($page-1)*$limit;
@@ -111,17 +119,17 @@ class Search extends config{
       for ($p=1; $p <=$total_pages; $p++) {
         if (!empty($search) && !empty($criteria)) {
           echo '<li class="page-item" >';
-          echo  '<a class= "page-link" href="?search='.$search.'&tab=view&submit=submitPending&criteria='.$criteria.'&page='.$p.'&submitPending=Submit#pending">'.$p;
+          echo  '<a class= "page-link" href="?search='.$search.'&tab=view&submit=submitPending&criteria='.$criteria.'&Ppage='.$p.'&submitPending=Submit#pending">'.$p;
           echo  '</a>';
           echo '</li>';
         }elseif(!empty($dateFrom) && !empty($dateTo)) {
           echo '<li class="page-item" >';
-          echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=view&submit=submitPending&dateTo='.$dateTo.'&page='.$p.'&submitPending=Submit#pending">'.$p;
+          echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=view&submit=submitPending&dateTo='.$dateTo.'&Ppage='.$p.'&submitPending=Submit#pending">'.$p;
           echo  '</a>';
           echo '</li>';
         }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
           echo '<li class="page-item" >';
-          echo  '<a class= "page-link" href="?tab=view&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&page='.$p.'&submitPending=Submit#pending&submit=submitPending">'.$p;
+          echo  '<a class= "page-link" href="?tab=view&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Ppage='.$p.'&submitPending=Submit#pending&submit=submitPending">'.$p;
           echo  '</a>';
           echo '</li>';
         }
@@ -203,10 +211,17 @@ class Search extends config{
 
       $limit = 1;
 
-      if (!isset($_GET['page'])) {
+      if (!isset($_GET['PRpage'])) {
             $page = 1;
         }else{
-            $page = $_GET['page'];
+            $page = $_GET['PRpage'];
+      }
+
+      if(isset($_GET['PRpage']) > 1){
+        $_GET['Ppage'] = 1;
+        $_GET['V1'] = 1;
+        $_GET['V2page'] = 1;
+        $_GET['Rpage'] = 1;
       }
 
       $start = ($page-1)*$limit;
@@ -272,17 +287,17 @@ class Search extends config{
         for ($p=1; $p <=$total_pages; $p++) {
           if (!empty($search) && !empty($criteria)) {
             echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?search='.$search.'&tab=printed&submit=submitPrinted&criteria='.$criteria.'&page='.$p.'&submitPrinted=Submit#printed">'.$p;
+            echo  '<a class= "page-link" href="?search='.$search.'&tab=printed&submit=submitPrinted&criteria='.$criteria.'&PRpage='.$p.'&submitPrinted=Submit#printed">'.$p;
             echo  '</a>';
             echo '</li>';
           }elseif(!empty($dateFrom) && !empty($dateTo)) {
             echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=printed&submit=submitPrinted&dateTo='.$dateTo.'&page='.$p.'&submitPrinted=Submit#printed">'.$p;
+            echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=printed&submit=submitPrinted&dateTo='.$dateTo.'&PRpage='.$p.'&submitPrinted=Submit#printed">'.$p;
             echo  '</a>';
             echo '</li>';
           }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
             echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?tab=printed&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&page='.$p.'&submitPrinted=Submit#printed&submit=submitPrinted">'.$p;
+            echo  '<a class= "page-link" href="?tab=printed&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&PRpage='.$p.'&submitPrinted=Submit#printed&submit=submitPrinted">'.$p;
             echo  '</a>';
             echo '</li>';
           }
@@ -363,12 +378,18 @@ class Search extends config{
 
         $limit = 1;
 
-        if (!isset($_GET['page'])) {
+        if (!isset($_GET['V1page'])) {
               $page = 1;
           }else{
-              $page = $_GET['page'];
+              $page = $_GET['V1page'];
         }
 
+        if(isset($_GET['V1page']) > 1){
+          $_GET['Ppage'] = 1;
+          $_GET['PRpage'] = 1;
+          $_GET['V2page'] = 1;
+          $_GET['Rpage'] = 1;
+        }
         $start = ($page-1)*$limit;
 
         $total_results = $data->rowCount();
@@ -432,17 +453,17 @@ class Search extends config{
           for ($p=1; $p <=$total_pages; $p++) {
             if (!empty($search) && !empty($criteria)) {
               echo '<li class="page-item" >';
-              echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease2&submit=submitVerfied&criteria='.$criteria.'&page='.$p.'&submitVerified=Submit#verified">'.$p;
+              echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease2&submit=submitVerfied&criteria='.$criteria.'&V1page='.$p.'&submitVerified=Submit#verified">'.$p;
               echo  '</a>';
               echo '</li>';
             }elseif(!empty($dateFrom) && !empty($dateTo)) {
               echo '<li class="page-item" >';
-              echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease2&submit=submitVerfied&dateTo='.$dateTo.'&page='.$p.'&submitVerfied=Submit#verified">'.$p;
+              echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease2&submit=submitVerfied&dateTo='.$dateTo.'&V1page='.$p.'&submitVerfied=Submit#verified">'.$p;
               echo  '</a>';
               echo '</li>';
             }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
               echo '<li class="page-item" >';
-              echo  '<a class= "page-link" href="?tab=forrelease2&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&page='.$p.'&submitVerfied=Submit#printed&submit=submitVerfied">'.$p;
+              echo  '<a class= "page-link" href="?tab=forrelease2&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V1page='.$p.'&submitVerfied=Submit#printed&submit=submitVerfied">'.$p;
               echo  '</a>';
               echo '</li>';
             }
@@ -523,10 +544,17 @@ class Search extends config{
 
           $limit = 1;
 
-          if (!isset($_GET['page'])) {
+          if (!isset($_GET['V2page'])) {
                 $page = 1;
             }else{
-                $page = $_GET['page'];
+                $page = $_GET['V2page'];
+          }
+
+          if(isset($_GET['V2page']) > 1){
+            $_GET['Ppage'] = 1;
+            $_GET['PRpage'] = 1;
+            $_GET['V1page'] = 1;
+            $_GET['Rpage'] = 1;
           }
 
           $start = ($page-1)*$limit;
@@ -592,17 +620,17 @@ class Search extends config{
             for ($p=1; $p <=$total_pages; $p++) {
               if (!empty($search) && !empty($criteria)) {
                 echo '<li class="page-item" >';
-                echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease1&submit=submitVerfiedAll&criteria='.$criteria.'&page='.$p.'&submitVerifiedAll=Submit#verifiedall">'.$p;
+                echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease1&submit=submitVerfiedAll&criteria='.$criteria.'&V2page='.$p.'&submitVerifiedAll=Submit#verifiedall">'.$p;
                 echo  '</a>';
                 echo '</li>';
               }elseif(!empty($dateFrom) && !empty($dateTo)) {
                 echo '<li class="page-item" >';
-                echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease1&submit=submitVerfiedAll&dateTo='.$dateTo.'&page='.$p.'&submitVerfiedAll=Submit#verifiedall">'.$p;
+                echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease1&submit=submitVerfiedAll&dateTo='.$dateTo.'&V2page='.$p.'&submitVerfiedAll=Submit#verifiedall">'.$p;
                 echo  '</a>';
                 echo '</li>';
               }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
                 echo '<li class="page-item" >';
-                echo  '<a class= "page-link" href="?tab=forrelease1&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&page='.$p.'&submitVerfiedAll=Submit#verifiedall&submit=submitVerfiedAll">'.$p;
+                echo  '<a class= "page-link" href="?tab=forrelease1&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V2page='.$p.'&submitVerfiedAll=Submit#verifiedall&submit=submitVerfiedAll">'.$p;
                 echo  '</a>';
                 echo '</li>';
               }
@@ -683,10 +711,17 @@ class Search extends config{
 
             $limit = 1;
 
-            if (!isset($_GET['page'])) {
+            if (!isset($_GET['Rpage'])) {
                   $page = 1;
               }else{
-                  $page = $_GET['page'];
+                  $page = $_GET['Rpage'];
+            }
+
+            if(isset($_GET['Rpage']) > 1){
+              $_GET['Ppage'] = 1;
+              $_GET['PRpage'] = 1;
+              $_GET['V2page'] = 1;
+              $_GET['V1page'] = 1;
             }
 
             $start = ($page-1)*$limit;
@@ -747,17 +782,17 @@ class Search extends config{
               for ($p=1; $p <=$total_pages; $p++) {
                 if (!empty($search) && !empty($criteria)) {
                   echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?search='.$search.'&&submit=submitReleased&criteria='.$criteria.'&page='.$p.'&submitReleased=Submit#released">'.$p;
+                  echo  '<a class= "page-link" href="?search='.$search.'&tab=released&submit=submitReleased&criteria='.$criteria.'&Rpage='.$p.'&submitReleased=Submit#released">'.$p;
                   echo  '</a>';
                   echo '</li>';
                 }elseif(!empty($dateFrom) && !empty($dateTo)) {
                   echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&submit=submitReleased&dateTo='.$dateTo.'&page='.$p.'&submitReleased=Submit#released">'.$p;
+                  echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=released&submit=submitReleased&dateTo='.$dateTo.'&Rpage='.$p.'&submitReleased=Submit#released">'.$p;
                   echo  '</a>';
                   echo '</li>';
                 }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
                   echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&page='.$p.'&submitReleased=Submit#released&submit=submitReleased">'.$p;
+                  echo  '<a class= "page-link" href="?tab=released&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Rpage='.$p.'&submitReleased=Submit#released&submit=submitReleased">'.$p;
                   echo  '</a>';
                   echo '</li>';
                 }
