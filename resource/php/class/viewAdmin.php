@@ -174,6 +174,7 @@ class viewAdmin extends config{
            <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+           <th class="text-center" style= "font-weight:bold; color:white;">College</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
            ';
@@ -190,6 +191,7 @@ class viewAdmin extends config{
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</br></td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
                echo '<td class="text-center"><a class="btn btn-outline-success" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
                  echo '</tr>';
@@ -226,6 +228,7 @@ class viewAdmin extends config{
                       <option value="Status">Status</option>
                       <option value="Applied_For">Applied For</option>
                       <option value="purposes">Reason For Applying</option>
+                      <option value="College">College</option>
                     </select>
                   </div>
                   <div class="col-sm mt-2">
@@ -291,6 +294,7 @@ class viewAdmin extends config{
           <td class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
           <td class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
           <td class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">College</td>
           <td class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
           <td class="text-center" style= "font-weight:bold; color:white;">Actions</td>
           ';
@@ -307,6 +311,7 @@ class viewAdmin extends config{
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</br></td>';
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
               echo '<td class="text-center"><a class="btn btn-outline-success" href="view_pending_requests.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
               echo '</tr>';
@@ -344,6 +349,7 @@ class viewAdmin extends config{
                       <option value="Status">Status</option>
                       <option value="Applied_For">Applied For</option>
                       <option value="purposes">Reason For Applying</option>
+                      <option value="College">College</option>
                     </select>
                   </div>
                   <div class="col-sm mt-2">
@@ -408,6 +414,7 @@ class viewAdmin extends config{
                      <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
                      <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
                      <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">College</td>
                      <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
                      <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
                      ';
@@ -424,6 +431,7 @@ class viewAdmin extends config{
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</br></td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
                echo '<td class="text-center"><a class="btn btn-outline-success" href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
                  echo '</tr>';
@@ -460,6 +468,7 @@ class viewAdmin extends config{
                       <option value="Status">Status</option>
                       <option value="Applied_For">Applied For</option>
                       <option value="purposes">Reason For Applying</option>
+                      <option value="College">College</option>
                     </select>
                   </div>
                   <div class="col-sm mt-2">
@@ -526,6 +535,7 @@ class viewAdmin extends config{
                          <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+                         <th class="text-center" style= "font-weight:bold; color:white;">College</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Released By</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
                          ';
@@ -541,6 +551,7 @@ class viewAdmin extends config{
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$this->getSname($row->releasedby).'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
                  echo '</tr>';
@@ -577,6 +588,7 @@ class viewAdmin extends config{
                       <option value="Status">Status</option>
                       <option value="Applied_For">Applied For</option>
                       <option value="purposes">Reason For Applying</option>
+                      <option value="College">College</option>
                     </select>
                   </div>
                   <div class="col-sm mt-2">

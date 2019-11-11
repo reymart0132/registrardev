@@ -475,8 +475,6 @@ class view extends config{
                 </div>
               </form>
           </div>';
-
-
         }
 
         public function viewverified(){
