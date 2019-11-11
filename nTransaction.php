@@ -115,6 +115,7 @@ $view = new view;
                                     <div class="form-group col-4">
                                       <label for="request" >Requesting for:</label>
                                           <select id="request" name="request[]" class="selectpicker form-control" data-live-search="true" multiple>
+
                                             <?php $view->requestingForSP();?>
                                           </select>
                                     </div>
