@@ -171,13 +171,7 @@ class Search extends config{
      </form>
  </div>';
 
- echo '
- <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
- <script src="vendor/js/datepicker/config.js"></script>
- <script src="vendor/js/datepicker/JqueryDate.js"></script>
- <script src="vendor/js/datepicker/date.js"></script>
- ';
-    }
+  }
 
     //
     public function searchPrinted(){
@@ -346,12 +340,7 @@ class Search extends config{
        </form>
    </div>';
 
-   echo '
-   <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
-   <script src="vendor/js/datepicker/config.js"></script>
-   <script src="vendor/js/datepicker/JqueryDate.js"></script>
-   <script src="vendor/js/datepicker/date.js"></script>
-   ';
+
       }
 
       public function searchVerified(){
@@ -519,12 +508,7 @@ class Search extends config{
          </form>
      </div>';
 
-     echo '
-     <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
-     <script src="vendor/js/datepicker/config.js"></script>
-     <script src="vendor/js/datepicker/JqueryDate.js"></script>
-     <script src="vendor/js/datepicker/date.js"></script>
-     ';
+
         }
 
         public function searchVerifiedAll(){
@@ -693,12 +677,6 @@ class Search extends config{
            </form>
        </div>';
 
-       echo '
-       <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
-       <script src="vendor/js/datepicker/config.js"></script>
-       <script src="vendor/js/datepicker/JqueryDate.js"></script>
-       <script src="vendor/js/datepicker/date.js"></script>
-       ';
           }
           public function searchReleased(){
 
@@ -838,11 +816,11 @@ class Search extends config{
                <div class="row">
                  <div class="col-sm">
                    <label for="dateFrom">From:</label>
-                   <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD placeholder="dd-mm-yyyy">
+                   <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                  </div>
                  <div class="col-sm">
                    <label for="dateTo">To:</label>
-                   <input  class="form-control" type="text" name="dateTo" id="EndDate placeholder="dd-mm-yyyy" >
+                   <input  class="form-control" type="text" name="dateTo" id="EndDate" placeholder="dd-mm-yyyy" >
                  </div>
                  <div class="col-sm">
                    <label for="criteria">Filter By:</label>

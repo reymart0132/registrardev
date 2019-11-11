@@ -240,12 +240,6 @@ class view extends config{
               </form>
           </div>';
 
-          echo '
-          <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
-          <script src="vendor/js/datepicker/config.js"></script>
-          <script src="vendor/js/datepicker/JqueryDate.js"></script>
-          <script src="vendor/js/datepicker/date.js"></script>
-          ';
         }
 
         public function viewprinted(){
@@ -364,12 +358,7 @@ class view extends config{
               </form>
           </div>';
 
-          echo '
-          <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
-          <script src="vendor/js/datepicker/config.js"></script>
-          <script src="vendor/js/datepicker/JqueryDate.js"></script>
-          <script src="vendor/js/datepicker/date.js"></script>
-          ';
+
         }
 
         public function viewverified2(){
@@ -487,12 +476,7 @@ class view extends config{
               </form>
           </div>';
 
-          echo '
-          <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
-          <script src="vendor/js/datepicker/config.js"></script>
-          <script src="vendor/js/datepicker/JqueryDate.js"></script>
-          <script src="vendor/js/datepicker/date.js"></script>
-          ';
+
         }
 
         public function viewverified(){
@@ -609,13 +593,6 @@ class view extends config{
                 </div>
               </form>
           </div>';
-
-          echo '
-          <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
-          <script src="vendor/js/datepicker/config.js"></script>
-          <script src="vendor/js/datepicker/JqueryDate.js"></script>
-          <script src="vendor/js/datepicker/date.js"></script>
-          ';
         }
 
         //
