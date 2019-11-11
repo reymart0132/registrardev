@@ -1,3 +1,11 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'].'\registrardev\resource\php\class\addpurposefnc.php';
+if(isset($_POST['submit'])){
+  $add = new add($_POST['purpose']);
+  $add->addpurpose();
+  header("Location: Reqpurposes.php");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,27 +25,35 @@
             <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
               alt="mdb logo"><h3 class="ib">
           </a>
-             <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
              <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
              <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
              <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
         </nav>
-        <div class="container mt-4 puff-in-center">
 
-        </div>
+                </div>
+
+            </div>
+            <form method="POST">
+            <div class="row">
+                <table class="table">
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                      <label for="purposes">purposes</label>
+                                      <input type="text" class="form-control" id="purposes" name="purpose" placeholder="Enter purposes" required>
+                                    </div>
+                                        </td>
+                                        </tr>
+                                        </table>
+                                        <div class="form-group col-2  ml-2">
+                                         <input type="submit" name="submit" value="Submit Request" class="form-control btn btn-primary" />
+                                        </div>
+
+
 </body>
-<footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom  slide-in-right">
-  <div class="container text-center">
-      <div class="row">
-          <div class="col col-sm-5 text-left">
-              <small>Copyright &copy;Centro Escolar University     Office of the Registrar 2019</small>
-          </div>
-          <div class="col text-right">
-              <small>Created by: Reymart Bolasoc, Amelia Valencia , James Mangalile, Kenneth De Leon , Pamela Reyes , Ellen Mijares</small>
-          </div>
-      </div>
-  </div>
-</footer>
+
+
     <script src="vendor/js/jquery.js"></script>
     <script src="vendor/js/popper.js"></script>
     <script src="vendor/js/bootstrap.min.js"></script>

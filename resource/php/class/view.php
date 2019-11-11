@@ -15,8 +15,13 @@ class view extends config{
       $data ->execute();
 
 
+
     }
   }
+
+
+
+
 
     public function degreeCourse(){
         $config = new config;
@@ -400,13 +405,14 @@ class view extends config{
                echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
                          echo '<thead class="thead" style="background-color:#DC65A1;">';
                          echo '
-                         <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>   ';
+                         <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
+                         <th class="text-center" style= "font-weight:bold; color:white;"> Quote</td>   ';
                          echo '</thead>';
                          foreach ($rows as $row) {
                            echo '<tr style="background-color:white;">';
                              // echo '<td class="text-center">'.$row ->id.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->name.'</td>';
-                             echo '<td class="text-center"><a class="btn btn-outline-danger" href=updateQuote.php?id='.$row->id.'>Quote</a></td>';
+                             echo '<td class="text-center"><a class="btn btn-outline-danger" href=resource\php\updateQuote.php?id='.$row->id.'>Change Quote</a></td>';
                  echo '</tr>';
              }
              echo '</table>';

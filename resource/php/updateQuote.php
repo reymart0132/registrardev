@@ -3,11 +3,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
 
 isLogin();
 $view = new view;
+$edit = new edit;
 $user = new user();
 // if (isset($_POST['submit'])) {
 //   $view->edit();
 // }
-updateuote();
+$edit->editQuote();
 
 
  ?>
@@ -19,11 +20,11 @@ updateuote();
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Registrar Portal</title>
-   <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap.min.css">
-   <link href="vendor/css/all.css" rel="stylesheet">
-   <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
-   <link rel="stylesheet" type="text/css"  href="resource/css/speech.css">
-   <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
+   <link rel="stylesheet" type="text/css"  href="vendor\css\bootstrap.min.css">
+   <link href="vendor\css\all.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css"  href="resource\css\styles.css">
+   <link rel="stylesheet" type="text/css"  href="resource\css\speech.css">
+   <link rel="stylesheet" type="text/css"  href="vendor\css\bootstrap-select.min.css">
 
  </head>
  <body>

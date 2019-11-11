@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view= new view;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +11,10 @@ $view= new view;
   <title>Registrar Portal</title>
   <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap.min.css">
   <link href="vendor/css/all.css" rel="stylesheet">
+  <link href="resource\css\animation-rami.css" type="text/css" rel="stylesheet">
   <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
+  <link rel="stylesheet" type="text/css"  href="resource/css/speech.css">
   <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
-
 </head>
 <body class="">
         <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
