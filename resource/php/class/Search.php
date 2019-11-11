@@ -142,11 +142,11 @@ class Search extends config{
        <div class="row">
          <div class="col-sm">
            <label for="dateFrom">From:</label>
-           <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+           <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
          </div>
          <div class="col-sm">
            <label for="dateTo">To:</label>
-           <input  class="form-control" type="date" name="dateTo" value="" >
+           <input  class="form-control" type="text" name="dateTo" id="EndDate" placeholder="dd-mm-yyyy">
          </div>
          <div class="col-sm">
            <label for="criteria">Filter By:</label>
@@ -170,6 +170,13 @@ class Search extends config{
        </div>
      </form>
  </div>';
+
+ echo '
+ <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+ <script src="vendor/js/datepicker/config.js"></script>
+ <script src="vendor/js/datepicker/JqueryDate.js"></script>
+ <script src="vendor/js/datepicker/date.js"></script>
+ ';
     }
 
     //
@@ -310,11 +317,11 @@ class Search extends config{
          <div class="row">
            <div class="col-sm">
              <label for="dateFrom">From:</label>
-             <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+             <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
            </div>
            <div class="col-sm">
              <label for="dateTo">To:</label>
-             <input  class="form-control" type="date" name="dateTo" value="" >
+             <input  class="form-control" type="text" name="dateTo" id="EndDate" placeholder="dd-mm-yyyy">
            </div>
            <div class="col-sm">
              <label for="criteria">Filter By:</label>
@@ -338,6 +345,13 @@ class Search extends config{
          </div>
        </form>
    </div>';
+
+   echo '
+   <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+   <script src="vendor/js/datepicker/config.js"></script>
+   <script src="vendor/js/datepicker/JqueryDate.js"></script>
+   <script src="vendor/js/datepicker/date.js"></script>
+   ';
       }
 
       public function searchVerified(){
@@ -476,11 +490,11 @@ class Search extends config{
            <div class="row">
              <div class="col-sm">
                <label for="dateFrom">From:</label>
-               <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+               <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
              </div>
              <div class="col-sm">
                <label for="dateTo">To:</label>
-               <input  class="form-control" type="date" name="dateTo" value="" >
+               <input  class="form-control" type="text" name="dateTo" id="EndDate" placeholder="dd-mm-yyyy">
              </div>
              <div class="col-sm">
                <label for="criteria">Filter By:</label>
@@ -504,6 +518,13 @@ class Search extends config{
            </div>
          </form>
      </div>';
+
+     echo '
+     <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+     <script src="vendor/js/datepicker/config.js"></script>
+     <script src="vendor/js/datepicker/JqueryDate.js"></script>
+     <script src="vendor/js/datepicker/date.js"></script>
+     ';
         }
 
         public function searchVerifiedAll(){
@@ -643,11 +664,11 @@ class Search extends config{
              <div class="row">
                <div class="col-sm">
                  <label for="dateFrom">From:</label>
-                 <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                 <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                </div>
                <div class="col-sm">
                  <label for="dateTo">To:</label>
-                 <input  class="form-control" type="date" name="dateTo" value="" >
+                 <input  class="form-control" type="text" name="dateTo" id="EndDate" placeholder="dd-mm-yyyy">
                </div>
                <div class="col-sm">
                  <label for="criteria">Filter By:</label>
@@ -671,6 +692,13 @@ class Search extends config{
              </div>
            </form>
        </div>';
+
+       echo '
+       <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+       <script src="vendor/js/datepicker/config.js"></script>
+       <script src="vendor/js/datepicker/JqueryDate.js"></script>
+       <script src="vendor/js/datepicker/date.js"></script>
+       ';
           }
           public function searchReleased(){
 
@@ -709,7 +737,7 @@ class Search extends config{
             $data ->execute();
             $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-            $limit = 1;
+            $limit = 2;
 
             if (!isset($_GET['Rpage'])) {
                   $page = 1;
@@ -729,7 +757,12 @@ class Search extends config{
             $total_results = $data->rowCount();
             $total_pages = ceil($total_results/$limit);
 
-            $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
+            // if ($dateFrom >= $dateTo) {
+            //   $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' LIMIT $start,$limit";
+            //   echo "<script type='text/javascript'>alert('Invalid Date');</script>";
+            // }else {
+              $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
+            // }
 
 
             if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -805,11 +838,11 @@ class Search extends config{
                <div class="row">
                  <div class="col-sm">
                    <label for="dateFrom">From:</label>
-                   <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                   <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD placeholder="dd-mm-yyyy">
                  </div>
                  <div class="col-sm">
                    <label for="dateTo">To:</label>
-                   <input  class="form-control" type="date" name="dateTo" value="" >
+                   <input  class="form-control" type="text" name="dateTo" id="EndDate placeholder="dd-mm-yyyy" >
                  </div>
                  <div class="col-sm">
                    <label for="criteria">Filter By:</label>
@@ -833,6 +866,13 @@ class Search extends config{
                </div>
              </form>
          </div>';
-            }
+
+         echo '
+         <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+         <script src="vendor/js/datepicker/config.js"></script>
+         <script src="vendor/js/datepicker/JqueryDate.js"></script>
+         <script src="vendor/js/datepicker/date.js"></script>
+         ';
+      }
   }
 ?>

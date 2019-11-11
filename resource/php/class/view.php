@@ -211,11 +211,11 @@ class view extends config{
                 <div class="row">
                   <div class="col-sm">
                     <label for="dateFrom">From:</label>
-                    <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                    <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                   </div>
                   <div class="col-sm">
                     <label for="dateTo">To:</label>
-                    <input  class="form-control" type="date" name="dateTo" value="" >
+                    <input  class="form-control" type="text" name="dateTo" id="EndDate" placeholder="dd-mm-yyyy">
                   </div>
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
@@ -239,6 +239,13 @@ class view extends config{
                 </div>
               </form>
           </div>';
+
+          echo '
+          <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+          <script src="vendor/js/datepicker/config.js"></script>
+          <script src="vendor/js/datepicker/JqueryDate.js"></script>
+          <script src="vendor/js/datepicker/date.js"></script>
+          ';
         }
 
         public function viewprinted(){
@@ -328,11 +335,11 @@ class view extends config{
                 <div class="row">
                   <div class="col-sm">
                     <label for="dateFrom">From:</label>
-                    <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                    <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                   </div>
                   <div class="col-sm">
                     <label for="dateTo">To:</label>
-                    <input  class="form-control" type="date" name="dateTo" value="" >
+                    <input  class="form-control" type="text" name="dateTo" id="EndDate" placeholder="dd-mm-yyyy">
                   </div>
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
@@ -356,6 +363,13 @@ class view extends config{
                 </div>
               </form>
           </div>';
+
+          echo '
+          <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+          <script src="vendor/js/datepicker/config.js"></script>
+          <script src="vendor/js/datepicker/JqueryDate.js"></script>
+          <script src="vendor/js/datepicker/date.js"></script>
+          ';
         }
 
         public function viewverified2(){
@@ -444,11 +458,11 @@ class view extends config{
                 <div class="row">
                   <div class="col-sm">
                     <label for="dateFrom">From:</label>
-                    <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                    <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                   </div>
                   <div class="col-sm">
                     <label for="dateTo">To:</label>
-                    <input  class="form-control" type="date" name="dateTo" value="" >
+                    <input  class="form-control" type="text" name="dateTo" id="EndDate" placeholder="dd-mm-yyyy" >
                   </div>
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
@@ -467,14 +481,22 @@ class view extends config{
                   </div>
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
-                    <input type="submit" class="btn text-white" name="submitVerified2" value="Submit" style="background-color:#DC65A1;">
+                    <input type="submit" class="btn text-white" name="submitVerifiedAll" value="Submit" style="background-color:#DC65A1;">
                   </div>
                 </div>
               </form>
           </div>';
+
+          echo '
+          <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+          <script src="vendor/js/datepicker/config.js"></script>
+          <script src="vendor/js/datepicker/JqueryDate.js"></script>
+          <script src="vendor/js/datepicker/date.js"></script>
+          ';
         }
 
         public function viewverified(){
+
           $config = new config;
           $con = $config->con();
             $user = new User();
@@ -559,11 +581,11 @@ class view extends config{
                 <div class="row">
                   <div class="col-sm">
                     <label for="dateFrom">From:</label>
-                    <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                    <input  class="form-control" type="text" name="dateFrom"  id="StartDate" data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                   </div>
                   <div class="col-sm">
                     <label for="dateTo">To:</label>
-                    <input  class="form-control" type="date" name="dateTo" value="" >
+                    <input  class="form-control" type="text" name="dateTo"  id="EndDate" placeholder="dd-mm-yyyy" >
                   </div>
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
@@ -587,7 +609,16 @@ class view extends config{
                 </div>
               </form>
           </div>';
+
+          echo '
+          <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+          <script src="vendor/js/datepicker/config.js"></script>
+          <script src="vendor/js/datepicker/JqueryDate.js"></script>
+          <script src="vendor/js/datepicker/date.js"></script>
+          ';
         }
+
+        //
         public function viewreleased(){
           $config = new config;
           $con = $config->con();
@@ -601,7 +632,7 @@ class view extends config{
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
 
 
-          $limit = 1;
+          $limit = 2;
 
           if (!isset($_GET['Rpage'])) {
               $page = 1;
@@ -674,11 +705,11 @@ class view extends config{
                 <div class="row">
                   <div class="col-sm">
                     <label for="dateFrom">From:</label>
-                    <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                    <input  class="form-control" type="text" name="dateFrom" id="StartDate" data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                   </div>
                   <div class="col-sm">
                     <label for="dateTo">To:</label>
-                    <input  class="form-control" type="date" name="dateTo" value="" >
+                    <input class="form-control" type="text" name="dateTo" id="EndDate" placeholder="dd-mm-yyyy">
                   </div>
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
@@ -702,7 +733,15 @@ class view extends config{
                 </div>
               </form>
           </div>';
+
+          echo '
+          <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+          <script src="vendor/js/datepicker/config.js"></script>
+          <script src="vendor/js/datepicker/JqueryDate.js"></script>
+          <script src="vendor/js/datepicker/date.js"></script>
+          ';
         }
+
         public function getSName($number){
             $config = new config;
             $con = $config->con();

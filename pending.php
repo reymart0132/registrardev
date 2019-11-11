@@ -174,7 +174,7 @@ if(isset($_GET['verified'])){
         }?>
       </div>
       <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease2"){echo "show active";}} ?>" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php
-      if(isset($_GET['submitVerfied'])){
+      if(isset($_GET['submitVerified'])){
         $searchQ = new Search;
         $searchQ->searchVerified();
       }else{
@@ -183,7 +183,7 @@ if(isset($_GET['verified'])){
     ?></div>
       <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "show active";}} ?>" id="verifiedall" role="tabpanel" aria-labelledby="contact2-tab">
         <?php
-        if(isset($_GET['submitVerfiedAll'])){
+        if(isset($_GET['submitVerifiedAll'])){
           $searchQ = new Search;
           $searchQ->searchVerifiedAll();
         }else{
@@ -221,17 +221,17 @@ if(isset($_GET['verified'])){
      <script src="vendor/js/bootstrap-select.min.js"></script>
      <script>
      $(document).ready(function() {
-        if (location.hash) {
-            $("a[href='" + location.hash + "']").tab("show");
-        }
-        $(document.body).on("click", "a[data-toggle='tab']", function(event) {
-            location.hash = this.getAttribute("href");
-        });
+      if (location.hash) {
+          $("a[href='" + location.hash + "']").tab("show");
+      }
+      $(document.body).on("click", "a[data-toggle='tab']", function(event) {
+          location.hash = this.getAttribute("href");
       });
-      $(window).on("popstate", function() {
-        var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
-        $("a[href='" + anchor + "']").tab("show");
-      });
-     </script>
+    });
+    $(window).on("popstate", function() {
+      var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+      $("a[href='" + anchor + "']").tab("show");
+    });
+  </script>
  </body>
  </html>
