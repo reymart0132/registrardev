@@ -24,15 +24,18 @@ updateProfile();
 
  </head>
  <body>
+     <?php blocker()?>
          <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
            <a class="navbar-brand" href="https://malolos.ceu.edu.ph/">
              <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
                alt="mdb logo"><h3 class="ib">
            </a>
-              <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
-              <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
-              <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
-              <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
+           <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+           <a href="ntransaction.php"><i class="fas fa-file-upload ceucolor"></i></a>
+           <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
+           <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
+           <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
+           <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
          </nav>
 
          <div class="container mt-5  pt-5 puff-in-center">
@@ -50,9 +53,13 @@ updateProfile();
                                  <label for = "username" class=""> Username:</label>
                                  <input class="form-control"  type = "text" name="username" id="username" value ="<?php echo escape($user->data()->username); ?>" autocomplete="off"  />
                                 </div>
-                                <div class="form-group col-5">
+                                <div class="form-group col-4">
                                  <label for = "fullName" class=""> Full Name</label>
                                  <input class="form-control"  type = "text" name="fullName" id="fullName" value ="<?php echo escape($user->data()->name); ?>"/required>
+                                </div>
+                                <div class="form-group col-4">
+                                 <label for = "email" class=""> Email Address</label>
+                                 <input class="form-control"  type = "text" name="email" id="email" value ="<?php echo escape($user->data()->email); ?>"/required>
                                 </div>
                              </div>
                         </td>

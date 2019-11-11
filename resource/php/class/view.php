@@ -2,7 +2,6 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 require_once 'config.php';
 class view extends config{
-
     public function degreeCourse(){
         $config = new config;
         $con = $config->con();
@@ -16,7 +15,6 @@ class view extends config{
               echo 'success';
             }
     }
-
     public function monthGrad(){
         $config = new config;
         $con = $config->con();
@@ -29,7 +27,6 @@ class view extends config{
               echo '<option value="'.$row->id.'">'.$row->month_desc.'</option>';
             }
         }
-
     public function nationality(){
         $config = new config;
         $con = $config->con();
@@ -42,7 +39,6 @@ class view extends config{
               echo '<option value="'.$row->id.'">'.$row->nationality.'</option>';
             }
         }
-
         public function occupationType(){
             $config = new config;
             $con = $config->con();
@@ -55,7 +51,6 @@ class view extends config{
                   echo '<option value="'.$row->id.'">'.$row->type.'</option>';
                 }
             }
-
     public function schoolCollege(){
         $config = new config;
         $con = $config->con();
@@ -68,7 +63,6 @@ class view extends config{
               echo '<option value="'.$row->id.'">'.$row->college_school.'</option>';
             }
         }
-
         public function degreeCourseSP(){
             $config = new config;
             $con = $config->con();
@@ -142,13 +136,37 @@ class view extends config{
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               // var_dump($rows);
 
+           // paginationqueryhere
+           $limit = 10;
+
+           if (!isset($_GET['Ppage'])) {
+                 $page = 1;
+             } else{
+                 $page = $_GET['Ppage'];
+           }
+
+           if(isset($_GET['Ppage']) > 1){
+             $_GET['V1page'] = 1;
+             $_GET['PRpage'] = 1;
+             $_GET['V2page'] = 1;
+             $_GET['Rpage'] = 1;
+           }
+
+           $start = ($page-1)*$limit;
+
+           $total_results = $data->rowCount();
+           $total_pages = ceil($total_results/$limit);
+
+           $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12) LIMIT $start,$limit";
+           $data2 = $con-> prepare($sql2);
+           $data2 ->execute();
+           $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
+
            echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
            echo '<thead class="thead" style="background-color:#DC65A1;">';
            echo '
            <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
-
            <th class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
-
            <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Status</td>
@@ -160,7 +178,7 @@ class view extends config{
            <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
            ';
            echo '</thead>';
-           foreach ($rows as $row) {
+           foreach ($rows2 as $row) {
              echo '<tr>';
                // echo '<td class="text-center">'.$row ->id.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
@@ -174,12 +192,55 @@ class view extends config{
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
                echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
-
-
                  echo '</tr>';
              }
              echo '</table>';
+
+             echo '<ul class="pagination  ml-2 ">';
+             for ($p=1; $p <=$total_pages; $p++) {
+              echo '<li id = "pagelink" class="page-item">';
+              echo  '<a class= "page-link" href="?tab=view&Ppage='.$p.'">'.$p;
+              echo  '</a>';
+              echo '</li>';
+             }
+             echo '</ul>';
+
+             echo '
+             <div class="container-fluid mt-4">
+              <form class="" action="" method="get">
+                <div class="row">
+                  <div class="col-sm">
+                    <label for="dateFrom">From:</label>
+                    <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                  </div>
+                  <div class="col-sm">
+                    <label for="dateTo">To:</label>
+                    <input  class="form-control" type="date" name="dateTo" value="" >
+                  </div>
+                  <div class="col-sm">
+                    <label for="criteria">Filter By:</label>
+                    <select class="form-control" name="criteria">
+                     <option value="FirstName">First Name</option>
+                      <option value="LastName">Last Name</option>
+                      <option value="Course">Course</option>
+                      <option value="Status">Status</option>
+                      <option value="Applied_For">Applied For</option>
+                      <option value="purposes">Reason For Applying</option>
+                    </select>
+                  </div>
+                  <div class="col-sm mt-2">
+                    <label for="search"></label>
+                    <input class="form-control" type="text" name="search" placeholder="Search Here.."/>
+                  </div>
+                  <div class="col-sm mt-4 pt-2">
+                    <label for="submit"></label>
+                    <input type="submit" class="btn text-white" name="submitPending" value="Submit" style="background-color:#DC65A1;">
+                  </div>
+                </div>
+              </form>
+          </div>';
         }
+
         public function viewprinted(){
           $config = new config;
           $con = $config->con();
@@ -192,43 +253,111 @@ class view extends config{
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
 
-                     echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%; background-color:#DC65A1;">';
-                     echo '<tr>';
-                     echo '
-                     <td class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
+          $limit = 10;
 
-                     <td class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
+          if (!isset($_GET['PRpage'])) {
+                $page = 1;
+            } else{
+                $page = $_GET['PRpage'];
+          }
 
-                     <td class="text-center" style= "font-weight:bold; color:white;">Course</td>
-                     <td class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
-                     <td class="text-center" style= "font-weight:bold; color:white;">Status</td>
-                     <td class="text-center" style= "font-weight:bold; color:white;">Date Graduated</td>
-                     <td class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
-                     <td class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
-                     <td class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
-                     <td class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
-                     <td class="text-center" style= "font-weight:bold; color:white;">Actions</td>
-                     ';
-                     echo '</tr>';
-                     foreach ($rows as $row) {
-                       echo '<tr style="background-color:white;">';
-                         // echo '<td class="text-center">'.$row ->id.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
-                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+          if(isset($_GET['PRpage']) > 1){
+            $_GET['Ppage'] = 1;
+            $_GET['V1'] = 1;
+            $_GET['V2page'] = 1;
+            $_GET['Rpage'] = 1;
+          }
 
-                 echo '</tr>';
+          $start = ($page-1)*$limit;
+
+          $total_results = $data->rowCount();
+          $total_pages = ceil($total_results/$limit);
+
+          $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12) LIMIT $start,$limit";
+          $data2 = $con-> prepare($sql2);
+          $data2 ->execute();
+          $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
+
+          echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%; background-color:#DC65A1;">';
+          echo '<tr>';
+          echo '
+          <td class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">Course</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">Status</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">Date Graduated</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
+          <td class="text-center" style= "font-weight:bold; color:white;">Actions</td>
+          ';
+          echo '</tr>';
+          foreach ($rows2 as $row) {
+            echo '<tr style="background-color:white;">';
+              // echo '<td class="text-center">'.$row ->id.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+              echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+              echo '</tr>';
+            }
+            echo '</table>';
+
+             echo '<ul class="pagination  ml-2 ">';
+             for ($p=1; $p <=$total_pages; $p++) {
+              $printed  = "printed";
+              echo '<li class="page-item">';
+              echo  '<a class= "page-link" href="?tab='.$printed.'&PRpage='.$p.'">'.$p;
+              echo  '</a>';
+              echo '</li>';
              }
-             echo '</table>';
+             echo '</ul>';
+
+             echo '
+             <div class="container-fluid mt-4">
+              <form class="" action="" method="get">
+                <div class="row">
+                  <div class="col-sm">
+                    <label for="dateFrom">From:</label>
+                    <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                  </div>
+                  <div class="col-sm">
+                    <label for="dateTo">To:</label>
+                    <input  class="form-control" type="date" name="dateTo" value="" >
+                  </div>
+                  <div class="col-sm">
+                    <label for="criteria">Filter By:</label>
+                    <select class="form-control" name="criteria">
+                      <option value="FirstName">First Name</option>
+                      <option value="LastName">Last Name</option>
+                      <option value="Course">Course</option>
+                      <option value="Status">Status</option>
+                      <option value="Applied_For">Applied For</option>
+                      <option value="purposes">Reason For Applying</option>
+                    </select>
+                  </div>
+                  <div class="col-sm mt-2">
+                    <label for="search"></label>
+                    <input class="form-control" type="text" name="search" placeholder="Search Here.."/>
+                  </div>
+                  <div class="col-sm mt-4 pt-2">
+                    <label for="submit"></label>
+                    <input type="submit" class="btn text-white" name="submitPrinted" value="Submit" style="background-color:#DC65A1;">
+                  </div>
+                </div>
+              </form>
+          </div>';
         }
+
         public function viewverified2(){
           $config = new config;
           $con = $config->con();
@@ -240,13 +369,37 @@ class view extends config{
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+
+          $limit = 10;
+
+          if (!isset($_GET['V2page'])) {
+                $page = 1;
+            } else{
+                $page = $_GET['V2page'];
+          }
+
+          if(isset($_GET['V2page']) > 1){
+            $_GET['Ppage'] = 1;
+            $_GET['PRpage'] = 1;
+            $_GET['V1page'] = 1;
+            $_GET['Rpage'] = 1;
+          }
+
+          $start = ($page-1)*$limit;
+
+          $total_results = $data->rowCount();
+          $total_pages = ceil($total_results/$limit);
+
+          $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' LIMIT $start,$limit";
+          $data2 = $con-> prepare($sql2);
+          $data2 ->execute();
+          $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
+
                   echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
                      echo '<thead class="thead" style="background-color:#DC65A1;">';
                      echo '
                      <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
-
                      <th class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
-
                      <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
                      <th class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
                      <th class="text-center" style= "font-weight:bold; color:white;">Status</td>
@@ -258,7 +411,7 @@ class view extends config{
                      <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
                      ';
                      echo '</head>';
-                     foreach ($rows as $row) {
+                     foreach ($rows2 as $row) {
                        echo '<tr style="background-color:white;">';
                          // echo '<td class="text-center">'.$row ->id.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
@@ -275,7 +428,52 @@ class view extends config{
                  echo '</tr>';
              }
              echo '</table>';
+
+             echo '<ul class="pagination  ml-2 ">';
+             for ($p=1; $p <=$total_pages; $p++) {
+              echo '<li class="page-item">';
+              echo  '<a class= "page-link" href="?tab=forrelease1&V2page='.$p.'">'.$p;
+              echo  '</a>';
+              echo '</li>';
+             }
+             echo '</ul>';
+
+             echo '
+             <div class="container-fluid mt-4">
+              <form class="" action="" method="get">
+                <div class="row">
+                  <div class="col-sm">
+                    <label for="dateFrom">From:</label>
+                    <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                  </div>
+                  <div class="col-sm">
+                    <label for="dateTo">To:</label>
+                    <input  class="form-control" type="date" name="dateTo" value="" >
+                  </div>
+                  <div class="col-sm">
+                    <label for="criteria">Filter By:</label>
+                    <select class="form-control" name="criteria">
+                      <option value="FirstName">First Name</option>
+                      <option value="LastName">Last Name</option>
+                      <option value="Course">Course</option>
+                      <option value="Status">Status</option>
+                      <option value="Applied_For">Applied For</option>
+                      <option value="purposes">Reason For Applying</option>
+                    </select>
+                  </div>
+                  <div class="col-sm mt-2">
+                    <label for="search"></label>
+                    <input class="form-control" type="text" name="search" placeholder="Search Here.."/>
+                  </div>
+                  <div class="col-sm mt-4 pt-2">
+                    <label for="submit"></label>
+                    <input type="submit" class="btn text-white" name="submitVerified2" value="Submit" style="background-color:#DC65A1;">
+                  </div>
+                </div>
+              </form>
+          </div>';
         }
+
         public function viewverified(){
           $config = new config;
           $con = $config->con();
@@ -287,13 +485,37 @@ class view extends config{
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+
+          $limit = 10;
+
+          if (!isset($_GET['V1page'])) {
+                $page = 1;
+            } else{
+                $page = $_GET['V1page'];
+          }
+
+          if(isset($_GET['V1page']) > 1){
+            $_GET['Ppage'] = 1;
+            $_GET['PRpage'] = 1;
+            $_GET['V2page'] = 1;
+            $_GET['Rpage'] = 1;
+          }
+
+          $start = ($page-1)*$limit;
+
+          $total_results = $data->rowCount();
+          $total_pages = ceil($total_results/$limit);
+
+          $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12) LIMIT $start,$limit";
+          $data2 = $con-> prepare($sql2);
+          $data2 ->execute();
+          $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
+
                   echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
                      echo '<thead class="thead" style="background-color:#DC65A1;">';
                      echo '
                      <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
-
                      <th class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
-
                      <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
                      <th class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
                      <th class="text-center" style= "font-weight:bold; color:white;">Status</td>
@@ -305,7 +527,7 @@ class view extends config{
                      <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
                      ';
                      echo '</head>';
-                     foreach ($rows as $row) {
+                     foreach ($rows2 as $row) {
                        echo '<tr style="background-color:white;">';
                          // echo '<td class="text-center">'.$row ->id.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
@@ -322,6 +544,49 @@ class view extends config{
                  echo '</tr>';
              }
              echo '</table>';
+             echo '<ul class="pagination  ml-2 ">';
+             for ($p=1; $p <=$total_pages; $p++) {
+              echo '<li class="page-item">';
+              echo  '<a class= "page-link" href="?tab=forrelease2&V1page='.$p.'">'.$p;
+              echo  '</a>';
+              echo '</li>';
+             }
+             echo '</ul>';
+
+             echo '
+             <div class="container-fluid mt-4">
+              <form class="" action="" method="get">
+                <div class="row">
+                  <div class="col-sm">
+                    <label for="dateFrom">From:</label>
+                    <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                  </div>
+                  <div class="col-sm">
+                    <label for="dateTo">To:</label>
+                    <input  class="form-control" type="date" name="dateTo" value="" >
+                  </div>
+                  <div class="col-sm">
+                    <label for="criteria">Filter By:</label>
+                    <select class="form-control" name="criteria">
+                      <option value="FirstName">First Name</option>
+                      <option value="LastName">Last Name</option>
+                      <option value="Course">Course</option>
+                      <option value="Status">Status</option>
+                      <option value="Applied_For">Applied For</option>
+                      <option value="purposes">Reason For Applying</option>
+                    </select>
+                  </div>
+                  <div class="col-sm mt-2">
+                    <label for="search"></label>
+                    <input class="form-control" type="text" name="search" placeholder="Search Here.."/>
+                  </div>
+                  <div class="col-sm mt-4 pt-2">
+                    <label for="submit"></label>
+                    <input type="submit" class="btn text-white" name="submitVerified" value="Submit" style="background-color:#DC65A1;">
+                  </div>
+                </div>
+              </form>
+          </div>';
         }
         public function viewreleased(){
           $config = new config;
@@ -334,14 +599,39 @@ class view extends config{
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+
+
+          $limit = 10;
+
+          if (!isset($_GET['Rpage'])) {
+              $page = 1;
+          } else{
+          $page = $_GET['Rpage'];
+          }
+
+          if(isset($_GET['Rpage']) > 1){
+            $_GET['Ppage'] = 1;
+            $_GET['PRpage'] = 1;
+            $_GET['V2page'] = 1;
+            $_GET['V1page'] = 1;
+          }
+          $start = ($page-1)*$limit;
+
+          $total_results = $data->rowCount();
+          $total_pages = ceil($total_results/$limit);
+
+          $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' LIMIT $start,$limit";
+          $data2 = $con-> prepare($sql2);
+          $data2 ->execute();
+          $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
+
+
               // var_dump($rows);
                echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
                          echo '<thead class="thead" style="background-color:#DC65A1;">';
                          echo '
                          <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
-
                          <th class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
-
                          <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Status</td>
@@ -350,10 +640,9 @@ class view extends config{
                          <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Released By</td>
                          <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
-
                          ';
                          echo '</thead>';
-                         foreach ($rows as $row) {
+                         foreach ($rows2 as $row) {
                            echo '<tr style="background-color:white;">';
                              // echo '<td class="text-center">'.$row ->id.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
@@ -366,11 +655,53 @@ class view extends config{
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$this->getSname($row->releasedby).'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-
-
                  echo '</tr>';
              }
              echo '</table>';
+
+             echo '<ul class="pagination  ml-2 ">';
+             for ($p=1; $p <=$total_pages; $p++) {
+              echo '<li class="page-item">';
+              echo  '<a class= "page-link" href="?tab=released&Rpage='.$p.'">'.$p;
+              echo  '</a>';
+              echo '</li>';
+             }
+             echo '</ul>';
+
+             echo '
+             <div class="container-fluid mt-4">
+              <form class="" action="" method="get">
+                <div class="row">
+                  <div class="col-sm">
+                    <label for="dateFrom">From:</label>
+                    <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                  </div>
+                  <div class="col-sm">
+                    <label for="dateTo">To:</label>
+                    <input  class="form-control" type="date" name="dateTo" value="" >
+                  </div>
+                  <div class="col-sm">
+                    <label for="criteria">Filter By:</label>
+                    <select class="form-control" name="criteria">
+                      <option value="FirstName">First Name</option>
+                      <option value="LastName">Last Name</option>
+                      <option value="Course">Course</option>
+                      <option value="Status">Status</option>
+                      <option value="Applied_For">Applied For</option>
+                      <option value="purposes">Reason For Applying</option>
+                    </select>
+                  </div>
+                  <div class="col-sm mt-2">
+                    <label for="search"></label>
+                    <input class="form-control" type="text" name="search" placeholder="Search Here.."/>
+                  </div>
+                  <div class="col-sm mt-4 pt-2">
+                    <label for="submit"></label>
+                    <input type="submit" class="btn text-white" name="submitReleased" value="Submit" style="background-color:#DC65A1;">
+                  </div>
+                </div>
+              </form>
+          </div>';
         }
         public function getSName($number){
             $config = new config;
@@ -397,7 +728,6 @@ class view extends config{
             $user = new user();
             echo $user->data()->quote;
         }
-
         public function ctodolist(){
           $config = new config;
           $con = $config->con();
@@ -412,7 +742,6 @@ class view extends config{
           return $rows;
               // var_dump($rows);
         }
-
         public function cprinted(){
           $config = new config;
           $con = $config->con();
@@ -426,7 +755,6 @@ class view extends config{
           $rows =$data->rowCount();
           return $rows;
           }
-
           public function cverified(){
             $config = new config;
             $con = $config->con();
@@ -457,6 +785,93 @@ class view extends config{
             $rows =$data->rowCount();
             return $rows;
           }
-}
+          public function chartlabel(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            foreach ($rows as $row) {
+            echo '"'.$row->username.'",';
+            }
+          }
+          public function twork(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            foreach ($rows as $row) {
+              $college1 = $row->colleges;
+              $college2 = explode(',',$college1);
+              $college12 ="'".implode('\',\'',$college2)."'";
+              $sql = "SELECT * FROM `work` WHERE `Date_app` = CURDATE() AND `College` IN($college12)";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $results =$data->rowCount();
+              echo $results.',';
+            }
+          }
+          public function cwork(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            foreach ($rows as $row) {
+              $college1 = $row->colleges;
+              $college2 = explode(',',$college1);
+              $id = $row->id;
+              $college12 ="'".implode('\',\'',$college2)."'";
+              $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND `printeddate` = CURDATE()";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $results =$data->rowCount();
+              echo $results.',';
+            }
+          }
+          public function cpending(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            foreach ($rows as $row) {
+              $college1 = $row->colleges;
+              $college2 = explode(',',$college1);
+              $college12 ="'".implode('\',\'',$college2)."'";
+              $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $results =$data->rowCount();
+              echo $results.',';
+            }
+          }
 
+          public function chartreleased(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            foreach ($rows as $row) {
+              $college1 = $row->colleges;
+              $college2 = explode(',',$college1);
+              $college12 ="'".implode('\',\'',$college2)."'";
+              $id = $row->id;
+              $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = $id AND `released_date` = CURDATE()";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $results =$data->rowCount();
+              echo $results.',';
+            }
+          }
+
+
+}
  ?>

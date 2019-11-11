@@ -14,6 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
   <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
 </head>
 <body>
+    <?php blocker()?>
         <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
           <a class="navbar-brand " href="https://malolos.ceu.edu.ph/">
             <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
