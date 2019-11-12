@@ -29,7 +29,7 @@ $view = new view;
           <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
           <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
         </nav>
-        <div class="container mt-4 puff-in-center">
+        <div class="container mt-4 puff-in-center mb-5">
             <div class="row">
                 <div class="col-12">
                     <h1 class="text-center">New Transaction</h1>
@@ -39,14 +39,14 @@ $view = new view;
                 }?>
             </div>
             <form action="/registrardev/resource/php/registerTransaction.php" method="POST">
-            <div class="row">
+            <div class="row mb-5">
                 <table class="table ">
                         <tr>
                             <td>
                                 <div class="row">
                                     <div class="form-group col-5">
                                       <label for="studentN">Student Number(Optional)</label>
-                                      <input type="number" class="form-control" id="studentN" value="" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student Number">
+                                      <input type="number" class="form-control" id="studentN" onkeypress="return isNumber(event)" value="" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student Number">
                                     </div>
                                     <div class="form-group col-5">
                                       <label for="studentN">Year Graduated or Last Enrolled</label>
@@ -60,19 +60,21 @@ $view = new view;
                                 <div class="row">
                                     <div class="form-group col-4">
                                       <label for="Lastname">Lastname</label>
-                                      <input type="text" class="form-control" id="Lastname" name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname" required>
+                                      <input type="text" class="form-control" id="Lastname" oninput="this.value = this.value.toUpperCase()"  name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname" required>
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="Firstname">Firstname</label>
-                                      <input type="text" class="form-control" id="Firstname" name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname" required>
+                                      <input type="text" class="form-control" id="Firstname" oninput="this.value = this.value.toUpperCase()"  name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname" required>
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="Middlename">Middlename</label>
-                                      <input type="text" class="form-control" id="Middlename" name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" required>
+                                      <input type="text" class="form-control" id="Middlename" oninput="this.value = this.value.toUpperCase()"  name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" required>
                                     </div>
                                 </div>
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>
                                 <div class="row">
@@ -128,7 +130,7 @@ $view = new view;
                         </tr>
                         <tr>
                             <td>
-                                <div class="row justify-content-center">
+                                <div class="row justify-content-center mb-5">
                                     <div class="form-group col-5">
                                         <label  >&nbsp;</label>
                                      <input type="submit" value="Submit Request" class=" form-control btn btn-primary" />
@@ -166,6 +168,11 @@ $view = new view;
     <script src="vendor/js/popper.js"></script>
     <script src="vendor/js/bootstrap.min.js"></script>
     <script src="vendor/js/bootstrap-select.min.js"></script>
+    <script src="resource/js/studentnumber-chua.js"></script>
     <script src="resource/js/noletter-waris.js"></script>
+
+
+
+
 </body>
 </html>
