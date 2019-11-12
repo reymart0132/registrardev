@@ -1,7 +1,7 @@
 .css-typing p {
-  border-right: .15em solid orange;
+  border-right: .15em solid pink;
   font-family: "Ebrima";
-  font-size: 20px;
+  font-size: 25px;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -20,7 +20,7 @@
     width: 0;
   }
   99.9% {
-    border-right: .15em solid orange;
+    border-right: .15em solid pink;
   }
   100% {
     border: none;
@@ -32,7 +32,7 @@
     width: 0;
   }
   99.9% {
-    border-right: .15em solid orange;
+    border-right: .15em solid pink;
   }
   100% {
     border: none;
@@ -47,7 +47,7 @@
     opacity: 1;
   }
   99.9% {
-    border-right: .15em solid orange;
+    border-right: .15em solid pink;
   }
   100% {
     opacity: 1;
@@ -63,7 +63,7 @@
     opacity: 1;
   }
   99.9% {
-    border-right: .15em solid orange;
+    border-right: .15em solid pink;
   }
   100% {
     opacity: 1;

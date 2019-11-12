@@ -16,6 +16,7 @@ $view = new view;
 
 </head>
 <body>
+    <?php blocker()?>
         <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
           <a class="navbar-brand" href="https://malolos.ceu.edu.ph/">
             <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
@@ -85,7 +86,7 @@ $view = new view;
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="ContactNumber">Contact Number</label>
-                                      <input type="number" class="form-control" id="ContactNumber" name="ContactNumber" aria-describedby="emailHelp" placeholder="Enter Contact Number" required>
+                                      <input type="text" class="form-control" id="txtChar" name="ContactNumber" onkeydown="return isNumberKey(event)" aria-describedby="emailHelp" placeholder="Enter Contact Number" required>
                                     </div>
                                     <div class="form-group col-4">
                                         <label for="ContactNumber">Status</label>
@@ -114,8 +115,7 @@ $view = new view;
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="request" >Requesting for:</label>
-                                          <select id="request" name="request[]" class="selectpicker form-control" data-live-search="true" multiple>
-
+                                          <select id="request" name="request[]" class="selectpicker form-control" data-live-search="true" multiple required>
                                             <?php $view->requestingForSP();?>
                                           </select>
                                     </div>
@@ -169,6 +169,9 @@ $view = new view;
     <script src="vendor/js/bootstrap.min.js"></script>
     <script src="vendor/js/bootstrap-select.min.js"></script>
     <script src="resource/js/studentnumber-chua.js"></script>
+    <script src="resource/js/noletter-waris.js"></script>
+
+
 
 
 </body>

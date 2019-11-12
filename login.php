@@ -14,6 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
   <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
 </head>
 <body>
+    <?php blocker()?>
         <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
           <a class="navbar-brand " href="https://malolos.ceu.edu.ph/">
             <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
@@ -26,6 +27,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
            <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-8 ">
+
+
+                  
                     <form class="text-center border border-light p-5 shadow puff-in-center" action="" method="post" >
                     <p class="h4 mb-4">Sign in</p>
                     <?php logd();?>
@@ -42,6 +46,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
                     <input type =hidden name="token" value="<?php echo Token::generate(); ?>">
                     <input  type="submit"  class="btn btn-dark btn-block my-4"value="Login"/>
                     </form>
+
+
                     <footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom slide-in-right">
                       <div class="container text-center">
                           <div class="row">
