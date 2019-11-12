@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 require_once 'config.php';
 class view extends config{
-  
+
     public function degreeCourse(){
         $config = new config;
         $con = $config->con();
@@ -717,7 +717,7 @@ class view extends config{
           <script src="vendor/js/datepicker/date.js"></script>
           ';
         }
-<<<<<<< HEAD
+
         public function viewSRA(){
 
           $config = new config;
@@ -743,9 +743,7 @@ class view extends config{
              }
              echo '</table>';
         }
-=======
 
->>>>>>> master
         public function getSName($number){
             $config = new config;
             $con = $config->con();
