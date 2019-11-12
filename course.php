@@ -1,12 +1,8 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'\registrardev\resource\php\class\addcoursefnc.php';
-if(isset($_POST['submit'])){
-  $add = new add($_POST['course']);
-  $add->addcourse();
-  header("Location: course.php");
-}
-?>
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
+$view = new view;
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,27 +29,17 @@ if(isset($_POST['submit'])){
                 </div>
 
             </div>
-            <form method="POST">
-            <div class="row">
-                <table class="table">
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="form-group col-4">
-                                      <label for="course">Course</label>
-                                      <input type="text" class="form-control" id="course" name="course" placeholder="Enter Course" required>
-                                    </div>
-                                        </td>
-                                        </tr>
-                                        </table>
-                                        <div class="form-group col-2  ml-2">
-                                         <input type="submit" name="submit" value="Submit Request" class="form-control btn btn-primary" />
-                                        </div>
-
-
+            <form method="GET" action="delete-course-titus.php">
+                <div class="row">
+                <div class="form-group col-4">
+                  <label for="course" >Course</label>
+                    <select id="course" name="course" class="selectpicker form-control" data-live-search="true">
+                    <?php $view->degreeCourseSP();?>
+                    </select>
+                    <a href="add-new-course-titus.php" class="btn btn-primary col-2  mt-2">ADD</a>
+                    <input type="submit" class="DELETE btn btn-danger col-2  mt-2" value="DELETE"/>
+           </form>
 </body>
-
-
     <script src="vendor/js/jquery.js"></script>
     <script src="vendor/js/popper.js"></script>
     <script src="vendor/js/bootstrap.min.js"></script>
