@@ -29,7 +29,7 @@ $view = new view;
           <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
           <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
         </nav>
-        <div class="container mt-4 puff-in-center">
+        <div class="container mt-4 puff-in-center mb-5">
             <div class="row">
                 <div class="col-12">
                     <h1 class="text-center">New Transaction</h1>
@@ -39,7 +39,7 @@ $view = new view;
                 }?>
             </div>
             <form action="/registrardev/resource/php/registerTransaction.php" method="POST">
-            <div class="row">
+            <div class="row mb-5">
                 <table class="table ">
                         <tr>
                             <td>
@@ -130,7 +130,7 @@ $view = new view;
                         </tr>
                         <tr>
                             <td>
-                                <div class="row justify-content-center">
+                                <div class="row justify-content-center mb-5">
                                     <div class="form-group col-5">
                                         <label  >&nbsp;</label>
                                      <input type="submit" value="Submit Request" class=" form-control btn btn-primary" />

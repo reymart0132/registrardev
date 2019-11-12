@@ -42,7 +42,7 @@
                  </div>
                  <a class="btn btn-light btn-block my-4"value="Update Quote" href="AdminSra.php" style="color:white;background-color :pink; ">Update SRA Quote</a>
                  <a class="btn btn-light btn-block my-4"value="Update Quote" href="add-requesting-waris.php" style="color:white;background-color :pink; ">Requesting</a>
-                 <a class="btn btn-light btn-block my-4"value="Update Quote" href="AdminSra.php" style="color:white;background-color :pink; ">Add College</a>
+                 <a class="btn btn-light btn-block my-4"value="Update Quote" href="add-new-college-chua.php" style="color:white;background-color :pink; ">Add College</a>
                  <a class="btn btn-light btn-block my-4"value="Update Quote" href="Reqpurposes.php" style="color:white;background-color :pink; ">Add or Delete Purpose for Request</a>
                  <a class="btn btn-light btn-block my-4"value="Update Quote" href="AdminSra.php" style="color:white;background-color :pink; ">Add or Delete Courses</a>
 
