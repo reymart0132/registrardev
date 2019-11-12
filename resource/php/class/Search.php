@@ -142,11 +142,11 @@ class Search extends config{
        <div class="row">
          <div class="col-sm">
            <label for="dateFrom">From:</label>
-           <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+           <input  class="form-control" type="text" name="dateFrom" id="StartDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
          </div>
          <div class="col-sm">
            <label for="dateTo">To:</label>
-           <input  class="form-control" type="date" name="dateTo" value="" >
+           <input  class="form-control" type="text" name="dateTo" id="EndDate" placeholder="dd-mm-yyyy">
          </div>
          <div class="col-sm">
            <label for="criteria">Filter By:</label>
@@ -170,7 +170,8 @@ class Search extends config{
        </div>
      </form>
  </div>';
-    }
+
+  }
 
     //
     public function searchPrinted(){
@@ -310,11 +311,11 @@ class Search extends config{
          <div class="row">
            <div class="col-sm">
              <label for="dateFrom">From:</label>
-             <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+             <input  class="form-control" type="text" name="dateFrom" id="StartPrinted"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
            </div>
            <div class="col-sm">
              <label for="dateTo">To:</label>
-             <input  class="form-control" type="date" name="dateTo" value="" >
+             <input  class="form-control" type="text" name="dateTo" id="EndPrinted" placeholder="dd-mm-yyyy">
            </div>
            <div class="col-sm">
              <label for="criteria">Filter By:</label>
@@ -338,6 +339,8 @@ class Search extends config{
          </div>
        </form>
    </div>';
+
+
       }
 
       public function searchVerified(){
@@ -476,11 +479,11 @@ class Search extends config{
            <div class="row">
              <div class="col-sm">
                <label for="dateFrom">From:</label>
-               <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+               <input  class="form-control" type="text" name="dateFrom" id="StartVerified"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
              </div>
              <div class="col-sm">
                <label for="dateTo">To:</label>
-               <input  class="form-control" type="date" name="dateTo" value="" >
+               <input  class="form-control" type="text" name="dateTo" id="EndVerified" placeholder="dd-mm-yyyy">
              </div>
              <div class="col-sm">
                <label for="criteria">Filter By:</label>
@@ -504,6 +507,8 @@ class Search extends config{
            </div>
          </form>
      </div>';
+
+
         }
 
         public function searchVerifiedAll(){
@@ -643,11 +648,11 @@ class Search extends config{
              <div class="row">
                <div class="col-sm">
                  <label for="dateFrom">From:</label>
-                 <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                 <input  class="form-control" type="text" name="dateFrom" id="StartVerifiedAll"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                </div>
                <div class="col-sm">
                  <label for="dateTo">To:</label>
-                 <input  class="form-control" type="date" name="dateTo" value="" >
+                 <input  class="form-control" type="text" name="dateTo" id="EndVerifiedAll" placeholder="dd-mm-yyyy">
                </div>
                <div class="col-sm">
                  <label for="criteria">Filter By:</label>
@@ -671,6 +676,7 @@ class Search extends config{
              </div>
            </form>
        </div>';
+
           }
           public function searchReleased(){
 
@@ -709,6 +715,9 @@ class Search extends config{
             $data ->execute();
             $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
+<<<<<<< HEAD
+            $limit = 2;
+=======
             $limit = 10;
 
             if (!isset($_GET['Rpage'])) {
@@ -729,7 +738,12 @@ class Search extends config{
             $total_results = $data->rowCount();
             $total_pages = ceil($total_results/$limit);
 
-            $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
+            // if ($dateFrom >= $dateTo) {
+            //   $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' LIMIT $start,$limit";
+            //   echo "<script type='text/javascript'>alert('Invalid Date');</script>";
+            // }else {
+              $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
+            // }
 
 
             if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -777,6 +791,7 @@ class Search extends config{
           }
           echo '</table>';
 
+>>>>>>> master
             echo '<ul class="pagination ml-2">';
 
               for ($p=1; $p <=$total_pages; $p++) {
@@ -805,11 +820,11 @@ class Search extends config{
                <div class="row">
                  <div class="col-sm">
                    <label for="dateFrom">From:</label>
-                   <input  class="form-control" type="date" name="dateFrom" value=""  data-date-format="YYYY MMMM DD">
+                   <input  class="form-control" type="text" name="dateFrom" id="StartReleased"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                  </div>
                  <div class="col-sm">
                    <label for="dateTo">To:</label>
-                   <input  class="form-control" type="date" name="dateTo" value="" >
+                   <input  class="form-control" type="text" name="dateTo" id="EndReleased" placeholder="dd-mm-yyyy" >
                  </div>
                  <div class="col-sm">
                    <label for="criteria">Filter By:</label>
@@ -833,6 +848,13 @@ class Search extends config{
                </div>
              </form>
          </div>';
-            }
+
+         echo '
+         <link rel="stylesheet" href="vendor/css/dateUIJquery.css">
+         <script src="vendor/js/datepicker/config.js"></script>
+         <script src="vendor/js/datepicker/JqueryDate.js"></script>
+         <script src="vendor/js/datepicker/date.js"></script>
+         ';
+      }
   }
 ?>
