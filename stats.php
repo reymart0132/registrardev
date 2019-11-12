@@ -53,7 +53,7 @@ if(isset($_GET['verified'])){
          </div>
     </div>
    <!--  -->
-   <div class="container-fluid my-4 mb-5 pb-5">
+   <div class="container-fluid pb-5">
      <div class="row justify-content-center mb-5">
          <div class="col-4">
              <h6 class="text-center"> Total Transactions Received </h6>
@@ -83,17 +83,24 @@ if(isset($_GET['verified'])){
     </div>
 </div>
 
-<form class="" action="" method="GET">
-  <div class="col-sm">
-             <label for="dateFrom">From:</label>
-             <input  class="form-control" type="date" name="cfd" value=""  data-date-format="YYYY MMMM DD">
-           </div>
-           <div class="col-sm">
-             <label for="dateTo">To:</label>
-             <input  class="form-control" type="date" name="cld" value="" >
-           </div>
-           <input type="submit" name="search" value="search">
-</form>
+<div class="container">
+  <form class="" action="" method="get">
+    <div class="row">
+      <div class="col-5">
+        <label for="dateFrom">From:</label>
+        <input  class="form-control" type="date" name="cfd"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+      </div>
+      <div class="col-5">
+        <label for="dateTo">To:</label>
+        <input  class="form-control" type="date" name="cld"  placeholder="dd-mm-yyyy">
+      </div>
+      <div class="col-2 mt-4 pt-2">
+        <label for="submit"></label>
+        <input type="submit" class="btn text-white" name="search" value="Search" style="background-color:#DC65A1;">
+      </div>
+    </div>
+  </form>
+</div>
  </body>
 
      <script src="vendor/js/jquery.js"></script>
