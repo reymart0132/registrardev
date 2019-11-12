@@ -82,6 +82,18 @@ if(isset($_GET['verified'])){
         </form>
     </div>
 </div>
+
+<form class="" action="" method="GET">
+  <div class="col-sm">
+             <label for="dateFrom">From:</label>
+             <input  class="form-control" type="date" name="cfd" value=""  data-date-format="YYYY MMMM DD">
+           </div>
+           <div class="col-sm">
+             <label for="dateTo">To:</label>
+             <input  class="form-control" type="date" name="cld" value="" >
+           </div>
+           <input type="submit" name="search" value="search">
+</form>
  </body>
 
      <script src="vendor/js/jquery.js"></script>
