@@ -4,15 +4,15 @@ $view = new view;
 $user = new user();
 isLogin();
 if(isset($_GET['printed'])){
-  $print = new printed($_GET['printed']);
+  $print = new printed($_GET['printed'],$_GET['id']);
   $print->print();
 }
 if(isset($_GET['released'])){
-  $release = new released($_GET['released']);
+  $release = new released($_GET['released'],$_GET['id']);
   $release->release();
 }
 if(isset($_GET['verified'])){
-  $print = new verified($_GET['verified']);
+  $print = new verified($_GET['verified'],$_GET['id']);
   $print->verify();
 }
  ?>
@@ -24,18 +24,22 @@ if(isset($_GET['verified'])){
    <title>Registrar Portal</title>
    <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap.min.css">
    <link href="vendor/css/all.css" rel="stylesheet">
-   <link href="resource\css\animation-rami.css" rel="stylesheet">
+   <link href="resource\css\animation-rami.css" type="text/css" rel="stylesheet">
    <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
    <link rel="stylesheet" type="text/css"  href="resource/css/speech.css">
    <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
  </head>
  <body>
+     <?php blocker()?>
    <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
      <a class="navbar-brand" href="https://malolos.ceu.edu.ph/">
        <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
          alt="mdb logo">
          <h3 class="ib">
      </a>
+        <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+        <a href="ntransaction.php"><i class="fas fa-file-upload ceucolor"></i></a>
+        <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
         <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
         <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
         <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
@@ -132,30 +136,74 @@ if(isset($_GET['verified'])){
  </div>
 </div>
    <!--  -->
-   <div class="container-fluid mt-4">
+   <div class="container-fluid mt-4 mb-5">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item ">
-          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending</a>
+          <a class="nav-link <?php if(empty($_GET['tab'])){echo "active";}elseif($_GET['tab']=="view"){echo "active";}?>" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending</a>
         </li>
         <li class="nav-item  ">
-          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#printed" role="tab" aria-controls="profile" aria-selected="false">For Signature</a>
+          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="printed"){echo "active";}} ?>" id="profile-tab" data-toggle="tab" href="#printed" role="tab" aria-controls="profile" aria-selected="false">For Signature</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="contact" aria-selected="false">For Release</a>
+            <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease2"){echo "active";}} ?>" id="contact-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="contact" aria-selected="false">For Release </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#released" role="tab" aria-controls="contact" aria-selected="false">Released</a>
+          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "active";}} ?>" id="contact-tab" data-toggle="tab" href="#verifiedall" role="tab" aria-controls="contact2" aria-selected="false">For Release (ALL)</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="released"){echo "show active";}} ?>" id="contact-tab" data-toggle="tab" href="#released" role="tab" aria-controls="contact3" aria-selected="false">Released</a>
         </li>
       </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="home-tab"><?php $view ->viewtodolist(); ?></div>
-      <div class="tab-pane fade" id="printed" role="tabpanel" aria-labelledby="profile-tab">  <?php $view ->viewprinted(); ?></div>
-      <div class="tab-pane fade" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewverified(); ?></div>
-        <div class="tab-pane fade" id="released" role="tabpanel" aria-labelledby="contact-tab"><?php $view ->viewreleased(); ?></div>
+      <div class="tab-pane fade <?php if(empty($_GET['tab'])){ echo "show active"; }elseif($_GET['tab']=="view"){ echo "show active";}?>" id="pending" role="tabpanel" aria-labelledby="home-tab">
+        <?php
+        if(isset($_GET['submitPending'])){
+          $searchQ = new Search;
+          $searchQ->searchPending();
+        }else{
+          $view->viewtodolist();
+        }?>
+      </div>
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="printed"){echo "show active";}} ?>" id="printed" role="tabpanel" aria-labelledby="profile-tab">
+        <?php
+        if(isset($_GET['submitPrinted'])){
+          $searchQ = new Search;
+          $searchQ->searchPrinted();
+        }else{
+          $view->viewprinted();
+        }?>
+      </div>
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease2"){echo "show active";}} ?>" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php
+      if(isset($_GET['submitVerified'])){
+        $searchQ = new Search;
+        $searchQ->searchVerified();
+      }else{
+        $view ->viewverified();
+      }
+    ?></div>
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "show active";}} ?>" id="verifiedall" role="tabpanel" aria-labelledby="contact2-tab">
+        <?php
+        if(isset($_GET['submitVerifiedAll'])){
+          $searchQ = new Search;
+          $searchQ->searchVerifiedAll();
+        }else{
+          $view ->viewverified2();
+        }
+        ?>
+      </div>
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="released"){echo "show active";}} ?>" id="released" role="tabpanel" aria-labelledby="contact3-tab"><?php
+      if(isset($_GET['submitReleased'])){
+        $searchQ = new Search;
+        $searchQ->searchReleased();
+      }else{
+        $view ->viewreleased();
+      }
+       ?>
+     </div>
     </div>
   </div>
  </body>
- <footer id="sticky-footer" class="py-4 bg-dark text-white-50 fixed-bottom  slide-in-right">
+ <footer id="footer" class="py-4 bg-dark text-white-50 fixed-bottom mt-5 slide-in-right">
    <div class="container text-center">
        <div class="row">
            <div class="col col-sm-5 text-left">
@@ -171,5 +219,19 @@ if(isset($_GET['verified'])){
      <script src="vendor/js/popper.js"></script>
      <script src="vendor/js/bootstrap.min.js"></script>
      <script src="vendor/js/bootstrap-select.min.js"></script>
+     <script>
+     $(document).ready(function() {
+      if (location.hash) {
+          $("a[href='" + location.hash + "']").tab("show");
+      }
+      $(document.body).on("click", "a[data-toggle='tab']", function(event) {
+          location.hash = this.getAttribute("href");
+      });
+    });
+    $(window).on("popstate", function() {
+      var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+      $("a[href='" + anchor + "']").tab("show");
+    });
+  </script>
  </body>
  </html>

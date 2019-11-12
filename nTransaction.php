@@ -16,16 +16,20 @@ $view = new view;
 
 </head>
 <body>
+    <?php blocker()?>
         <nav class="navbar navbar-dark bg-white shadow-sm slide-in-left">
           <a class="navbar-brand" href="https://malolos.ceu.edu.ph/">
             <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
               alt="mdb logo"><h3 class="ib">
           </a>
-             <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
-             <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
-             <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
+          <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+          <a href="ntransaction.php"><i class="fas fa-file-upload ceucolor"></i></a>
+          <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
+          <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
+          <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
+          <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
         </nav>
-        <div class="container mt-4 puff-in-center">
+        <div class="container mt-4 puff-in-center mb-5">
             <div class="row">
                 <div class="col-12">
                     <h1 class="text-center">New Transaction</h1>
@@ -35,14 +39,14 @@ $view = new view;
                 }?>
             </div>
             <form action="/registrardev/resource/php/registerTransaction.php" method="POST">
-            <div class="row">
+            <div class="row mb-5">
                 <table class="table ">
                         <tr>
                             <td>
                                 <div class="row">
                                     <div class="form-group col-5">
                                       <label for="studentN">Student Number(Optional)</label>
-                                      <input type="number" class="form-control" id="studentN" value="" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student Number">
+                                      <input type="number" class="form-control" id="studentN" onkeypress="return isNumber(event)" value="" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student Number">
                                     </div>
                                     <div class="form-group col-5">
                                       <label for="studentN">Year Graduated or Last Enrolled</label>
@@ -56,19 +60,21 @@ $view = new view;
                                 <div class="row">
                                     <div class="form-group col-4">
                                       <label for="Lastname">Lastname</label>
-                                      <input type="text" class="form-control" id="Lastname" name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname" required>
+                                      <input type="text" class="form-control" id="Lastname" oninput="this.value = this.value.toUpperCase()"  name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname" required>
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="Firstname">Firstname</label>
-                                      <input type="text" class="form-control" id="Firstname" name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname" required>
+                                      <input type="text" class="form-control" id="Firstname" oninput="this.value = this.value.toUpperCase()"  name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname" required>
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="Middlename">Middlename</label>
-                                      <input type="text" class="form-control" id="Middlename" name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" required>
+                                      <input type="text" class="form-control" id="Middlename" oninput="this.value = this.value.toUpperCase()"  name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" required>
                                     </div>
                                 </div>
                             </td>
                         </tr>
+
+
                         <tr>
                             <td>
                                 <div class="row">
@@ -80,7 +86,7 @@ $view = new view;
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="ContactNumber">Contact Number</label>
-                                      <input type="number" class="form-control" id="ContactNumber" name="ContactNumber" aria-describedby="emailHelp" placeholder="Enter Contact Number" required>
+                                      <input type="text" class="form-control" id="txtChar" name="ContactNumber" onkeydown="return isNumberKey(event)" aria-describedby="emailHelp" placeholder="Enter Contact Number" required>
                                     </div>
                                     <div class="form-group col-4">
                                         <label for="ContactNumber">Status</label>
@@ -109,7 +115,7 @@ $view = new view;
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="request" >Requesting for:</label>
-                                          <select id="request" name="request[]" class="selectpicker form-control" data-live-search="true" multiple>
+                                          <select id="request" name="request[]" class="selectpicker form-control" data-live-search="true" multiple required>
                                             <?php $view->requestingForSP();?>
                                           </select>
                                     </div>
@@ -124,7 +130,7 @@ $view = new view;
                         </tr>
                         <tr>
                             <td>
-                                <div class="row justify-content-center">
+                                <div class="row justify-content-center mb-5">
                                     <div class="form-group col-5">
                                         <label  >&nbsp;</label>
                                      <input type="submit" value="Submit Request" class=" form-control btn btn-primary" />
@@ -162,5 +168,11 @@ $view = new view;
     <script src="vendor/js/popper.js"></script>
     <script src="vendor/js/bootstrap.min.js"></script>
     <script src="vendor/js/bootstrap-select.min.js"></script>
+    <script src="resource/js/studentnumber-chua.js"></script>
+    <script src="resource/js/noletter-waris.js"></script>
+
+
+
+
 </body>
 </html>
