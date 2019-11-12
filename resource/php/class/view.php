@@ -811,80 +811,123 @@ class view extends config{
             }
           }
           public function twork(){
-            $config = new config;
-            $con = $config->con();
-            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
-            $data = $con-> prepare($sql);
-            $data ->execute();
-            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
-            foreach ($rows as $row) {
-              $college1 = $row->colleges;
-              $college2 = explode(',',$college1);
-              $college12 ="'".implode('\',\'',$college2)."'";
-              $sql = "SELECT * FROM `work` WHERE `Date_app` = CURDATE() AND `College` IN($college12)";
+              $config = new config;
+              $con = $config->con();
+              $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
               $data = $con-> prepare($sql);
               $data ->execute();
-              $results =$data->rowCount();
-              echo $results.',';
-            }
-          }
-          public function cwork(){
-            $config = new config;
-            $con = $config->con();
-            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
-            $data = $con-> prepare($sql);
-            $data ->execute();
-            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
-            foreach ($rows as $row) {
-              $college1 = $row->colleges;
-              $college2 = explode(',',$college1);
-              $id = $row->id;
-              $college12 ="'".implode('\',\'',$college2)."'";
-              $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND `printeddate` = CURDATE()";
-              $data = $con-> prepare($sql);
-              $data ->execute();
-              $results =$data->rowCount();
-              echo $results.',';
-            }
-          }
-          public function cpending(){
-            $config = new config;
-            $con = $config->con();
-            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
-            $data = $con-> prepare($sql);
-            $data ->execute();
-            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
-            foreach ($rows as $row) {
-              $college1 = $row->colleges;
-              $college2 = explode(',',$college1);
-              $college12 ="'".implode('\',\'',$college2)."'";
-              $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
-              $data = $con-> prepare($sql);
-              $data ->execute();
-              $results =$data->rowCount();
-              echo $results.',';
-            }
-          }
+              $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              foreach ($rows as $row) {
+                $college1 = $row->colleges;
+                $college2 = explode(',',$college1);
+                $college12 ="'".implode('\',\'',$college2)."'";
+                if(isset($_GET['search'])){
 
-          public function chartreleased(){
-            $config = new config;
-            $con = $config->con();
-            $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
-            $data = $con-> prepare($sql);
-            $data ->execute();
-            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
-            foreach ($rows as $row) {
-              $college1 = $row->colleges;
-              $college2 = explode(',',$college1);
-              $college12 ="'".implode('\',\'',$college2)."'";
-              $id = $row->id;
-              $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = $id AND `released_date` = CURDATE()";
+                $date = date('Y-m-d');
+                $cfd=date('Y-m-01', strtotime($date));
+                $cld=date('Y-m-t', strtotime($date));
+                $cld = $_GET['cld'];
+                $cfd = $_GET['cfd'];
+                $sql = "SELECT * FROM `work` WHERE (`Date_app`  BETWEEN '$cfd' AND '$cld') AND `College` IN($college12)";
+              }else{
+
+                $sql = "SELECT * FROM `work` WHERE `Date_app` = CURDATE() AND `College` IN($college12)";
+              }
+                $data = $con-> prepare($sql);
+                $data ->execute();
+                $results =$data->rowCount();
+                echo $results.',';
+              }
+            }
+            public function cwork(){
+              $config = new config;
+              $con = $config->con();
+              $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
               $data = $con-> prepare($sql);
               $data ->execute();
-              $results =$data->rowCount();
-              echo $results.',';
+              $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              foreach ($rows as $row) {
+                $college1 = $row->colleges;
+                $college2 = explode(',',$college1);
+                $id = $row->id;
+                $college12 ="'".implode('\',\'',$college2)."'";
+                if(isset($_GET['search'])){
+
+                $date = date('Y-m-d');
+                $cfd=date('Y-m-01', strtotime($date));
+                $cld=date('Y-m-t', strtotime($date));
+                $cld = $_GET['cld'];
+                $cfd = $_GET['cfd'];
+                            $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND (`printeddate` BETWEEN '$cfd' AND '$cld')";
+              }else{
+
+                            $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND `printeddate` = CURDATE()";
+              }
+
+                $data = $con-> prepare($sql);
+                $data ->execute();
+                $results =$data->rowCount();
+                echo $results.',';
+              }
             }
-          }
+            public function cpending(){
+              $config = new config;
+              $con = $config->con();
+              $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              foreach ($rows as $row) {
+                $id = $row->id;
+                $college1 = $row->colleges;
+                $college2 = explode(',',$college1);
+                $college12 ="'".implode('\',\'',$college2)."'";
+                if(isset($_GET['search'])){
+                $date = date('Y-m-d');
+                $cfd=date('Y-m-01', strtotime($date));
+                $cld=date('Y-m-t', strtotime($date));
+                $cld = $_GET['cld'];
+                $cfd = $_GET['cfd'];
+                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `printedby` = $id AND (`Date_app` >= $cfd AND `printedby` > $cld)";
+                  }else{
+                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12) ";
+                  }
+                $data = $con-> prepare($sql);
+                $data ->execute();
+                $results =$data->rowCount();
+                echo $results.',';
+              }
+            }
+
+            public function chartreleased(){
+              $config = new config;
+              $con = $config->con();
+              $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              foreach ($rows as $row) {
+                $college1 = $row->colleges;
+                $college2 = explode(',',$college1);
+                $college12 ="'".implode('\',\'',$college2)."'";
+                $id = $row->id;
+                if(isset($_GET['search'])){
+                $date = date('Y-m-d');
+                $cfd=date('Y-m-01', strtotime($date));
+                $cld=date('Y-m-t', strtotime($date));
+                $cld = $_GET['cld'];
+                $cfd = $_GET['cfd'];
+                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = $id AND (`released_date` BETWEEN '$cfd' AND '$cld')";
+                  }else{
+                    $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = $id AND `released_date` = CURDATE()";
+                  }
+                $data = $con-> prepare($sql);
+                $data ->execute();
+                $results =$data->rowCount();
+                echo $results.',';
+              }
+            }
+
 
 
 }
