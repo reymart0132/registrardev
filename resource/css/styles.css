@@ -339,8 +339,7 @@ header{
 
 }
 @media (min-width: 1320px) {
-    .screen2{
-        visibility:hidden;
-    }
-
+  .screen2{
+         visibility:hidden;
+     }
 }

@@ -1,6 +1,6 @@
-<?php
+  <?php
 require_once 'config.php';
-class Search extends config{
+class SearchAdmin extends config{
 
 
   public function searchPending(){
@@ -25,7 +25,7 @@ class Search extends config{
     $college1 = $user->data()->colleges;
     $college2 = explode(',',$college1);
     $college12 ="'".implode('\',\'',$college2)."'";
-    $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
+    $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING'";
 
 
     if (!empty($search) && !empty($criteria)) {
@@ -40,7 +40,7 @@ class Search extends config{
     $data ->execute();
     $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-    $limit = 10;
+    $limit = 1;
 
     if (!isset($_GET['Ppage'])) {
           $page = 1;
@@ -60,7 +60,7 @@ class Search extends config{
     $total_results = $data->rowCount();
     $total_pages = ceil($total_results/$limit);
 
-    $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
+    $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING'";
 
 
     if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -91,6 +91,7 @@ class Search extends config{
     <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
     <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
     <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+    <th class="text-center" style= "font-weight:bold; color:white;">College</td>
     <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
     <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
     ';
@@ -108,8 +109,9 @@ class Search extends config{
         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
         echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+        echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</br></td>';
         echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-        echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+        echo '<td class="text-center"><a class="btn btn-outline-success" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
 
      echo '</tr>';
       }
@@ -157,6 +159,7 @@ class Search extends config{
              <option value="Status">Status</option>
              <option value="Applied_For">Applied For</option>
              <option value="purposes">Reason For Applying</option>
+             <option value="College">College</option>
            </select>
          </div>
          <div class="col-sm mt-2">
@@ -195,7 +198,7 @@ class Search extends config{
       $college1 = $user->data()->colleges;
       $college2 = explode(',',$college1);
       $college12 ="'".implode('\',\'',$college2)."'";
-      $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
+      $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED'";
 
 
       if (!empty($search) && !empty($criteria)) {
@@ -210,7 +213,7 @@ class Search extends config{
       $data ->execute();
       $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-      $limit = 10;
+      $limit = 1;
 
       if (!isset($_GET['PRpage'])) {
             $page = 1;
@@ -230,7 +233,7 @@ class Search extends config{
       $total_results = $data->rowCount();
       $total_pages = ceil($total_results/$limit);
 
-      $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
+      $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED'";
 
 
       if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -261,6 +264,7 @@ class Search extends config{
       <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
       <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
       <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+      <th class="text-center" style= "font-weight:bold; color:white;">College</td>
       <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
       <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
       ';
@@ -278,8 +282,9 @@ class Search extends config{
           echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
           echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
           echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+          echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</br></td>';
           echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-            echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+            echo '<td class="text-center"><a class="btn btn-outline-success" href="view_pending_requests.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
        echo '</tr>';
         }
       echo '</table>';
@@ -326,6 +331,7 @@ class Search extends config{
                <option value="Status">Status</option>
                <option value="Applied_For">Applied For</option>
                <option value="purposes">Reason For Applying</option>
+               <option value="College">College</option>
              </select>
            </div>
            <div class="col-sm mt-2">
@@ -339,9 +345,7 @@ class Search extends config{
          </div>
        </form>
    </div>';
-
-
-      }
+    }
 
       public function searchVerified(){
 
@@ -364,7 +368,7 @@ class Search extends config{
         $college1 = $user->data()->colleges;
         $college2 = explode(',',$college1);
         $college12 ="'".implode('\',\'',$college2)."'";
-        $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12)";
+        $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
 
 
         if (!empty($search) && !empty($criteria)) {
@@ -379,7 +383,7 @@ class Search extends config{
         $data ->execute();
         $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-        $limit = 10;
+        $limit = 1;
 
         if (!isset($_GET['V1page'])) {
               $page = 1;
@@ -398,7 +402,7 @@ class Search extends config{
         $total_results = $data->rowCount();
         $total_pages = ceil($total_results/$limit);
 
-        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12)";
+        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
 
 
         if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -429,6 +433,7 @@ class Search extends config{
         <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
         <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
         <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+        th class="text-center" style= "font-weight:bold; color:white;">College</td>
         <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
         <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
         ';
@@ -445,9 +450,10 @@ class Search extends config{
             echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
             echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
             echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+            echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</td>';
             echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
             echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-            echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
+            echo '<td class="text-center"><a class="btn btn-outline-success" href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
          echo '</tr>';
           }
         echo '</table>';
@@ -494,6 +500,7 @@ class Search extends config{
                  <option value="Status">Status</option>
                  <option value="Applied_For">Applied For</option>
                  <option value="purposes">Reason For Applying</option>
+                 <option value="College">College</option>
                </select>
              </div>
              <div class="col-sm mt-2">
@@ -547,7 +554,7 @@ class Search extends config{
           $data ->execute();
           $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-          $limit = 10;
+          $limit = 1;
 
           if (!isset($_GET['V2page'])) {
                 $page = 1;
@@ -598,6 +605,7 @@ class Search extends config{
           <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
           <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
           <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+          <th class="text-center" style= "font-weight:bold; color:white;">College</td>
           <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
           <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
           ';
@@ -615,8 +623,9 @@ class Search extends config{
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+              echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</br></td>';
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-              echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
+              echo '<td class="text-center"><a class="btn btn-outline-success" href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
            echo '</tr>';
             }
           echo '</table>';
@@ -663,6 +672,7 @@ class Search extends config{
                    <option value="Status">Status</option>
                    <option value="Applied_For">Applied For</option>
                    <option value="purposes">Reason For Applying</option>
+                   <option value="College">College</option>
                  </select>
                </div>
                <div class="col-sm mt-2">
@@ -715,7 +725,7 @@ class Search extends config{
             $data ->execute();
             $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-            $limit = 10;
+            $limit = 2;
 
             if (!isset($_GET['Rpage'])) {
                   $page = 1;
@@ -767,6 +777,7 @@ class Search extends config{
               <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
               <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
               <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+                <th class="text-center" style= "font-weight:bold; color:white;">College</td>
               <th class="text-center" style= "font-weight:bold; color:white;">Released By</td>
               <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
               ';
@@ -782,12 +793,12 @@ class Search extends config{
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$view->getSname($row->releasedby).'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
               echo '</tr>';
           }
           echo '</table>';
-
 
             echo '<ul class="pagination ml-2">';
 
@@ -832,6 +843,7 @@ class Search extends config{
                      <option value="Status">Status</option>
                      <option value="Applied_For">Applied For</option>
                      <option value="purposes">Reason For Applying</option>
+                     <option value="College">College</option>
                    </select>
                  </div>
                  <div class="col-sm mt-2">
