@@ -714,10 +714,6 @@ class Search extends config{
             $data = $con->prepare($sql);
             $data ->execute();
             $rows=$data-> fetchAll(PDO::FETCH_OBJ);
-
-<<<<<<< HEAD
-            $limit = 2;
-=======
             $limit = 10;
 
             if (!isset($_GET['Rpage'])) {
@@ -791,7 +787,7 @@ class Search extends config{
           }
           echo '</table>';
 
->>>>>>> master
+
             echo '<ul class="pagination ml-2">';
 
               for ($p=1; $p <=$total_pages; $p++) {
