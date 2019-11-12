@@ -14,7 +14,7 @@ class edit extends config{
       $data = $con-> prepare($sql);
       $data->execute();
 
-      Redirect::to('..\registrardev\resource\php\AdminSra.php');
+      Redirect::to('AdminSra.php');
     }
   }
 }

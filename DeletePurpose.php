@@ -3,5 +3,5 @@
 
     $delete = new delete($_GET['purposes']);
     $delete->deletepurposes();
-      // header("Location: Reqpurposes.php");
+      header("Location: veiw_pending_requests.php");
   ?>
