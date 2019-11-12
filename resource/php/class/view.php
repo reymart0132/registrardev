@@ -16,12 +16,6 @@ class view extends config{
               echo 'success';
             }
     }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> master
     public function monthGrad(){
         $config = new config;
         $con = $config->con();
