@@ -911,9 +911,7 @@ class view extends config{
                 $college2 = explode(',',$college1);
                 $college12 ="'".implode('\',\'',$college2)."'";
                 $id = $row->id;
-
                 if(isset($_GET['search'])){
-
                 $date = date('Y-m-d');
                 $cfd=date('Y-m-01', strtotime($date));
                 $cld=date('Y-m-t', strtotime($date));
