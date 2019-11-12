@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 require_once 'config.php';
 class view extends config{
+
     public function degreeCourse(){
         $config = new config;
         $con = $config->con();
@@ -715,6 +716,32 @@ class view extends config{
           <script src="vendor/js/datepicker/JqueryDate.js"></script>
           <script src="vendor/js/datepicker/date.js"></script>
           ';
+        }
+
+        public function viewSRA(){
+
+          $config = new config;
+          $con = $config->con();
+          $user = new User();
+          $sql = "SELECT * FROM tbl_accounts";
+          $data = $con-> prepare($sql);
+          $data->execute();
+          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              // var_dump($rows);
+               echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+                         echo '<thead class="thead" style="background-color:#DC65A1;">';
+                         echo '
+                         <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
+                         <th class="text-center" style= "font-weight:bold; color:white;"> Quote</td>   ';
+                         echo '</thead>';
+                         foreach ($rows as $row) {
+                           echo '<tr style="background-color:white;">';
+                             // echo '<td class="text-center">'.$row ->id.'</td>';
+                             echo '<td class="text-center" style="color:#DC65A1;">'.$row->name.'</td>';
+                             echo '<td class="text-center"><a class="btn btn-outline-danger" href=resource\php\updateQuote.php?id='.$row->id.'>Change Quote</a></td>';
+                 echo '</tr>';
+             }
+             echo '</table>';
         }
 
         public function getSName($number){

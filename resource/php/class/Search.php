@@ -788,6 +788,7 @@ class Search extends config{
           }
           echo '</table>';
 
+
             echo '<ul class="pagination ml-2">';
 
               for ($p=1; $p <=$total_pages; $p++) {

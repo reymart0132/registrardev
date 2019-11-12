@@ -225,6 +225,11 @@ function updateProfile(){
     }
 }
 
+
+
+
+
+
 function changeP(){
     if(input::exists()){
         $validate = new Validate;
