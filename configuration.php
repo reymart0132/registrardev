@@ -44,7 +44,7 @@
                  <a class="btn btn-light btn-block my-4"value="Update Quote" href="add-requesting-waris.php" style="color:white;background-color :pink; ">Requesting</a>
                  <a class="btn btn-light btn-block my-4"value="Update Quote" href="add-new-college-chua.php" style="color:white;background-color :pink; ">Add College</a>
                  <a class="btn btn-light btn-block my-4"value="Update Quote" href="Reqpurposes.php" style="color:white;background-color :pink; ">Add or Delete Purpose for Request</a>
-                 <a class="btn btn-light btn-block my-4"value="Update Quote" href="AdminSra.php" style="color:white;background-color :pink; ">Add or Delete Courses</a>
+                 <a class="btn btn-light btn-block my-4"value="Update Quote" href="course.php" style="color:white;background-color :pink; ">Add or Delete Courses</a>
 
                  <!-- <input type =hidden name="token" value="">
                  <input  type="submit"  href="AdminSra.php"  class="btn btn-dark btn-block my-4"value="Update Quote" />

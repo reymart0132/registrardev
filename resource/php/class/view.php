@@ -71,6 +71,7 @@ class view extends config{
             $data = $con-> prepare($sql);
             $data ->execute();
             $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            echo '<option value="" disabled selected>Course</option>';
                 foreach ($rows as $row) {
                   echo '<option data-tokens=".'.$row->course.'." value="'.$row->id.'">'.$row->course.'</option>';
                   echo 'success';
