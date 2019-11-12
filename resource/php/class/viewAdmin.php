@@ -551,7 +551,7 @@ class viewAdmin extends config{
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
-                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</td>';
+                             echo '<td class="text-center" style="color:#DC65A1;">'.$row->College.'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$this->getSname($row->releasedby).'</td>';
                              echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
                  echo '</tr>';

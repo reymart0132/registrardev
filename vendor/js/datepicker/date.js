@@ -9,11 +9,10 @@ $("#EndDate").change(function () {
       document.getElementById("EndDate").value = "";
   }
 });
-
-
+// 
 $("#StartReleased, #EndReleased").datepicker({ dateFormat: "dd-mm-yy" }).val();
 
-$("#End").change(function () {
+$("#EndReleased").change(function () {
   var startDate = document.getElementById("StartReleased").value;
   var endDate = document.getElementById("EndReleased").value;
 
@@ -35,6 +34,7 @@ $("#EndVerified").change(function () {
   }
 });
 
+//
 $("#StartVerifiedAll, #EndVerifiedAll").datepicker({ dateFormat: "dd-mm-yy" }).val();
 
 $("#EndVerified").change(function () {
@@ -47,7 +47,7 @@ $("#EndVerified").change(function () {
   }
 });
 
-
+//
 $("#StartPrinted, #EndPrinted").datepicker({ dateFormat: "dd-mm-yy" }).val();
 
 $("#EndPrinted").change(function () {
