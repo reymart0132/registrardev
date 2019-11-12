@@ -714,6 +714,10 @@ class Search extends config{
             $data = $con->prepare($sql);
             $data ->execute();
             $rows=$data-> fetchAll(PDO::FETCH_OBJ);
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
             $limit = 10;
 
             if (!isset($_GET['Rpage'])) {
