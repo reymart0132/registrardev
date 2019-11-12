@@ -137,7 +137,7 @@ class view extends config{
               // var_dump($rows);
 
            // paginationqueryhere
-           $limit = 1;
+           $limit = 10;
 
            if (!isset($_GET['Ppage'])) {
                  $page = 1;
@@ -254,7 +254,7 @@ class view extends config{
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
 
-          $limit = 1;
+          $limit = 10;
 
           if (!isset($_GET['PRpage'])) {
                 $page = 1;
@@ -373,7 +373,7 @@ class view extends config{
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
 
-          $limit = 1;
+          $limit = 10;
 
           if (!isset($_GET['V2page'])) {
                 $page = 1;
@@ -490,7 +490,7 @@ class view extends config{
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
 
-          $limit = 1;
+          $limit = 10;
 
           if (!isset($_GET['V1page'])) {
                 $page = 1;
@@ -607,7 +607,7 @@ class view extends config{
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
 
 
-          $limit = 2;
+          $limit = 10;
 
           if (!isset($_GET['Rpage'])) {
               $page = 1;

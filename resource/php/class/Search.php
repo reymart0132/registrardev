@@ -40,7 +40,7 @@ class Search extends config{
     $data ->execute();
     $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-    $limit = 1;
+    $limit = 10;
 
     if (!isset($_GET['Ppage'])) {
           $page = 1;
@@ -210,7 +210,7 @@ class Search extends config{
       $data ->execute();
       $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-      $limit = 1;
+      $limit = 10;
 
       if (!isset($_GET['PRpage'])) {
             $page = 1;
@@ -379,7 +379,7 @@ class Search extends config{
         $data ->execute();
         $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-        $limit = 1;
+        $limit = 10;
 
         if (!isset($_GET['V1page'])) {
               $page = 1;
@@ -547,7 +547,7 @@ class Search extends config{
           $data ->execute();
           $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
-          $limit = 1;
+          $limit = 10;
 
           if (!isset($_GET['V2page'])) {
                 $page = 1;
@@ -715,7 +715,11 @@ class Search extends config{
             $data ->execute();
             $rows=$data-> fetchAll(PDO::FETCH_OBJ);
 
+<<<<<<< HEAD
             $limit = 2;
+=======
+            $limit = 10;
+>>>>>>> master
 
             if (!isset($_GET['Rpage'])) {
                   $page = 1;
