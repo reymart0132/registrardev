@@ -22,12 +22,8 @@ class Search extends config{
     $config = new config;
     $con = $config->con();
     $user = new User();
-    $college1 = $user->data()->colleges;
-    $college2 = explode(',',$college1);
-    $college12 ="'".implode('\',\'',$college2)."'";
-    $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
-
-
+    $id1 = $user->data()->id;
+    $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = $id1";
     if (!empty($search) && !empty($criteria)) {
       $sql .= "AND `$criteria` LIKE '%$search%'";
     }elseif (!empty($dateFrom) && !empty($dateTo)) {
@@ -60,7 +56,7 @@ class Search extends config{
     $total_results = $data->rowCount();
     $total_pages = ceil($total_results/$limit);
 
-    $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
+    $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = $id1";
 
 
     if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -192,12 +188,8 @@ class Search extends config{
       $config = new config;
       $con = $config->con();
       $user = new User();
-      $college1 = $user->data()->colleges;
-      $college2 = explode(',',$college1);
-      $college12 ="'".implode('\',\'',$college2)."'";
-      $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
-
-
+      $id1 = $user->data()->id;
+      $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = $id1";
       if (!empty($search) && !empty($criteria)) {
         $sql .= "AND `$criteria` LIKE '%$search%'";
       }elseif (!empty($dateFrom) && !empty($dateTo)) {
@@ -230,7 +222,7 @@ class Search extends config{
       $total_results = $data->rowCount();
       $total_pages = ceil($total_results/$limit);
 
-      $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
+      $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = $id1";
 
 
       if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -361,12 +353,8 @@ class Search extends config{
         $config = new config;
         $con = $config->con();
         $user = new User();
-        $college1 = $user->data()->colleges;
-        $college2 = explode(',',$college1);
-        $college12 ="'".implode('\',\'',$college2)."'";
-        $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12)";
-
-
+        $id1 = $user->data()->id;
+        $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = $id1";
         if (!empty($search) && !empty($criteria)) {
           $sql .= "AND `$criteria` LIKE '%$search%'";
         }elseif (!empty($dateFrom) && !empty($dateTo)) {
@@ -398,7 +386,7 @@ class Search extends config{
         $total_results = $data->rowCount();
         $total_pages = ceil($total_results/$limit);
 
-        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12)";
+        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = $id1";
 
 
         if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -529,12 +517,8 @@ class Search extends config{
           $config = new config;
           $con = $config->con();
           $user = new User();
-          $college1 = $user->data()->colleges;
-          $college2 = explode(',',$college1);
-          $college12 ="'".implode('\',\'',$college2)."'";
+          $id1 = $user->data()->id;
           $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
-
-
           if (!empty($search) && !empty($criteria)) {
             $sql .= "AND `$criteria` LIKE '%$search%'";
           }elseif (!empty($dateFrom) && !empty($dateTo)) {
@@ -697,12 +681,8 @@ class Search extends config{
             $view = new view;
             $con = $config->con();
             $user = new User();
-            $college1 = $user->data()->colleges;
-            $college2 = explode(',',$college1);
-            $college12 ="'".implode('\',\'',$college2)."'";
+            $id1 = $user->data()->id;
             $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
-
-
             if (!empty($search) && !empty($criteria)) {
               $sql .= "AND `$criteria` LIKE '%$search%'";
             }elseif (!empty($dateFrom) && !empty($dateTo)) {

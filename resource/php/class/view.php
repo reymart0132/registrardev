@@ -129,10 +129,8 @@ class view extends config{
           $config = new config;
           $con = $config->con();
           $user = new User();
-          $college1 = $user->data()->colleges;
-          $college2 = explode(',',$college1);
-          $college12 ="'".implode('\',\'',$college2)."'";
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
+          $id1 = $user->data()->id;
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = $id1";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
@@ -159,7 +157,7 @@ class view extends config{
            $total_results = $data->rowCount();
            $total_pages = ceil($total_results/$limit);
 
-           $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12) LIMIT $start,$limit";
+           $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = $id1 LIMIT $start,$limit";
            $data2 = $con-> prepare($sql2);
            $data2 ->execute();
            $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
@@ -248,10 +246,8 @@ class view extends config{
           $config = new config;
           $con = $config->con();
           $user = new User();
-          $college1 = $user->data()->colleges;
-          $college2 = explode(',',$college1);
-          $college12 ="'".implode('\',\'',$college2)."'";
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
+          $id1 = $user->data()->id;
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = $id1";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
@@ -276,7 +272,7 @@ class view extends config{
           $total_results = $data->rowCount();
           $total_pages = ceil($total_results/$limit);
 
-          $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12) LIMIT $start,$limit";
+          $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = $id1 LIMIT $start,$limit";
           $data2 = $con-> prepare($sql2);
           $data2 ->execute();
           $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
@@ -367,9 +363,7 @@ class view extends config{
           $config = new config;
           $con = $config->con();
             $user = new User();
-          $college1 = $user->data()->colleges;
-          $college2 = explode(',',$college1);
-          $college12 ="'".implode('\',\'',$college2)."'";
+          $id1 = $user->data()->id;
           $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
           $data = $con-> prepare($sql);
           $data ->execute();
@@ -484,14 +478,11 @@ class view extends config{
           $config = new config;
           $con = $config->con();
             $user = new User();
-          $college1 = $user->data()->colleges;
-          $college2 = explode(',',$college1);
-          $college12 ="'".implode('\',\'',$college2)."'";
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12)";
+          $id1 = $user->data()->id;
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = $id1";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
-
           $limit = 10;
 
           if (!isset($_GET['V1page'])) {
@@ -512,7 +503,7 @@ class view extends config{
           $total_results = $data->rowCount();
           $total_pages = ceil($total_results/$limit);
 
-          $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12) LIMIT $start,$limit";
+          $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = $id1 LIMIT $start,$limit";
           $data2 = $con-> prepare($sql2);
           $data2 ->execute();
           $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
@@ -600,15 +591,11 @@ class view extends config{
           $config = new config;
           $con = $config->con();
           $user = new User();
-          $college1 = $user->data()->colleges;
-          $college2 = explode(',',$college1);
-          $college12 ="'".implode('\',\'',$college2)."'";
+          $id1 = $user->data()->id;
           $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
-
-
           $limit = 10;
 
           if (!isset($_GET['Rpage'])) {
@@ -774,10 +761,8 @@ class view extends config{
           $config = new config;
           $con = $config->con();
           $user = new User();
-          $college1 = $user->data()->colleges;
-          $college2 = explode(',',$college1);
-          $college12 ="'".implode('\',\'',$college2)."'";
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12)";
+          $id1 = $user->data()->id;
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = $id1";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data->rowCount();
@@ -788,10 +773,8 @@ class view extends config{
           $config = new config;
           $con = $config->con();
           $user = new User();
-          $college1 = $user->data()->colleges;
-          $college2 = explode(',',$college1);
-          $college12 ="'".implode('\',\'',$college2)."'";
-          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `College` IN($college12)";
+          $id1 = $user->data()->id;
+          $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = $id1";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data->rowCount();
@@ -801,10 +784,8 @@ class view extends config{
             $config = new config;
             $con = $config->con();
               $user = new User();
-            $college1 = $user->data()->colleges;
-            $college2 = explode(',',$college1);
-            $college12 ="'".implode('\',\'',$college2)."'";
-            $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `College` IN($college12)";
+            $id1 = $user->data()->id;
+            $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = $id1";
             $data = $con-> prepare($sql);
             $data ->execute();
             $rows =$data->rowCount();
@@ -818,9 +799,7 @@ class view extends config{
             $date = date('Y-m-d');
             $fd=date('Y-m-01', strtotime($date));
             $ld=date('Y-m-t', strtotime($date));
-            $college1 = $user->data()->colleges;
-            $college2 = explode(',',$college1);
-            $college12 ="'".implode('\',\'',$college2)."'";
+            $id1 = $user->data()->id;
             $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby`=$id AND (`released_date` BETWEEN '$fd' AND '$ld')";
             $data = $con-> prepare($sql);
             $data ->execute();
@@ -847,8 +826,8 @@ class view extends config{
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
                 $college1 = $row->colleges;
-                $college2 = explode(',',$college1);
-                $college12 ="'".implode('\',\'',$college2)."'";
+
+
 
                 if(!empty($_GET)){
 
@@ -857,9 +836,9 @@ class view extends config{
                 $cld=date('Y-m-t', strtotime($date));
                 $cld = $_GET['cld'];
                 $cfd = $_GET['cfd'];
-                $sql = "SELECT * FROM `work` WHERE (`Date_app`  BETWEEN '$cfd' AND '$cld') AND `College` IN($college12)";
+                $sql = "SELECT * FROM `work` WHERE (`Date_app`  BETWEEN '$cfd' AND '$cld') AND `assignee` = $id1";
               }else{
-                $sql = "SELECT * FROM `work` WHERE `Date_app` = CURDATE() AND `College` IN($college12)";
+                $sql = "SELECT * FROM `work` WHERE `Date_app` = CURDATE() AND `assignee` = $id1";
               }
                 $data = $con-> prepare($sql);
                 $data ->execute();
@@ -876,9 +855,9 @@ class view extends config{
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
                 $college1 = $row->colleges;
-                $college2 = explode(',',$college1);
+
                 $id = $row->id;
-                $college12 ="'".implode('\',\'',$college2)."'";
+
                 if(isset($_GET['search'])){
 
                 $date = date('Y-m-d');
@@ -908,8 +887,8 @@ class view extends config{
               foreach ($rows as $row) {
                 $id = $row->id;
                 $college1 = $row->colleges;
-                $college2 = explode(',',$college1);
-                $college12 ="'".implode('\',\'',$college2)."'";
+
+
                 if(isset($_GET['search'])){
                 $date = date('Y-m-d');
                 $cfd=date('Y-m-01', strtotime($date));
@@ -918,7 +897,7 @@ class view extends config{
                 $cfd = $_GET['cfd'];
                   $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `printedby` = $id AND (`Date_app` >= $cfd AND `printedby` > $cld)";
                   }else{
-                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `College` IN($college12) ";
+                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = $id1 ";
                   }
                 $data = $con-> prepare($sql);
                 $data ->execute();
@@ -936,8 +915,8 @@ class view extends config{
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
                 $college1 = $row->colleges;
-                $college2 = explode(',',$college1);
-                $college12 ="'".implode('\',\'',$college2)."'";
+
+
                 $id = $row->id;
                 if(isset($_GET['search'])){
                 $date = date('Y-m-d');
