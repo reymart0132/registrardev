@@ -313,11 +313,11 @@ class Search extends config{
          <div class="row">
            <div class="col-sm">
              <label for="dateFrom">From:</label>
-             <input  class="form-control" type="text" name="dateFrom" id="StartPrinted"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+             <input  class="form-control" type="date" name="dateFrom"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
            </div>
            <div class="col-sm">
              <label for="dateTo">To:</label>
-             <input  class="form-control" type="text" name="dateTo" id="EndPrinted" placeholder="dd-mm-yyyy">
+             <input  class="form-control" type="date" name="dateTo" placeholder="dd-mm-yyyy">
            </div>
            <div class="col-sm">
              <label for="criteria">Filter By:</label>
@@ -481,11 +481,11 @@ class Search extends config{
            <div class="row">
              <div class="col-sm">
                <label for="dateFrom">From:</label>
-               <input  class="form-control" type="text" name="dateFrom" id="StartVerified"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+               <input  class="form-control" type="date" name="dateFrom" data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
              </div>
              <div class="col-sm">
                <label for="dateTo">To:</label>
-               <input  class="form-control" type="text" name="dateTo" id="EndVerified" placeholder="dd-mm-yyyy">
+               <input  class="form-control" type="date" name="dateTo" placeholder="dd-mm-yyyy">
              </div>
              <div class="col-sm">
                <label for="criteria">Filter By:</label>
@@ -650,11 +650,11 @@ class Search extends config{
              <div class="row">
                <div class="col-sm">
                  <label for="dateFrom">From:</label>
-                 <input  class="form-control" type="text" name="dateFrom" id="StartVerifiedAll"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+                 <input  class="form-control" type="date" name="dateFrom"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                </div>
                <div class="col-sm">
                  <label for="dateTo">To:</label>
-                 <input  class="form-control" type="text" name="dateTo" id="EndVerifiedAll" placeholder="dd-mm-yyyy">
+                 <input  class="form-control" type="date" name="dateTo"  placeholder="dd-mm-yyyy">
                </div>
                <div class="col-sm">
                  <label for="criteria">Filter By:</label>
@@ -819,11 +819,11 @@ class Search extends config{
                <div class="row">
                  <div class="col-sm">
                    <label for="dateFrom">From:</label>
-                   <input  class="form-control" type="text" name="dateFrom" id="StartReleased"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+                   <input  class="form-control" type="date" name="dateFrom" data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
                  </div>
                  <div class="col-sm">
                    <label for="dateTo">To:</label>
-                   <input  class="form-control" type="text" name="dateTo" id="EndReleased" placeholder="dd-mm-yyyy" >
+                   <input  class="form-control" type="date" name="dateTo" placeholder="dd-mm-yyyy" >
                  </div>
                  <div class="col-sm">
                    <label for="criteria">Filter By:</label>
