@@ -825,20 +825,16 @@ class view extends config{
               $data ->execute();
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
-                $id1 = $row->id;
-
-
-
+                $id = $row->id;
                 if(!empty($_GET)){
-
                 $date = date('Y-m-d');
                 $cfd=date('Y-m-01', strtotime($date));
                 $cld=date('Y-m-t', strtotime($date));
                 $cld = $_GET['cld'];
                 $cfd = $_GET['cfd'];
-                $sql = "SELECT * FROM `work` WHERE (`Date_app`  BETWEEN '$cfd' AND '$cld') AND `assignee` = '$id1'";
+                $sql = "SELECT * FROM `work` WHERE (`Date_app`  BETWEEN '$cfd' AND '$cld') AND `assignee` = $id";
               }else{
-                $sql = "SELECT * FROM `work` WHERE `Date_app` = CURDATE() AND `assignee` = '$id1'";
+                $sql = "SELECT * FROM `work` WHERE `Date_app` = CURDATE() AND `assignee` = $id";
               }
                 $data = $con-> prepare($sql);
                 $data ->execute();
@@ -854,27 +850,21 @@ class view extends config{
               $data ->execute();
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
-                $id1 = $row->id;
-
                 $id = $row->id;
-
-                if(isset($_GET['search'])){
-
-                $date = date('Y-m-d');
-                $cfd=date('Y-m-01', strtotime($date));
-                $cld=date('Y-m-t', strtotime($date));
-                $cld = $_GET['cld'];
-                $cfd = $_GET['cfd'];
-                            $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND (`printeddate` BETWEEN '$cfd' AND '$cld')";
-              }else{
-
-                            $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND `printeddate` = CURDATE()";
-              }
-
-                $data = $con-> prepare($sql);
-                $data ->execute();
-                $results =$data->rowCount();
-                echo $results.',';
+                  if(isset($_GET['search'])){
+                    $date = date('Y-m-d');
+                    $cfd=date('Y-m-01', strtotime($date));
+                    $cld=date('Y-m-t', strtotime($date));
+                    $cld = $_GET['cld'];
+                    $cfd = $_GET['cfd'];
+                    $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND (`printeddate` BETWEEN '$cfd' AND '$cld')";
+                  }else{
+                    $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND `printeddate` = CURDATE()";
+                  }
+                  $data = $con-> prepare($sql);
+                  $data ->execute();
+                  $results =$data->rowCount();
+                  echo $results.',';
               }
             }
             public function cpending(){
@@ -886,18 +876,37 @@ class view extends config{
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
                 $id = $row->id;
-                $id1 = $row->id;
-
-
                 if(isset($_GET['search'])){
                 $date = date('Y-m-d');
                 $cfd=date('Y-m-01', strtotime($date));
                 $cld=date('Y-m-t', strtotime($date));
                 $cld = $_GET['cld'];
                 $cfd = $_GET['cfd'];
-                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `printedby` = '$id' AND (`Date_app` >= '$cfd' AND `printedby` > '$cld')";
+                $sql = "SELECT * FROM `work` WHERE  `assignee` = '$id'";
+                $data = $con-> prepare($sql);
+                $data ->execute();
+                $products =$data-> fetchAll(PDO::FETCH_OBJ);
+                foreach ($products as $product) {
+                    $printeddate = $product->printeddate;
+                    if (IS_NULL($printeddate)) {
+                        $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id' AND(`Date_App` >= '$cfd' AND  `printeddate` IS NULL)";
+                      }else {
+                        $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id' AND (`Date_App` >= '$cfd' AND `printeddate` > '$cld')";
+                      }
+                    }
                   }else{
-                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
+                    $sql = "SELECT * FROM `work` WHERE  `assignee` = '$id'";
+                    $data = $con-> prepare($sql);
+                    $data ->execute();
+                    $products =$data-> fetchAll(PDO::FETCH_OBJ);
+                    foreach ($products as $product) {
+                        $printeddate = $product->printeddate;
+                        if (!IS_NULL($printeddate)) {
+                            $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id' AND `printeddate` > CURDATE()";
+                          }else {
+                            $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id' AND `printeddate` IS NULL";
+                      }
+                      }
                   }
                 $data = $con-> prepare($sql);
                 $data ->execute();
@@ -914,16 +923,14 @@ class view extends config{
               $data ->execute();
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
-
                 $id = $row->id;
-                $id1 = $row->id;
                 if(isset($_GET['search'])){
                 $date = date('Y-m-d');
                 $cfd=date('Y-m-01', strtotime($date));
                 $cld=date('Y-m-t', strtotime($date));
                 $cld = $_GET['cld'];
                 $cfd = $_GET['cfd'];
-                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = '$id' AND (`released_date` BETWEEN '$cfd' AND '$cld')";
+                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = $id AND (`released_date` BETWEEN $cfd AND $cld)";
                   }else{
                     $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = '$id' AND `released_date` = CURDATE()";
                   }
