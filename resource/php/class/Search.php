@@ -23,7 +23,7 @@ class Search extends config{
     $con = $config->con();
     $user = new User();
     $id1 = $user->data()->id;
-    $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = $id1";
+    $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
     if (!empty($search) && !empty($criteria)) {
       $sql .= "AND `$criteria` LIKE '%$search%'";
     }elseif (!empty($dateFrom) && !empty($dateTo)) {
@@ -56,7 +56,7 @@ class Search extends config{
     $total_results = $data->rowCount();
     $total_pages = ceil($total_results/$limit);
 
-    $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = $id1";
+    $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
 
 
     if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -189,7 +189,7 @@ class Search extends config{
       $con = $config->con();
       $user = new User();
       $id1 = $user->data()->id;
-      $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = $id1";
+      $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = '$id1'";
       if (!empty($search) && !empty($criteria)) {
         $sql .= "AND `$criteria` LIKE '%$search%'";
       }elseif (!empty($dateFrom) && !empty($dateTo)) {
@@ -222,7 +222,7 @@ class Search extends config{
       $total_results = $data->rowCount();
       $total_pages = ceil($total_results/$limit);
 
-      $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = $id1";
+      $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = '$id1'";
 
 
       if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -354,7 +354,7 @@ class Search extends config{
         $con = $config->con();
         $user = new User();
         $id1 = $user->data()->id;
-        $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = $id1";
+        $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
         if (!empty($search) && !empty($criteria)) {
           $sql .= "AND `$criteria` LIKE '%$search%'";
         }elseif (!empty($dateFrom) && !empty($dateTo)) {
@@ -386,7 +386,7 @@ class Search extends config{
         $total_results = $data->rowCount();
         $total_pages = ceil($total_results/$limit);
 
-        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = $id1";
+        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
 
 
         if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
