@@ -849,7 +849,8 @@ class view extends config{
                 $college1 = $row->colleges;
                 $college2 = explode(',',$college1);
                 $college12 ="'".implode('\',\'',$college2)."'";
-                if(isset($_GET['search'])){
+
+                if(!empty($_GET)){
 
                 $date = date('Y-m-d');
                 $cfd=date('Y-m-01', strtotime($date));
@@ -858,7 +859,6 @@ class view extends config{
                 $cfd = $_GET['cfd'];
                 $sql = "SELECT * FROM `work` WHERE (`Date_app`  BETWEEN '$cfd' AND '$cld') AND `College` IN($college12)";
               }else{
-
                 $sql = "SELECT * FROM `work` WHERE `Date_app` = CURDATE() AND `College` IN($college12)";
               }
                 $data = $con-> prepare($sql);
