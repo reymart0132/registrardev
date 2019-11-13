@@ -60,15 +60,15 @@ $view = new view;
                                 <div class="row">
                                     <div class="form-group col-4">
                                       <label for="Lastname">Lastname</label>
-                                      <input type="text" class="form-control" id="Lastname" oninput="this.value = this.value.toUpperCase()"  name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname" required>
+                                      <input type="text" class="form-control" id="Lastname" oninput="this.value = this.value.toUpperCase()"  name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname" maxlength="49" required>
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="Firstname">Firstname</label>
-                                      <input type="text" class="form-control" id="Firstname" oninput="this.value = this.value.toUpperCase()"  name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname" required>
+                                      <input type="text" class="form-control" id="Firstname" oninput="this.value = this.value.toUpperCase()"  name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname" maxlength="49" required>
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="Middlename">Middlename</label>
-                                      <input type="text" class="form-control" id="Middlename" oninput="this.value = this.value.toUpperCase()"  name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" required>
+                                      <input type="text" class="form-control" id="Middlename" oninput="this.value = this.value.toUpperCase()"  name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" maxlength="30" required>
                                     </div>
                                 </div>
                             </td>
@@ -86,7 +86,7 @@ $view = new view;
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="ContactNumber">Contact Number</label>
-                                      <input type="text" class="form-control" id="txtChar" name="ContactNumber" onkeydown="return isNumberKey(event)" aria-describedby="emailHelp" placeholder="Enter Contact Number" required>
+                                      <input type="text" class="form-control" id="txtChar" name="ContactNumber" onkeydown="return isNumberKey(event)" aria-describedby="emailHelp" placeholder="Enter Contact Number" maxlength="11" required>
                                     </div>
                                     <div class="form-group col-4">
                                         <label for="ContactNumber">Status</label>
