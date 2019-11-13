@@ -18,6 +18,7 @@ $Purpose= $_POST['Purpose'];
 
 
 if (in_array("DIPLOMA", $_POST['request']) && count($_POST['request']) > 1 ){
+     $requests2= implode(",",$_POST['request']);
       $req = array_diff($_POST['request'],['DIPLOMA']);
       $requests= implode(",",$req);
       $da = date('Y-m-d');
@@ -25,8 +26,9 @@ if (in_array("DIPLOMA", $_POST['request']) && count($_POST['request']) > 1 ){
       $function = new findDate($da,$requests);
       $dd = $function->findDueDate();
       $dd = $dd->format('Y-m-d');
+      $transaction3 = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests2,$da,$dd,$assignee);
+      $transaction3->insertTransaction();
       $transaction = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests,$da,$dd,$assignee);
-      $transaction->insertTransaction();
       $transaction->insertWork();
 
       $assignee2 = findDiplomaMaker();
