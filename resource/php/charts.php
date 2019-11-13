@@ -24,6 +24,15 @@ $view = new view;
                   ],
              }]
          },
+         options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
      });
 
      var pending = document.getElementById("pending").getContext('2d');
@@ -44,6 +53,15 @@ $view = new view;
                   ],
              }]
          },
+         options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
      });
 
      var released = document.getElementById("released").getContext('2d');
@@ -85,8 +103,17 @@ $view = new view;
                   ],
              }]
          },
+         options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
      });
 
-     
+
  };
 </script>

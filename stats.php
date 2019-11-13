@@ -101,6 +101,7 @@ if(isset($_GET['verified'])){
     </div>
   </form>
 </div>
+<?php $view->cpending();  ?>
  </body>
 
      <script src="vendor/js/jquery.js"></script>
