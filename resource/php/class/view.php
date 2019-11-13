@@ -897,7 +897,7 @@ class view extends config{
                 $cfd = $_GET['cfd'];
                   $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `printedby` = '$id' AND (`Date_app` >= '$cfd' AND `printedby` > '$cld')";
                   }else{
-                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1' ";
+                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
                   }
                 $data = $con-> prepare($sql);
                 $data ->execute();
