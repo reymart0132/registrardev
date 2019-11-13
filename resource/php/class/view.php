@@ -825,7 +825,7 @@ class view extends config{
               $data ->execute();
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
-                $college1 = $row->colleges;
+                $id1 = $row->id;
 
 
 
@@ -854,7 +854,7 @@ class view extends config{
               $data ->execute();
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
-                $college1 = $row->colleges;
+                $id1 = $row->id;
 
                 $id = $row->id;
 
@@ -886,7 +886,7 @@ class view extends config{
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
                 $id = $row->id;
-                $college1 = $row->colleges;
+                $id1 = $row->id;
 
 
                 if(isset($_GET['search'])){
@@ -914,10 +914,9 @@ class view extends config{
               $data ->execute();
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               foreach ($rows as $row) {
-                $college1 = $row->colleges;
-
 
                 $id = $row->id;
+                $id1 = $row->id;
                 if(isset($_GET['search'])){
                 $date = date('Y-m-d');
                 $cfd=date('Y-m-01', strtotime($date));
