@@ -269,7 +269,36 @@ function changeP(){
         }
     }
 }
+
  function blocker(){
      echo '<div class="container-fluid screen2"></div>';
+ }
+ function findCourse($college){
+     $config = new config;
+     $con = $config->con();
+     $sql = "SELECT * FROM `collegeschool` where `id`=$college";
+     $data = $con-> prepare($sql);
+     $data ->execute();
+     $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+     return $rows[0]->college_school;
+ }
+
+ function findAssignee($college){
+     $config = new config;
+     $con = $config->con();
+     $sql = "SELECT * FROM `tbl_accounts` where `colleges`LIKE '%$college%'";
+     $data = $con-> prepare($sql);
+     $data ->execute();
+     $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+     return $rows[0]->id;
+ }
+ function findDiplomaMaker(){
+     $config = new config;
+     $con = $config->con();
+     $sql = "SELECT * FROM `tbl_accounts` where `diploma`= 1";
+     $data = $con-> prepare($sql);
+     $data ->execute();
+     $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+     return $rows[0]->id;
  }
  ?>

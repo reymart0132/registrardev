@@ -1,9 +1,9 @@
 <?php
 require_once 'config.php';
 class transaction{
-    public $studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests,$dd,$da;
+    public $studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests,$dd,$da,$assignee;
 
-    function __construct($studentN=null,$ygle=null,$Lastname=null,$Firstname=null,$Middlename=null,$Course=null,$ContactNumber=null,$Status=null,$College=null,$Purpose=null,$requests=null,$da=null, $dd=null) {
+    function __construct($studentN=null,$ygle=null,$Lastname=null,$Firstname=null,$Middlename=null,$Course=null,$ContactNumber=null,$Status=null,$College=null,$Purpose=null,$requests=null,$da=null, $dd=null,$assignee=null) {
 
         $this->studentN=$studentN;
         $this->ygle=$ygle;
@@ -18,6 +18,7 @@ class transaction{
         $this->requests = $requests;
         $this->dd=$dd;
         $this->da=$da;
+        $this->assignee=$assignee;
 
 
     }
@@ -28,7 +29,7 @@ class transaction{
         $sql1 = "INSERT INTO `applications`(`StudentNo`,`LastName`,`FirstName`,`MI`,`Course`,`contact_no`,`Status`,`Applied_For`,`purposes`,`Date_App`,`Due_date`,`updated`,`created`,`Encoded_by`,`Date_Grad`)VALUES('$this->studentN','$this->Lastname','$this->Firstname','$this->Middlename','$this->Course','$this->ContactNumber','$this->Status','$this->requests','$this->Purpose','$this->da','$this->dd',NOW(),NOW(),4,'$this->ygle')";
         $data1 = $con-> prepare($sql1);
         $data1 ->execute();
-        var_dump($data1);
+
         echo "success";
     }
 
@@ -39,7 +40,7 @@ class transaction{
         $Course = $this->findCourse();
         $College = $this->findCollege();
         $id =$this->findID();
-        $sql1 = "INSERT INTO `work`(`id`,`StudentNo`,`LastName`,`FirstName`,`MI`,`Course`,`contact_no`,`Status`,`Applied_For`,`purposes`,`College`,`Date_App`,`Due_date`,`Date_Grad`)VALUES($id,'$this->studentN','$this->Lastname','$this->Firstname','$this->Middlename','$Course','$this->ContactNumber','$this->Status','$this->requests','$purpose','$College','$this->da','$this->dd','$this->ygle')";
+        $sql1 = "INSERT INTO `work`(`id`,`StudentNo`,`LastName`,`FirstName`,`MI`,`Course`,`contact_no`,`Status`,`Applied_For`,`purposes`,`College`,`Date_App`,`Due_date`,`Date_Grad`,`assignee`)VALUES($id,'$this->studentN','$this->Lastname','$this->Firstname','$this->Middlename','$Course','$this->ContactNumber','$this->Status','$this->requests','$purpose','$College','$this->da','$this->dd','$this->ygle','$this->assignee')";
         $data1 = $con-> prepare($sql1);
         $data1 ->execute();
         echo "success";
@@ -74,7 +75,7 @@ class transaction{
     public function findID(){
         $config = new config;
         $con = $config->con();
-        $sql = "SELECT id FROM `applications` WHERE `LastName` = '$this->Lastname' ORDER BY `created` DESC LIMIT 1";
+        $sql = "SELECT * FROM `applications` WHERE `LastName` = '$this->Lastname' ORDER BY `created` DESC LIMIT 1";
         $data = $con-> prepare($sql);
         $data ->execute();
         $rows =$data-> fetchAll(PDO::FETCH_OBJ);
