@@ -49,7 +49,7 @@ if(isset($_GET['verified'])){
  <div class="container-fluid mt-4 slide-in-left">
      <div class="row">
          <div class="col-12">
-             <h1 class="text-center">Productivity Report for Today( <?php echo $today = date("F j, Y");  ?> )</h1>
+             <h1 class="text-center">Productivity Report for( <?php if(!empty($_GET)){ echo date("M-d-Y", strtotime($_GET['cfd']))." to ".date("M-d-Y", strtotime($_GET['cld']));}else{echo $today = date("F j, Y");} ?> )</h1>
          </div>
     </div>
    <!--  -->
