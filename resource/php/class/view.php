@@ -901,13 +901,10 @@ class view extends config{
                     $products =$data-> fetchAll(PDO::FETCH_OBJ);
                     foreach ($products as $product) {
                         $printeddate = $product->printeddate;
-                        if (!IS_NULL($printeddate)) {
-                            $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id' AND `printeddate` > CURDATE()";
-                          }else {
-                            $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id' AND `printeddate` IS NULL";
-                      }
+                        $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id'";
                       }
                   }
+
                 $data = $con-> prepare($sql);
                 $data ->execute();
                 $results =$data->rowCount();
