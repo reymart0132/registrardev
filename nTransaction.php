@@ -68,7 +68,7 @@ $view = new view;
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="Middlename">Middlename</label>
-                                      <input type="text" class="form-control" id="Middlename" oninput="this.value = this.value.toUpperCase()"  name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" maxlength="30" required>
+                                      <input type="text" class="form-control" id="Middlename" oninput="this.value = this.value.toUpperCase()"  name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" maxlength="30">
                                     </div>
                                 </div>
                             </td>
