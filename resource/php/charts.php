@@ -41,7 +41,7 @@ $view = new view;
          data: {
              labels: [<?php $view->chartlabel(); ?>],
              datasets: [{
-                 label: 'Released Transaction',
+                 label: 'Pending Transaction',
                  data: [<?php $view->cpending(); ?>],
                  backgroundColor: [
                    'rgb(220, 101, 161)',

@@ -12,7 +12,7 @@ class verified extends config{
   public function verify(){
       $config = new config;
       $con = $config->con();
-      $sql = "UPDATE `work` SET `remarks`='VERIFIED' WHERE `id` = $this->printed";
+      $sql = "UPDATE `work` SET `remarks`='VERIFIED'WHERE `id` = $this->printed && `assignee` =$this->user";
       $data = $con-> prepare($sql);
       $data ->execute();
       $sql2 = "UPDATE `applications` SET`datesigned`='$this->date' WHERE `id` = $this->printed";
