@@ -14,7 +14,7 @@ class edit extends config{
       $data = $con-> prepare($sql);
       $data->execute();
 
-      Redirect::to('AdminSra.php');
+      Redirect::to('view_pending_requests.php');
     }
   }
 }
