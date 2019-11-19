@@ -2,7 +2,9 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 isLogin();
 $view = new view;
+// $view->checkuser();
 $user = new user();
+
 
 updateProfile();
 

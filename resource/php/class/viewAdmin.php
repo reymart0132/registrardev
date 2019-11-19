@@ -636,6 +636,14 @@ class viewAdmin extends config{
             $user = new user();
             echo $user->data()->quote;
         }
+        public function checkadmin(){
+          $user = new user();
+          $gr = $user->data()->groups;
+          if ($gr == 2) {
+          }else {
+            header('location:pending.php');
+          }
+        }
         public function ctodolist(){
           $config = new config;
           $con = $config->con();
@@ -779,6 +787,7 @@ class viewAdmin extends config{
               echo $results.',';
             }
           }
+
 
 
 }

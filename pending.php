@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new view;
 $user = new user();
+$view->checkuser();
 isLogin();
 if(isset($_GET['printed'])){
   $print = new printed($_GET['printed'],$_GET['id']);

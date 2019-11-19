@@ -757,6 +757,22 @@ class view extends config{
             $user = new user();
             echo $user->data()->quote;
         }
+        public function checkuser(){
+          $user = new user();
+          $gr = $user->data()->groups;
+          if ($gr == 1) {
+          }else {
+            header('location:view_pending_requests.php');
+          }
+        }
+        public function checkadmin1(){
+          $user = new user();
+          $gr = $user->data()->groups;
+          if ($gr == 2) {
+          }else {
+            header('location:pending.php');
+          }
+        }
         public function ctodolist(){
           $config = new config;
           $con = $config->con();

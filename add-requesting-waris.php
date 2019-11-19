@@ -1,5 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'\registrardev\resource\php\class\insertRequesting.php';
+$view = new viewAdmin;
+$view->checkadmin();
 if(isset($_POST['submit'])){
   $add = new add($_POST['request']);
   $add->addrequest();
