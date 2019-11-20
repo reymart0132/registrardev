@@ -1,0 +1,157 @@
+.record-con{
+  height: 700px;
+  width: 1100px;
+  border: 1px solid black;
+}
+.column1{
+  height: 90px;
+  border-bottom:1px solid black;
+}
+
+.column2{
+  height: 53px;
+  border-bottom:1px solid black;
+}
+
+.data{
+  height: 51px;
+}
+.label{
+  border-right: 1px solid black;
+}
+
+.column3{
+  height: 53px;
+  border-bottom:1px solid black;
+}
+.column4{
+  height: 25px;
+  border-bottom:1px solid black;
+}
+.label4{
+  height: 25px;
+  border-right: 1px solid black;
+}
+
+.column5{
+  height: 200px;
+  border-bottom:1px solid black;
+}
+
+.label5{
+  height: 200px;
+  border-right: 1px solid black;
+}
+
+.checkmark{
+  height: 25px;
+  width: 25px;
+}
+
+.relation{
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* .column6{
+  height: 40px;
+  border-bottom:1px solid black;
+} */
+/*
+.underline{
+  padding-left: 160px;
+  border-bottom: 1px solid black;
+  padding-top: 0px;
+} */
+
+.hr1{
+  width: 150px;
+  border-bottom: 1px solid black;
+  margin-left:100px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.sp1{
+  padding-left:80px;
+  margin: 0;
+}
+
+
+.sp2{
+  padding-left: 95px;
+}
+
+.sp3{
+  padding-left: 20px;
+  margin: 0;
+}
+
+.label6{
+    border-right: 1px solid black;
+}
+
+.column6{
+  height: 95px;
+  border-bottom:1px solid black;
+}
+
+.l3{
+  padding-bottom: 18px;
+}
+
+.column7{
+  height: 20px;
+  border-bottom:1px solid black;
+}
+
+.l7{
+  font-size: 12px;
+  padding-top: 2px;
+}
+
+.cl8text{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+.column8{
+  height: 32px;
+  border-bottom:1px solid black;
+}
+
+.cl9text{
+  font-size: 12px;
+}
+.cl9text2{
+  font-size: 12px;
+  padding-left: 40px;
+}
+
+
+.column9{
+  border-bottom: 1px solid black;
+}
+
+.ceu{
+  font-size: 12px;
+}
+
+hr{
+  width: 150px;
+  border-bottom: 1px solid black;
+  margin-left:150px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.sp10{
+  padding-left:185px;
+  margin: 0;
+}
+
+.ceubranch{
+  font-size: 12px;
+}
