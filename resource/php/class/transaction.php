@@ -20,8 +20,6 @@ class transaction{
         $this->da=$da;
         $this->assignee=$assignee;
         $this->formtype=$formtype;
-
-
     }
 
     public function insertTransaction(){
