@@ -13,6 +13,7 @@ $College= $_POST['College'];
 $fc= findCourse($College);
 $assignee = findAssignee($fc);
 $Purpose= $_POST['Purpose'];
+$formtype= $_POST['formtype'];
 //dateapplied
 // var_dump();
 
@@ -26,13 +27,13 @@ if (in_array("DIPLOMA", $_POST['request']) && count($_POST['request']) > 1 ){
       $function = new findDate($da,$requests);
       $dd = $function->findDueDate();
       $dd = $dd->format('Y-m-d');
-      $transaction3 = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests2,$da,$dd,$assignee);
+      $transaction3 = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests2,$da,$dd,$assignee,$formtype);
       $transaction3->insertTransaction();
-      $transaction = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests,$da,$dd,$assignee);
+      $transaction = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests,$da,$dd,$assignee,$formtype);
       $transaction->insertWork();
 
       $assignee2 = findDiplomaMaker();
-      $transaction2 = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,'DIPLOMA',$da,$dd,$assignee2);
+      $transaction2 = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,'DIPLOMA',$da,$dd,$assignee2,$formtype);
       $transaction2->insertWork();
        header("location:../../nTransaction.php?status=Success");
   }elseif (in_array("DIPLOMA", $_POST['request']) && count($_POST['request']) == 1) {
@@ -42,7 +43,7 @@ if (in_array("DIPLOMA", $_POST['request']) && count($_POST['request']) > 1 ){
       $dd = $function->findDueDate();
       $dd = $dd->format('Y-m-d');
       $assignee2 = findDiplomaMaker();
-      $transaction2 = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,'DIPLOMA',$da,$dd,$assignee2);
+      $transaction2 = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,'DIPLOMA',$da,$dd,$assignee2,$formtype);
       $transaction2->insertTransaction();
       $transaction2->insertWork();
       header("location:../../nTransaction.php?status=Success");
@@ -54,7 +55,7 @@ if (in_array("DIPLOMA", $_POST['request']) && count($_POST['request']) > 1 ){
       $function = new findDate($da,$requests);
       $dd = $function->findDueDate();
       $dd = $dd->format('Y-m-d');
-      $transaction = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests,$da,$dd,$assignee);
+      $transaction = new transaction($studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests,$da,$dd,$assignee,$formtype);
       $transaction->insertTransaction();
       $transaction->insertWork();
        header("location:../../nTransaction.php?status=Success");

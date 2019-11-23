@@ -101,6 +101,19 @@ class view extends config{
                   echo 'success';
                 }
         }
+
+        public function formtype(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `formtype`";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+                foreach ($rows as $row) {
+                  echo '<option data-tokens=".'.$row->type.'." value="'.$row->type.'">'.$row->value.'</option>';
+                  echo 'success';
+                }
+        }
         public function collegeSP(){
             $config = new config;
             $con = $config->con();
@@ -137,7 +150,7 @@ class view extends config{
               // var_dump($rows);
 
            // paginationqueryhere
-           $limit = 10;
+           $limit = 5;
 
            if (!isset($_GET['Ppage'])) {
                  $page = 1;
@@ -181,18 +194,41 @@ class view extends config{
            foreach ($rows2 as $row) {
              echo '<tr>';
                // echo '<td class="text-center">'.$row ->id.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
-                 echo '</tr>';
+               $type = $row->formtype;
+               $due= $row->Due_Date;
+               $due2 = strtotime($due);
+               $date_diff = 60*60*24*3;
+
+               if ($due2 < time()+$date_diff) {
+                 echo '<td class="text-center" style="color:blue;">'.$row->StudentNo.'</td>';
+                 echo '<td class="text-center" style="color:blue;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                 echo '<td class="text-center" style="color:blue;">'.$row->Course.'</br></td>';
+                 echo '<td class="text-center" style="color:blue;">'.$row->contact_no.'</td>';
+                 echo '<td class="text-center" style="color:blue;">'.$row->Status.'</td>';
+                 echo '<td class="text-center" style="color:blue;">'.$row->Date_Grad.'</td>';
+                 echo '<td class="text-center" style="color:blue;">'.$row->Applied_For.'</td>';
+                 echo '<td class="text-center" style="color:blue;">'.$row->purposes.'</td>';
+                 echo '<td class="text-center" style="color:blue;">'.$row->Due_Date.'</td>';
+                 echo '<td class="text-center" style="color:blue;">'.$row->remarks.'</br></td>';
+                 echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+                   echo '</tr>';
+
+               }else {
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+                 echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+                   echo '</tr>';
+
+               }
+
              }
              echo '</table>';
 

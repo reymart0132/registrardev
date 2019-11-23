@@ -125,6 +125,12 @@ $view = new view;
                                             <?php $view->reasonFA();?>
                                           </select>
                                     </div>
+                                    <div class="form-group col-4">
+                                      <label for="formtype" >Special Form</label>
+                                          <select id="formtype" name="formtype" class="form-control" data-live-search="true" >
+                                            <?php $view->formtype();?>
+                                          </select>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
