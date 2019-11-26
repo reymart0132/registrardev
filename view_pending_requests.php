@@ -1,8 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new viewAdmin;
+$checkadmin = new checkgroup;
+$checkadmin->checkadmin();
 $searchQ = new SearchAdmin;
 $user = new user();
+// echo $user->data()->groups;;
 isLogin();
 if(isset($_GET['printed'])){
   $print = new printed($_GET['printed'],$_GET['id']);

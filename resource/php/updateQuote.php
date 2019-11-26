@@ -3,12 +3,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
 
 isLogin();
 $view = new view;
-$edit = new edit;
 $user = new user();
-// if (isset($_POST['submit'])) {
-//   $view->edit();
-// }
-$edit->editQuote();
+if (isset($_POST['submit'])) {
+  $edit = new edit;
+  $edit->editQuote();
+}
 
 
  ?>
@@ -64,7 +63,6 @@ $edit->editQuote();
 
                                 <div class="form-group col-5">
                                     <label  >&nbsp;</label>
-                                <input type="hidden" name ="Token" value="<?php echo Token::generate();?>" />
                                  <input type="submit" value="Update Quote" class=" form-control btn btn-primary"  name="submit"/>
                                 </div>
                              </div>

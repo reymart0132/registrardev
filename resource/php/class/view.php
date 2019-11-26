@@ -73,6 +73,7 @@ class view extends config{
             $rows =$data-> fetchAll(PDO::FETCH_OBJ);
             echo '<option value="" disabled selected>Course</option>';
                 foreach ($rows as $row) {
+<<<<<<< HEAD
                   $state = $row->state;
                   if ($state == "active") {
                     echo '<option value="'.$row->id.'">'.$row->course.'</option>';
@@ -81,6 +82,25 @@ class view extends config{
               }
             }
 
+=======
+                  echo '<option data-tokens=".'.$row->course.'." value="'.$row->id.'">'.$row->course.'</option>';
+                  echo 'success';
+                }
+        }
+        public function degreeCourseedit(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_course`";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            // echo '<option value="" disabled selected>Course</option>';
+                foreach ($rows as $row) {
+                  echo '<option data-tokens=".'.$row->course.'." value="'.$row->course.'">'.$row->course.'</option>';
+                  echo 'success';
+                }
+        }
+>>>>>>> master
         public function requestingForSP(){
             $config = new config;
             $con = $config->con();
@@ -124,7 +144,22 @@ class view extends config{
                   echo 'success';
                 }
         }
+<<<<<<< HEAD
 
+=======
+        public function reasonFAedit(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_purposes`";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+                foreach ($rows as $row) {
+                  echo '<option data-tokens=".'.$row->purposes.'." value="'.$row->purposes.'">'.$row->purposes.'</option>';
+                  echo 'success';
+                }
+        }
+>>>>>>> master
         public function collegeSP(){
             $config = new config;
             $con = $config->con();
@@ -140,7 +175,22 @@ class view extends config{
                   }
                 }
         }
+<<<<<<< HEAD
 
+=======
+        public function collegeedit(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `collegeschool`";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+                foreach ($rows as $row) {
+                  echo '<option data-tokens=".'.$row->college_school.'." value="'.$row->college_school.'">'.$row->college_school.'</option>';
+                  echo 'success';
+                }
+        }
+>>>>>>> master
         public function collegeSP2(){
             $config = new config;
             $con = $config->con();
@@ -267,7 +317,12 @@ class view extends config{
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+<<<<<<< HEAD
                  echo '<td class="text-center" style="color:white;"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+=======
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
+>>>>>>> master
                  echo '</tr>';
                }
              }
@@ -431,9 +486,14 @@ class view extends config{
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+<<<<<<< HEAD
                 echo '</tr>';
               }
 
+=======
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
+              echo '</tr>';
+>>>>>>> master
             }
             echo '</table>';
 
@@ -520,6 +580,7 @@ class view extends config{
           $data2 ->execute();
           $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
 
+<<<<<<< HEAD
           echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
           echo '<thead class="thead" style="background-color:#DC65A1;">';
           echo '
@@ -584,6 +645,39 @@ class view extends config{
                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
                echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+=======
+                  echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+                     echo '<thead class="thead" style="background-color:#DC65A1;">';
+                     echo '
+                     <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Status</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Date Graduated</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
+                     <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
+                     ';
+                     echo '</head>';
+                     foreach ($rows2 as $row) {
+                       echo '<tr style="background-color:white;">';
+                         // echo '<td class="text-center">'.$row ->id.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                         echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+                echo '<td class="text-center"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=verifiedall">Edit</a></br></td>';
+>>>>>>> master
                  echo '</tr>';
              }else {
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
