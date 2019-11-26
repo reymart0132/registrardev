@@ -20,6 +20,18 @@ class verified extends config{
       $data2->execute();
 
   }
+
+  public function verifyAdmin(){
+      $config = new config;
+      $con = $config->con();
+      $sql = "UPDATE `work` SET `remarks`='VERIFIED'WHERE `id` = $this->printed";
+      $data = $con-> prepare($sql);
+      $data ->execute();
+      $sql2 = "UPDATE `applications` SET`datesigned`='$this->date' WHERE `id` = $this->printed";
+      $data2 = $con-> prepare($sql2);
+      $data2->execute();
+
+  }
 }
 
 ?>

@@ -22,7 +22,9 @@ $checkadmin->checkadmin();
             <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
               alt="mdb logo"><h3 class="ib">
           </a>
-             <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
+          <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+          <a href="nTransactionAdmin.php"><i class="fas fa-file-upload ceucolor"></i></a>
+          <a href="view_pending_requests.php"><i class="fas fa-home ceucolor"></i></a>
              <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
              <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
              <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
@@ -44,11 +46,12 @@ $checkadmin->checkadmin();
                          </div>
                      </div>
                  </div>
-                 <a class="btn btn-light btn-block my-4"value="Update Quote" href="AdminSra.php" style="color:white;background-color :pink; ">Update SRA Quote</a>
-                 <a class="btn btn-light btn-block my-4"value="Update Quote" href="add-requesting-waris.php" style="color:white;background-color :pink; ">Requesting</a>
-                 <a class="btn btn-light btn-block my-4"value="Update Quote" href="add-new-college-chua.php" style="color:white;background-color :pink; ">Add College</a>
-                 <a class="btn btn-light btn-block my-4"value="Update Quote" href="Reqpurposes.php" style="color:white;background-color :pink; ">Add or Delete Purpose for Request</a>
-                 <a class="btn btn-light btn-block my-4"value="Update Quote" href="course.php" style="color:white;background-color :pink; ">Add or Delete Courses</a>
+                 <a class="btn btn-light btn-block my-4"value="" href="AdminSra.php" style="color:white;background-color :#DC65A1; ">Update SRA Quote</a>
+                 <a class="btn btn-light btn-block my-4"value="" href="add-requesting-waris.php" style="color:white;background-color :#DC65A1; ">Requesting</a>
+                 <a class="btn btn-light btn-block my-4"value="" href="add-new-college-chua.php" style="color:white;background-color :#DC65A1; ">Add College</a>
+                 <a class="btn btn-light btn-block my-4"value="" href="Reqpurposes.php" style="color:white;background-color :#DC65A1; ">Add or Delete Purpose for Request</a>
+                 <a class="btn btn-light btn-block my-4"value="" href="course.php" style="color:white;background-color :#DC65A1; ">Add or Delete Courses</a>
+                      <a class="btn btn-light btn-block my-4"value="" href="state.php" style="color:white;background-color :#DC65A1; ">States</a>
 
                  <!-- <input type =hidden name="token" value="">
                  <input  type="submit"  href="AdminSra.php"  class="btn btn-dark btn-block my-4"value="Update Quote" />

@@ -14,7 +14,7 @@ public function addcourse(){
     $config = new config;
     $con = $config->con();
     $course = $this->course;
-    $sql = "INSERT INTO `tbl_course`(`course`) VALUES ('$course')";
+    $sql = "INSERT INTO `tbl_course`(`course`,`state`) VALUES ('$course','active')";
     $data = $con-> prepare($sql);
     $data ->execute();
 }

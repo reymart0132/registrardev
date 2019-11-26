@@ -14,10 +14,10 @@ public function addrequest(){
     $config = new config;
     $con = $config->con();
     $request = $this->request;
-    $sql = "INSERT INTO `tbl_applied_for`(`appliedfor`) VALUES ('$request')";
+    $sql = "INSERT INTO `tbl_applied_for`(`appliedfor`,`state`) VALUES ('$request','active')";
     $data = $con-> prepare($sql);
     $data ->execute();
-    header('Location: nTransaction.php');
+    header('Location: add-requesting-waris.php');
     // var_dump($data);
     die();
 }

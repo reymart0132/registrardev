@@ -14,7 +14,7 @@ public function addpurpose(){
     $config = new config;
     $con = $config->con();
     $purposes = $this->purposes;
-    $sql = "INSERT INTO `tbl_purposes`(`purposes`) VALUES ('$purposes')";
+    $sql = "INSERT INTO `tbl_purposes`(`purposes`,`state`) VALUES ('$purposes','active')";
     $data = $con-> prepare($sql);
     $data ->execute();
     var_dump($purposes);

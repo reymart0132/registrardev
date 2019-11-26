@@ -1,9 +1,9 @@
 <?php
 require_once 'config.php';
 class transaction{
-    public $studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests,$dd,$da,$assignee;
+    public $studentN,$ygle,$Lastname,$Firstname,$Middlename,$Course,$ContactNumber,$Status,$College,$Purpose,$requests,$dd,$da,$assignee,$formtype;
 
-    function __construct($studentN=null,$ygle=null,$Lastname=null,$Firstname=null,$Middlename=null,$Course=null,$ContactNumber=null,$Status=null,$College=null,$Purpose=null,$requests=null,$da=null, $dd=null,$assignee=null) {
+    function __construct($studentN=null,$ygle=null,$Lastname=null,$Firstname=null,$Middlename=null,$Course=null,$ContactNumber=null,$Status=null,$College=null,$Purpose=null,$requests=null,$da=null, $dd=null,$assignee=null,$formtype=null) {
 
         $this->studentN=$studentN;
         $this->ygle=$ygle;
@@ -19,8 +19,7 @@ class transaction{
         $this->dd=$dd;
         $this->da=$da;
         $this->assignee=$assignee;
-
-
+        $this->formtype=$formtype;
     }
 
     public function insertTransaction(){
@@ -40,7 +39,7 @@ class transaction{
         $Course = $this->findCourse();
         $College = $this->findCollege();
         $id =$this->findID();
-        $sql1 = "INSERT INTO `work`(`id`,`StudentNo`,`LastName`,`FirstName`,`MI`,`Course`,`contact_no`,`Status`,`Applied_For`,`purposes`,`College`,`Date_App`,`Due_date`,`Date_Grad`,`assignee`)VALUES($id,'$this->studentN','$this->Lastname','$this->Firstname','$this->Middlename','$Course','$this->ContactNumber','$this->Status','$this->requests','$purpose','$College','$this->da','$this->dd','$this->ygle','$this->assignee')";
+        $sql1 = "INSERT INTO `work`(`id`,`StudentNo`,`LastName`,`FirstName`,`MI`,`Course`,`contact_no`,`Status`,`Applied_For`,`purposes`,`College`,`Date_App`,`Due_date`,`Date_Grad`,`assignee`,`formtype`)VALUES($id,'$this->studentN','$this->Lastname','$this->Firstname','$this->Middlename','$Course','$this->ContactNumber','$this->Status','$this->requests','$purpose','$College','$this->da','$this->dd','$this->ygle','$this->assignee','$this->formtype')";
         $data1 = $con-> prepare($sql1);
         $data1 ->execute();
         echo "success";

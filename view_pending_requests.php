@@ -9,7 +9,7 @@ $user = new user();
 isLogin();
 if(isset($_GET['printed'])){
   $print = new printed($_GET['printed'],$_GET['id']);
-  $print->print();
+  $print->printAdmin();
 }
 if(isset($_GET['released'])){
   $release = new released($_GET['released'],$_GET['id']);
@@ -17,7 +17,7 @@ if(isset($_GET['released'])){
 }
 if(isset($_GET['verified'])){
   $print = new verified($_GET['verified'],$_GET['id']);
-  $print->verify();
+  $print->verifyAdmin();
 }
  ?>
  <!DOCTYPE html>
@@ -42,8 +42,8 @@ if(isset($_GET['verified'])){
          <h3 class="ib">
      </a>
         <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
-        <a href="ntransaction.php"><i class="fas fa-file-upload ceucolor"></i></a>
-        <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
+        <a href="nTransactionAdmin.php"><i class="fas fa-file-upload ceucolor"></i></a>
+        <a href="view_pending_requests.php"><i class="fas fa-home ceucolor"></i></a>
         <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
         <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
         <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
