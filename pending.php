@@ -219,6 +219,7 @@ if(isset($_GET['verified'])){
      <script src="vendor/js/popper.js"></script>
      <script src="vendor/js/bootstrap.min.js"></script>
      <script src="vendor/js/bootstrap-select.min.js"></script>
+     <script src="resource/js/date.js"></script>
      <script>
      $(document).ready(function() {
       if (location.hash) {

@@ -9,7 +9,7 @@ $("#EndDate").change(function () {
       document.getElementById("EndDate").value = "";
   }
 });
-// 
+//
 $("#StartReleased, #EndReleased").datepicker({ dateFormat: "dd-mm-yy" }).val();
 
 $("#EndReleased").change(function () {

@@ -14,7 +14,7 @@ public function addcollege(){
     $config = new config;
     $con = $config->con();
     $college = $this->college;
-    $sql = "INSERT INTO `collegeschool`(`college_school`) VALUES ('$college')";
+    $sql = "INSERT INTO `collegeschool` (`college_school`,`state`) VALUES ('$college','active')";
     $data = $con-> prepare($sql);
     $data ->execute();
 
