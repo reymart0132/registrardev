@@ -1,6 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new view;
+$checkuser = new checkgroup;
+$checkuser->checkuser();
 $user = new user();
 isLogin();
 if(isset($_GET['printed'])){
@@ -60,8 +62,8 @@ if(isset($_GET['verified'])){
            </div>
            <div class="col-8">
                <p class="name mt-2" style="color: #dc65a1;"><b><?php $view->getNameSRA()?></b></p>
-               <div class="speech-bubble css-typing typewriter">
-                   <p><?php $view->getquote()?></p>
+               <div class="speech-bubble">
+                   <p style="max-height:11vh;"><?php $view->getquote() ?></p>
                </div>
            </div>
         </div>
