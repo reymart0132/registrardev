@@ -77,6 +77,19 @@ class view extends config{
                   echo 'success';
                 }
         }
+        public function degreeCourseedit(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_course`";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            // echo '<option value="" disabled selected>Course</option>';
+                foreach ($rows as $row) {
+                  echo '<option data-tokens=".'.$row->course.'." value="'.$row->course.'">'.$row->course.'</option>';
+                  echo 'success';
+                }
+        }
         public function requestingForSP(){
             $config = new config;
             $con = $config->con();
@@ -101,6 +114,18 @@ class view extends config{
                   echo 'success';
                 }
         }
+        public function reasonFAedit(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `tbl_purposes`";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+                foreach ($rows as $row) {
+                  echo '<option data-tokens=".'.$row->purposes.'." value="'.$row->purposes.'">'.$row->purposes.'</option>';
+                  echo 'success';
+                }
+        }
         public function collegeSP(){
             $config = new config;
             $con = $config->con();
@@ -110,6 +135,18 @@ class view extends config{
             $rows =$data-> fetchAll(PDO::FETCH_OBJ);
                 foreach ($rows as $row) {
                   echo '<option data-tokens=".'.$row->college_school.'." value="'.$row->id.'">'.$row->college_school.'</option>';
+                  echo 'success';
+                }
+        }
+        public function collegeedit(){
+            $config = new config;
+            $con = $config->con();
+            $sql = "SELECT * FROM `collegeschool`";
+            $data = $con-> prepare($sql);
+            $data ->execute();
+            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+                foreach ($rows as $row) {
+                  echo '<option data-tokens=".'.$row->college_school.'." value="'.$row->college_school.'">'.$row->college_school.'</option>';
                   echo 'success';
                 }
         }
@@ -192,6 +229,7 @@ class view extends config{
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
                echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
                  echo '</tr>';
              }
              echo '</table>';
@@ -307,6 +345,7 @@ class view extends config{
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
               echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
               echo '</tr>';
             }
             echo '</table>';
@@ -424,6 +463,7 @@ class view extends config{
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                          echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
                echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+                echo '<td class="text-center"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=verifiedall">Edit</a></br></td>';
                  echo '</tr>';
              }
              echo '</table>';
