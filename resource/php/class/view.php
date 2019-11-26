@@ -926,14 +926,7 @@ class view extends config{
                 $data = $con-> prepare($sql);
                 $data ->execute();
                 $products =$data-> fetchAll(PDO::FETCH_OBJ);
-                foreach ($products as $product) {
-                    $printeddate = $product->printeddate;
-                    if (IS_NULL($printeddate)) {
-                        $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id' AND(`Date_App` >= '$cfd' AND  `printeddate` IS NULL) UNION SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id' AND (`Date_App` >= '$cfd' AND `printeddate` > '$cld')";
-                      }else {
-
-                      }
-                    }
+                $sql = "SELECT * FROM `work` WHERE `assignee` = '$id' AND `printeddate` > '$cld' UNION SELECT * FROM `work` WHERE `assignee` = '$id' AND `printeddate` IS NULL AND `Date_App` <= '$cld'";
                   }else{
                     $sql = "SELECT * FROM `work` WHERE  `assignee` = '$id'";
                     $data = $con-> prepare($sql);

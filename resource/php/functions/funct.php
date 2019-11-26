@@ -247,6 +247,7 @@ function changeP(){
             )));
 
             if($validate->passed()){
+                $user = new User();
                 if(Hash::make(input::get('password_current'),$user->data()->salt) !== $user->data()->password){
                     curpassError();
                 }else{
