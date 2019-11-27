@@ -111,6 +111,7 @@ class SearchAdmin extends config{
           echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
           echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
           echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+            echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn  btn-light  btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
             echo '</tr>';
 
         }else if ($due2 < time()+$date_diff && $type == "special") {
@@ -125,6 +126,7 @@ class SearchAdmin extends config{
           echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
           echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
           echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+                    echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn  btn-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
             echo '</tr>';
        }else if($type == "special"){
          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
@@ -138,6 +140,7 @@ class SearchAdmin extends config{
          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
          echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+             echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
            echo '</tr>';
        }else {
         echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
@@ -151,6 +154,7 @@ class SearchAdmin extends config{
         echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
         echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
           echo '<td class="text-center" style="color:white;"><a class="btn bg-light btn-outline-success" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+            echo '<td class="text-center" style="color:#DC65A1;"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
           echo '</tr>';
         }
       }
@@ -322,6 +326,8 @@ class SearchAdmin extends config{
             echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
             echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
             echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn btn-light btn-outline-success" href="view_pending_requests.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+            echo '<td class="text-center" style="color:#DC65A1;"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
+
               echo '</tr>';
 
           }else if ($due2 < time()+$date_diff && $type == "special") {
@@ -336,6 +342,8 @@ class SearchAdmin extends config{
             echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
             echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
             echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="view_pending_requests.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+            echo '<td class="text-center" style="color:#DC65A1;"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
+
               echo '</tr>';
          }else if($type == "special"){
            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
@@ -349,6 +357,8 @@ class SearchAdmin extends config{
            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
            echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="view_pending_requests.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+           echo '<td class="text-center" style="color:#DC65A1;"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
+
              echo '</tr>';
          }else {
           echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
@@ -362,6 +372,8 @@ class SearchAdmin extends config{
           echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
           echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
           echo '<td class="text-center"><a class="btn btn-outline-success" href="view_pending_requests.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+          echo '<td class="text-center" style="color:#DC65A1;"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
+
             echo '</tr>';
           }
 
