@@ -249,8 +249,7 @@ class view extends config{
            <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
-           <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
-            <th class="text-center" style= "font-weight:bold; color:white;"></td>
+           <th class="text-center" style= "font-weight:bold; color:white;" colspan="2">Actions</td>
            ';
            echo '</thead>';
 
@@ -424,8 +423,7 @@ class view extends config{
           <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
           <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
           <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
-          <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
-          <th class="text-center" style= "font-weight:bold; color:white;"></td>
+          <th class="text-center" style= "font-weight:bold; color:white;"colspan="2">Actions</td>
           ';
           echo '</thead>';
 
