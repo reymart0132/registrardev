@@ -1209,7 +1209,8 @@ class view extends config{
                 $cld=date('Y-m-t', strtotime($date));
                 $cld = $_GET['cld'];
                 $cfd = $_GET['cfd'];
-                  $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = $id AND (`released_date` BETWEEN $cfd AND $cld)";
+                        // SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = $id AND (`released_date` BETWEEN $cfd AND $cld)";
+                  $sql = "SELECT * FROM `work` WHERE `releasedby` = '$id' AND (`released_date` <= '$cld' AND `released_date` >= '$cfd')";
                   }else{
                     $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = '$id' AND `released_date` = CURDATE()";
                   }

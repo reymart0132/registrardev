@@ -60,6 +60,7 @@ if(isset($_GET['verified'])){
               ?>
                <a href="updateprofile.php" class="out "><span class="fas fa-id-card mt-3 " href="#"></span>&nbsp;Update Info</a>
                <a href="configuration.php" class="out "><span class="fas fa-cogs" href="#"></span>&nbsp;Configuration</a>
+               <a href="register.php" class="out "><span class="fas fa-user" href="#"></span>&nbsp;Register New SRA</a>
                <a href="changepassword.php" class="out "><span class="fas fa-lock " href="#"></span>&nbsp;Change Password</a>
                <a href="logout.php" class="out "><span class="fas fa-sign-out-alt " href="#"></span>&nbsp;Logout</a>
            </div>
