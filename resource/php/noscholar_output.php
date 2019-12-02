@@ -36,7 +36,11 @@ $nsc ->display();
 
                </div>
                <div class="col-4">
-                 <p class="text-right py-4 my-2"> <span style="font-weight:bold;"> <?php echo $nsc->date; ?></span></p>
+                 <p class="text-right py-4 my-2"> <span style="font-weight:bold;"> <?php if(isset($nsc->date)){
+
+                   $output = date('F j, Y',strtotime($nsc->date));
+                   echo '<b>'.$output.'</b>';
+                 } ?></span></p>
                </div>
              </div>
              <div class="mt-4 row">
