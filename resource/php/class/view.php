@@ -214,6 +214,14 @@ class view extends config{
 
            $_SESSION['resultPending'] = $rows;
 
+           //
+           $sql3 = "SELECT * FROM `work`";
+           $data3 = $con-> prepare($sql3);
+           $data3 ->execute();
+           $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+           $_SESSION['allCSV'] = $rowsAll;
+           //
+
            $limit = 10;
 
            if (!isset($_GET['Ppage'])) {
@@ -377,6 +385,7 @@ class view extends config{
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
                     <input type="submit" class="btn text-white" name="submitPending" value="Submit" style="background-color:#DC65A1;">
+                    <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                   </div>
                 </div>
               </form>
@@ -409,6 +418,12 @@ class view extends config{
             $_GET['V2page'] = 1;
             $_GET['Rpage'] = 1;
           }
+
+          $sql3 = "SELECT * FROM `work`";
+          $data3 = $con-> prepare($sql3);
+          $data3 ->execute();
+          $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+          $_SESSION['allCSV'] = $rowsAll;
 
           $start = ($page-1)*$limit;
 
@@ -477,7 +492,6 @@ class view extends config{
                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
                   echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
                   echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn  btn-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
-
                     echo '</tr>';
                }else if($type == "special"){
                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
@@ -558,6 +572,7 @@ class view extends config{
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
                     <input type="submit" class="btn text-white" name="submitPrinted" value="Submit" style="background-color:#DC65A1;">
+                    <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                   </div>
                 </div>
               </form>
@@ -757,6 +772,12 @@ class view extends config{
 
           $start = ($page-1)*$limit;
 
+          $sql3 = "SELECT * FROM `work`";
+          $data3 = $con->prepare($sql3);
+          $data3 ->execute();
+          $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+          $_SESSION['allCSV'] = $rowsAll;
+
           $total_results = $data->rowCount();
           $total_pages = ceil($total_results/$limit);
 
@@ -850,10 +871,10 @@ class view extends config{
               }
               echo '</table>';
               echo '<a class= "btn btn-success mb-2 float-right"href="export.php?exportVerified">Create Excel File</a>';
-          }else {
+              }else {
               echo '</table>';
               echo '<center>No Requests</center>';
-          }
+              }
 
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
@@ -894,6 +915,7 @@ class view extends config{
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
                     <input type="submit" class="btn text-white" name="submitVerified" value="Submit" style="background-color:#DC65A1;">
+                    <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                   </div>
                 </div>
               </form>
@@ -920,6 +942,13 @@ class view extends config{
           $page = $_GET['Rpage'];
           }
 
+          //
+          $sql3 = "SELECT * FROM `work`";
+          $data3 = $con-> prepare($sql3);
+          $data3 ->execute();
+          $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+          $_SESSION['allCSV'] = $rowsAll;
+          //
           if(isset($_GET['Rpage']) > 1){
             $_GET['Ppage'] = 1;
             $_GET['PRpage'] = 1;
@@ -1034,6 +1063,7 @@ class view extends config{
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
                     <input type="submit" class="btn text-white" name="submitReleased" value="Submit" style="background-color:#DC65A1;">
+                    <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                   </div>
                 </div>
               </form>
@@ -1067,6 +1097,9 @@ class view extends config{
         }
 
         public function getSName($number){
+            if($number == NULL){
+              return "";
+            }else{
             $config = new config;
             $con = $config->con();
             $sql = "SELECT * FROM `tbl_accounts` WHERE `id` = '$number'";
@@ -1074,7 +1107,9 @@ class view extends config{
             $data ->execute();
             $rows =$data-> fetchAll(PDO::FETCH_OBJ);
             return $rows[0]->name;
+          }
         }
+
         public function getNameSRA(){
             $user = new user();
             echo $user->data()->name;

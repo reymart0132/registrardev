@@ -14,6 +14,9 @@ class viewAdmin extends config{
         // var_dump($rows);
 
      // paginationqueryhere
+
+     $_SESSION['allCSV'] = $rows;
+     
      $limit = 10;
 
      if (!isset($_GET['Ppage'])) {
