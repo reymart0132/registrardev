@@ -34,49 +34,29 @@ $view = new view;
         <div class="container mt-4 puff-in-center mb-5">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="text-center">New Transaction</h1>
+                    <h1 class="text-center">New User Verification</h1>
                 </div>
                 <?php if (!empty($_GET)) {
                     CheckSuccess($_GET['status']);
                 }?>
             </div>
-            <form action="/registrardev/resource/php/registerTransaction.php" method="POST">
+            <form action="/registrardev/resource/php/registerVerification.php" method="POST">
             <div class="row mb-5">
-                <table class="table ">
+                <table class="table">
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="form-group col-5">
-                                      <label for="studentN">Student Number(Optional)</label>
-                                      <input type="text" class="form-control" id="studentN" onkeypress="return isNumber(event)" value="" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student Number" maxlength="10" >
-                                    </div>
                                     <div class="form-group col-5">
                                       <label for="studentN">Year Graduated or Last Enrolled</label>
                                       <input type="number" min="1900" max="2099" step="1" value="2019" class="form-control" id="studentN" name="ygle" aria-describedby="emailHelp" placeholder="Enter  Year Graduated or Last Enrolled" required>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="form-group col-4">
-                                      <label for="Lastname">Lastname</label>
-                                      <input type="text" class="form-control" id="Lastname" oninput="this.value = this.value.toUpperCase()"  name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname" maxlength="49" required>
-                                    </div>
-                                    <div class="form-group col-4">
-                                      <label for="Firstname">Firstname</label>
-                                      <input type="text" class="form-control" id="Firstname" oninput="this.value = this.value.toUpperCase()"  name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname" maxlength="49" required>
-                                    </div>
-                                    <div class="form-group col-4">
-                                      <label for="Middlename">Middlename</label>
-                                      <input type="text" class="form-control" id="Middlename" oninput="this.value = this.value.toUpperCase()"  name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" maxlength="30">
+                                    <div class="form-group col-7">
+                                      <label for="FullName">FullName</label>
+                                      <input type="text" class="form-control" id="Lastname" oninput="this.value = this.value.toUpperCase()"  name="FullName" aria-describedby="emailHelp" placeholder="Enter Lastname" maxlength="49" required>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-
-
                         <tr>
                             <td>
                                 <div class="row">
@@ -87,8 +67,10 @@ $view = new view;
                                           </select>
                                     </div>
                                     <div class="form-group col-4">
-                                      <label for="ContactNumber">Contact Number</label>
-                                      <input type="text" class="form-control" id="txtChar" name="ContactNumber" onkeydown="return isNumberKey(event)" aria-describedby="emailHelp" placeholder="Enter Contact Number" maxlength="11" required>
+                                      <label for="College" >College</label>
+                                          <select id="College" name="College" class="selectpicker form-control" data-live-search="true">
+                                            <?php $view->collegeSP();?>
+                                          </select>
                                     </div>
                                     <div class="form-group col-4">
                                         <label for="ContactNumber">Status</label>
@@ -109,48 +91,14 @@ $view = new view;
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="form-group col-4">
-                                      <label for="College" >College</label>
-                                          <select id="College" name="College" class="selectpicker form-control" data-live-search="true">
-                                            <?php $view->collegeSP();?>
-                                          </select>
-                                    </div>
-                                    <div class="form-group col-4">
-                                      <label for="request" >Requesting for:</label>
-                                          <select id="request" name="request[]" class="selectpicker form-control" data-live-search="true" multiple required>
-                                            <?php $view->requestingForSP();?>
-                                          </select>
-                                    </div>
-                                    <div class="form-group col-4">
-                                      <label for="Purpose" >Reason for Requesting</label>
-                                          <select id="Purpose" name="Purpose" class="selectpicker form-control" data-live-search="true" >
-                                            <?php $view->reasonFA();?>
-                                          </select>
-                                    </div>
-                                    <div class="form-group col-4">
-                                      <label for="formtype" >Special Form</label>
-                                          <select id="formtype" name="formtype" class="form-control" data-live-search="true" >
-                                            <?php $view->formtype();?>
-                                          </select>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="row justify-content-center mb-5">
-                                    <div class="form-group col-5">
-                                        <label  >&nbsp;</label>
-                                     <input type="submit" value="Submit Request" class=" form-control btn btn-primary" />
-                                    </div>
                                     <div class="form-group col-7">
-                                        <label  >&nbsp;</label>
-                                        <small id="emailHelp" class="form-text text-muted">In compliance to<b> DATA PRIVACY ACT of 2012 (<em>R.A. No. 10173, Ch. 1 Sec 2)</em></b>.
-                                            <p>If Client cannot come personally, the following are the requirements of Authorized Person:</p>
-                                            <p class="mb-0">1. Authorization Letter</p>
-                                            <p class="mb-0">2. ID of the Applicant and Authorized person with specimen signature(Xerox Copy)</p>
-                                        </small>
-                                    </div>
+                                      <label for="Email" >Email of Company</label>
+                                      <input type="text" class="form-control" id="Email"  name="Email" aria-describedby="emailHelp" placeholder="Enter Email" maxlength="99" required>
+                                  </div>
+                                  <div class="form-group col-5">
+                                      <label  >&nbsp;</label>
+                                   <input type="submit" value="Submit Student Verification Request" class=" form-control btn btn-primary" />
+                                  </div>
                                 </div>
                             </td>
                         </tr>
