@@ -32,6 +32,12 @@ class Search extends config{
       $sql .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%'";
     }
 
+    $sql3 = "SELECT * FROM `work`";
+    $data3 = $con-> prepare($sql3);
+    $data3 ->execute();
+    $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+    $_SESSION['allCSV'] = $rowsAll;
+
     $data = $con->prepare($sql);
     $data ->execute();
     $rows=$data-> fetchAll(PDO::FETCH_ASSOC);
@@ -221,6 +227,7 @@ class Search extends config{
          <div class="col-sm mt-4 pt-2">
            <label for="submit"></label>
            <input type="submit" class="btn text-white" name="submitPending" value="Submit" style="background-color:#DC65A1;">
+           <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
          </div>
        </div>
      </form>
@@ -260,6 +267,12 @@ class Search extends config{
       $data = $con->prepare($sql);
       $data ->execute();
       $rows=$data-> fetchAll(PDO::FETCH_ASSOC);
+
+      $sql3 = "SELECT * FROM `work`";
+      $data3 = $con-> prepare($sql3);
+      $data3 ->execute();
+      $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+      $_SESSION['allCSV'] = $rowsAll;
 
       $_SESSION['resultPrintedSearch'] = $rows;
 
@@ -448,6 +461,7 @@ class Search extends config{
            <div class="col-sm mt-4 pt-2">
              <label for="submit"></label>
              <input type="submit" class="btn text-white" name="submitPrinted" value="Submit" style="background-color:#DC65A1;">
+             <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
            </div>
          </div>
        </form>
@@ -489,6 +503,12 @@ class Search extends config{
         $rows=$data-> fetchAll(PDO::FETCH_ASSOC);
 
         $_SESSION['resultVerifiedSearch'] = $rows;
+
+        $sql3 = "SELECT * FROM `work`";
+        $data3 = $con-> prepare($sql3);
+        $data3 ->execute();
+        $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['allCSV'] = $rowsAll;
 
         $limit = 10;
 
@@ -670,6 +690,7 @@ class Search extends config{
              <div class="col-sm mt-4 pt-2">
                <label for="submit"></label>
                <input type="submit" class="btn text-white" name="submitVerified" value="Submit" style="background-color:#DC65A1;">
+               <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
              </div>
            </div>
          </form>
@@ -923,6 +944,13 @@ class Search extends config{
 
             $_SESSION['resultReleasedSearch'] = $rows;
 
+
+            $sql3 = "SELECT * FROM `work`";
+            $data3 = $con-> prepare($sql3);
+            $data3 ->execute();
+            $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+            $_SESSION['allCSV'] = $rowsAll;
+
             $limit = 10;
 
             if (!isset($_GET['Rpage'])) {
@@ -1075,6 +1103,7 @@ class Search extends config{
                  <div class="col-sm mt-4 pt-2">
                    <label for="submit"></label>
                    <input type="submit" class="btn text-white" name="submitReleased" value="Submit" style="background-color:#DC65A1;">
+                   <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                  </div>
                </div>
              </form>
