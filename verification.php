@@ -5,14 +5,6 @@ $checkuser = new checkgroup;
 $checkuser->checkuser();
 $user = new user();
 isLogin();
-if(isset($_GET['printed'])){
-  $print = new printed($_GET['printed'],$_GET['id']);
-  $print->print();
-}
-if(isset($_GET['released'])){
-  $release = new released($_GET['released'],$_GET['id']);
-  $release->release();
-}
 if(isset($_GET['verified'])){
   $print = new verified($_GET['verified'],$_GET['id']);
   $print->verify();
@@ -82,7 +74,7 @@ if(isset($_GET['verified'])){
                    <div class="card-block">
                      <div class="cbody" style="height: 60px; width:120px;">
                        <h4 class="counter ml-5 "><b><?php echo $view->ctodolist();?></b></h4>
-                       <p class="text-center cbodytext"><b>Pending</b></p>
+                       <p class="text-center cbodytext"><b>Pending Transaction</b></p>
                      </div>
                    </div>
                </div>
@@ -150,7 +142,9 @@ if(isset($_GET['verified'])){
                 </div>
               </div>
           </div>
+
       </div>
+
     </div>
    </div>
  </div>
@@ -159,19 +153,10 @@ if(isset($_GET['verified'])){
    <div class="container-fluid mt-4 mb-5">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item ">
-          <a class="nav-link <?php if(empty($_GET['tab'])){echo "active";}elseif($_GET['tab']=="view"){echo "active";}?>" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending</a>
+          <a class="nav-link <?php if(empty($_GET['tab'])){echo "active";}elseif($_GET['tab']=="view"){echo "active";}?>" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending Student Verification</a>
         </li>
         <li class="nav-item  ">
-          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="printed"){echo "active";}} ?>" id="profile-tab" data-toggle="tab" href="#printed" role="tab" aria-controls="profile" aria-selected="false">For Signature</a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease2"){echo "active";}} ?>" id="contact-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="contact" aria-selected="false">For Release </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "active";}} ?>" id="contact-tab" data-toggle="tab" href="#verifiedall" role="tab" aria-controls="contact2" aria-selected="false">For Release (ALL)</a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="released"){echo "show active";}} ?>" id="contact-tab" data-toggle="tab" href="#released" role="tab" aria-controls="contact3" aria-selected="false">Released</a>
+          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="verified"){echo "active";}} ?>" id="profile-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="profile" aria-selected="false">Verified Students</a>
         </li>
       </ul>
     <div class="tab-content" id="myTabContent">
@@ -179,47 +164,20 @@ if(isset($_GET['verified'])){
         <?php
         if(isset($_GET['submitPending'])){
           $searchQ = new Search;
-          $searchQ->searchPending();
+          $searchQ->searchPendingV();
         }else{
-          $view->viewtodolist();
+          $view->viewPendingVer();
         }?>
       </div>
-      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="printed"){echo "show active";}} ?>" id="printed" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="verified"){echo "show active";}} ?>" id="verified" role="tabpanel" aria-labelledby="profile-tab">
         <?php
         if(isset($_GET['submitPrinted'])){
           $searchQ = new Search;
           $searchQ->searchPrinted();
         }else{
-          $view->viewprinted();
+          $view->viewVerifiedVer();
         }?>
       </div>
-      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease2"){echo "show active";}} ?>" id="verified" role="tabpanel" aria-labelledby="contact-tab"><?php
-      if(isset($_GET['submitVerified'])){
-        $searchQ = new Search;
-        $searchQ->searchVerified();
-      }else{
-        $view ->viewverified();
-      }
-    ?></div>
-      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "show active";}} ?>" id="verifiedall" role="tabpanel" aria-labelledby="contact2-tab">
-        <?php
-        if(isset($_GET['submitVerifiedAll'])){
-          $searchQ = new Search;
-          $searchQ->searchVerifiedAll();
-        }else{
-          $view ->viewverified2();
-        }
-        ?>
-      </div>
-      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="released"){echo "show active";}} ?>" id="released" role="tabpanel" aria-labelledby="contact3-tab"><?php
-      if(isset($_GET['submitReleased'])){
-        $searchQ = new Search;
-        $searchQ->searchReleased();
-      }else{
-        $view ->viewreleased();
-      }
-       ?>
-     </div>
     </div>
   </div>
  </body>
