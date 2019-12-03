@@ -7,7 +7,7 @@ $user = new user();
 isLogin();
 if(isset($_GET['verified'])){
   $print = new verified($_GET['verified'],$_GET['id']);
-  $print->verify();
+  $print->verifyUser();
 }
  ?>
  <!DOCTYPE html>
@@ -162,7 +162,7 @@ if(isset($_GET['verified'])){
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade <?php if(empty($_GET['tab'])){ echo "show active"; }elseif($_GET['tab']=="view"){ echo "show active";}?>" id="pending" role="tabpanel" aria-labelledby="home-tab">
         <?php
-        if(isset($_GET['submitPending'])){
+        if(isset($_GET['submitPendingV'])){
           $searchQ = new Search;
           $searchQ->searchPendingV();
         }else{

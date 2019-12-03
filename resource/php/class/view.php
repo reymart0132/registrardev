@@ -389,8 +389,9 @@ class view extends config{
                 </div>
               </form>
           </div>';
-
         }
+
+
         public function viewPendingVer(){
           $config = new config;
           $con = $config->con();
@@ -400,22 +401,22 @@ class view extends config{
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);
-              // var_dump($rows);
 
-           // paginationqueryhere
+          $_SESSION['pendingVer'] = $rows;
+
+
+          $sql3 = "SELECT * FROM `tbl_verification`";
+          $data3 = $con-> prepare($sql3);
+          $data3 ->execute();
+          $rowsAll =$data3-> fetchAll(PDO::FETCH_OBJ);
+          $_SESSION['VerallCSV'] = $rowsAll;
+
            $limit = 10;
 
-           if (!isset($_GET['Ppage'])) {
+           if (!isset($_GET['Verpage'])) {
                  $page = 1;
              } else{
-                 $page = $_GET['Ppage'];
-           }
-
-           if(isset($_GET['Ppage']) > 1){
-             $_GET['V1page'] = 1;
-             $_GET['PRpage'] = 1;
-             $_GET['V2page'] = 1;
-             $_GET['Rpage'] = 1;
+                 $page = $_GET['Verpage'];
            }
 
            $start = ($page-1)*$limit;
@@ -427,8 +428,9 @@ class view extends config{
            $data2 = $con-> prepare($sql2);
            $data2 ->execute();
            $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
+           $count=$data2->rowCount();
 
-           echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+           echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-2" style="width:100%;">';
            echo '<thead class="thead" style="background-color:#DC65A1;">';
            echo '
            <th class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
@@ -443,45 +445,49 @@ class view extends config{
            ';
            echo '</thead>';
 
-           foreach ($rows2 as $row) {
-             echo '<tr>';
-               // echo '<td class="text-center">'.$row ->id.'</td>';
-               $due= $row->duedate;
-               $due2 = strtotime($due);
-               $date_diff = 60*60*24*2;
+           if ($count>=1) {
+             foreach ($rows2 as $row) {
+               echo '<tr>';
+                 // echo '<td class="text-center">'.$row ->id.'</td>';
+                 $due= $row->duedate;
+                 $due2 = strtotime($due);
+                 $date_diff = 60*60*24*2;
 
-               if ($due2 < time()+$date_diff) {
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->fullname.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->college.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->course.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->status.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->dategrad.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->cemail.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->date_recieved.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->duedate.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Verify </a></br></td>';
-
-                   echo '</tr>';
-              }else {
-                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->fullname.'</td>';
-                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->college.'</td>';
-                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->course.'</td>';
-                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->status.'</td>';
-                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->dategrad.'</td>';
-                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->cemail.'</td>';
-                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->date_recieved.'</td>';
-                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->duedate.'</td>';
-               echo '<td class="text-center style="color:#DC65A1;" style="color:white;"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Verify</a></br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->id.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
-               echo '</tr>';
+                 if ($due2 < time()+$date_diff) {
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->fullname.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->college.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->course.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->status.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->dategrad.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->cemail.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->date_recieved.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->duedate.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="verification.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=view">Verify</a></br></td>';
+                     echo '</tr>';
+                }else {
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->fullname.'</td>';
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->college.'</td>';
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->course.'</td>';
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->status.'</td>';
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->dategrad.'</td>';
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->cemail.'</td>';
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->date_recieved.'</td>';
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->duedate.'</td>';
+                    echo '<td class="text-center style="color:#DC65A1;" style="color:white;"><a class="btn bg-light btn-outline-success" href="verification.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=view">Verify</a></br></td>';
+                    echo '</tr>';
+                 }
                }
-             }
+               echo '</table>';
+               echo '<a class= "btn btn-success mb-2 float-right"href="export.php?pendingV">Create Excel File</a>';
+           }else {
              echo '</table>';
+             echo '<center>No Results Found</center>';
+           }
 
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
               echo '<li id = "pagelink" class="page-item">';
-              echo  '<a class= "page-link" href="?tab=view&Ppage='.$p.'">'.$p;
+              echo  '<a class= "page-link" href="?tab=view&Verpage='.$p.'">'.$p;
               echo  '</a>';
               echo '</li>';
              }
@@ -502,10 +508,9 @@ class view extends config{
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
                     <select class="form-control" name="criteria">
-                     <option value="FirstName">First Name</option>
-                      <option value="LastName">Last Name</option>
-                      <option value="Course">Course</option>
-                      <option value="Status">Status</option>
+                      <option value="fullname">Name</option>
+                      <option value="course">Course</option>
+                      <option value="status">Status</option>
                     </select>
                   </div>
                   <div class="col-sm mt-2">
@@ -514,13 +519,14 @@ class view extends config{
                   </div>
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
-                    <input type="submit" class="btn text-white" name="submitPending" value="Submit" style="background-color:#DC65A1;">
+                    <input type="submit" class="btn text-white" name="submitPendingV" value="Submit" style="background-color:#DC65A1;">
+                    <a class= "btn btn-success"href="export.php?exportAllV">Export All</a>
                   </div>
                 </div>
               </form>
           </div>';
-
         }
+
         public function viewVerifiedVer(){
           $config = new config;
           $con = $config->con();
