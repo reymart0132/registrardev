@@ -3,11 +3,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
 
 isLogin();
 $view = new view;
+$edit = new edit;
 $user = new user();
 if (isset($_POST['submit'])) {
-  $edit = new edit;
   $edit->editQuote();
 }
+
 
 
  ?>
@@ -40,36 +41,14 @@ if (isset($_POST['submit'])) {
 
          <div class="container mt-5  pt-5 puff-in-center">
              <div class="row">
-                 <div class="col-12">
-                     <h1 class="text-center">Update the SRA's Quote</h1>
-                 </div>
-            </div>
-            <form action="" method="post">
-                <table class="table ">
-                    <tr>
-                        <td>
-                            <div class="row justify-content-center">
-                                <div class="form-group col-4">
-                                 <label for = "quote" class=""> Quote:</label>
-                                 <input class="form-control"  type = "text" name="quote" id="quote" value ="" autocomplete="off"  />
-                                </div>
-                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row justify-content-center">
-                                <div class="form-group col-5">
 
-                                <div class="form-group col-5">
-                                    <label  >&nbsp;</label>
-                                 <input type="submit" value="Update Quote" class=" form-control btn btn-primary"  name="submit"/>
-                                </div>
-                             </div>
-                        </td>
-                    </tr>
-                </table>
-             </form>
+            </div>
+            <form class="text-center border border-light p-5 mt-5 shadow puff-in-center" action="" method="post" >
+                 <h1 class="text-center">Update the SRA's Quote</h1>
+               <textarea  maxlength="60" class="form-control mt-5"  type = "text" name="quote" id="quote" value ="" autocomplete="off" placeholder="Enter Quote (Maximum of 60 Characters)"></textarea>
+
+              <input type="submit" value="Update Quote"  class="   mt-5 form-control btn "  name="submit"style="color:white;background-color :pink; "/>
+            </form>
 
          </div>
  </body>
