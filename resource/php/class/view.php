@@ -207,10 +207,21 @@ class view extends config{
           $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
           $data = $con-> prepare($sql);
           $data ->execute();
-          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+          $rows =$data-> fetchAll(PDO::FETCH_ASSOC);
               // var_dump($rows);
 
            // paginationqueryhere
+
+           $_SESSION['resultPending'] = $rows;
+
+           //
+           $sql3 = "SELECT * FROM `work`";
+           $data3 = $con-> prepare($sql3);
+           $data3 ->execute();
+           $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+           $_SESSION['allCSV'] = $rowsAll;
+           //
+
            $limit = 10;
 
            if (!isset($_GET['Ppage'])) {
@@ -236,7 +247,8 @@ class view extends config{
            $data2 ->execute();
            $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
 
-           echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+
+           echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-2" style="width:100%;">';
            echo '<thead class="thead" style="background-color:#DC65A1;">';
            echo '
            <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
@@ -253,81 +265,85 @@ class view extends config{
            ';
            echo '</thead>';
 
-           foreach ($rows2 as $row) {
-             echo '<tr>';
-               // echo '<td class="text-center">'.$row ->id.'</td>';
-               $type = $row->formtype;
-               $due= $row->Due_Date;
-               $due2 = strtotime($due);
-               $date_diff = 60*60*24*2;
+           $count = $data2->rowCount();
 
-               if ($due2 < time()+$date_diff) {
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->StudentNo.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Course.'</br></td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->contact_no.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Status.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Date_Grad.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Applied_For.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
-                 echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
-                 echo '<td class="text-center"  style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
+           if($count>=1) {
+             foreach ($rows2 as $row) {
+               echo '<tr>';
+                 // echo '<td class="text-center">'.$row ->id.'</td>';
+                 $type = $row->formtype;
+                 $due= $row->Due_Date;
+                 $due2 = strtotime($due);
+                 $date_diff = 60*60*24*2;
 
-                   echo '</tr>';
+                 if ($due2 < time()+$date_diff) {
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->StudentNo.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Course.'</br></td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->contact_no.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Status.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Date_Grad.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Applied_For.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
+                   echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+                   echo '<td class="text-center"  style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
 
-               }else if ($due2 < time()+$date_diff && $type == "special") {
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-                 echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
-                 echo '<td class="text-center"  style="color:white; background-color:#a68df9"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
+                     echo '</tr>';
 
-                   echo '</tr>';
-              }else if($type == "special"){
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
+                 }else if ($due2 < time()+$date_diff && $type == "special") {
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
+                   echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+                   echo '<td class="text-center"  style="color:white; background-color:#a68df9"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
 
-                  echo '</tr>';
-              }else {
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+                     echo '</tr>';
+                }else if($type == "special"){
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
 
+                    echo '</tr>';
+                }else {
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                 echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
                  echo '<td class="text-center style="color:#DC65A1;" style="color:white;"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
-
-
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
-
+                 echo '<td class="text-center"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
                  echo '</tr>';
+                 }
                }
-             }
+               echo '</table>';
+               echo '<a class= "btn btn-success mb-2 float-right"href="export.php?exportPending">Create Excel File</a>';
+           }else {
              echo '</table>';
+             echo "<center>No Requests</center>";
+           }
 
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
@@ -368,6 +384,7 @@ class view extends config{
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
                     <input type="submit" class="btn text-white" name="submitPending" value="Submit" style="background-color:#DC65A1;">
+                    <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                   </div>
                 </div>
               </form>
@@ -640,8 +657,9 @@ class view extends config{
           $sql = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = '$id1'";
           $data = $con-> prepare($sql);
           $data ->execute();
-          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+          $rows =$data-> fetchAll(PDO::FETCH_ASSOC);
 
+          $_SESSION['resultPrinted'] = $rows;
           $limit = 10;
 
           if (!isset($_GET['PRpage'])) {
@@ -657,6 +675,12 @@ class view extends config{
             $_GET['Rpage'] = 1;
           }
 
+          $sql3 = "SELECT * FROM `work`";
+          $data3 = $con-> prepare($sql3);
+          $data3 ->execute();
+          $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+          $_SESSION['allCSV'] = $rowsAll;
+
           $start = ($page-1)*$limit;
 
           $total_results = $data->rowCount();
@@ -667,7 +691,7 @@ class view extends config{
           $data2 ->execute();
           $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
 
-          echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+          echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-2" style="width:100%;">';
           echo '<thead class="thead" style="background-color:#DC65A1;">';
           echo '
           <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
@@ -684,82 +708,84 @@ class view extends config{
           ';
           echo '</thead>';
 
-          foreach ($rows2 as $row) {
-            echo '<tr>';
-              // echo '<td class="text-center">'.$row ->id.'</td>';
-              $type = $row->formtype;
-              $due= $row->Due_Date;
-              $due2 = strtotime($due);
-              $date_diff = 60*60*24*2;
+          $count = $data2->rowCount();
 
-              if ($due2 < time()+$date_diff) {
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->StudentNo.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Course.'</br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->contact_no.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Status.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Date_Grad.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Applied_For.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn btn-light btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn  btn-light  btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
+          if ($count>=1) {
+            foreach ($rows2 as $row) {
+              echo '<tr>';
+                // echo '<td class="text-center">'.$row ->id.'</td>';
+                $type = $row->formtype;
+                $due= $row->Due_Date;
+                $due2 = strtotime($due);
+                $date_diff = 60*60*24*2;
+                if ($due2 < time()+$date_diff) {
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->StudentNo.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Course.'</br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->contact_no.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Status.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Date_Grad.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Applied_For.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn btn-light btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn  btn-light  btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
 
+                    echo '</tr>';
+
+                }else if ($due2 < time()+$date_diff && $type == "special") {
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn  btn-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
+                    echo '</tr>';
+               }else if($type == "special"){
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
+
+                   echo '</tr>';
+               }else {
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+                echo '<td class="text-center" style="color:#DC65A1;"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
+                echo '<td class="text-center" style="color:#DC65A1;"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
                   echo '</tr>';
-
-              }else if ($due2 < time()+$date_diff && $type == "special") {
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn  btn-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
-
-                  echo '</tr>';
-             }else if($type == "special"){
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
-
-                 echo '</tr>';
-             }else {
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-              echo '<td class="text-center" style="color:#DC65A1;"><a class="btn btn-outline-success" href="pending.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
-              echo '<td class="text-center" style="color:#DC65A1;"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
-
-                echo '</tr>';
+                }
               }
-
-
-              echo '</tr>';
-
-            }
             echo '</table>';
+            echo '<a class= "btn btn-success mb-2 float-right"href="export.php?exportPrinted">Create Excel File</a>';
+          }else {
+            echo '</table>';
+            echo "<center>No Requests</center>";
+          }
+
 
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
@@ -801,6 +827,7 @@ class view extends config{
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
                     <input type="submit" class="btn text-white" name="submitPrinted" value="Submit" style="background-color:#DC65A1;">
+                    <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                   </div>
                 </div>
               </form>
@@ -812,7 +839,7 @@ class view extends config{
         public function viewverified2(){
           $config = new config;
           $con = $config->con();
-            $user = new User();
+          $user = new User();
           $id1 = $user->data()->id;
           $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
           $data = $con-> prepare($sql);
@@ -909,7 +936,20 @@ class view extends config{
                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
                echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
-             }
+             }else {
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+                 echo '</tr>';
+              }
              }
               echo '</table>';
 
@@ -967,8 +1007,10 @@ class view extends config{
           $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
           $data = $con-> prepare($sql);
           $data ->execute();
-          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+          $rows =$data-> fetchAll(PDO::FETCH_ASSOC);
           $limit = 10;
+
+          $_SESSION['resultVerified'] = $rows;
 
           if (!isset($_GET['V1page'])) {
                 $page = 1;
@@ -985,6 +1027,12 @@ class view extends config{
 
           $start = ($page-1)*$limit;
 
+          $sql3 = "SELECT * FROM `work`";
+          $data3 = $con->prepare($sql3);
+          $data3 ->execute();
+          $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+          $_SESSION['allCSV'] = $rowsAll;
+
           $total_results = $data->rowCount();
           $total_pages = ceil($total_results/$limit);
 
@@ -993,7 +1041,7 @@ class view extends config{
           $data2 ->execute();
           $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
 
-          echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+          echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-2" style="width:100%;">';
           echo '<thead class="thead" style="background-color:#DC65A1;">';
           echo '
           <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
@@ -1010,72 +1058,78 @@ class view extends config{
           ';
           echo '</thead>';
 
-          foreach ($rows2 as $row) {
-            echo '<tr>';
-              // echo '<td class="text-center">'.$row ->id.'</td>';
-              $type = $row->formtype;
-              $due= $row->Due_Date;
-              $due2 = strtotime($due);
-              $date_diff = 60*60*24*2;
+          $count=$data2->rowCount();
 
-              if ($due2 < time()+$date_diff) {
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->StudentNo.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Course.'</br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->contact_no.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Status.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Date_Grad.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Applied_For.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
-                  echo '</tr>';
+          if ($count>=1) {
+            foreach ($rows2 as $row) {
+              echo '<tr>';
+                // echo '<td class="text-center">'.$row ->id.'</td>';
+                $type = $row->formtype;
+                $due= $row->Due_Date;
+                $due2 = strtotime($due);
+                $date_diff = 60*60*24*2;
 
-              }else if ($due2 < time()+$date_diff && $type == "special") {
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-                echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+                if ($due2 < time()+$date_diff) {
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->StudentNo.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Course.'</br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->contact_no.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Status.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Date_Grad.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Applied_For.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
+                    echo '</tr>';
+
+                }else if ($due2 < time()+$date_diff && $type == "special") {
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
+                  echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
+                    echo '</tr>';
+               }else if($type == "special"){
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
+                   echo '</tr>';
+               }else {
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+                echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
                   echo '</tr>';
-             }else if($type == "special"){
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
-                 echo '</tr>';
-             }else {
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
-              echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-              echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
-                echo '</tr>';
+                }
               }
-
-        }
-        echo '</table>';
-
+              echo '</table>';
+              echo '<a class= "btn btn-success mb-2 float-right"href="export.php?exportVerified">Create Excel File</a>';
+              }else {
+              echo '</table>';
+              echo '<center>No Requests</center>';
+              }
 
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
@@ -1116,6 +1170,7 @@ class view extends config{
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
                     <input type="submit" class="btn text-white" name="submitVerified" value="Submit" style="background-color:#DC65A1;">
+                    <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                   </div>
                 </div>
               </form>
@@ -1131,8 +1186,10 @@ class view extends config{
           $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
           $data = $con-> prepare($sql);
           $data ->execute();
-          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+          $rows =$data-> fetchAll(PDO::FETCH_ASSOC);
           $limit = 10;
+
+          $_SESSION['resultReleased'] = $rows;
 
           if (!isset($_GET['Rpage'])) {
               $page = 1;
@@ -1140,6 +1197,13 @@ class view extends config{
           $page = $_GET['Rpage'];
           }
 
+          //
+          $sql3 = "SELECT * FROM `work`";
+          $data3 = $con-> prepare($sql3);
+          $data3 ->execute();
+          $rowsAll =$data3-> fetchAll(PDO::FETCH_ASSOC);
+          $_SESSION['allCSV'] = $rowsAll;
+          //
           if(isset($_GET['Rpage']) > 1){
             $_GET['Ppage'] = 1;
             $_GET['PRpage'] = 1;
@@ -1156,56 +1220,64 @@ class view extends config{
           $data2 ->execute();
           $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
 
-
+          $count = $data2->rowCount();
               // var_dump($rows);
-               echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
-                         echo '<thead class="thead" style="background-color:#DC65A1;">';
-                         echo '
-                         <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
-                         <th class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
-                         <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
-                         <th class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
-                         <th class="text-center" style= "font-weight:bold; color:white;">Status</td>
-                         <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
-                         <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
-                         <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
-                         <th class="text-center" style= "font-weight:bold; color:white;">Released By</td>
-                         <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
-                         ';
-                         echo '</thead>';
-                         foreach ($rows2 as $row) {
-                        $state=$row->formtype;
-                        if ($state=="special") {
-                          echo '<tr>';
-                           // echo '<td class="text-center">'.$row ->id.'</td>';
-                           echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->StudentNo.'</td>';
-                           echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-                           echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->Course.'</br></td>';
-                           echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->contact_no.'</td>';
-                           echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->Status.'</td>';
-                           echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->Applied_For.'</td>';
-                           echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->purposes.'</td>';
-                           echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->Due_Date.'</td>';
-                           echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$this->getSname($row->releasedby).'</td>';
-                           echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->remarks.'</br></td>';
-                           echo '</tr>';
-                        }else {
-                          echo '<tr style="background-color:white;">';
-                           // echo '<td class="text-center">'.$row ->id.'</td>';
-                           echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-                           echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-                           echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
-                           echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
-                           echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
-                           echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
-                           echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
-                           echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
-                           echo '<td class="text-center" style="color:#DC65A1;">'.$this->getSname($row->releasedby).'</td>';
-                           echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-                           echo '</tr>';
-                        }
-                      }
-                      echo '</table>';
+               echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-2" style="width:100%;">';
+                echo '<thead class="thead" style="background-color:#DC65A1;">';
+                echo '
+                <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
+                <th class="text-center" style= "font-weight:bold; color:white;">Full Name</td>
+                <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
+                <th class="text-center" style= "font-weight:bold; color:white;">Contact Number</td>
+                <th class="text-center" style= "font-weight:bold; color:white;">Status</td>
+                <th class="text-center" style= "font-weight:bold; color:white;">Applied For</td>
+                <th class="text-center" style= "font-weight:bold; color:white;">Purpose</td>
+                <th class="text-center" style= "font-weight:bold; color:white;">Due Date</td>
+                <th class="text-center" style= "font-weight:bold; color:white;">Released By</td>
+                <th class="text-center" style= "font-weight:bold; color:white;">Remarks</td>
+                ';
+                echo '</thead>';
+
+                if ($count>=1) {
+                  foreach ($rows2 as $row) {
+                  $state=$row->formtype;
+                  if ($state=="special") {
+                    echo '<tr>';
+                     // echo '<td class="text-center">'.$row ->id.'</td>';
+                     echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->StudentNo.'</td>';
+                     echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                     echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->Course.'</br></td>';
+                     echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->contact_no.'</td>';
+                     echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->Status.'</td>';
+                     echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->Applied_For.'</td>';
+                     echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->purposes.'</td>';
+                     echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->Due_Date.'</td>';
+                     echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$this->getSname($row->releasedby).'</td>';
+                     echo '<td class="text-center text-white" style="background-color:#a68df9;">'.$row->remarks.'</br></td>';
+                     echo '</tr>';
+                  }else {
+                    echo '<tr style="background-color:white;">';
+                     // echo '<td class="text-center">'.$row ->id.'</td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$this->getSname($row->releasedby).'</td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+                     echo '</tr>';
+                  }
+                }
+                  echo '</table>';
+                  echo '<a class= "btn btn-success mb-2 float-right"href="export.php?exportReleased">Create Excel File</a>';
+                }else {
+                    echo '</table>';
+                    echo '<center>No Released Requests</center>';
+                }
+
 
              echo '<ul class="pagination  ml-2 ">';
              for ($p=1; $p <=$total_pages; $p++) {
@@ -1246,6 +1318,7 @@ class view extends config{
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
                     <input type="submit" class="btn text-white" name="submitReleased" value="Submit" style="background-color:#DC65A1;">
+                    <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                   </div>
                 </div>
               </form>
@@ -1279,6 +1352,9 @@ class view extends config{
         }
 
         public function getSName($number){
+            if($number == NULL){
+              return "";
+            }else{
             $config = new config;
             $con = $config->con();
             $sql = "SELECT * FROM `tbl_accounts` WHERE `id` = '$number'";
@@ -1286,7 +1362,9 @@ class view extends config{
             $data ->execute();
             $rows =$data-> fetchAll(PDO::FETCH_OBJ);
             return $rows[0]->name;
+          }
         }
+
         public function getNameSRA(){
             $user = new user();
             echo $user->data()->name;
