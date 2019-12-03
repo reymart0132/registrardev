@@ -460,7 +460,6 @@ class view extends config{
                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->date_recieved.'</td>';
                  echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->duedate.'</td>';
                  echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Verify </a></br></td>';
-                 echo '<td class="text-center"  style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
 
                    echo '</tr>';
               }else {
