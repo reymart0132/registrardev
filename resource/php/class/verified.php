@@ -12,10 +12,10 @@ class verified extends config{
   public function verify(){
       $config = new config;
       $con = $config->con();
-      $sql = "UPDATE `work` SET `remarks`='VERIFIED'WHERE `id` = $this->printed && `assignee` =$this->user";
+      $sql = "UPDATE `work` SET `remarks`='VERIFIED 'WHERE `id` = $this->printed && `assignee` =$this->user";
       $data = $con-> prepare($sql);
       $data ->execute();
-      $sql2 = "UPDATE `applications` SET`datesigned`='$this->date' WHERE `id` = $this->printed";
+      $sql2 = "UPDATE `applications` SET `datesigned`='$this->date' WHERE `id` = $this->printed";
       $data2 = $con-> prepare($sql2);
       $data2->execute();
 
@@ -31,6 +31,14 @@ class verified extends config{
       $data2 = $con-> prepare($sql2);
       $data2->execute();
 
+  }
+
+  public function verifyUser(){
+    $config = new config;
+    $con = $config->con();
+    $sql = "UPDATE `tbl_verification` SET `remarks`='VERIFIED', `date_verified`='$this->date' WHERE `id` = $this->printed && `assignee` =$this->user";
+    $data = $con-> prepare($sql);
+    $data ->execute();
   }
 }
 
