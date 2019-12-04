@@ -551,7 +551,7 @@ class view extends config{
 
            $limit = 10;
 
-           if (!isset($_GET['page'])) {
+           if (!isset($_GET['Ppage'])) {
                  $page = 1;
              } else{
                  $page = $_GET['Ppage'];
@@ -601,7 +601,7 @@ class view extends config{
                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->dategrad.'</td>';
                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->cemail.'</td>';
                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->date_verified.'</td>';
-                    echo '<td class="text-center" style="color:#DC65A1;">'.$this->getNameSRA2($row->assignee).'</td>';
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$this->getSName($row->verified_by).'</td>';
                  echo '</tr>';
                  }
                echo '</table>';
@@ -652,8 +652,8 @@ class view extends config{
                 </div>
               </form>
           </div>';
-
         }
+
         public function viewprinted(){
           $config = new config;
           $con = $config->con();
