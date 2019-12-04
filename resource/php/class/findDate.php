@@ -4,7 +4,7 @@ require_once 'BusinessDayCalculator.php';
 class findDate{
     public $dateApplied;
     public $application;
-    function __construct($da=null,$application) {
+    function __construct($da=null,$application=null) {
     $this->dateApplied = $da;
     $this->application = $application;
     }
@@ -45,6 +45,15 @@ class findDate{
           }
 
         }
+
+        public function findDueDateV(){
+                  $calculator = new BusinessDaysCalculator(
+                      new DateTime($this->dateApplied), // Today
+                      [new DateTime("2014-06-01"), new DateTime("2014-06-02")],
+                      [BusinessDaysCalculator::SUNDAY]
+                  );
+                  return $date = $calculator->addBusinessDays(3);
+            }
 
     }
 

@@ -1,0 +1,401 @@
+.container{
+  width: 970px;
+}
+.conbox{
+  height: 608px;
+  width: 970px;
+  border: 1px solid black;
+}
+
+/* @media print{@page {size: landscape}} */
+
+.box1{
+  height: 70px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+
+
+.box2{
+  height: 25px;
+  width: 970px;
+}
+
+.box3{
+  height: 25px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+
+.box4{
+  height: 25px;
+  width: 970px;
+}
+
+.box5{
+  height: 25px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+
+.box6{
+  height: 25px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+
+.box7{
+  height: 125px;
+  width: 970px;
+}
+
+.box8{
+  height: 60px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+
+.box9{
+  height: 15px;
+  width: 970px;
+}
+
+
+.box10{
+  height: 20px;
+  width: 970px
+}
+
+
+.box11{
+  height: 40px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+
+
+.newbox{
+  height: 20px;
+  width: 970px;
+
+}
+
+.newbox2{
+  height: 10px;
+  width: 970px;
+
+}
+
+.newbox3{
+  height: 60px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+
+.newbox4{
+  height: 13px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+
+
+.newbox5{
+  height: 13px;
+  width: 970px;
+}
+
+
+.newbox6{
+  height: 13px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+
+
+.newbox7{
+  height: 5px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+.newbox8{
+  height: 17px;
+  width: 970px;
+
+}
+
+.newbox9{
+  height: 15px;
+  width: 970px;
+  border-bottom: 1px solid black;
+}
+
+.newbox10{
+  height: 40px;
+  width: 970px;
+}
+
+
+.newbox11{
+  height: 15px;
+  width: 970px;
+}
+
+
+
+
+.studentno, .lastname, .firtname,.mi,.signature,.date{
+  display: inline-block;
+}
+
+.valuestudentno, .valuelastname, .valuefirtname,.valuemi,.valuesignature,.valuedate{
+  display: inline-block;
+}
+
+.studentno{
+  height: 25px;
+  width: 120px;
+  border-right: 1px solid black;
+}
+
+.lastname{
+  height: 25px;
+  width: 200px;
+
+}
+
+.firtname{
+  height: 25px;
+  width: 150px;
+
+}
+
+.mi{
+  height: 25px;
+  width: 80px;
+  border-right: 1px solid black;
+}
+
+.signature{
+  height: 25px;
+  width: 175px;
+  border-right: 1px solid black;
+}
+
+
+
+.valuestudentno{
+  height: 25px;
+  width: 120px;
+  border-right: 1px solid black;
+}
+
+.valuelastname{
+  height: 25px;
+  width: 200px;
+
+}
+
+.valuefirtname{
+  height: 25px;
+  width: 150px;
+
+}
+
+.valuemi{
+  height: 25px;
+  width: 80px;
+  border-right: 1px solid black;
+}
+
+.valuesignature{
+  height: 25px;
+  width: 175px;
+  border-right: 1px solid black;
+}
+
+.course, .ygyle, .contact, .duedate{
+  display: inline-block;
+}
+
+
+.valuecourse, .valueygyle, .valuecontact, .valueduedate{
+  display: inline-block;
+}
+
+.course{
+  height: 25px;
+  width: 200px;
+  border-right: 1px solid black;
+}
+
+.ygyle{
+  height: 25px;
+  width: 358.6px;
+  border-right: 1px solid black;
+}
+
+.contact{
+  height: 25px;
+  width: 175.3px;
+  border-right: 1px solid black;
+}
+
+.valuecourse{
+  height: 25px;
+  width: 200px;
+  border-right: 1px solid black;
+}
+
+.valueygyle{
+  height: 25px;
+  width: 358.6px;
+  border-right: 1px solid black;
+}
+
+.valuecontact{
+  height: 25px;
+  width: 175.3px;
+  border-right: 1px solid black;
+}
+
+.request, .purpose{
+  display: inline-block;
+}
+
+.request{
+  height: 25px;
+  width: 485px;
+  border-right: 1px solid black;
+}
+
+.request2{
+  border-right: 1px solid black;
+  height: 125px;
+}
+
+.taglines{
+  border-right: 1px solid black;
+  height: 60px;
+}
+
+.line1{
+   border-top: 1px solid black;
+   width: 310px;
+}
+
+.sraname{
+  width: 230px;
+}
+
+.line2{
+   border-top: 1px solid black;
+   width: 310px;
+}
+
+.line4{
+  width: 250px;
+  border-top: 1px solid black;
+  margin-left: 60px;
+}
+
+.tag, .tag2{
+  display: inline-block;
+}
+
+/* .tag2{
+  padding-top: 6px;
+} */
+.remarks, .authorization, .incharge{
+  display: inline-block;
+}
+
+.valueremarks, .valueauthorization, .valueincharge{
+  display: inline-block;
+}
+
+
+.remarks{
+  height: 24px;
+  width: 200px;
+  border-right: 1px solid black;
+}
+
+.authorization{
+  height: 24px;
+  width: 380px;
+  border-right: 1px solid black;
+}
+
+
+.valueremarks{
+  height: 40px;
+  width: 200px;
+  border-right: 1px solid black;
+}
+
+.valueauthorization{
+  height: 40px;
+  width: 380px;
+  border-right: 1px solid black;
+}
+
+.valueincharge{
+  height: 40px;
+  width: 380px;
+}
+
+
+
+.relation, .relation2{
+  display: inline-block;
+}
+
+.relation{
+  height: 20px;
+  width: 200px;
+  border-right: 1px solid black;
+}
+
+.relation2{
+  height: 20px;
+  border-right: 1px solid black;
+  width: 380px;
+}
+
+
+.remarks1,.auth2,.ic2{
+    display: inline-block;
+}
+
+.vremarks1,.vauth2,.vic2{
+    display: inline-block;
+}
+
+.vremarks1,.vauth2,.vic2{
+    height: 10px;
+}
+.remarks1{
+ height: 25px;
+ width: 200px;
+}
+
+
+.auth2{
+ height: 25px;
+ width: 385px;
+}
+
+.border1,.border2{
+    height: 60px;
+  border-right: 1px solid black;
+}
+
+.b1,.b2{
+    height: 10px;
+    border-right: 1px solid black;
+}
+
+.c1,.c2{
+  height: 20px;
+  border-right: 1px solid black;
+}

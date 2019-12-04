@@ -39,7 +39,9 @@ if(isset($_GET['verified'])){
          alt="mdb logo">
          <h3 class="ib">
      </a>
-        <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+     <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+        <a href="userVerification.php"><i class="fas fa-user-plus ceucolor"></i></a>
+        <a href="verification.php"><i class="fas fa-user-graduate ceucolor"></i></a>
         <a href="ntransaction.php"><i class="fas fa-file-upload ceucolor"></i></a>
         <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
         <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
@@ -81,6 +83,22 @@ if(isset($_GET['verified'])){
                      <div class="cbody" style="height: 60px; width:120px;">
                        <h4 class="counter ml-5 "><b><?php echo $view->ctodolist();?></b></h4>
                        <p class="text-center cbodytext"><b>Pending</b></p>
+                     </div>
+                   </div>
+               </div>
+           </div>
+         </div>
+
+         <div class="status pl-5 pt-4 ">
+           <div class="row no-gutters sn">
+             <div class="col-auto">
+               <img src="resource/img/verification.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
+             </div>
+               <div class="col">
+                   <div class="card-block">
+                     <div class="cbody" style="height: 60px; width:120px;">
+                       <h4 class="counter ml-5 "><b><?php echo $view->cverification();?></b></h4>
+                       <p class="text-center cbodytext"><b>Pending Verification</b></p>
                      </div>
                    </div>
                </div>

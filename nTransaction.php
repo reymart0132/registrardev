@@ -23,11 +23,13 @@ $view = new view;
               alt="mdb logo"><h3 class="ib">
           </a>
           <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
-          <a href="ntransaction.php"><i class="fas fa-file-upload ceucolor"></i></a>
-          <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
-          <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
-          <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
-          <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
+             <a href="userVerification.php"><i class="fas fa-user-plus ceucolor"></i></a>
+             <a href="verification.php"><i class="fas fa-user-graduate ceucolor"></i></a>
+             <a href="ntransaction.php"><i class="fas fa-file-upload ceucolor"></i></a>
+             <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
+             <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
+             <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
+             <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
         </nav>
         <div class="container mt-4 puff-in-center mb-5">
             <div class="row">

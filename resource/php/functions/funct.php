@@ -284,6 +284,16 @@ function changeP(){
      return $rows[0]->college_school;
  }
 
+ function findCourse2($course){
+     $config = new config;
+     $con = $config->con();
+     $sql = "SELECT * FROM `tbl_course` where `id`=$course";
+     $data = $con-> prepare($sql);
+     $data ->execute();
+     $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+     return $rows[0]->course;
+ }
+
  function findAssignee($college){
      $config = new config;
      $con = $config->con();
