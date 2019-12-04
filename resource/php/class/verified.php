@@ -36,7 +36,15 @@ class verified extends config{
   public function verifyUser(){
     $config = new config;
     $con = $config->con();
-    $sql = "UPDATE `tbl_verification` SET `remarks`='VERIFIED', `date_verified`='$this->date' WHERE `id` = $this->printed && `assignee` =$this->user";
+    $sql = "UPDATE `tbl_verification` SET `remarks`='VERIFIED', `date_verified`='$this->date',`verified_by`= '$this->user' WHERE `id` = $this->printed && `assignee` =$this->user";
+    $data = $con-> prepare($sql);
+    $data ->execute();
+  }
+
+  public function verifyUserAdmin(){
+    $config = new config;
+    $con = $config->con();
+    $sql = "UPDATE `tbl_verification` SET `remarks`='VERIFIED', `date_verified`='$this->date',`verified_by`= '$this->user' WHERE `id` = $this->printed";
     $data = $con-> prepare($sql);
     $data ->execute();
   }
