@@ -159,6 +159,7 @@ if(isset($_GET['verified'])){
           <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="verified"){echo "active";}} ?>" id="profile-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="profile" aria-selected="false">Verified Students</a>
         </li>
       </ul>
+      <!--  -->
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade <?php if(empty($_GET['tab'])){ echo "show active"; }elseif($_GET['tab']=="view"){ echo "show active";}?>" id="pending" role="tabpanel" aria-labelledby="home-tab">
         <?php
@@ -171,9 +172,9 @@ if(isset($_GET['verified'])){
       </div>
       <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="verified"){echo "show active";}} ?>" id="verified" role="tabpanel" aria-labelledby="profile-tab">
         <?php
-        if(isset($_GET['submitPrinted'])){
+        if(isset($_GET['submitVerifiedV'])){
           $searchQ = new Search;
-          $searchQ->searchPrinted();
+          $searchQ->searchVerifiedV();
         }else{
           $view->viewVerifiedVer();
         }?>

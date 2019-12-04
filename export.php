@@ -366,7 +366,10 @@ echo '</table>';
       }
   echo '</table>';
 }elseif (isset($_GET['exportAll'])) {
-
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
   $result = $_SESSION['allCSV'];
   $view=new view;
   header("Content-Type: application/xls");
@@ -414,10 +417,10 @@ echo '</table>';
       }
   echo '</table>';
 }elseif(isset($_GET['pendingV'])) {
-  // header("Content-Type: application/xls");
-  // header("Content-Disposition: attachment; filename=filename.xls");
-  // header("Pragma: no-cache");
-  // header("Expires: 0");
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
   $result = $_SESSION['pendingVer'];
   echo '<h1>Reports</h1>';
   echo '<table style="border-collapse:collapse;">';
@@ -448,10 +451,10 @@ echo '</table>';
   }
    echo '</table>';
 }elseif (isset($_GET['searchVPending'])) {
-  // header("Content-Type: application/xls");
-  // header("Content-Disposition: attachment; filename=filename.xls");
-  // header("Pragma: no-cache");
-  // header("Expires: 0");
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
   $result = $_SESSION['resultPendingSearchV'];
   echo '<h1>Reports</h1>';
   echo '<table style="border-collapse:collapse;">';
@@ -482,7 +485,11 @@ echo '</table>';
   }
    echo '</table>';
 }elseif (isset($_GET['exportAllV'])){
-
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
+  $view = new view;
   $result = $_SESSION['VerallCSV'];
   echo '<h1>Reports</h1>';
   echo '<table style="border-collapse:collapse;">';
@@ -496,6 +503,8 @@ echo '</table>';
   <th style="border: 1px solid black;">Company Email</td>
   <th style="border: 1px solid black;">Date Received</td>
   <th style="border: 1px solid black;">Due Date</td>
+  <th style="border: 1px solid black;">Date Verified</td>
+  <th style="border: 1px solid black;">Verified By:</td>
   ';
   echo '</thead>';
 
@@ -509,8 +518,79 @@ echo '</table>';
     echo '<td style="border: 1px solid black;"><center>'.$row->cemail.'</center></td>';
     echo '<td style="border: 1px solid black;"><center>'.$row->date_recieved.'</center></td>';
     echo '<td style="border: 1px solid black;"><center>'.$row->duedate.'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row->date_verified.'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$view->getSName($row->assignee).'</center></td>';
     echo '</tr>';
   }
    echo '</table>';
+ }elseif (isset($_GET['VerifiedV'])) {
+   header("Content-Type: application/xls");
+   header("Content-Disposition: attachment; filename=filename.xls");
+   header("Pragma: no-cache");
+   header("Expires: 0");
+   $view= new view;
+   $result = $_SESSION['VerifiedVer'];
+   echo '<h1>Reports</h1>';
+   echo '<table style="border-collapse:collapse;">';
+   echo '<thead>';
+   echo '
+   <th style="border: 1px solid black;">Full Name</td>
+   <th style="border: 1px solid black;">College</td>
+   <th style="border: 1px solid black;">Course</td>
+   <th style="border: 1px solid black;">Status</td>
+   <th style="border: 1px solid black;">GD /LYE</td>
+   <th style="border: 1px solid black;">Company Email</td>
+   <th style="border: 1px solid black;">Date Verified</td>
+   <th style="border: 1px solid black;">Verified By:</td>
+   ';
+   echo '</thead>';
+
+   foreach ($result as $row) {
+     echo '<tr>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->fullname.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->college.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->course.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->status.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->dategrad.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->cemail.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->date_verified.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$view->getSName($row->assignee).'</center></td>';
+     echo '</tr>';
+   }
+    echo '</table>';
+ }elseif (isset($_GET['SearchVerifiedV'])) {
+   header("Content-Type: application/xls");
+   header("Content-Disposition: attachment; filename=filename.xls");
+   header("Pragma: no-cache");
+   header("Expires: 0");
+   $view= new view;
+   $result = $_SESSION['resultVer'];
+   echo '<h1>Reports</h1>';
+   echo '<table style="border-collapse:collapse;">';
+   echo '<thead>';
+   echo '
+   <th style="border: 1px solid black;">Full Name</td>
+   <th style="border: 1px solid black;">College</td>
+   <th style="border: 1px solid black;">Course</td>
+   <th style="border: 1px solid black;">Status</td>
+   <th style="border: 1px solid black;">GD /LYE</td>
+   <th style="border: 1px solid black;">Company Email</td>
+   <th style="border: 1px solid black;">Date Verified</td>
+   <th style="border: 1px solid black;">Verified By:</td>
+   ';
+   echo '</thead>';
+   foreach ($result as $row) {
+     echo '<tr>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->fullname.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->college.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->course.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->status.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->dategrad.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->cemail.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row->date_verified.'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$view->getSName($row->assignee).'</center></td>';
+     echo '</tr>';
+   }
+    echo '</table>';
  }
 ?>
