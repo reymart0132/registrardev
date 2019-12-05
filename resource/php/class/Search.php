@@ -1395,7 +1395,7 @@ class Search extends config{
                      echo '<td class="text-center" style="color:#DC65A1;">'.$row->dategrad.'</td>';
                      echo '<td class="text-center" style="color:#DC65A1;">'.$row->cemail.'</td>';
                      echo '<td class="text-center" style="color:#DC65A1;">'.$row->date_verified.'</td>';
-                     echo '<td class="text-center" style="color:#DC65A1;">'.$view->getNameSRA2($row->assignee).'</td>';
+                     echo '<td class="text-center" style="color:#DC65A1;">'.$this->getSName($row->verified_by).'</td>';
                   echo '</tr>';
                   }
                 echo '</table>';
@@ -1460,8 +1460,6 @@ class Search extends config{
                </div>
              </form>
          </div>';
-
-
     }
   }
 ?>
