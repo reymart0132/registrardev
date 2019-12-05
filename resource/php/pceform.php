@@ -1,3 +1,7 @@
+<?php
+$name = $_GET['fullname'];
+$college = $_GET['college'];
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +38,7 @@
                                 <div class="row">
                                     <div class="form-group col-6">
                                       <label for="studentN">Student Name</label>
-                                      <input type="text" class="form-control" id="studentN" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student">
+                                      <input type="text" class="form-control" id="studentN" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student" value="<?php echo $name; ?>">
                                     </div>
                                     <div class="form-group col-6">
                                       <label for="studentN">School</label>
@@ -48,7 +52,7 @@
                                 <div class="row">
                                     <div class="form-group col-6">
                                       <label for="College">College</label>
-                                      <input type="text" class="form-control" id="College" name="college" aria-describedby="emailHelp" placeholder="Enter College" required>
+                                      <input type="text" class="form-control" id="College" name="college" aria-describedby="emailHelp" placeholder="Enter College" value="<?php echo $college; ?>" required>
                                     </div>
                                     <div class="form-group col-6">
                                       <label for="Semester">Semester</label>

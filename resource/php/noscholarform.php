@@ -1,3 +1,7 @@
+<?php
+$name = $_GET['fullname'];
+$college = $_GET['college'];
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +27,7 @@
         <div class="container mt-4">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="text-center">New Permit to Cross Enroll</h1>
+                    <h1 class="text-center"></h1>
                 </div>
             </div>
             <form action="noscholar_output.php" method="POST">
@@ -34,11 +38,11 @@
                                 <div class="row">
                                     <div class="form-group col-6">
                                       <label for="studentN">Student Name</label>
-                                      <input type="text" class="form-control" id="studentN" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student">
+                                      <input type="text" class="form-control" id="studentN" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student"  value="<?php echo $name; ?>">
                                     </div>
                                     <div class="form-group col-6">
                                       <label for="college">College</label>
-                                      <input type="text" class="form-control" id="college" name="college" aria-describedby="emailHelp" placeholder="Enter college" required>
+                                      <input type="text" class="form-control" id="college" name="college" aria-describedby="emailHelp" placeholder="Enter college" value="<?php echo $college; ?>" required>
                                     </div>
                                 </div>
                             </td>
@@ -48,7 +52,7 @@
                                 <div class="row">
                                     <div class="form-group col-6">
                                       <label for="Date">Date</label>
-                                      <input type="date" class="form-control" id="date" name="date" aria-describedby="emailHelp" required>
+                                      <input type="text" class="form-control" id="date" name="date" aria-describedby="emailHelp" value="<?php echo date("d-m-Y"); ?>" required>
                                     </div>
                                 </div>
                             </td>
