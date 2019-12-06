@@ -1,5 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/nsc.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/functions/funct.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/config.php';
 if(isset($_POST['studentN'])){
 $nsc = new nsc($_POST['studentN'],$_POST['college'],$_POST['date']);
 $nsc ->display();
@@ -15,7 +17,7 @@ $nsc ->display();
    <title></title>
    <link rel="stylesheet" type="text/css"  href="../../vendor/css/bootstrap.min.css">
    <link href="../../vendor/css/all.css" rel="stylesheet">
-   <link rel="stylesheet" type="text/css"  href="resource/css/ToPrint.css">
+   <link rel="stylesheet" type="text/css"  href="../css/ToPrint.css">
  </head>
  <body>
    <div class="toprint">
@@ -48,17 +50,18 @@ $nsc ->display();
              </div>
                <div class="row mt-3">
                  <div class="col-12">
-                   <p style="text-align: justify;"> &nbsp;  &nbsp;  &nbsp;This is to certify that <span style="font-weight:bold;"> <?php echo $nsc->studentN; ?></span> presently enrolled as second year student, this 1st semester S.Y. 2019-2020 under <span style="font-weight:bold;"> <?php echo $nsc->college; ?></span>, is not a recipient of any scholarship and grants our university provides to qualified students.</p>
-                   <p class="mt-3">This certification is issued upon the request of the above mentioned student for whatever legal purpose this may serve.</p>
+                   <p style="text-align: justify;"> &nbsp;  &nbsp;  &nbsp;This is to certify that <span style="font-weight:bold;"> <?php echo $nsc->studentN; ?></span> presently enrolled as <?php echo $_POST['level'] ?> student in the
+                   <?php echo $_POST['college']?> (<?php echo $_POST['course']?>),<?php echo $_POST['semester']?> school year <?php echo $_POST['schoolyear']?>, and is not a recipient of any scholarship and grants our university provides tp qualified students.</p>
+                   <p style="text-align: justify;"> &nbsp;  &nbsp;  &nbsp; This certification is issued upon the request of the student mentioned above for what ever legal purpose this may serve.</p>
               </div>
             </div>
             <div class="row py-5 my-5">
-              <div class="col-9">
+              <div class="col-8">
 
               </div>
-              <div class="col-3">
-                <p class="text-right py-0 my-0">MRS. AMELIA T. VALENCIA</p>
-                <p class="text-center pt-0 mt-0 pb-5 mb-5 ml-3 pl-5">Registrar</p>
+              <div class="col-4">
+                  <p><?php echo findregistrar()?></p>
+                  <p class="ml-5" style="margin-top: -20px;"><b>Registrar</b></p>
               </div>
             </div>
             </div>

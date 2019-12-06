@@ -83,8 +83,9 @@ $dategrad= $_GET['dategrad'];
                             <div class="row">
                                 <div class="form-group col-4">
                                   <label for="Rname">Registrar Full Name</label>
-                                  <input type="text" class="form-control" id="Lastname" name="Rname" aria-describedby="emailHelp" placeholder="Enter Name"  value="<?php $view->getNameSRA() ?>" required>
+                                  <input type="text" class="form-control" id="Lastname" name="Rname" aria-describedby="emailHelp" placeholder="Enter Name"  value="<?php echo findregistrar()?>" required>
                                 </div>
+                                
                         </td>
                     </tr>
                     <tr>

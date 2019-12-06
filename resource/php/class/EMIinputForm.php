@@ -38,7 +38,8 @@ class inputForm{
     $dateToday = $_SESSION['DateToday'];
     if(isset($dateToday)){
       // echo'<b>'. $dateToday.'</b>';
-      echo '<b>'.$dateToday.'</b>';
+      $output = date('F j, Y',strtotime($dateToday));
+      echo '<b>'.$output.'</b>';
     }
   }
 

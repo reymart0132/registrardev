@@ -286,24 +286,24 @@ class view extends config{
                  echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
                  echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
                  echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
-                 echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
-                 echo '<td class="text-center align-middle"  style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
+                 echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+                 echo '<td class="text-center align-middle"  style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success btt" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
                  $af = explode(",",$row->Applied_For);
                  echo '<td class="text-center align-middle"  style="color:white; background-color:#ff5757">';
                  foreach ($af as $row->Applied_For) {
 
                  if ($row->Applied_For == 'Permit to Cross Enroll') {
-                   echo '<a class="btn bg-light btn-outline-success" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
+                   echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
                  }elseif($row->Applied_For == 'Cert of Enrollment '){
-                   echo '<a class="btn bg-light btn-outline-success" href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+                   echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
                  }elseif ($row->Applied_For == 'Cert of Graduation') {
-                 echo '<a class="btn bg-light btn-outline-success" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+                 echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
                }elseif ($row->Applied_For == 'EMI') {
-               echo '<a class="btn bg-light btn-outline-success" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+               echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
              }elseif ($row->Applied_For == 'No Scholarship') {
-               echo '<a class="btn bg-light btn-outline-success" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
+               echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
              }else{
-               echo 'NA</br>';
+               echo '<p class="inl2">NA</p></br>';
              }
              }
              echo '</td>';
@@ -321,23 +321,23 @@ class view extends config{
                  echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
                  echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
                  echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-                 echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+                 echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
                  echo '<td class="text-center align-middle"  style="color:white; background-color:#a68df9"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
                  $af = explode(",",$row->Applied_For);
                  echo '<td class="text-center align-middle"  style="color:white; background-color:#a68df9">';
                foreach ($af as $row->Applied_For) {
                  if ($row->Applied_For == 'Permit to Cross Enroll') {
-                   echo '<a class="btn bg-light btn-outline-success" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
+                   echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
                  }elseif($row->Applied_For == 'Cert of Enrollment '){
-                   echo '<a class="btn bg-light btn-outline-success"href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+                   echo '<a class="btn bg-light btn-outline-success"href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
                  }elseif ($row->Applied_For == 'Cert of Graduation') {
-                echo '<a class="btn bg-light btn-outline-success" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+                echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
               }elseif ($row->Applied_For == 'EMI') {
-              echo '<a class="btn bg-light btn-outline-success" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+              echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
             }elseif ($row->Applied_For == 'No Scholarship') {
-              echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
+              echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
             }else{
-              echo 'NA</br>';
+              echo '<p class="inl2">NA</p></br>';
             }
           }
           echo '</td>';
@@ -353,23 +353,23 @@ class view extends config{
                 echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
                 echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
                 echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-                echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
-                echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
+                echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+                echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success btt" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
                 $af = explode(",",$row->Applied_For);
                 echo '<td class="text-center align-middle"  style="color:white; background-color:#a68df9">';
               foreach ($af as $row->Applied_For) {
                 if ($row->Applied_For == 'Permit to Cross Enroll') {
-                  echo '<a class="btn bg-light btn-outline-success" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
+                  echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
                }elseif($row->Applied_For == 'Cert of Enrollment'){
-                 echo '<a class="btn bg-light btn-outline-success" href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+                 echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
                }elseif ($row->Applied_For == 'Cert of Graduation') {
-                echo '<a class="btn bg-light btn-outline-success" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+                echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
               }elseif ($row->Applied_For == 'EMI') {
-              echo '<a class="btn bg-light btn-outline-success" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+              echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
             }elseif ($row->Applied_For == 'No Scholarship') {
-              echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
+              echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
             }else{
-              echo 'NA</br>';
+              echo '<p class="inl2">NA</p></br>';
             }
           }
           echo '</td>';
@@ -386,7 +386,7 @@ class view extends config{
                echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
                echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
 
-                 echo '<td class="text-center style="color:#DC65A1;" style="color:white;"><a class="btn bg-light btn-outline-success" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+                 echo '<td class="text-center style="color:#DC65A1;" style="color:white;"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
 
 
                echo '<td class="text-center align-middle"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
@@ -394,17 +394,17 @@ class view extends config{
                echo '<td class="text-center align-middle"  style="color:#DC65A1;">';
                  foreach ($af as $row->Applied_For) {
                if ($row->Applied_For == 'Permit to Cross Enroll') {
-                 echo '<a class="btn bg-light btn-outline-success" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
+                 echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
                }elseif($row->Applied_For == 'Cert of Enrollment'){
-                 echo '<a class="btn bg-light btn-outline-success"href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+                 echo '<a class="btn bg-light btn-outline-success"href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
                }elseif ($row->Applied_For == 'Cert of Graduation') {
-            echo '<a class="btn bg-light btn-outline-success" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+            echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
           }elseif ($row->Applied_For == 'EMI') {
-          echo '<a class="btn bg-light btn-outline-success" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+          echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
         }elseif ($row->Applied_For == 'No Scholarship') {
-          echo '<a class="btn bg-light btn-outline-success" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
+          echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
         }else{
-          echo '<p>NA</p></br>';
+          echo '<p class="inl2">NA</p></br>';
         }
       }
 echo '</td>';

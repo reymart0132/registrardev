@@ -312,4 +312,13 @@ function changeP(){
      $rows =$data-> fetchAll(PDO::FETCH_OBJ);
      return $rows[0]->id;
  }
+ function findregistrar(){
+     $config = new config;
+     $con = $config->con();
+     $sql = "SELECT * FROM `tbl_accounts` where `colleges`= 'ALL'";
+     $data = $con-> prepare($sql);
+     $data ->execute();
+     $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+     return $rows[0]->name;
+ }
  ?>

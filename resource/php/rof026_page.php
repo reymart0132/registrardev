@@ -8,6 +8,7 @@ $lname = $_GET['lastname'];
 $mname = $_GET['middlename'];
 $fname = $_GET['firstname'];
 $course= $_GET['course'];
+$college= $_GET['college'];
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,11 +76,25 @@ $course= $_GET['course'];
                                 </div> -->
                                 <div class="form-group col-4">
                                   <label for="DateGraduated">School Year</label>
-                                  <input type="text" class="form-control" id="Firstname" name="schoolyear" aria-describedby="emailHelp" placeholder="School Year" required>
+                                  <select id="request" name="schoolyear" class="selectpicker form-control" data-live-search="true" required>
+                                    <?php
+                                    echo "<option>".date("Y")." - ".date("Y",strtotime('+1 year'))."</option>";
+                                    echo "<option>".date("Y",strtotime('-1 year'))." - ".date("Y")."</option>";
+                                    ?>
+                                  </select>
                                 </div>
                                 <div class="form-group col-4">
-                                  <label for=SpecialOrder"">Course</label>
-                                  <input type="text" class="form-control" id="Middlename" name="course" aria-describedby="emailHelp" placeholder="Course" value="<?php echo $course ?>" required>
+                                  <label for="Course">Course</label>
+                                  <input type="text" class="form-control"  name="course" aria-describedby="emailHelp" placeholder="Course" value="<?php echo $course ?>" required>
+                                </div>
+                                <div class="form-group col-4">
+                                  <label for="Course">Semester</label>
+                                  <select id="request" name="semester" class="selectpicker form-control" data-live-search="true" required>
+                                    <option>1st semester</option>
+                                    <option>2nd semester</option>
+                                    <option>3rd semester</option>
+                                    <option>Summer</option>
+                                  </select>
                                 </div>
                             </div>
                         </td>
@@ -88,13 +103,13 @@ $course= $_GET['course'];
                     <tr>
                         <td>
                             <div class="row">
-                              <div class="form-group col-4">
-                                <label for="DateToday">Department</label>
-                                <input type="text" class="form-control" id="Lastname" name="department" aria-describedby="emailHelp" placeholder="Department" required>
+                              <div class="form-group col-8">
+                                <label for="department">Department</label>
+                                <input type="text" class="form-control" id="Lastname" name="department" aria-describedby="emailHelp" placeholder="Department" value="<?php echo $college?>" required>
                               </div>
                                 <div class="form-group col-4">
                                   <label for="Rname">Registrar Full Name</label>
-                                  <input type="text" class="form-control" id="Lastname" name="Rname" aria-describedby="emailHelp" value="<?php $view->getNameSRA() ?>" placeholder="Enter Name" required>
+                                  <input type="text" class="form-control" id="Lastname" name="Rname" aria-describedby="emailHelp" value="<?php echo findregistrar(); ?>" placeholder="Enter Name" required>
                                 </div>
                         </td>
                     </tr>

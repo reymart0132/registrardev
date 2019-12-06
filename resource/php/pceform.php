@@ -50,13 +50,22 @@ $college = $_GET['college'];
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-4">
                                       <label for="College">College</label>
                                       <input type="text" class="form-control" id="College" name="college" aria-describedby="emailHelp" placeholder="Enter College" value="<?php echo $college; ?>" required>
                                     </div>
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-4">
+                                      <label for="College">Course</label>
+                                      <input type="text" class="form-control" id="College" name="college" aria-describedby="emailHelp" placeholder="Enter College" value="<?php echo $_GET['course']; ?>" required>
+                                    </div>
+                                    <div class="form-group col-4">
                                       <label for="Semester">Semester</label>
-                                      <input type="text" class="form-control" id="Semester" name="semester" aria-describedby="emailHelp" placeholder="Enter Semester" required>
+                                      <select id="request" name="semester" class="selectpicker form-control" data-live-search="true" required>
+                                        <option>1st semester</option>
+                                        <option>2nd semester</option>
+                                        <option>3rd semester</option>
+                                        <option>Summer</option>
+                                      </select>
                                     </div>
                                 </div>
                             </td>
@@ -64,13 +73,22 @@ $college = $_GET['college'];
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-3">
                                       <label for="Date">Date</label>
                                       <input type="date" class="form-control" id="date" name="date" aria-describedby="emailHelp" required>
                                     </div>
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-5">
                                       <label for="city">City</label>
                                       <input type="text" class="form-control" id="city" name="city" aria-describedby="emailHelp" placeholder="Enter City" required>
+                                    </div>
+                                    <div class="form-group col-4">
+                                      <label for="DateGraduated">School Year</label>
+                                      <select id="request" name="schoolyear" class="selectpicker form-control" data-live-search="true" required>
+                                        <?php
+                                        echo "<option>".date("Y")." - ".date("Y",strtotime('+1 year'))."</option>";
+                                        echo "<option>".date("Y",strtotime('-1 year'))." - ".date("Y")."</option>";
+                                        ?>
+                                      </select>
                                     </div>
                                 </div>
                             </td>
@@ -79,11 +97,29 @@ $college = $_GET['college'];
                             <td>
                                 <div class="row">
                                     <div class="form-group col-12">
-                                        <button class="btn btn-primary"  id="Add">Add Subject</button>
-                                        <button class="btn btn-danger"  id="Remove">Remove Subject</button>
+                                        <button class="btn btn-primary" type="button"  id="add">Add Subject</button>
+                                        <button class="btn btn-danger"  type="button" id="remove">Remove Subject</button>
                                     </div>
                                     <div class="form-group col-12">
-                                      <div id="textboxDiv"></div>
+                                      <div class="row">
+                                          <!-- <tr>
+                                              <td>
+                                                  <input type='text' class='form-control' name='subjects[]' placeholder='Enter Subject' required >
+                                                  <input type='number' class='form-control' name='units[]' placeholder='Enter Number of units' required>
+                                              </td>
+                                          </tr> -->
+                                          <div id='TextBoxesGroup'class="col-7">
+                                        	<div id="TextBoxDiv1" >
+                                        		<label>Subject #1 : </label><input class='form-control' name='subjects[]' type='textbox' id='textbox1'value="" placeholder="Enter Subject" required>
+                                        	</div>
+                                        </div>
+                                          <div id='TextBoxesGroup2'class="col-2">
+                                        	<div id="TextBoxDiv1" >
+                                        		<label>Number of Units: </label><input class='form-control' name= 'units[]' type='number' id='textbox1'value="" placeholder="Enter Units" required>
+                                        	</div>
+                                        </div>
+
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
