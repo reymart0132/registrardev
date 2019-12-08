@@ -1421,15 +1421,9 @@ echo '</td>';
                          echo '</thead>';
                          foreach ($rows as $row) {
                            echo '<tr style="background-color:white;">';
-<<<<<<< HEAD
-                             // echo '<td class="text-center">'.$row ->id.'</td>';
-                             echo '<td class="text-center" style="color:#DC65A1;">'.$row->name.'</td>';
-                             echo '<td class="text-center"><a class="btn btn-outline-danger" href=updateQuote.php?id='.$row->id.'>Change Quote</a></td>';
-=======
                              // echo '<td class="text-center align-middle">'.$row ->id.'</td>';
                              echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->name.'</td>';
                              echo '<td class="text-center align-middle"><a class="btn btn-outline-danger" href=resource\php\updateQuote.php?id='.$row->id.'>Change Quote</a></td>';
->>>>>>> master
                  echo '</tr>';
              }
              echo '</table>';
