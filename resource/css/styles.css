@@ -1,3 +1,16 @@
+.st{
+    font-size: 16px;
+}
+.btt{
+    margin-top:50%;
+    margin-bottom:50%;
+}
+.inl2{
+    display:none;
+}
+.inl{
+    display: inline-block;
+}
 .export{
     border-radius: 50%;
     width:100px;

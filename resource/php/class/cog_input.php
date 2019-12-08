@@ -26,9 +26,9 @@ class cog_input{
     $lname = $_SESSION['Lastname'];
    $fname = $_SESSION['Firstname'];
    $middleName = $_SESSION['Middlename'];
-   $full = "$lname, ". " $fname ". " $middleName ";
+   $full = "$fname $middleName[0]. $lname";
     if(isset($full)){
-      echo '<b>'.$full.'</b>';}
+      echo '<b style="text-decoration:underline;">'.$full.'</b>';}
   }
   //
   public function lastName(){
@@ -41,7 +41,7 @@ class cog_input{
   public function showDegree(){
     $degree = $_SESSION['Degree'];
     if(isset($degree)){
-      echo '<b>'.$degree.'</b>';}
+      echo '<b style="text-decoration:underline;">'.$degree.'</b>';}
   }
 
   // public function combineDate(){
@@ -56,16 +56,16 @@ class cog_input{
   public function showDateToday(){
     $dateToday = $_SESSION['DateToday'];
     if(isset($dateToday)){
-      $dateToday = date("M j, Y", strtotime($dateToday));
-      echo '<b>'.$dateToday.'</b>';
+       $output = date('F j, Y',strtotime($dateToday));
+      echo '<b>'.$output.'</b>';
     }
   }
 
-  public function showDateGraduated(){
+  public function showDateGraduated2(){
     $dateGraduated = $_SESSION['DateGraduated'];
     if(isset($dateGraduated)){
-    $dateGraduated = date("M j, Y", strtotime($dateGraduated));
-        echo'<b>'.$dateGraduated.'</b>';
+    $dateGraduated = date("F j, Y", strtotime($dateGraduated));
+        echo'<b style="text-decoration:underline;">'.$dateGraduated.'</b>';
     }
   }
 

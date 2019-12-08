@@ -5,7 +5,7 @@ class pce {
     $this->studentN = $studentN;
     $this->college = $college;
     $this->semester = $semester;
-    $this->date = $date;
+    $this->date = date('F j, Y',strtotime($date));
     $this->city = $city;
     $this->subjects = $subjects;
     $this->units = $units;

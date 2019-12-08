@@ -1,8 +1,14 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/cog_input.php';
-session_start();
+require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
+$view = new view;
 $input = new cog_input;
 $input->viewData();
+$lname = $_GET['lastname'];
+$mname = $_GET['middlename'];
+$fname = $_GET['firstname'];
+$course= $_GET['course'];
+$dategrad= $_GET['dategrad'];
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +34,7 @@ $input->viewData();
       <div class="container mt-5 pt-5">
         <div class="row pt-5">
             <div class="col-12">
-                <h1 class="text-center">Certification of Grades</h1>
+                <h1 class="text-center">Certification of Graduation</h1>
             </div>
         </div>
         <form action="" method="POST">
@@ -39,15 +45,15 @@ $input->viewData();
                             <div class="row">
                                 <div class="form-group col-4">
                                   <label for="Lastname">Lastname</label>
-                                  <input type="text" class="form-control" id="Lastname" name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname" required>
+                                  <input type="text" class="form-control" id="Lastname" name="Lastname" aria-describedby="emailHelp" placeholder="Enter Lastname"  value="<?php echo $lname ?>"  required>
                                 </div>
                                 <div class="form-group col-4">
                                   <label for="Firstname">Firstname</label>
-                                  <input type="text" class="form-control" id="Firstname" name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname" required>
+                                  <input type="text" class="form-control" id="Firstname" name="Firstname" aria-describedby="emailHelp" placeholder="Enter Firstname"  value="<?php echo $fname ?>"  required>
                                 </div>
                                 <div class="form-group col-4">
                                   <label for="Middlename">Middlename</label>
-                                  <input type="text" class="form-control" id="Middlename" name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename" required>
+                                  <input type="text" class="form-control" id="Middlename" name="Middlename" aria-describedby="emailHelp" placeholder="Enter Middlename"  value="<?php echo $mname ?>"  required>
                                 </div>
                             </div>
                         </td>
@@ -58,15 +64,15 @@ $input->viewData();
                             <div class="row">
                               <div class="form-group col-4">
                                 <label for=SpecialOrder"">Degree</label>
-                                <input type="" class="form-control" id="Middlename" name="Degree" aria-describedby="emailHelp" placeholder="Degree" required>
+                                <input type="" class="form-control" id="Middlename" name="Degree" aria-describedby="emailHelp" placeholder="Degree"value="<?php echo $course ?>" required>
                               </div>
                                 <div class="form-group col-4">
                                   <label for="DateToday">Date Today</label>
-                                  <input type="date" class="form-control" id="Lastname" name="DateToday" aria-describedby="emailHelp" placeholder="Enter Date" required>
+                                  <input type="texr" class="form-control" id="Lastname" name="DateToday" aria-describedby="emailHelp" placeholder="Enter Date" value="<?php echo date("d-m-Y"); ?>" required>
                                 </div>
                                 <div class="form-group col-4">
                                   <label for="DateGraduated">Date Graduated</label>
-                                  <input type="date" class="form-control" id="Firstname" name="DateGraduated" aria-describedby="emailHelp" placeholder="Enter Date" required>
+                                  <input type="text" class="form-control" id="Firstname" name="DateGraduated" aria-describedby="emailHelp" placeholder="Enter Date" value="<?php echo $dategrad ?>" required>
                                 </div>
                             </div>
                         </td>
@@ -77,8 +83,9 @@ $input->viewData();
                             <div class="row">
                                 <div class="form-group col-4">
                                   <label for="Rname">Registrar Full Name</label>
-                                  <input type="text" class="form-control" id="Lastname" name="Rname" aria-describedby="emailHelp" placeholder="Enter Name" required>
+                                  <input type="text" class="form-control" id="Lastname" name="Rname" aria-describedby="emailHelp" placeholder="Enter Name"  value="<?php echo findregistrar()?>" required>
                                 </div>
+                                
                         </td>
                     </tr>
                     <tr>

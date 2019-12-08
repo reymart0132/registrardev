@@ -42,6 +42,8 @@ if(isset($_GET['verified'])){
          <h3 class="ib">
      </a>
         <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+        <a href="userVerificationAdmin.php"><i class="fas fa-user-plus ceucolor"></i></a>
+        <a href="verificationAdmin.php"><i class="fas fa-user-graduate ceucolor"></i></a>
         <a href="nTransactionAdmin.php"><i class="fas fa-file-upload ceucolor"></i></a>
         <a href="view_pending_requests.php"><i class="fas fa-home ceucolor"></i></a>
         <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
@@ -177,7 +179,7 @@ if(isset($_GET['verified'])){
       <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="forrelease1"){echo "show active";}} ?>" id="verifiedall" role="tabpanel" aria-labelledby="contact2-tab">
         <?php
         if(isset($_GET['submitVerifiedAll'])){
-          $searchQ->searchVerifiedAll();
+          $searchQ->searchVerified();
         }else{
           $view ->viewverified2();
         }

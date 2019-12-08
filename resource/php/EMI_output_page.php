@@ -12,7 +12,7 @@ $input->nullData();
   <title></title>
   <link rel="stylesheet" type="text/css"  href="../../vendor/css/bootstrap.min.css">
   <link href="../../vendor/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css"  href="resource/css/ToPrint.css">
+  <link rel="stylesheet" type="text/css"  href="../css/ToPrint.css">
 </head>
 <body>
   <div class="toprint">
@@ -44,6 +44,12 @@ $input->nullData();
           </p>
 
           <p style="float:right; text-align: center;" class="pr-5 pt-5">
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
             <?php $input->RegistrarName(); ?>
               <br />
             Registrar

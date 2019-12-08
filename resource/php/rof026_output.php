@@ -12,7 +12,7 @@ $input->nullData();
   <title></title>
   <link rel="stylesheet" type="text/css"  href="../../vendor/css/bootstrap.min.css">
   <link href="../../vendor/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css"  href="resource/css/ToPrint.css">
+  <link rel="stylesheet" type="text/css"  href="../css/ToPrint.css">
 </head>
 <body>
   <div class="toprint">
@@ -34,19 +34,23 @@ $input->nullData();
           <br />
           <br />
           <p class="pl-5 pt-2"><b>To Whom it May Concern,</b></p>
-          <p style="text-align: justify; " class="pl-5 pr-5 pt-2">
-            &nbsp;  &nbsp;  &nbsp;This is to certify that <?php $input->combineName() ?>nis enrolled
-            this <?php $input->SY() ?> as a <?php $input->showDegree()?> student in the
-           <?php $input->Department()?> in this University.
+          <p style="text-align: justify; " class="pl-5 pr-5 pt-2 coe">
+            &nbsp;  &nbsp;  &nbsp;This is to certify that <?php $input->combineName() ?>is presently enrolled
+            as a third year student in the <?php $input->Department()?>(<?php $input->showDegree()?>), <?php $input->semester()?>, school year <?php $input->SY()?> in this university.
           </p>
           <p style="text-align: justify; " class="pl-5 pr-5 pt-2">
-              &nbsp;  &nbsp;  &nbsp;This is to certification is issued the request of the above-mentioned
+              &nbsp;  &nbsp;  &nbsp;This certification is issued upon
+               the request of the above-mentioned
               student or whatever legal purpose this may serve.
           </p>
           <p style="float:right;text-align: center" class="pr-5">
+              <br />
+              <br />
+              <br />
+              <br />
             <?php $input->RegistrarName(); ?>
             <br />
-            University Registrar/Registrar
+            Registrar
           </p>
         </div>
       </div>

@@ -1,3 +1,7 @@
+<?php
+$name = $_GET['fullname'];
+$college = $_GET['college'];
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +27,7 @@
         <div class="container mt-4">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="text-center">New Permit to Cross Enroll</h1>
+                    <h1 class="text-center"></h1>
                 </div>
             </div>
             <form action="noscholar_output.php" method="POST">
@@ -34,11 +38,11 @@
                                 <div class="row">
                                     <div class="form-group col-6">
                                       <label for="studentN">Student Name</label>
-                                      <input type="text" class="form-control" id="studentN" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student">
+                                      <input type="text" class="form-control" id="studentN" name="studentN" aria-describedby="emailHelp" placeholder="Enter Student"  value="<?php echo $name; ?>">
                                     </div>
                                     <div class="form-group col-6">
                                       <label for="college">College</label>
-                                      <input type="text" class="form-control" id="college" name="college" aria-describedby="emailHelp" placeholder="Enter college" required>
+                                      <input type="text" class="form-control" id="college" name="college" aria-describedby="emailHelp" placeholder="Enter college" value="<?php echo $college; ?>" required>
                                     </div>
                                 </div>
                             </td>
@@ -48,7 +52,46 @@
                                 <div class="row">
                                     <div class="form-group col-6">
                                       <label for="Date">Date</label>
-                                      <input type="date" class="form-control" id="date" name="date" aria-describedby="emailHelp" required>
+                                      <input type="text" class="form-control" id="date" name="date" aria-describedby="emailHelp" value="<?php echo date("d-m-Y"); ?>" required>
+                                    </div>
+                                    <div class="form-group col-6">
+                                      <label for="course">Course</label>
+                                      <input type="text" class="form-control" id="date" name="course" aria-describedby="emailHelp" value="<?php echo $_GET['course']; ?>" required>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label for="level">Year Level</label>
+                                        <select id="request" name="level" class="selectpicker form-control" data-live-search="true" required>
+                                          <option>first year</option>
+                                          <option>second year</option>
+                                          <option>third year</option>
+                                          <option>fourth year</option>
+                                          <option>fifth year</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="DateGraduated">School Year</label>
+                                        <select id="request" name="schoolyear" class="selectpicker form-control" data-live-search="true" required>
+                                          <?php
+                                          echo "<option>".date("Y")." - ".date("Y",strtotime('+1 year'))."</option>";
+                                          echo "<option>".date("Y",strtotime('-1 year'))." - ".date("Y")."</option>";
+                                          ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="semester">Semester</label>
+                                        <select id="request" name="semester" class="selectpicker form-control" data-live-search="true" required>
+                                          <option>1st semester</option>
+                                          <option>2nd semester</option>
+                                          <option>3rd semester</option>
+                                          <option>Summer</option>
+                                        </select>
                                     </div>
                                 </div>
                             </td>

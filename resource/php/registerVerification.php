@@ -1,5 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
+
+$user = new user();
+$gr = $user->data()->groups;
+
 if(!empty($_POST)) {
 $ygle = $_POST['ygle'];
 $FullName = $_POST['FullName'];
@@ -16,8 +20,17 @@ $dd = $dd->format('Y-m-d');
 $verification = new userverification($ygle,$FullName,$Course,$College,$dd,$da,$assignee,$Status,$cemail);
 $verification->insertVerification();
 
-header("location:../../userVerification.php?status=Success");
+if ($gr == 1) {
+  header("location:../../userVerification.php?status=Success");
+}else {
+  header("location:../../userVerificationAdmin.php?status=Success");
+}
+
 }else{
-header("location:../../userVerification.php");
+  if ($gr == 1) {
+    header("location:../../userVerification.php");
+  }else {
+    header("location:../../userVerificationAdmin.php");
+  }
 }
 ?>

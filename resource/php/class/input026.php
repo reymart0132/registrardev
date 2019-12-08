@@ -10,6 +10,7 @@ class inputForm{
       $dateToday = $_POST['DateToday'];
       $schoolyear = $_POST ['schoolyear'];
       $course = $_POST ['course'];
+      $semester = $_POST ['semester'];
       $department = $_POST ['department'];
       $rName = $_POST['Rname'];
 
@@ -21,6 +22,7 @@ class inputForm{
       $_SESSION['course'] = $course;
       $_SESSION['department'] = $department;
       $_SESSION['Rname'] = $rName;
+      $_SESSION['semester'] = $semester;
       header('Location: ../php/rof026_output.php');
     }
   }
@@ -31,7 +33,7 @@ class inputForm{
    $lname = $_SESSION['Lastname'];
    $full = "$fname ". " $middleName ". " $lname ";
     if(isset($full)){
-      echo '<b>'.$full.'</b>';
+      echo '<b style="text-decoration:underline;">'.$full.'</b>';
     }
   }
   //
@@ -65,6 +67,13 @@ class inputForm{
       // echo'<b>'. $dateToday.'</b>';
       echo '<b>'.$schoolyear.'</b>';
     }
+}
+    public function Semester(){
+       $semester = $_SESSION['semester'];
+      if(isset($semester)){
+        // echo'<b>'. $dateToday.'</b>';
+        echo $semester;
+      }
   }
 
   public function Department(){

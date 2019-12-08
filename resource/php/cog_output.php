@@ -12,7 +12,7 @@ $input->nullData();
   <title></title>
   <link rel="stylesheet" type="text/css"  href="../../vendor/css/bootstrap.min.css">
   <link href="../../vendor/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css"  href="resource/css/ToPrint.css">
+  <link rel="stylesheet" type="text/css"  href="../css/ToPrint.css">
 </head>
 <body>
   <div class="toprint">
@@ -33,15 +33,15 @@ $input->nullData();
           </p>
           <br />
           <br />
-          <p class="my-5 py-3"><b>To Whom it May Concern:</b></p>
+          <p class="my-5 py-3"><b>TO WHOM IT MAY CONCERN:</b></p>
           <p class="my-5 py-3" style="text-align:justify; ">
-            &nbsp;  &nbsp;This is to certify that <?php $input->combineName()?>Graduated
+            &nbsp;  &nbsp;This is to certify that <?php $input->combineName()?> Graduated
             with the degree <?php $input->showDegree()?>
-            on  <?php $input->showDateGraduated()?> at the
+            on  <?php $input->showDateGraduated2()?> at the
             Centro Escolar University.
           </p>
           <p class="my-5" style="text-align:justify;">
-              &nbsp;  &nbsp;This certification is issued upon the request of <?php $input->lastName()?> for whatever legal purpose this may serve.
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This certification is issued for verification of records purposes only.
           </p>
           <p class="my-5" style="float:right;text-align: center;">
             <?php $input->RegistrarName(); ?>
