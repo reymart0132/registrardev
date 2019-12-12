@@ -265,37 +265,7 @@ class viewAdmin extends config{
           $due= $row->Due_Date;
           $due2 = strtotime($due);
           $date_diff = 60*60*24*2;
-          if ($due2 < time()+$date_diff) {
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->StudentNo.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Course.'</br></td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->contact_no.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Status.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Date_Grad.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Applied_For.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn btn-light btn-outline-success" href="view_pending_requests.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn  btn-light  btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
-
-              echo '</tr>';
-
-          }else if ($due2 < time()+$date_diff && $type == "special") {
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success" href="view_pending_requests.php?verified='.$row->id.'&id='.$user->data()->id.'&tab=printed">Verified </a></br></td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn  btn-light btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=printed">Edit</a></br></td>';
-              echo '</tr>';
-         }else if($type == "special"){
+       if($type == "special"){
            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
@@ -453,34 +423,7 @@ class viewAdmin extends config{
           $due2 = strtotime($due);
           $date_diff = 60*60*24*2;
 
-          if ($due2 < time()+$date_diff) {
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->StudentNo.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Course.'</br></td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->contact_no.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Status.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Date_Grad.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Applied_For.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
-            echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn btn-light btn-outline-success"  href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
-              echo '</tr>';
-
-          }else if ($due2 < time()+$date_diff && $type == "special") {
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-            echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
-              echo '</tr>';
-         }else if($type == "special"){
+     if($type == "special"){
            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
            echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
@@ -622,34 +565,7 @@ class viewAdmin extends config{
         $due2 = strtotime($due);
         $date_diff = 60*60*24*2;
 
-        if ($due2 < time()+$date_diff) {
-          echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->StudentNo.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Course.'</br></td>';
-          echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->contact_no.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Status.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Date_Grad.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Applied_For.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
-          echo '<td class="text-center" style="color:white; background-color:#ff5757"><a class="btn btn-light btn-outline-success"  href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
-            echo '</tr>';
-
-        }else if ($due2 < time()+$date_diff && $type == "special") {
-          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-          echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
-            echo '</tr>';
-       }else if($type == "special"){
+    if($type == "special"){
          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
          echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
