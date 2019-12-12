@@ -1567,7 +1567,7 @@ class view extends config{
           }else{
           $config = new config;
           $con = $config->con();
-          $sql = "SELECT * FROM `tbl_nationality` WHERE `id` = '$number'";
+          $sql = "SELECT * FROM `tbl_nationality` WHERE `id` ='$number'";
           $data = $con-> prepare($sql);
           $data ->execute();
           $rows =$data-> fetchAll(PDO::FETCH_OBJ);

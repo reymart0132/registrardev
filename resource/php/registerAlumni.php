@@ -14,5 +14,6 @@ if(!empty($_POST)) {
 
     $aI = new alumniInfo($sno,$lname,$fname,$mname,$dc,$nt,$cs,$yg,$eaddr);
     $aI->insertAlumniInfo();
+    header("location: ../../index.php");
     }
   ?>
