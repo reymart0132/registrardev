@@ -17,9 +17,9 @@ isLogin();
    <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap.min.css">
    <link href="vendor/css/all.css" rel="stylesheet">
    <link href="resource\css\animation-rami.css" type="text/css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
    <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
    <link rel="stylesheet" type="text/css"  href="resource/css/speech.css">
-   <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
  </head>
  <body>
      <?php blocker()?>
@@ -29,7 +29,10 @@ isLogin();
          alt="mdb logo">
          <h3 class="ib">
      </a>
+        <a href="exporttable.php"><i class="fas fa-table ceucolor"></i></a>
         <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+        <a href="userVerification.php"><i class="fas fa-user-plus ceucolor"></i></a>
+        <a href="verification.php"><i class="fas fa-user-graduate ceucolor"></i></a>
         <a href="ntransaction.php"><i class="fas fa-file-upload ceucolor"></i></a>
         <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
         <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
@@ -37,6 +40,7 @@ isLogin();
         <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
    </nav>
  <!--  -->
+
    <div class="container-fluid mt-4">
      <div class="row">
        <!--  -->
@@ -127,13 +131,39 @@ isLogin();
    </div>
  </div>
 </div>
+<div class="container-fluid mt-4 slide-in-left">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Productivity Report for( <?php if(!empty($_GET)){ echo date("M-d-Y", strtotime($_GET['cfd']))." to ".date("M-d-Y", strtotime($_GET['cld']));}else{echo $today = date("F j, Y");} ?> )</h1>
+        </div>
+   </div>
+   <form class="" action="" method="get">
+     <div class="row">
+       <div class="col-5">
+         <label for="dateFrom">From:</label>
+         <input  class="form-control" type="date" name="cfd"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+       </div>
+       <div class="col-5">
+         <label for="dateTo">To:</label>
+         <input  class="form-control" type="date" name="cld"  placeholder="dd-mm-yyyy">
+       </div>
+       <div class="col-2 mt-4 pt-2">
+         <label for="submit"></label>
+         <input type="submit" class="btn text-white" name="search" value="Search" style="background-color:#DC65A1;">
+       </div>
+     </div>
+   </form>
    <!--  -->
    <div class="container-fluid mt-4 mb-5">
      <?php
-     $view->exporttest();
+     $view->exportundergrad();
+      $view->exportgrad();
       ?>
-      <button type="button" class="btn" name="button"></button>
+
+      <!-- <button type="button" class="btn" name="button"></button> -->
     </div>
+
+
   </div>
  </body>
 
