@@ -1,36 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 
-  //
-  // if (isset($_GET['export'])) {
-  //   $result = $_SESSION['resultSearch'];
-  //
-  //   header('Content-Type: text/csv; charset=utf-8');
-  //   header('Content-Disposition: attachment; filename="data.csv";');
-  //   $output = fopen("php://output", "w");
-  //   foreach ($result as $row) {
-  //     fputcsv($output, $row);
-  //   }
-  //   fclose($output);
-  // }else {
-  //   $result = $_SESSION['result'];
-  //
-  //   $result2 = array(
-  //     array("<b>ID</b>","PID","Student Number","Last Name","FirstName","MI","Course","Contact Number","Status","Date Graduated","Requesting For","Purposes","Date Applied","Due Date","College","Remarks"));
-  //
-  //   header('Content-Type: text/csv; charset=utf-8');
-  //   header('Content-Disposition: attachment; filename="data.csv";');
-  //   $output = fopen("php://output", "w");
-  //   foreach ($result2 as $row) {
-  //     fputcsv($output, $row);
-  //     foreach ($result as $row2) {
-  //       fputcsv($output, $row2);
-  //     }
-  //   }
-  //   fclose($output);
-  // }
-
-
   if (isset($_GET['exportPending'])) {
   $result = $_SESSION['resultPending'];
   header("Content-Type: application/xls");
@@ -1064,5 +1034,231 @@ echo '</table>';
     echo '</tr>';
   }
    echo '</table>';
+}elseif (isset($_GET['Alumni'])) {
+  $result = $_SESSION['viewAlumni'];
+  $view = new view;
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
+  echo '<table style="border-collapse:collapse;">';
+  echo '<thead>';
+  echo '
+  <th style="border: 1px solid black;">Student No.</td>
+  <th style="border: 1px solid black;">Name</td>
+  <th style="border: 1px solid black;">Nationality</td>
+  <th style="border: 1px solid black;">Course</td>
+  <th style="border: 1px solid black;">Department</td>
+  <th style="border: 1px solid black;">Year Graduated Date</td>
+  <th style="border: 1px solid black;">Address</td>
+  <th style="border: 1px solid black;">Cellphone Number</td>
+  <th style="border: 1px solid black;">Emailr</td>
+  ';
+  echo '</thead>';
+
+  foreach ($result as $row) {
+    echo '<tr>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->student_no.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->firstname." ".$row ->lastname." ".$row->middlename.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getNationality($row->nationality).'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getCourse($row->course).'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$view->getCollegeSchool($row->sch_coll).'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->month_graduated.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->yr_graduated.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->address.'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->home_no.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->cp_no.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->email.'</center></td>';
+     echo '</tr>';
+  }
+  echo '</table>';
+}elseif (isset($_GET['exportAllAlumni'])) {
+  $result = $_SESSION['viewAlumni'];
+  $view = new view;
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
+  echo '<table style="border-collapse:collapse;">';
+  echo '<thead>';
+  echo '
+  <th style="border: 1px solid black;">Student No.</td>
+  <th style="border: 1px solid black;">Name</td>
+  <th style="border: 1px solid black;">Nationality</td>
+  <th style="border: 1px solid black;">Course</td>
+  <th style="border: 1px solid black;">Department</td>
+  <th style="border: 1px solid black;">Year Graduated Date</td>
+  <th style="border: 1px solid black;">Address</td>
+  <th style="border: 1px solid black;">Cellphone Number</td>
+  <th style="border: 1px solid black;">Emailr</td>
+  ';
+  echo '</thead>';
+
+  foreach ($result as $row) {
+    echo '<tr>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->student_no.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->firstname." ".$row ->lastname." ".$row->middlename.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getNationality($row->nationality).'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getCourse($row->course).'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$view->getCollegeSchool($row->sch_coll).'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->month_graduated.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->yr_graduated.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->address.'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->home_no.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->cp_no.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->email.'</center></td>';
+     echo '</tr>';
+  }
+  echo '</table>';
+}elseif (isset($_GET['alumniSearch'])) {
+  $result = $_SESSION['viewAlumniSearch'];
+  $view = new view;
+  // header("Content-Type: application/xls");
+  // header("Content-Disposition: attachment; filename=filename.xls");
+  // header("Pragma: no-cache");
+  // header("Expires: 0");
+  echo '<table style="border-collapse:collapse;">';
+  echo '<thead>';
+  echo '
+  <th style="border: 1px solid black;">Student No.</td>
+  <th style="border: 1px solid black;">Name</td>
+  <th style="border: 1px solid black;">Nationality</td>
+  <th style="border: 1px solid black;">Course</td>
+  <th style="border: 1px solid black;">Department</td>
+  <th style="border: 1px solid black;">Year Graduated Date</td>
+  <th style="border: 1px solid black;">Address</td>
+  <th style="border: 1px solid black;">Cellphone Number</td>
+  <th style="border: 1px solid black;">Emailr</td>
+  ';
+  echo '</thead>';
+  foreach ($result as $row) {
+    echo '<tr>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->student_no.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->firstname." ".$row ->lastname." ".$row->middlename.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getNationality($row->nationality).'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getCourse($row->course).'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$view->getCollegeSchool($row->sch_coll).'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->month_graduated.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->yr_graduated.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->address.'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->home_no.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->cp_no.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->email.'</center></td>';
+     echo '</tr>';
+  }
+  echo '</table>';
+}elseif (isset($_GET['exportAllAlumniSearch'])) {
+  $result = $_SESSION['allAlumniSearch'];
+  $view = new view;
+  // header("Content-Type: application/xls");
+  // header("Content-Disposition: attachment; filename=filename.xls");
+  // header("Pragma: no-cache");
+  // header("Expires: 0");
+  echo '<table style="border-collapse:collapse;">';
+  echo '<thead>';
+  echo '
+  <th style="border: 1px solid black;">Student No.</td>
+  <th style="border: 1px solid black;">Name</td>
+  <th style="border: 1px solid black;">Nationality</td>
+  <th style="border: 1px solid black;">Course</td>
+  <th style="border: 1px solid black;">Department</td>
+  <th style="border: 1px solid black;">Year Graduated Date</td>
+  <th style="border: 1px solid black;">Address</td>
+  <th style="border: 1px solid black;">Cellphone Number</td>
+  <th style="border: 1px solid black;">Emailr</td>
+  ';
+  echo '</thead>';
+
+  foreach ($result as $row) {
+    echo '<tr>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->student_no.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->firstname." ".$row ->lastname." ".$row->middlename.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getNationality($row->nationality).'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getCourse($row->course).'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$view->getCollegeSchool($row->sch_coll).'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->month_graduated.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->yr_graduated.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->address.'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->home_no.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->cp_no.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->email.'</center></td>';
+     echo '</tr>';
+  }
+  echo '</table>';
+}elseif (isset($_GET['exportAllAlumni2'])) {
+  $result = $_SESSION['allAlumni'];
+  $view = new view;
+  // header("Content-Type: application/xls");
+  // header("Content-Disposition: attachment; filename=filename.xls");
+  // header("Pragma: no-cache");
+  // header("Expires: 0");
+  echo '<table style="border-collapse:collapse;">';
+  echo '<thead>';
+  echo '
+  <th style="border: 1px solid black;">Student No.</td>
+  <th style="border: 1px solid black;">Name</td>
+  <th style="border: 1px solid black;">Nationality</td>
+  <th style="border: 1px solid black;">Course</td>
+  <th style="border: 1px solid black;">Department</td>
+  <th style="border: 1px solid black;">Year Graduated Date</td>
+  <th style="border: 1px solid black;">Address</td>
+  <th style="border: 1px solid black;">Cellphone Number</td>
+  <th style="border: 1px solid black;">Emailr</td>
+  ';
+  echo '</thead>';
+  foreach ($result as $row) {
+    echo '<tr>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->student_no.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->firstname." ".$row ->lastname." ".$row->middlename.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getNationality($row->nationality).'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getCourse($row->course).'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$view->getCollegeSchool($row->sch_coll).'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->month_graduated.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->yr_graduated.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->address.'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->home_no.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->cp_no.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->email.'</center></td>';
+     echo '</tr>';
+  }
+  echo '</table>';
+}elseif (isset($_GET['exportAllAlumniSearch'])) {
+  $result = $_SESSION['allAlumniSearch'];
+  $view = new view;
+  // header("Content-Type: application/xls");
+  // header("Content-Disposition: attachment; filename=filename.xls");
+  // header("Pragma: no-cache");
+  // header("Expires: 0");
+  echo '<table style="border-collapse:collapse;">';
+  echo '<thead>';
+  echo '
+  <th style="border: 1px solid black;">Student No.</td>
+  <th style="border: 1px solid black;">Name</td>
+  <th style="border: 1px solid black;">Nationality</td>
+  <th style="border: 1px solid black;">Course</td>
+  <th style="border: 1px solid black;">Department</td>
+  <th style="border: 1px solid black;">Year Graduated Date</td>
+  <th style="border: 1px solid black;">Address</td>
+  <th style="border: 1px solid black;">Cellphone Number</td>
+  <th style="border: 1px solid black;">Emailr</td>
+  ';
+  echo '</thead>';
+
+  foreach ($result as $row) {
+    echo '<tr>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->student_no.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$row->firstname." ".$row ->lastname." ".$row->middlename.'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getNationality($row->nationality).'</center></td>';
+        echo '<td style="border: 1px solid black;"><center>'.$view->getCourse($row->course).'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$view->getCollegeSchool($row->sch_coll).'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->month_graduated.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->yr_graduated.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->address.'</center></td>';
+        // echo '<td class="text-center" style="color:#DC65A1;">'.$row->home_no.'</td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->cp_no.'</center></td>';
+        echo '<td  style="border: 1px solid black;"><center>'.$row->email.'</center></td>';
+     echo '</tr>';
+  }
+  echo '</table>';
 }
 ?>
