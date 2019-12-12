@@ -1649,7 +1649,7 @@ echo '</td>';
                 echo $results.',';
               }
             }
-            public function exporttest(){
+            public function exportundergrad(){
               $config = new config;
               $con = $config->con();
               $sql = "SELECT * FROM `tbl_applied_for` WHERE `state` = 'active'";
@@ -1660,9 +1660,7 @@ echo '</td>';
               $data1 = $con-> prepare($sql1);
               $data1 ->execute();
               $results =$data1->rowCount();
-              $results1 = $results + 3;
-              $results2 = $results + 2;
-              // echo $results;
+              $results1 = $results + 4;
               $columns =$data1-> fetchAll(PDO::FETCH_OBJ);
               echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
               echo '<thead class="thead" style="background-color:#DC65A1;">';
@@ -1672,26 +1670,102 @@ echo '</td>';
               </tr>
               ';
               echo '<tr>';
+              echo '<th class="text-center" style= "font-weight:bold; color:white;"></td>';
               foreach ($columns as $col) {
-                echo '<th class="text-center" style= "font-weight:bold; color:white;">'.$col->purposes.'</td>';
+                echo '<th class="text-center align-middle" style= "font-weight:bold; color:white;">'.$col->purposes.'</td>';
               }
               echo '
-              <th class="text-center" style= "font-weight:bold; color:white;">Total Transaction</td>
-              <th class="text-center" style= "font-weight:bold; color:white;">Price</td>
-              <th class="text-center" style= "font-weight:bold; color:white;">Total Price</td>
+              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Price</td>
+              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Transaction</td>
+              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Price</td>
               </tr>
               ';
               foreach ($rows as $row) {
+                $totaltrans=0;
                   echo '<tr style="background-color:white;">';
                  echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->appliedfor.'</td>';
-                 for ($i=0; $i < $results2; $i++) {
-                   echo '<td></td>';
+                 foreach($columns as $column){
+                   if(isset($_GET['search'])){
+                   $date = date('Y-m-d');
+                   $cfd=date('Y-m-01', strtotime($date));
+                   $cld=date('Y-m-t', strtotime($date));
+                   $cld = $_GET['cld'];
+                   $cfd = $_GET['cfd'];
+                   $sql3 = "SELECT * FROM `work` WHERE `Applied_For` = '$row->appliedfor' AND `purposes` = '$column->purposes' AND `Status` = 'Undergrad' AND `Date_App` BETWEEN '$cfd' AND '$cld'";
+                  }else {
+                    $sql3 = "SELECT * FROM `work` WHERE `Applied_For` = '$row->appliedfor' AND `purposes` = '$column->purposes' AND `Status` = 'Undergrad' AND `Date_App` = CURDATE()";
+                  }
+                   $data3 = $con-> prepare($sql3);
+                   $data3 ->execute();
+                   $res = $data3->rowCount();
+                   $totaltrans = $totaltrans + $res;
+                   echo '<td class="text-center">'.$res.'</td>';
                  }
+                 $totalprice = $row->price * $totaltrans;
+                 echo '<td class="text-center">'.$row->price.'</td>';
+                echo '<td class="text-center">'.$totaltrans.'</td>';
+                  echo '<td class="text-center">'.$totalprice.'</td>';
                 echo '</tr>';
               }
             }
-
-
-
-}
+            public function exportgrad(){
+              $config = new config;
+              $con = $config->con();
+              $sql = "SELECT * FROM `tbl_applied_for` WHERE `state` = 'active'";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              $sql1 = "SELECT * FROM `tbl_purposes` WHERE `state` = 'active'";
+              $data1 = $con-> prepare($sql1);
+              $data1 ->execute();
+              $results =$data1->rowCount();
+              $results1 = $results + 4;
+              $columns =$data1-> fetchAll(PDO::FETCH_OBJ);
+              echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+              echo '<thead class="thead" style="background-color:#DC65A1;">';
+              echo '
+              <tr>
+              <th class="text-center" style= "font-weight:bold; color:white;"colspan="'.$results1.'">Graduate</td>
+              </tr>
+              ';
+              echo '<tr>';
+              echo '<th class="text-center" style= "font-weight:bold; color:white;"></td>';
+              foreach ($columns as $col) {
+                echo '<th class="text-center align-middle" style= "font-weight:bold; color:white;">'.$col->purposes.'</td>';
+              }
+              echo '
+              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Price</td>
+              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Transaction</td>
+              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Price</td>
+              </tr>
+              ';
+              foreach ($rows as $row) {
+                $totaltrans=0;
+                  echo '<tr style="background-color:white;">';
+                 echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->appliedfor.'</td>';
+                 foreach($columns as $column){
+                   if(isset($_GET['search'])){
+                   $date = date('Y-m-d');
+                   $cfd=date('Y-m-01', strtotime($date));
+                   $cld=date('Y-m-t', strtotime($date));
+                   $cld = $_GET['cld'];
+                   $cfd = $_GET['cfd'];
+                   $sql3 = "SELECT * FROM `work` WHERE `Applied_For` = '$row->appliedfor' AND `purposes` = '$column->purposes' AND `Status` = 'Graduate' AND `Date_App` BETWEEN '$cfd' AND '$cld'";
+                  }else {
+                    $sql3 = "SELECT * FROM `work` WHERE `Applied_For` = '$row->appliedfor' AND `purposes` = '$column->purposes' AND `Status` = 'Graduate' AND `Date_App` = CURDATE()";
+                  }
+                   $data3 = $con-> prepare($sql3);
+                   $data3 ->execute();
+                   $res = $data3->rowCount();
+                   $totaltrans = $totaltrans + $res;
+                   echo '<td class="text-center">'.$res.'</td>';
+                 }
+                 $totalprice = $row->price * $totaltrans;
+                 echo '<td class="text-center">'.$row->price.'</td>';
+                echo '<td class="text-center">'.$totaltrans.'</td>';
+                  echo '<td class="text-center">'.$totalprice.'</td>';
+                echo '</tr>';
+              }
+            }
+          }
  ?>
