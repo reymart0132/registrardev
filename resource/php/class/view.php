@@ -114,20 +114,26 @@ class view extends config{
                 }
         }
         public function reasonFA(){
-            $config = new config;
-            $con = $config->con();
-            $sql = "SELECT * FROM `tbl_purposes`";
-            $data = $con-> prepare($sql);
-            $data ->execute();
-            $rows =$data-> fetchAll(PDO::FETCH_OBJ);
-                foreach ($rows as $row) {
-                    $state = $row->state;
-                  if ($state == "active") {
-                    echo '<option data-tokens=".'.$row->purposes.'." value="'.$row->purp_id.'">'.$row->purposes.'</option>';
-                    echo 'success';
+              $config = new config;
+              $con = $config->con();
+              $sql = "SELECT * FROM tbl_purposes";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+                  foreach ($rows as $row) {
+                      $state = $row->state;
+                    if ($state == "active") {
+                      if ($row->purposes == 'FOR REFERENCE PURPOSES') {
+                        echo '<option SELECTED data-tokens=".'.$row->purposes.'." value="'.$row->purp_id.'">'.$row->purposes.'</option>';
+                        echo 'success';
+                      }else {
+                        echo '<option data-tokens=".'.$row->purposes.'." value="'.$row->purp_id.'">'.$row->purposes.'</option>';
+                        echo 'success';
+                      }
+
+                    }
                   }
-                }
-        }
+          }
 
         public function formtype(){
             $config = new config;
@@ -288,6 +294,7 @@ class view extends config{
                  echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
                  echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
                  echo '<td class="text-center align-middle"  style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success btt" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
+
                  $af = explode(",",$row->Applied_For);
                  echo '<td class="text-center align-middle"  style="color:white; background-color:#ff5757">';
                  foreach ($af as $row->Applied_For) {
@@ -427,9 +434,6 @@ class view extends config{
               echo '</li>';
              }
              echo '</ul>';
-
-               // $this->paginationPending($total_pages,$page);
-
 
              echo '
              <div class="container-fluid mt-4">
@@ -820,7 +824,7 @@ class view extends config{
              // }
              // echo '</ul>';
 
-        $this->pagination($total_pages,$page);
+   $this->pagination($total_pages,$page);
 
        echo '
        <div class="container-fluid mt-4">
@@ -848,93 +852,6 @@ class view extends config{
         </form>
     </div>';
         }
-
-        public function paginationPending($total_pages,$page){
-          $adjacents = 1;
-          $limit = 1;
-          $prev = $page - 1;
-          $next = $page + 1;
-          $lastpage = ceil($total_pages/$limit);
-          $lpm1 = $lastpage - 1;
-          $pagination = "";
-
-          if($lastpage > 1)
-          {
-            $pagination .= '<div style = "padding-top:10px;"class=\'pagination\'>';
-            //previous button
-            if ($page >1)
-              $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'pending.php?tab=view&Ppage='.$prev.'\'>&laquo; previous</a>';
-            else
-              $pagination.= '<span style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding-left:5px; padding-right:7px;padding-top:3px;text-decoration: none;" span class=\'disabled\'>&laquo previous</span>';
-
-
-            //pages
-            if ($lastpage < 7 + ($adjacents * 2))	//not enough pages to bother breaking it up
-            {
-              for ($counter = 1; $counter <= $lastpage; $counter++)
-              {
-                if ($counter == $page)
-                  $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
-                else
-                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'pending.php?tab=view&Ppage='.$counter.'\'>'.$counter.'</a>';
-              }
-            }
-            elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
-            {
-              //close to beginning; only hide later pages
-              if($page < 1 + ($adjacents * 2))
-              {
-                for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
-                {
-                  if ($counter == $page)
-                    $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
-                  else
-                    $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'pending.php?tab=view&Ppage='.$counter.'\'>'.$counter.'</a>';
-                }
-                $pagination .= '<span style="padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'pending.php?tab=view&Ppage='.$lastpage.'\'>'.$lastpage.'</a>';
-              }
-              //in middle; hide some front and some back
-              elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
-              {
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'pending.php?tab=view&Ppage=1\'>1</a>';
-                $pagination .= '<span style="padding-top:10px;" class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
-                {
-                  if ($counter == $page)
-                    $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"class=\'current\'>'.$counter.'</span>';
-                  else
-                    $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'pending.php?tab=view&Ppage='.$counter.'\'>'.$counter.'</a>';
-                }
-                $pagination .= '<span style = "padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'pending.php?tab=view&Ppage='.$lastpage.'\'>'.$lastpage.'</a>';
-              }
-              //close to end; only hide early pages
-              else
-              {
-                $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'pending.php?tab=view&Ppage=1.\'>1</a>';
-                // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=2\'>2</a>';
-                $pagination .= '<span style="padding-top:10px;" class=\'elipses\'> &nbsp; . . . . &nbsp;</span>';
-                for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
-                {
-                  if ($counter == $page)
-                    $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding:3px; text-decoration: none; padding-left:9px;padding-right:9px;"class=\'current\'>'.$counter.'</span>';
-                  else
-                    $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'pending.php?tab=view&Ppage='.$counter.'\'>'.$counter.'</a>';
-                }
-              }
-            }
-
-
-            if ($page < $counter - 1)
-              $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'pending.php?tab=view&Ppage='.$next.'\'>next &raquo;</a>';
-            else
-              $pagination.=  '<span style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:10px; padding-left:10px; padding-top:2.5px;text-decoration: none;"class=\'disabled\'>next &raquo;</span>';
-            $pagination.= "</div>\n";
-          }
-          echo $pagination;
-        }
-
 
         public function pagination($total_pages,$page){
           $adjacents = 3;
@@ -1565,16 +1482,14 @@ class view extends config{
                 }
 
 
-             // echo '<ul class="pagination  ml-2 ">';
-             // for ($p=1; $p <=$total_pages; $p++) {
-             //  echo '<li class="page-item">';
-             //  echo  '<a class= "page-link" href="?tab=released&Rpage='.$p.'">'.$p;
-             //  echo  '</a>';
-             //  echo '</li>';
-             // }
-             // echo '</ul>';
-
-              // $this->pagination($total_pages,$page);
+             echo '<ul class="pagination  ml-2 ">';
+             for ($p=1; $p <=$total_pages; $p++) {
+              echo '<li class="page-item">';
+              echo  '<a class= "page-link" href="?tab=released&Rpage='.$p.'">'.$p;
+              echo  '</a>';
+              echo '</li>';
+             }
+             echo '</ul>';
 
              echo '
              <div class="container-fluid mt-4">
@@ -1786,6 +1701,139 @@ class view extends config{
             echo '"'.$row->username.'",';
             }
           }
+          public function chartexport(){
+              $config = new config;
+              $con = $config->con();
+              $sql = "SELECT * FROM `tbl_accounts` WHERE `groups` = 1";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              $results =$data->rowCount();
+              $results = $results + 1;
+              if(!empty($_GET)){ $date = date("M-d-Y", strtotime($_GET['cfd']))." to ".date("M-d-Y", strtotime($_GET['cld']));}else{ $date = date("F j, Y");}
+              echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+              echo '<thead class="thead" style="background-color:#DC65A1;">';
+              echo '
+              <tr>
+              <td class="text-center" style= "font-weight:bold;"colspan="'.$results.'">Productivity Report ('.$date.') </td>
+              </tr> ';
+              echo '<tr>';
+              echo '<th class="text-center" style= "font-weight:bold; color:white;"></td>';
+              foreach ($rows as $row) {
+                  echo '<th class="text-center align-middle" style= "font-weight:bold; color:white;">'.$row->username.'</td>';
+
+              }
+              echo '</tr>';
+              echo '<tr style="background-color:white;">
+              <td class="text-center align-middle" style="color:#DC65A1;">Transactions Received</td>
+              ';
+
+              foreach ($rows as $row) {
+                $id = $row->id;
+                if(!empty($_GET)){
+                $date = date('Y-m-d');
+                $cfd=date('Y-m-01', strtotime($date));
+                $cld=date('Y-m-t', strtotime($date));
+                $cld = $_GET['cld'];
+                $cfd = $_GET['cfd'];
+                $sql = "SELECT * FROM `work` WHERE (`Date_app`  BETWEEN '$cfd' AND '$cld') AND `assignee` = $id";
+              }else{
+                $sql = "SELECT * FROM `work` WHERE `Date_app` = CURDATE() AND `assignee` = $id";
+              }
+                $data = $con-> prepare($sql);
+                $data ->execute();
+                $results2 =$data->rowCount();
+                echo '<td class="text-center">'.$results2.'</td>';
+              }
+              echo '</tr>';
+              //
+              echo '</tr>';
+              echo '<tr style="background-color:white;">
+              <td class="text-center align-middle" style="color:#DC65A1;">Completed Transactions</td>
+              ';
+
+              foreach ($rows as $row) {
+                $id = $row->id;
+                  if(isset($_GET['search'])){
+                    $date = date('Y-m-d');
+                    $cfd=date('Y-m-01', strtotime($date));
+                    $cld=date('Y-m-t', strtotime($date));
+                    $cld = $_GET['cld'];
+                    $cfd = $_GET['cfd'];
+                    $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND (`printeddate` BETWEEN '$cfd' AND '$cld')";
+                  }else{
+                    $sql = "SELECT * FROM `work` WHERE `printedby` =$id AND `printeddate` = CURDATE()";
+                  }
+                  $data = $con-> prepare($sql);
+                  $data ->execute();
+                  $results3 =$data->rowCount();
+                echo '<td class="text-center">'.$results3.'</td>';
+              }
+              echo '</tr>';
+              //
+              echo '</tr>';
+              echo '<tr style="background-color:white;">
+              <td class="text-center align-middle" style="color:#DC65A1;">Pending Transactions</td>
+              ';
+
+              foreach ($rows as $row) {
+                $id = $row->id;
+                $id = $row->id;
+                if(isset($_GET['search'])){
+                $date = date('Y-m-d');
+                $cfd=date('Y-m-01', strtotime($date));
+                $cld=date('Y-m-t', strtotime($date));
+                $cld = $_GET['cld'];
+                $cfd = $_GET['cfd'];
+                $sql = "SELECT * FROM `work` WHERE  `assignee` = '$id'";
+                $data = $con-> prepare($sql);
+                $data ->execute();
+                $products =$data-> fetchAll(PDO::FETCH_OBJ);
+                $sql = "SELECT * FROM `work` WHERE `assignee` = '$id' AND `printeddate` > '$cld' UNION SELECT * FROM `work` WHERE `assignee` = '$id' AND `printeddate` IS NULL AND `Date_App` <= '$cld'";
+                  }else{
+                    $sql = "SELECT * FROM `work` WHERE  `assignee` = '$id'";
+                    $data = $con-> prepare($sql);
+                    $data ->execute();
+                    $products =$data-> fetchAll(PDO::FETCH_OBJ);
+                    foreach ($products as $product) {
+                        $printeddate = $product->printeddate;
+                        $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id'";
+                      }
+                  }
+
+                $data = $con-> prepare($sql);
+                $data ->execute();
+                $results4 =$data->rowCount();
+                echo '<td class="text-center">'.$results4.'</td>';
+              }
+              echo '</tr>';
+              //
+              echo '</tr>';
+              echo '<tr style="background-color:white;">
+              <td class="text-center align-middle" style="color:#DC65A1;">Released Transactions</td>
+              ';
+
+              foreach ($rows as $row) {
+                $id = $row->id;
+                if(isset($_GET['search'])){
+                $date = date('Y-m-d');
+                $cfd=date('Y-m-01', strtotime($date));
+                $cld=date('Y-m-t', strtotime($date));
+                $cld = $_GET['cld'];
+                $cfd = $_GET['cfd'];
+                        // SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = $id AND (`released_date` BETWEEN $cfd AND $cld)";
+                  $sql = "SELECT * FROM `work` WHERE `releasedby` = '$id' AND (`released_date` <= '$cld' AND `released_date` >= '$cfd')";
+                  }else{
+                    $sql = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' AND `releasedby` = '$id' AND `released_date` = CURDATE()";
+                  }
+                $data = $con-> prepare($sql);
+                $data ->execute();
+                $results5 =$data->rowCount();
+                echo '<td class="text-center">'.$results5.'</td>';
+              }
+              echo '</tr>';
+            }
+
           public function twork(){
               $config = new config;
               $con = $config->con();
@@ -1918,8 +1966,7 @@ class view extends config{
               echo '
               <tr>
               <th class="text-center" style= "font-weight:bold; color:white;"colspan="'.$results1.'">Undergraduate</td>
-              </tr>
-              ';
+              </tr> ';
               echo '<tr>';
               echo '<th class="text-center" style= "font-weight:bold; color:white;"></td>';
               foreach ($columns as $col) {
