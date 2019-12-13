@@ -62,18 +62,18 @@ $view = new view;
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="form-group col-4">
-                                      <label for="Course" >Course</label>
-                                          <select id="Course" name="Course" class="selectpicker form-control" data-live-search="true">
-                                            <?php $view->degreeCourseSP();?>
-                                          </select>
-                                    </div>
-                                    <div class="form-group col-4">
-                                      <label for="College" >College</label>
-                                          <select id="College" name="College" class="selectpicker form-control" data-live-search="true">
-                                            <?php $view->collegeSP();?>
-                                          </select>
-                                    </div>
+                                  <div class="form-group col-4">
+                                    <label for="Course" >Course</label>
+                                        <select  id="a" name="Course" onchange="change();" class="selectpicker form-control" data-live-search="true">
+                                          <?php $view->degreeCourseSP();?>
+                                        </select>
+                                  </div>
+                                  <div class="form-group col-4">
+                                    <label for="College" >College</label>
+                                        <select id="b" name="College" class="form-control">
+                                          <?php $view->collegeSP();?>
+                                        </select>
+                                  </div>
                                     <div class="form-group col-4">
                                         <label for="ContactNumber">Status</label>
                                         <div class="form-control">
@@ -128,9 +128,68 @@ $view = new view;
     <script src="vendor/js/bootstrap-select.min.js"></script>
     <script src="resource/js/studentnumber-chua.js"></script>
     <script src="resource/js/noletter-waris.js"></script>
+    <script>
+    function change() {
+    if (document.getElementById('a').value == '1')
+    document.getElementById("b").value = '13';
+    else if (document.getElementById('a').value == '2')
+    document.getElementById("b").value = '8';
+    else if (document.getElementById('a').value == '3')
+    document.getElementById("b").value = '3';
+    else if (document.getElementById('a').value == '4')
+    document.getElementById("b").value = '1';
+    else if (document.getElementById('a').value == '5')
+    document.getElementById("b").value = '2';
+    else if (document.getElementById('a').value == '6')
+    document.getElementById("b").value = '14';
+    else if (document.getElementById('a').value == '7')
+    document.getElementById("b").value = '11';
+    else if (document.getElementById('a').value == '8')
+    document.getElementById("b").value = '11';
+    else if (document.getElementById('a').value == '9')
+    document.getElementById("b").value = '11';
+    else if (document.getElementById('a').value == '10')
+    document.getElementById("b").value = '2';
+    else if (document.getElementById('a').value == '11')
+    document.getElementById("b").value = '3';
+    else if (document.getElementById('a').value == '12')
+    document.getElementById("b").value = '11';
+    else if (document.getElementById('a').value == '13')
+    document.getElementById("b").value = '12';
+    else if (document.getElementById('a').value == '14')
+    document.getElementById("b").value = '2';
+    else if (document.getElementById('a').value == '15')
+    document.getElementById("b").value = '6';
+    else if (document.getElementById('a').value == '16')
+    document.getElementById("b").value = '1';
+    else if (document.getElementById('a').value == '17')
+    document.getElementById("b").value = '14';
+    else if (document.getElementById('a').value == '18')
+    document.getElementById("b").value = '12';
+    else if (document.getElementById('a').value == '19')
+    document.getElementById("b").value = '12';
+    else if (document.getElementById('a').value == '20')
+    document.getElementById("b").value = '1';
+    else if (document.getElementById('a').value == '21')
+    document.getElementById("b").value = '12';
+    else if (document.getElementById('a').value == '22')
+    document.getElementById("b").value = '12';
+    else if (document.getElementById('a').value == '23')
+    document.getElementById("b").value = '12';
+    else if (document.getElementById('a').value == '24')
+    document.getElementById("b").value = '1';
+    else if (document.getElementById('a').value == '25')
+    document.getElementById("b").value = '2';
+    else if (document.getElementById('a').value == '26')
+    document.getElementById("b").value = '2';
+    else if (document.getElementById('a').value == '27')
+    document.getElementById("b").value = '2';
+    else if (document.getElementById('a').value == '28')
+    document.getElementById("b").value = '12';
+    };
+    </script>
 
 
 
-
-</body>
-</html>
+  </body>
+  </html>
