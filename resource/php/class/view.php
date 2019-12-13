@@ -1979,7 +1979,7 @@ class view extends config{
                 echo '<th class="text-center align-middle" style= "font-weight:bold; color:white;">'.$col->purposes.'</td>';
               }
               echo '
-              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Price</td>
+              <th class="text-center align-middle px-3" style= "font-weight:bold; color:white;">Price</td>
               <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Transaction</td>
               <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Price</td>
               </tr>
@@ -2006,7 +2006,7 @@ class view extends config{
                    echo '<td class="text-center">'.$res.'</td>';
                  }
                  $totalprice = $row->price * $totaltrans;
-                 echo '<td class="text-center">'.$row->price.'</td>';
+                 echo '<td class="text-center"><span>&#8369</span> '.$row->price.'</td>';
                 echo '<td class="text-center">'.$totaltrans.'</td>';
                   echo '<td class="text-center">'.$totalprice.'</td>';
                 echo '</tr>';
@@ -2038,7 +2038,7 @@ class view extends config{
                 echo '<th class="text-center align-middle" style= "font-weight:bold; color:white;">'.$col->purposes.'</td>';
               }
               echo '
-              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Price</td>
+              <th class="text-center align-middle px-3" style= "font-weight:bold; color:white;">Price</td>
               <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Transaction</td>
               <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Price</td>
               </tr>
@@ -2065,11 +2065,63 @@ class view extends config{
                    echo '<td class="text-center">'.$res.'</td>';
                  }
                  $totalprice = $row->price * $totaltrans;
-                 echo '<td class="text-center">'.$row->price.'</td>';
+                 echo '<td class="text-center"><span>&#8369</span> '.$row->price.'</td>';
                 echo '<td class="text-center">'.$totaltrans.'</td>';
                   echo '<td class="text-center">'.$totalprice.'</td>';
                 echo '</tr>';
               }
             }
+            public function showprice(){
+              $config = new config;
+              $con = $config->con();
+              $sql = "SELECT * FROM `tbl_applied_for`";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+              $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+              echo '
+              <div class="container">
+                <form method="get">
+                ';
+              foreach ($rows as $row) {
+                echo '<div class="row my-3">';
+                echo '<div class="col-5">';
+                echo "$row->appliedfor";
+                echo '</div>';
+                echo '<div class="col-5">';
+                echo '  <input  class="form-control" type="text" name="price[]" value="'.$row->price.'" required>';
+                echo '</div>';
+                  echo '<div class="col">';
+                echo '  <input  class="form-control" type="text" name="id[]" value="'.$row->id.'" hidden>';
+                echo '</div>';
+                echo '</div>';
+              }
+              echo '
+            <div class="row my-3">
+            <div class="col-5">
+            </div>
+            <div class="col-5">
+             <input type="submit" class="btn text-white" name="uprice" value="Update" style="background-color:#DC65A1;">
+            </div></div>
+            </form>
+          </div>
+              ';
+            }
+            public function changeprice(){
+              $prices =  $_GET['price'];
+              $id = $_GET['id'];
+              // var_dump($price);
+              $config = new config;
+              $con = $config->con();
+              foreach ($prices as $index => $price) {
+                  // echo $id[$index];
+                  // echo $price;
+                  // echo "<br>";
+              $sql = "UPDATE `tbl_applied_for` SET`price` = $price WHERE `id` = $id[$index] ";
+              $data = $con-> prepare($sql);
+              $data ->execute();
+            }
+            }
           }
  ?>
+ <!-- <span>&#8369</span> -->
+ <!-- UPDATE `tbl_applied_for` SET `id`=[value-1],`appliedfor`=[value-2],`state`=[value-3],`price`=[value-4]  -->

@@ -55,7 +55,8 @@ $checkadmin->checkadmin();
                  <a class="btn btn-light btn-block my-4"value="" href="add-new-college-chua.php" style="color:white;background-color :#DC65A1; ">Add College</a>
                  <a class="btn btn-light btn-block my-4"value="" href="AddPurpose.php" style="color:white;background-color :#DC65A1; ">Add a Reason for Request</a>
                  <a class="btn btn-light btn-block my-4"value="" href="course.php" style="color:white;background-color :#DC65A1; ">Add or Delete Courses</a>
-                      <a class="btn btn-light btn-block my-4"value="" href="state.php" style="color:white;background-color :#DC65A1; ">States</a>
+                 <a class="btn btn-light btn-block my-4"value="" href="price.php" style="color:white;background-color :#DC65A1; ">Prices</a>
+                 <a class="btn btn-light btn-block my-4"value="" href="state.php" style="color:white;background-color :#DC65A1; ">States</a>
 
                  <!-- <input type =hidden name="token" value="">
                  <input  type="submit"  href="AdminSra.php"  class="btn btn-dark btn-block my-4"value="Update Quote" />

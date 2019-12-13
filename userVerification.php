@@ -71,9 +71,9 @@ $view = new view;
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="College" >College</label>
-                                          <select id="b" name="College">
-                                            <?php $view->collegeSP();?>
-                                          </select>
+                                      <select id="b" name="College" class="form-control">
+                                        <?php $view->collegeSP();?>
+                                      </select>
                                     </div>
                                     <div class="form-group col-4">
                                         <label for="ContactNumber">Status</label>
