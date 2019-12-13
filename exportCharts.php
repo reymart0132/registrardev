@@ -21,6 +21,7 @@ $view=new view;
 // header("Content-Disposition: attachment; filename=filename.xls");
 // header("Pragma: no-cache");
 // header("Expires: 0");
+  $view->chartexport();;
 ?>
 
 <!-- <!DOCTYPE html>
@@ -32,7 +33,7 @@ $view=new view;
   <body>
     <tr style="border:1px solid black;"><td>
       <?php
-      $pending = $view->chartreleased();
+      $view->chartexport();;
        ?>
     </td></tr>
   </body>
