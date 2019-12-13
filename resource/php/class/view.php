@@ -1711,7 +1711,7 @@ class view extends config{
               $results =$data->rowCount();
               $results = $results + 1;
               if(!empty($_GET)){ $date = date("M-d-Y", strtotime($_GET['cfd']))." to ".date("M-d-Y", strtotime($_GET['cld']));}else{ $date = date("F j, Y");}
-              echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+              echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" id="activity" style="width:100%;">';
               echo '<thead class="thead" style="background-color:#DC65A1;">';
               echo '
               <tr>
@@ -1832,6 +1832,12 @@ class view extends config{
                 echo '<td class="text-center">'.$results5.'</td>';
               }
               echo '</tr>';
+
+              // $_SESSION['r1']= $results;
+              // $_SESSION['r2']= $results2;
+              // $_SESSION['r3']= $results3;
+              // $_SESSION['r4']= $results4;
+              // $_SESSION['r5']= $results5;
             }
 
           public function twork(){
