@@ -1,6 +1,5 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
-
   if (isset($_GET['exportPending'])) {
   $result = $_SESSION['resultPending'];
   header("Content-Type: application/xls");
@@ -898,10 +897,10 @@ echo '</table>';
       }
   echo '</table>';
 }elseif (isset($_GET['searchVPendingAdmin'])) {
-  // header("Content-Type: application/xls");
-  // header("Content-Disposition: attachment; filename=filename.xls");
-  // header("Pragma: no-cache");
-  // header("Expires: 0");
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
   $result = $_SESSION['resultPendingSearchVAdmin'];
   echo '<h1>Reports</h1>';
   echo '<table style="border-collapse:collapse;">';
@@ -1113,10 +1112,10 @@ echo '</table>';
 }elseif (isset($_GET['alumniSearch'])) {
   $result = $_SESSION['viewAlumniSearch'];
   $view = new view;
-  // header("Content-Type: application/xls");
-  // header("Content-Disposition: attachment; filename=filename.xls");
-  // header("Pragma: no-cache");
-  // header("Expires: 0");
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
   echo '<table style="border-collapse:collapse;">';
   echo '<thead>';
   echo '
@@ -1150,10 +1149,10 @@ echo '</table>';
 }elseif (isset($_GET['exportAllAlumniSearch'])) {
   $result = $_SESSION['allAlumniSearch'];
   $view = new view;
-  // header("Content-Type: application/xls");
-  // header("Content-Disposition: attachment; filename=filename.xls");
-  // header("Pragma: no-cache");
-  // header("Expires: 0");
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
   echo '<table style="border-collapse:collapse;">';
   echo '<thead>';
   echo '
@@ -1188,10 +1187,10 @@ echo '</table>';
 }elseif (isset($_GET['exportAllAlumni2'])) {
   $result = $_SESSION['allAlumni'];
   $view = new view;
-  // header("Content-Type: application/xls");
-  // header("Content-Disposition: attachment; filename=filename.xls");
-  // header("Pragma: no-cache");
-  // header("Expires: 0");
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
   echo '<table style="border-collapse:collapse;">';
   echo '<thead>';
   echo '
@@ -1225,10 +1224,10 @@ echo '</table>';
 }elseif (isset($_GET['exportAllAlumniSearch'])) {
   $result = $_SESSION['allAlumniSearch'];
   $view = new view;
-  // header("Content-Type: application/xls");
-  // header("Content-Disposition: attachment; filename=filename.xls");
-  // header("Pragma: no-cache");
-  // header("Expires: 0");
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
   echo '<table style="border-collapse:collapse;">';
   echo '<thead>';
   echo '
