@@ -91,15 +91,16 @@ class viewAdmin extends config{
            echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757">'.$row->purposes.'</td>';
            echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757">'.$row->Due_Date.'</td>';
            echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+           echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success btt" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
            echo '<td class="text-center align-middle"  style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success btt" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
+
            $af = explode(",",$row->Applied_For);
            echo '<td class="text-center align-middle"  style="color:white; background-color:#ff5757">';
            foreach ($af as $row->Applied_For) {
 
            if ($row->Applied_For == 'Permit to Cross Enroll') {
              echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
-           }elseif($row->Applied_For == 'Cert of Enrollment '){
+           }elseif($row->Applied_For == 'Cert of Enrollment'){
              echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
            }elseif ($row->Applied_For == 'Cert of Graduation') {
            echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
@@ -126,7 +127,7 @@ class viewAdmin extends config{
            echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
            echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
            echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success btt" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
            echo '<td class="text-center align-middle"  style="color:white; background-color:#a68df9"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
 
            $af = explode(",",$row->Applied_For);
@@ -134,7 +135,7 @@ class viewAdmin extends config{
          foreach ($af as $row->Applied_For) {
            if ($row->Applied_For == 'Permit to Cross Enroll') {
              echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
-           }elseif($row->Applied_For == 'Cert of Enrollment '){
+           }elseif($row->Applied_For == 'Cert of Enrollment'){
              echo '<a class="btn bg-light btn-outline-success"href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
            }elseif ($row->Applied_For == 'Cert of Graduation') {
           echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
@@ -159,7 +160,7 @@ class viewAdmin extends config{
           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-          echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+          echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success btt" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn bg-light btn-outline-success btt" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
           $af = explode(",",$row->Applied_For);
           echo '<td class="text-center align-middle"  style="color:white; background-color:#a68df9">';
@@ -192,7 +193,7 @@ class viewAdmin extends config{
          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
 
-         echo '<td class="text-center style="color:#DC65A1;" style="color:white;"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
+         echo '<td class="text-center style="color:#DC65A1;" style="color:white;"><a class="btn bg-light btn-outline-success btt" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
          echo '<td class="text-center align-middle"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
          $af = explode(",",$row->Applied_For);
          echo '<td class="text-center align-middle"  style="color:#DC65A1;">';
@@ -237,11 +238,11 @@ class viewAdmin extends config{
           <div class="row">
             <div class="col-sm">
               <label for="dateFrom">From:</label>
-              <input  class="form-control" type="date" name="dateFrom" id="startDate"  onkeydown="return false"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+              <input  class="form-control" type="date" name="dateFrom" id="startDate6"  onkeydown="return false"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
             </div>
             <div class="col-sm">
               <label for="dateTo">To:</label>
-              <input  class="form-control" type="date" name="dateTo" id="endDate"  onkeydown="return false" placeholder="dd-mm-yyyy">
+              <input  class="form-control" type="date" name="dateTo" id="endDate6"  onkeydown="return false" placeholder="dd-mm-yyyy">
             </div>
             <div class="col-sm">
               <label for="criteria">Filter By:</label>
