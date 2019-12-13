@@ -121,3 +121,20 @@ endDate5.addEventListener('input', compareDates5);
 //       }
 //   })
 // }
+
+console.clear();
+var startDateInp6 = document.getElementById('startDate6');
+var endDateInp6 = document.getElementById('endDate6');
+
+function compareDates5() {
+  var startDateTime6 = new Date(startDateInp6.value).getTime();
+  var endDateTime6 = new Date(endDateInp6.value).getTime();
+
+  console.log(startDateTime6, endDateTime6);
+
+  if (startDateTime6 > endDateTime6) {
+    alert('Invalid Date!');
+    document.getElementById('startDate6').value='';
+    document.getElementById('endDate6').value='';
+  }
+}
