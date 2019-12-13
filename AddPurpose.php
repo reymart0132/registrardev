@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'\registrardev\resource\php\class\addpurp
 if(isset($_POST['submit'])){
   $add = new add($_POST['purpose']);
   $add->addpurpose();
-  header("Location: Reqpurposes.php");
+  // header("Location: Reqpurposes.php");
 }
 ?>
 
