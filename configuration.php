@@ -22,7 +22,11 @@ $checkadmin->checkadmin();
             <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
               alt="mdb logo"><h3 class="ib">
           </a>
-          <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+          <a href="exportTableAdmin.php"><i class="fas fa-table ceucolor"></i></a>
+          <a href="statsAdmin.php"><i class="fas fa-chart-line ceucolor"></i></a>
+          <a href="userVerificationAdmin.php"><i class="fas fa-user-plus ceucolor"></i></a>
+          <a href="verificationAdmin.php"><i class="fas fa-user-graduate ceucolor"></i></a>
+          <a href="viewAlumniAdmin.php"><i class="fa fa-graduation-cap ceucolor"></i></a>
           <a href="nTransactionAdmin.php"><i class="fas fa-file-upload ceucolor"></i></a>
           <a href="view_pending_requests.php"><i class="fas fa-home ceucolor"></i></a>
              <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
@@ -49,7 +53,7 @@ $checkadmin->checkadmin();
                  <a class="btn btn-light btn-block my-4"value="" href="AdminSra.php" style="color:white;background-color :#DC65A1; ">Update SRA Quote</a>
                  <a class="btn btn-light btn-block my-4"value="" href="add-requesting-waris.php" style="color:white;background-color :#DC65A1; ">Requesting</a>
                  <a class="btn btn-light btn-block my-4"value="" href="add-new-college-chua.php" style="color:white;background-color :#DC65A1; ">Add College</a>
-                 <a class="btn btn-light btn-block my-4"value="" href="Reqpurposes.php" style="color:white;background-color :#DC65A1; ">Add or Delete Purpose for Request</a>
+                 <a class="btn btn-light btn-block my-4"value="" href="AddPurpose.php" style="color:white;background-color :#DC65A1; ">Add a Reason for Request</a>
                  <a class="btn btn-light btn-block my-4"value="" href="course.php" style="color:white;background-color :#DC65A1; ">Add or Delete Courses</a>
                       <a class="btn btn-light btn-block my-4"value="" href="state.php" style="color:white;background-color :#DC65A1; ">States</a>
 

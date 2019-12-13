@@ -93,13 +93,14 @@ class viewAdmin extends config{
            echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757">'.$row->remarks.'</br></td>';
            echo '<td class="text-center align-middle" style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
            echo '<td class="text-center align-middle"  style="color:white; background-color:#ff5757"><a class="btn bg-light btn-outline-success btt" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
+
            $af = explode(",",$row->Applied_For);
            echo '<td class="text-center align-middle"  style="color:white; background-color:#ff5757">';
            foreach ($af as $row->Applied_For) {
 
            if ($row->Applied_For == 'Permit to Cross Enroll') {
              echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
-           }elseif($row->Applied_For == 'Cert of Enrollment '){
+           }elseif($row->Applied_For == 'Cert of Enrollment'){
              echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
            }elseif ($row->Applied_For == 'Cert of Graduation') {
            echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
@@ -134,7 +135,7 @@ class viewAdmin extends config{
          foreach ($af as $row->Applied_For) {
            if ($row->Applied_For == 'Permit to Cross Enroll') {
              echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
-           }elseif($row->Applied_For == 'Cert of Enrollment '){
+           }elseif($row->Applied_For == 'Cert of Enrollment'){
              echo '<a class="btn bg-light btn-outline-success"href="resource/php/rof026_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&course='.$row->Course.'&college='.$row->College.'">'.$row->Applied_For.'</a></br>';
            }elseif ($row->Applied_For == 'Cert of Graduation') {
           echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/cog_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
