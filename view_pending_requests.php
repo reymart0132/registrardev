@@ -41,9 +41,11 @@ if(isset($_GET['verified'])){
          alt="mdb logo">
          <h3 class="ib">
      </a>
-        <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+        <a href="exportTableAdmin.php"><i class="fas fa-table ceucolor"></i></a>
+        <a href="statsAdmin.php"><i class="fas fa-chart-line ceucolor"></i></a>
         <a href="userVerificationAdmin.php"><i class="fas fa-user-plus ceucolor"></i></a>
         <a href="verificationAdmin.php"><i class="fas fa-user-graduate ceucolor"></i></a>
+        <a href="viewAlumniAdmin.php"><i class="fa fa-graduation-cap ceucolor"></i></a>
         <a href="nTransactionAdmin.php"><i class="fas fa-file-upload ceucolor"></i></a>
         <a href="view_pending_requests.php"><i class="fas fa-home ceucolor"></i></a>
         <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
