@@ -1,40 +1,27 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
-// header("Content-Type: application/xls");
-// header("Content-Disposition: attachment; filename=filename.xls");
-// header("Pragma: no-cache");
-// header("Expires: 0");
-$results = $_SESSION['released'];
-
-// foreach ($results as $row) {
-//   $row->id;
+// // header("Content-Type: application/xls");
+// // header("Content-Disposition: attachment; filename=filename.xls");
+// // header("Pragma: no-cache");
+// // header("Expires: 0");
+// $view= new view;
+// if (isset($_GET['search'])) {
+// $view->chartexport();
+// }else {
+// $view->chartexport();
 // }
 
-$view=new view;
-// $pending = $view->chartreleased();
 
-// foreach ($pending as $row) {
-//   echo $row;
-// }
+// $r1 = $_SESSION['r1'];
+// $r1 = $_SESSION['r2'];
+// $r1 = $_SESSION['r3'];
+// $r1 = $_SESSION['r4'];
+// $r1 = $_SESSION['r5'];
+//
+// echo $r1;
 
-// header("Content-Type: application/xls");
-// header("Content-Disposition: attachment; filename=filename.xls");
-// header("Pragma: no-cache");
-// header("Expires: 0");
-  $view->chartexport();;
+
+header('Content-Type: application/vnd.ms-excel');
+header('Content-disposition: attachment; filename='.rand().'.xls');
+echo $_GET["data"];
 ?>
-
-<!-- <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <tr style="border:1px solid black;"><td>
-      <?php
-      $view->chartexport();;
-       ?>
-    </td></tr>
-  </body>
-</html> -->
