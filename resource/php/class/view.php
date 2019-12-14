@@ -1710,9 +1710,10 @@ class view extends config{
               $rows =$data-> fetchAll(PDO::FETCH_OBJ);
               $results =$data->rowCount();
               $results = $results + 1;
+              echo '<div id="activity">';
               if(!empty($_GET)){ $date = date("M-d-Y", strtotime($_GET['cfd']))." to ".date("M-d-Y", strtotime($_GET['cld']));}else{ $date = date("F j, Y");}
-              echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" id="activity" style="width:100%;">';
-              echo '<thead class="thead" style="background-color:#DC65A1;">';
+              echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+              echo '<thead class="thead" >';
               echo '
               <tr>
               <td class="text-center" style= "font-weight:bold;"colspan="'.$results.'">Productivity Report ('.$date.') </td>
@@ -1720,12 +1721,12 @@ class view extends config{
               echo '<tr>';
               echo '<th class="text-center" style= "font-weight:bold; color:white;"></td>';
               foreach ($rows as $row) {
-                  echo '<th class="text-center align-middle" style= "font-weight:bold; color:white;">'.$row->username.'</td>';
+                  echo '<th class="text-center align-middle" style= "font-weight:bold;">'.$row->username.'</td>';
 
               }
               echo '</tr>';
               echo '<tr style="background-color:white;">
-              <td class="text-center align-middle" style="color:#DC65A1;">Transactions Received</td>
+              <td class="text-center align-middle" >Transactions Received</td>
               ';
 
               foreach ($rows as $row) {
@@ -1749,7 +1750,7 @@ class view extends config{
               //
               echo '</tr>';
               echo '<tr style="background-color:white;">
-              <td class="text-center align-middle" style="color:#DC65A1;">Completed Transactions</td>
+              <td class="text-center align-middle" >Completed Transactions</td>
               ';
 
               foreach ($rows as $row) {
@@ -1773,7 +1774,7 @@ class view extends config{
               //
               echo '</tr>';
               echo '<tr style="background-color:white;">
-              <td class="text-center align-middle" style="color:#DC65A1;">Pending Transactions</td>
+              <td class="text-center align-middle">Pending Transactions</td>
               ';
 
               foreach ($rows as $row) {
@@ -1810,7 +1811,7 @@ class view extends config{
               //
               echo '</tr>';
               echo '<tr style="background-color:white;">
-              <td class="text-center align-middle" style="color:#DC65A1;">Released Transactions</td>
+              <td class="text-center align-middle" >Released Transactions</td>
               ';
 
               foreach ($rows as $row) {
@@ -1832,7 +1833,8 @@ class view extends config{
                 echo '<td class="text-center">'.$results5.'</td>';
               }
               echo '</tr>';
-
+              echo '</table>';
+              echo '</div>';
               // $_SESSION['r1']= $results;
               // $_SESSION['r2']= $results2;
               // $_SESSION['r3']= $results3;

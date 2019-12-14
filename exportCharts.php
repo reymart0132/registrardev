@@ -20,7 +20,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/in
 //
 // echo $r1;
 
-
 header('Content-Type: application/vnd.ms-excel');
 header('Content-disposition: attachment; filename='.rand().'.xls');
 echo $_GET["data"];
