@@ -82,6 +82,15 @@ $view = new view;
                   ],
              }]
          },
+         options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
 
      });
 
