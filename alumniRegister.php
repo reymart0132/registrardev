@@ -1,4 +1,4 @@
-<?php
+  <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new view;
 
@@ -101,6 +101,15 @@ $view = new view;
                         <tr>
                             <td>
                                 <div class="row">
+                                  <div class="form-group col-4">
+                                    <label for="Lastname">Employer</label>
+                                    <input type="text" class="form-control" id="Lastname"  name="employer" aria-describedby="emailHelp" placeholder="Enter Lastname" maxlength="49" required>
+                                  </div>
+                                  <!--  -->
+                                  <div class="form-group col-4">
+                                    <label for="Lastname">Employed Position</label>
+                                    <input type="text" class="form-control" id="Lastname"  name="position" aria-describedby="emailHelp" placeholder="Enter Lastname" maxlength="49" required>
+                                  </div>
                                 </div>
                             </td>
                         </tr>

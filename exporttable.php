@@ -142,11 +142,11 @@ isLogin();
      <div class="row">
        <div class="col-5">
          <label for="dateFrom">From:</label>
-         <input  class="form-control" type="date" name="cfd"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+         <input  class="form-control" type="date" name="cfd" id="startDate" data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy" required>
        </div>
        <div class="col-5">
          <label for="dateTo">To:</label>
-         <input  class="form-control" type="date" name="cld"  placeholder="dd-mm-yyyy">
+         <input  class="form-control" type="date" name="cld"  id="endDate" placeholder="dd-mm-yyyy" required>
        </div>
        <div class="col-2 mt-4 pt-2">
          <label for="submit"></label>

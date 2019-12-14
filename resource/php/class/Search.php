@@ -23,7 +23,10 @@ class Search extends config{
     $con = $config->con();
     $user = new User();
     $id1 = $user->data()->id;
-    $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
+
+      $sql = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
+
+
     if (!empty($search) && !empty($criteria)) {
       $sql .= "AND `$criteria` LIKE '%$search%'";
     }elseif (!empty($dateFrom) && !empty($dateTo)) {
@@ -31,6 +34,7 @@ class Search extends config{
     }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
       $sql .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%'";
     }
+
 
     $sql3 = "SELECT * FROM `work`";
     $data3 = $con-> prepare($sql3);
@@ -64,8 +68,20 @@ class Search extends config{
     $total_results = $data->rowCount();
     $total_pages = ceil($total_results/$limit);
 
-    $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
+    if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+      echo "<script>alert('Empty search area!');</script>";
+      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php';</script>"; exit;
+    }else {
+      $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
+    }
 
+    if (!empty($dateFrom) && empty($dateTo)) {
+      echo "<script>alert('Both date fields are required!');</script>";
+      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php';</script>"; exit;
+    }elseif (empty($dateFrom) && !empty($dateTo)) {
+      echo "<script>alert('Both date fields are required!');</script>";
+      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php';</script>"; exit;
+    }
 
     if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
       $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -288,6 +304,7 @@ class Search extends config{
          <div class="col-sm">
            <label for="criteria">Filter By:</label>
            <select class="form-control" name="criteria">
+            <option selected="true" disabled="disabled">Choose an Option</option>
              <option value="FirstName">First Name</option>
              <option value="LastName">Last Name</option>
              <option value="Course">Course</option>
@@ -372,8 +389,20 @@ class Search extends config{
       $total_results = $data->rowCount();
       $total_pages = ceil($total_results/$limit);
 
-      $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = '$id1'";
+      if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+        echo "<script>alert('Empty search area!');</script>";
+        echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=printed';</script>"; exit;
+      }else {
+        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = '$id1'";
+      }
 
+      if (!empty($dateFrom) && empty($dateTo)) {
+        echo "<script>alert('Both date fields are required!');</script>";
+        echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=printed';</script>"; exit;
+      }elseif (empty($dateFrom) && !empty($dateTo)) {
+        echo "<script>alert('Both date fields are required!');</script>";
+        echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=printed';</script>"; exit;
+      }
 
       if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
         $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -493,6 +522,7 @@ class Search extends config{
            <div class="col-sm">
              <label for="criteria">Filter By:</label>
              <select class="form-control" name="criteria">
+             <option selected="true" disabled="disabled">Choose an Option</option>
               <option value="FirstName">First Name</option>
                <option value="LastName">Last Name</option>
                <option value="Course">Course</option>
@@ -576,7 +606,20 @@ class Search extends config{
         $total_results = $data->rowCount();
         $total_pages = ceil($total_results/$limit);
 
-        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
+        if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+          echo "<script>alert('Empty search area!');</script>";
+          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease2';</script>"; exit;
+        }else {
+            $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
+        }
+
+        if (!empty($dateFrom) && empty($dateTo)) {
+          echo "<script>alert('Both date fields are required!');</script>";
+          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease2';</script>"; exit;
+        }elseif (empty($dateFrom) && !empty($dateTo)) {
+          echo "<script>alert('Both date fields are required!');</script>";
+          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease2';</script>"; exit;
+        }
 
 
         if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -695,6 +738,7 @@ class Search extends config{
              <div class="col-sm">
                <label for="criteria">Filter By:</label>
                <select class="form-control" name="criteria">
+               <option selected="true" disabled="disabled">Choose an Option</option>
                 <option value="FirstName">First Name</option>
                  <option value="LastName">Last Name</option>
                  <option value="Course">Course</option>
@@ -771,8 +815,20 @@ class Search extends config{
           $total_results = $data->rowCount();
           $total_pages = ceil($total_results/$limit);
 
-          $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
+          if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+            echo "<script>alert('Empty search area!');</script>";
+            echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease1';</script>"; exit;
+          }else {
+                $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
+          }
 
+          if (!empty($dateFrom) && empty($dateTo)) {
+            echo "<script>alert('Both date fields are required!');</script>";
+            echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease1';</script>"; exit;
+          }elseif (empty($dateFrom) && !empty($dateTo)) {
+            echo "<script>alert('Both date fields are required!');</script>";
+            echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease1';</script>"; exit;
+          }
 
           if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
             $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -968,7 +1024,20 @@ class Search extends config{
             //   $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' LIMIT $start,$limit";
             //   echo "<script type='text/javascript'>alert('Invalid Date');</script>";
             // }else {
-              $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
+              if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+                echo "<script>alert('Empty search area!');</script>";
+                echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=released';</script>"; exit;
+              }else {
+                $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
+              }
+
+              if (!empty($dateFrom) && empty($dateTo)) {
+                echo "<script>alert('Both date fields are required!');</script>";
+                echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=released';</script>"; exit;
+              }elseif (empty($dateFrom) && !empty($dateTo)) {
+                echo "<script>alert('Both date fields are required!');</script>";
+                echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=released';</script>"; exit;
+              }
             // }
 
 
@@ -1081,6 +1150,7 @@ class Search extends config{
                  <div class="col-sm">
                    <label for="criteria">Filter By:</label>
                    <select class="form-control" name="criteria">
+                   <option selected="true" disabled="disabled">Choose an Option</option>
                     <option value="FirstName">First Name</option>
                      <option value="LastName">Last Name</option>
                      <option value="Course">Course</option>
@@ -1162,7 +1232,21 @@ class Search extends config{
         $total_results = $data->rowCount();
         $total_pages = ceil($total_results/$limit);
 
-        $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
+        if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+          echo "<script>alert('Empty search area!');</script>";
+          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=view';</script>"; exit;
+        }else {
+            $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
+        }
+
+        if (!empty($dateFrom) && empty($dateTo)) {
+          echo "<script>alert('Both date fields are required!');</script>";
+          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=view';</script>"; exit;
+        }elseif (empty($dateFrom) && !empty($dateTo)) {
+          echo "<script>alert('Both date fields are required!');</script>";
+          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=view';</script>"; exit;
+        }
+
 
 
         if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -1347,7 +1431,20 @@ class Search extends config{
             $total_results = $data->rowCount();
             $total_pages = ceil($total_results/$limit);
 
-            $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
+            if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+              echo "<script>alert('Empty search area!');</script>";
+              echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=verified';</script>"; exit;
+            }else {
+              $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
+            }
+
+            if (!empty($dateFrom) && empty($dateTo)) {
+              echo "<script>alert('Both date fields are required!');</script>";
+              echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=verified';</script>"; exit;
+            }elseif (empty($dateFrom) && !empty($dateTo)) {
+              echo "<script>alert('Both date fields are required!');</script>";
+              echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=verified';</script>"; exit;
+            }
 
 
             if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -1562,6 +1659,8 @@ class Search extends config{
         echo '<center>No Results Found</center>';
       }
 
+      $view=new view;
+      $view->paginationSearch($total_pages,$page,$search,$criteria);
       echo '
       <div class="container-fluid mt-4">
        <form class="" action="" method="get">

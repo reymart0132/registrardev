@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
-$view = new view;
+$view2 = new view;
+$view = new viewAdmin;
 $user = new user();
 isLogin();
 
@@ -49,9 +50,11 @@ isLogin();
               <?php
                 profilePic();
               ?>
-               <a href="updateprofile.php" class="out "><span class="fas fa-id-card mt-3 " href="#"></span>&nbsp;Update Info</a>
-               <a href="changepassword.php" class="out "><span class="fas fa-lock " href="#"></span>&nbsp;Change Password</a>
-               <a href="logout.php" class="out "><span class="fas fa-sign-out-alt " href="#"></span>&nbsp;Logout</a>
+              <a href="updateprofile.php" class="out "><span class="fas fa-id-card mt-3 " href="#"></span>&nbsp;Update Info</a>
+              <a href="configuration.php" class="out "><span class="fas fa-cogs" href="#"></span>&nbsp;Configuration</a>
+              <a href="register.php" class="out "><span class="fas fa-user" href="#"></span>&nbsp;Register New SRA</a>
+              <a href="changepassword.php" class="out "><span class="fas fa-lock " href="#"></span>&nbsp;Change Password</a>
+              <a href="logout.php" class="out "><span class="fas fa-sign-out-alt " href="#"></span>&nbsp;Logout</a>
            </div>
            <div class="col-8">
                <p class="name mt-2" style="color: #dc65a1;"><b><?php $view->getNameSRA()?></b></p>
@@ -140,11 +143,11 @@ isLogin();
      <div class="row">
        <div class="col-5">
          <label for="dateFrom">From:</label>
-         <input  class="form-control" type="date" name="cfd"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+         <input  class="form-control" type="date" name="cfd" id="startDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy" required>
        </div>
        <div class="col-5">
          <label for="dateTo">To:</label>
-         <input  class="form-control" type="date" name="cld"  placeholder="dd-mm-yyyy">
+         <input  class="form-control" type="date" name="cld" id="endDate" placeholder="dd-mm-yyyy" required>
        </div>
        <div class="col-2 mt-4 pt-2">
          <label for="submit"></label>
@@ -155,8 +158,8 @@ isLogin();
    <!--  -->
    <div class="container-fluid mt-4 mb-5">
      <?php
-     $view->exportundergrad();
-      $view->exportgrad();
+     $view2->exportundergrad();
+      $view2->exportgrad();
       ?>
 
       <!-- <button type="button" class="btn" name="button"></button> -->

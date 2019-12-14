@@ -65,7 +65,21 @@ class SearchAdmin extends config{
     $total_results = $data->rowCount();
     $total_pages = ceil($total_results/$limit);
 
-    $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING'";
+    if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+      echo "<script>alert('Empty search area!');</script>";
+      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/view_pending_requests.php';</script>"; exit;
+    }else {
+        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING'";
+    }
+
+    if (!empty($dateFrom) && empty($dateTo)) {
+      echo "<script>alert('Both date fields are required!');</script>";
+      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/view_pending_requests.php';</script>"; exit;
+    }elseif (empty($dateFrom) && !empty($dateTo)) {
+      echo "<script>alert('Both date fields are required!');</script>";
+      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/view_pending_requests.php';</script>"; exit;
+    }
+
 
 
     if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -370,7 +384,21 @@ class SearchAdmin extends config{
       $total_results = $data->rowCount();
       $total_pages = ceil($total_results/$limit);
 
-      $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED'";
+      if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+        echo "<script>alert('Empty search area!');</script>";
+        echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=printed';</script>"; exit;
+      }else {
+          $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED'";
+      }
+
+      if (!empty($dateFrom) && empty($dateTo)) {
+        echo "<script>alert('Both date fields are required!');</script>";
+        echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=printed';</script>"; exit;
+      }elseif (empty($dateFrom) && !empty($dateTo)) {
+        echo "<script>alert('Both date fields are required!');</script>";
+        echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=printed';</script>"; exit;
+      }
+
 
 
       if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -601,7 +629,20 @@ class SearchAdmin extends config{
       $total_results = $data->rowCount();
       $total_pages = ceil($total_results/$limit);
 
-      $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
+      if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+        echo "<script>alert('Empty search area!');</script>";
+        echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=forrelease1';</script>"; exit;
+      }else {
+            $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
+      }
+
+      if (!empty($dateFrom) && empty($dateTo)) {
+        echo "<script>alert('Both date fields are required!');</script>";
+        echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=forrelease1';</script>"; exit;
+      }elseif (empty($dateFrom) && !empty($dateTo)) {
+        echo "<script>alert('Both date fields are required!');</script>";
+        echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=forrelease1';</script>"; exit;
+      }
 
       if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
         $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -714,17 +755,17 @@ class SearchAdmin extends config{
         for ($p=1; $p <=$total_pages; $p++) {
           if (!empty($search) && !empty($criteria)) {
             echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease2&submit=submitVerfied&criteria='.$criteria.'&V1page='.$p.'&submitVerified=Submit#verified">'.$p;
+            echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease1&submit=submitVerfied&criteria='.$criteria.'&V1page='.$p.'&submitVerified=Submit#verified">'.$p;
             echo  '</a>';
             echo '</li>';
           }elseif(!empty($dateFrom) && !empty($dateTo)) {
             echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease2&submit=submitVerfied&dateTo='.$dateTo.'&V1page='.$p.'&submitVerfied=Submit#verified">'.$p;
+            echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease1&submit=submitVerfied&dateTo='.$dateTo.'&V1page='.$p.'&submitVerfied=Submit#verified">'.$p;
             echo  '</a>';
             echo '</li>';
           }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
             echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?tab=forrelease2&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V1page='.$p.'&submitVerfied=Submit#printed&submit=submitVerfied">'.$p;
+            echo  '<a class= "page-link" href="?tab=forrelease1&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V1page='.$p.'&submitVerfied=Submit#printed&submit=submitVerfied">'.$p;
             echo  '</a>';
             echo '</li>';
           }
@@ -1044,7 +1085,23 @@ class SearchAdmin extends config{
             //   $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED' LIMIT $start,$limit";
             //   echo "<script type='text/javascript'>alert('Invalid Date');</script>";
             // }else {
-              $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
+
+            if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+              echo "<script>alert('Empty search area!');</script>";
+              echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=released';</script>"; exit;
+            }else {
+                        $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
+            }
+
+            if (!empty($dateFrom) && empty($dateTo)) {
+              echo "<script>alert('Both date fields are required!');</script>";
+              echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=released';</script>"; exit;
+            }elseif (empty($dateFrom) && !empty($dateTo)) {
+              echo "<script>alert('Both date fields are required!');</script>";
+              echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=released';</script>"; exit;
+            }
+
+
             // }
 
 
@@ -1236,8 +1293,20 @@ class SearchAdmin extends config{
         $total_results = $data->rowCount();
         $total_pages = ceil($total_results/$limit);
 
-        $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'PENDING'";
+        if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+          echo "<script>alert('Empty search area!');</script>";
+          echo "<script type='text/javascript'>window.top.location='verificationAdmin.php';</script>"; exit;
+        }else {
+            $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'PENDING'";
+        }
 
+        if (!empty($dateFrom) && empty($dateTo)) {
+          echo "<script>alert('Both date fields are required!');</script>";
+          echo "<script type='text/javascript'>window.top.location='verificationAdmin.php';</script>"; exit;
+        }elseif (empty($dateFrom) && !empty($dateTo)) {
+          echo "<script>alert('Both date fields are required!');</script>";
+          echo "<script type='text/javascript'>window.top.location='verificationAdmin.php';</script>"; exit;
+        }
 
         if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
           $sql2 .= "AND date_recieved >= '$dateFrom' AND date_recieved <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -1421,8 +1490,20 @@ class SearchAdmin extends config{
             $total_results = $data->rowCount();
             $total_pages = ceil($total_results/$limit);
 
-            $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'VERIFIED'";
+            if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
+              echo "<script>alert('Empty search area!');</script>";
+              echo "<script type='text/javascript'>window.top.location='verificationAdmin.php?tab=verified';</script>"; exit;
+            }else {
+                    $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'VERIFIED'";
+            }
 
+            if (!empty($dateFrom) && empty($dateTo)) {
+              echo "<script>alert('Both date fields are required!');</script>";
+              echo "<script type='text/javascript'>window.top.location='verificationAdmin.php?tab=verified';</script>"; exit;
+            }elseif (empty($dateFrom) && !empty($dateTo)) {
+              echo "<script>alert('Both date fields are required!');</script>";
+              echo "<script type='text/javascript'>window.top.location='verificationAdmin.php?tab=verified';</script>"; exit;
+            }
 
             if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
               $sql2 .= "AND date_recieved >= '$dateFrom' AND date_recieved <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
