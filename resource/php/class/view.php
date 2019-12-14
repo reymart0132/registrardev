@@ -1504,6 +1504,7 @@ class view extends config{
             $_GET['V2page'] = 1;
             $_GET['V1page'] = 1;
           }
+
           $start = ($page-1)*$limit;
 
           $total_results = $data->rowCount();
@@ -1581,6 +1582,9 @@ class view extends config{
               echo '</li>';
              }
              echo '</ul>';
+
+             // $pagination =  new paginationOne;
+             // $pagination->pagination($total_pages,$page);
 
              echo '
              <div class="container-fluid mt-4">

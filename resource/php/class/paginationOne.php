@@ -17,7 +17,7 @@ class paginationOne{
         $pagination .= '<div style = "padding-top:10px;"class=\'pagination\'>';
         //previous button
         if ($page > 1)
-          $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'pending.php?tab=view&Ppage=='.$prev.'\'>&laquo; previous</a>';
+          $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'pending.php?tab=released&Rpage='.$prev.'\'>&laquo; previous</a>';
         else
           $pagination.= '<span style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding-left:5px; padding-right:7px;padding-top:3px;text-decoration: none;" span class=\'disabled\'>&laquo previous</span>';
         //pages
@@ -28,7 +28,7 @@ class paginationOne{
             if ($counter == $page)
               $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
             else
-              $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'pending.php?tab=view&Ppage=='.$counter.'\'>'.$counter.'</a>';
+              $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'pending.php?tab=released&Rpage='.$counter.'\'>'.$counter.'</a>';
           }
         }
         elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
@@ -41,43 +41,43 @@ class paginationOne{
               if ($counter == $page)
                 $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
               else
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'pending.php?tab=view&Ppage=='.$counter.'\'>'.$counter.'</a>';
+                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'pending.php?tab=released&Rpage='.$counter.'\'>'.$counter.'</a>';
             }
             $pagination .= '<span style="padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-            $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'pending.php?tab=view&Ppage=='.$lastpage.'\'>'.$lastpage.'</a>';
+            $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'pending.php?tab=released&Rpage='.$lastpage.'\'>'.$lastpage.'</a>';
           }
           //in middle; hide some front and some back
           elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
           {
-            $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'pending.php?tab=view&Ppage==1\'>1</a>';
+            $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'pending.php?tab=released&Rpage=1\'>1</a>';
             $pagination .= '<span style="padding-top:10px;" class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
             for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
             {
               if ($counter == $page)
                 $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"class=\'current\'>'.$counter.'</span>';
               else
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'pending.php?tab=view&Ppage=='.$counter.'\'>'.$counter.'</a>';
+                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'pending.php?tab=released&Rpage='.$counter.'\'>'.$counter.'</a>';
             }
             $pagination .= '<span style = "padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-            $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'pending.php?tab=view&Ppage=='.$lastpage.'\'>'.$lastpage.'</a>';
+            $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'pending.php?tab=released&Rpage='.$lastpage.'\'>'.$lastpage.'</a>';
           }
           //close to end; only hide early pages
           else
           {
-            $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'pending.php?tab=view&Ppage==1.\'>1</a>';
-            // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'pending.php?tab=view&Ppage==2\'>2</a>';
+            $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'pending.php?tab=released&Rpage=1.\'>1</a>';
+            // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'pending.php?tab=released&Rpage==2\'>2</a>';
             $pagination .= '<span style="padding-top:10px;" class=\'elipses\'> &nbsp; . . . . &nbsp;</span>';
             for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
             {
               if ($counter == $page)
                 $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding:3px; text-decoration: none; padding-left:9px;padding-right:9px;"class=\'current\'>'.$counter.'</span>';
               else
-                $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'pending.php?tab=view&Ppage=='.$counter.'\'>'.$counter.'</a>';
+                $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'pending.php?tab=released&Rpage='.$counter.'\'>'.$counter.'</a>';
             }
           }
         }
         if ($page < $counter - 1)
-          $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'pending.php?tab=view&Ppage=='.$next.'\'>next &raquo;</a>';
+          $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'pending.php?tab=released&Rpage='.$next.'\'>next &raquo;</a>';
         else
           $pagination.=  '<span style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:10px; padding-left:10px; padding-top:2.5px;text-decoration: none;"class=\'disabled\'>next &raquo;</span>';
         $pagination.= "</div>\n";
@@ -163,6 +163,6 @@ class paginationOne{
         $pagination.= "</div>\n";
       }
       echo $pagination;
-}
+    }
 }
  ?>
