@@ -126,7 +126,7 @@ console.clear();
 var startDateInp6 = document.getElementById('startDate6');
 var endDateInp6 = document.getElementById('endDate6');
 
-function compareDates5() {
+function compareDates6() {
   var startDateTime6 = new Date(startDateInp6.value).getTime();
   var endDateTime6 = new Date(endDateInp6.value).getTime();
 

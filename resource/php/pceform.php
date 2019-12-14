@@ -115,7 +115,7 @@ $college = $_GET['college'];
                                         </div>
                                           <div id='TextBoxesGroup2'class="col-2">
                                         	<div id="TextBoxDiv1" >
-                                        		<label>Number of Units: </label><input class='form-control' name= 'units[]' type='number' id='textbox1'value="" placeholder="Enter Units" required>
+                                        		<label>Number of Units: </label><input class='form-control' name= 'units[]' type='number' maxlength="1" id='textbox1'value="" placeholder="Enter Units" required>
                                         	</div>
                                         </div>
 
@@ -131,6 +131,7 @@ $college = $_GET['college'];
                                     <div class="form-group col-5">
                                         <label  >&nbsp;</label>
                                      <input type="submit" value="Submit Request" class=" form-control btn btn-primary" />
+                                      <a  class="form-control btn btn-danger mt-2" href="../../view_pending_requests.php"/>Cancel</a>
                                     </div>
                                     <div class="form-group col-7">
                                         <label  >&nbsp;</label>
@@ -140,7 +141,13 @@ $college = $_GET['college'];
                                             <p class="mb-0">2. ID of the Applicant and Authorized person with specimen signature(Xerox Copy)</p>
                                         </small>
                                     </div>
+                                    <div class="form-group col-5">
+                                        <label  >&nbsp;</label>
+                                     <input type="submit" value="Submit Request" class=" form-control btn btn-primary" />
+                                    </div>
                                 </div>
+                                <!--  -->
+
                             </td>
                         </tr>
                 </table>
