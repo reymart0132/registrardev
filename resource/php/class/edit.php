@@ -21,7 +21,7 @@ class edit extends config{
       $sql = "UPDATE `tbl_accounts` SET `quote` = '$quote' WHERE `id` = '$id'";
       $data = $con-> prepare($sql);
       $data->execute();
-      header('location:../../configuration.php');
+      header('location: view_pending_requests.php');
     }
     public function edittransac(){
       $config = new config;
