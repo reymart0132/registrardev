@@ -10,13 +10,15 @@
 
     if (startDateTime > endDateTime) {
       alert('Invalid Date!');
+      document.getElementById('startDate').value='';
+      document.getElementById('endDate').value='';
     }
   }
 
   startDate.addEventListener('input', compareDates);
   endDate.addEventListener('input', compareDates);
 
-//
+
 console.clear();
 var startDateInp2 = document.getElementById('startDate2');
 var endDateInp2 = document.getElementById('endDate2');
@@ -29,6 +31,8 @@ function compareDates2() {
 
   if (startDateTime2 > endDateTime2) {
     alert('Invalid Date!');
+    document.getElementById('startDate2').value='';
+    document.getElementById('endDate2').value='';
   }
 }
 
@@ -49,6 +53,8 @@ function compareDates3() {
 
   if (startDateTime3 > endDateTime3) {
     alert('Invalid Date!');
+    document.getElementById('startDate3').value='';
+    document.getElementById('endDate3').value='';
   }
 }
 
@@ -68,6 +74,8 @@ function compareDates4() {
 
   if (startDateTime > endDateTime) {
     alert('Invalid Date!');
+    document.getElementById('startDate4').value='';
+    document.getElementById('endDate4').value='';
   }
 }
 
@@ -86,8 +94,47 @@ function compareDates5() {
 
   if (startDateTime5 > endDateTime5) {
     alert('Invalid Date!');
+    document.getElementById('startDate5').value='';
+    document.getElementById('endDate5').value='';
   }
 }
 
 startDate5.addEventListener('input', compareDates5);
 endDate5.addEventListener('input', compareDates5);
+
+//
+
+
+// function validateSubmit(){
+//   const startDate = document.getElementById('startDate')
+//   const endDate = document.getElementById('endDate')
+//   document.getElementById('pending').addEventListener('click', () => {
+//       const startDateLength = startDate.value.split('').length
+//       const endDateLength = endDate.value.split('').length
+//
+//       if (startDateLength === 0 && endDateLength > 0) {
+//           alert('Yeh need an start date');
+//           return false;
+//       } else if (startDateLength > 0 && endDateLength === 0) {
+//           alert('Yeh need an end date');
+//           return false;
+//       }
+//   })
+// }
+
+console.clear();
+var startDateInp6 = document.getElementById('startDate6');
+var endDateInp6 = document.getElementById('endDate6');
+
+function compareDates5() {
+  var startDateTime6 = new Date(startDateInp6.value).getTime();
+  var endDateTime6 = new Date(endDateInp6.value).getTime();
+
+  console.log(startDateTime6, endDateTime6);
+
+  if (startDateTime6 > endDateTime6) {
+    alert('Invalid Date!');
+    document.getElementById('startDate6').value='';
+    document.getElementById('endDate6').value='';
+  }
+}

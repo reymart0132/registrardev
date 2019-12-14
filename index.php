@@ -35,10 +35,10 @@ University and CHED policies, rules and regulations.</p>
                     <p class="lead">
                     <div class="container-fluid">
                         <div class="col col-sm-12  text-center mt-5">
-                            <a class="btn btn-outline-light w-50 " href="alumni.php" role="button">I'm an Alumni</a>
+                            <a class="btn btn-outline-light w-50 " href="alumniRegister.php" role="button">I'm an Alumni</a>
                         </div>
                         <div class="col col-sm-12  text-center mt-4">
-                            <a class="btn btn-outline-light w-50 " href="#" role="button">I'm here to enroll</a>
+                            <a class="btn btn-outline-light w-50 " href="login.php" role="button">Log-in</a>
                         </div>
                     </div>
                     </p>

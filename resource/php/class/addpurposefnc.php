@@ -17,7 +17,7 @@ public function addpurpose(){
     $sql = "INSERT INTO `tbl_purposes`(`purposes`,`state`) VALUES ('$purposes','active')";
     $data = $con-> prepare($sql);
     $data ->execute();
-    var_dump($purposes);
+    // var_dump($purposes);
 }
 }
 ?>

@@ -25,7 +25,11 @@ if(isset($_POST['submit'])){
             <img src="resource/img/logo.jpg" height="70" class="d-inline-block align-top"
               alt="mdb logo"><h3 class="ib">
           </a>
-          <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
+          <a href="exportTableAdmin.php"><i class="fas fa-table ceucolor"></i></a>
+          <a href="statsAdmin.php"><i class="fas fa-chart-line ceucolor"></i></a>
+          <a href="userVerificationAdmin.php"><i class="fas fa-user-plus ceucolor"></i></a>
+          <a href="verificationAdmin.php"><i class="fas fa-user-graduate ceucolor"></i></a>
+          <a href="viewAlumniAdmin.php"><i class="fa fa-graduation-cap ceucolor"></i></a>
           <a href="nTransactionAdmin.php"><i class="fas fa-file-upload ceucolor"></i></a>
           <a href="view_pending_requests.php"><i class="fas fa-home ceucolor"></i></a>
              <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
@@ -33,28 +37,20 @@ if(isset($_POST['submit'])){
              <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
         </nav>
 
+                <div class="container" style="">
+                  <div class="con text-center mt-5 pt-5">
+                    <h1 class="pb-3">Add a New College Department</h1>
+                      <form method="POST" style="padding-left:300px; padding-right:300px;">
+                           <div class="form-group">
+                             <input type="text" class="form-control" id="request" name="college" placeholder="Enter Request" style="height:50px;" required>
+                           </div>
+                         <div class="form-group">
+                             <input type="submit" name="submit" value="Add College" class="form-control btn btn-primary" />
+                          </div>
+                      </form>
+                  </div>
                 </div>
-
-            </div>
-            <form method="POST">
-            <div class="row">
-                <table class="table">
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="form-group col-4">
-                                      <label for="College">College</label>
-                                      <input type="text" class="form-control" id="college" name="college" placeholder="Add College" required>
-                                    </div>
-                                        </td>
-                                        </tr>
-                                        </table>
-                                        <div class="form-group col-2  ml-2">
-                                         <input type="submit" name="submit" value="Submit Request" class="form-control btn btn-primary" />
-                                        </div>
-
-
-</body>
+          </body>
 
 
     <script src="vendor/js/jquery.js"></script>

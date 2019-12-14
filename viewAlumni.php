@@ -5,10 +5,6 @@ $checkuser = new checkgroup;
 $checkuser->checkuser();
 $user = new user();
 isLogin();
-if(isset($_GET['verified'])){
-  $print = new verified($_GET['verified'],$_GET['id']);
-  $print->verifyUser();
-}
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -156,47 +152,24 @@ if(isset($_GET['verified'])){
    <div class="container-fluid mt-4 mb-5">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item ">
-          <a class="nav-link <?php if(empty($_GET['tab'])){echo "active";}elseif($_GET['tab']=="view"){echo "active";}?>" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending Student Verification</a>
-        </li>
-        <li class="nav-item  ">
-          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="verified"){echo "active";}} ?>" id="profile-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="profile" aria-selected="false">Verified Students</a>
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Alumni</a>
         </li>
       </ul>
       <!--  -->
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade <?php if(empty($_GET['tab'])){ echo "show active"; }elseif($_GET['tab']=="view"){ echo "show active";}?>" id="pending" role="tabpanel" aria-labelledby="home-tab">
-        <?php
-        if(isset($_GET['submitPendingV'])){
-          $searchQ = new Search;
-          $searchQ->searchPendingV();
-        }else{
-          $view->viewPendingVer();
-        }?>
-      </div>
-      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="verified"){echo "show active";}} ?>" id="verified" role="tabpanel" aria-labelledby="profile-tab">
-        <?php
-        if(isset($_GET['submitVerifiedV'])){
-          $searchQ = new Search;
-          $searchQ->searchVerifiedV();
-        }else{
-          $view->viewVerifiedVer();
-        }?>
+      <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="home-tab">
+      <?php
+      if (isset($_GET['submitAlumni'])) {
+        $search = new Search;
+        $search->searchAlumni();
+      }else {
+        $view->viewAlumni();
+      }
+       ?>
       </div>
     </div>
   </div>
  </body>
- <footer id="footer" class="py-4 bg-dark text-white-50 fixed-bottom mt-5 slide-in-right">
-   <div class="container text-center">
-       <div class="row">
-           <div class="col col-sm-5 text-left">
-               <small>Copyright &copy;Centro Escolar University Office of the Registrar 2019</small>
-           </div>
-           <div class="col text-right">
-               <small>Created by: Reymart Bolasoc, Amelia Valencia , James Mangalile, Kenneth De Leon , Pamela Reyes , Ellen Mijares</small>
-           </div>
-       </div>
-   </div>
- </footer>
      <script src="vendor/js/jquery.js"></script>
      <script src="vendor/js/popper.js"></script>
      <script src="vendor/js/bootstrap.min.js"></script>

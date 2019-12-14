@@ -1,15 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 $view = new view;
-$checkuser = new checkgroup;
-$checkuser->checkuser();
 $user = new user();
 isLogin();
-if(isset($_GET['verified'])){
-  $print = new verified($_GET['verified'],$_GET['id']);
-  $print->verifyUser();
-}
+
  ?>
+
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -19,9 +15,9 @@ if(isset($_GET['verified'])){
    <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap.min.css">
    <link href="vendor/css/all.css" rel="stylesheet">
    <link href="resource\css\animation-rami.css" type="text/css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
    <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
    <link rel="stylesheet" type="text/css"  href="resource/css/speech.css">
-   <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
  </head>
  <body>
      <?php blocker()?>
@@ -31,19 +27,19 @@ if(isset($_GET['verified'])){
          alt="mdb logo">
          <h3 class="ib">
      </a>
-     <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
-     <a href="exporttable.php"><i class="fas fa-table ceucolor"></i></a>
-     <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
-     <a href="userVerification.php"><i class="fas fa-user-plus ceucolor"></i></a>
-     <a href="verification.php"><i class="fas fa-user-graduate ceucolor"></i></a>
-     <a href="viewAlumni.php"><i class="fa fa-graduation-cap ceucolor"></i></a>
-     <a href="ntransaction.php"><i class="fas fa-file-upload ceucolor"></i></a>
-     <a href="pending.php"><i class="fas fa-home ceucolor"></i></a>
+     <a href="exportTableAdmin.php"><i class="fas fa-table ceucolor"></i></a>
+     <a href="statsAdmin.php"><i class="fas fa-chart-line ceucolor"></i></a>
+     <a href="userVerificationAdmin.php"><i class="fas fa-user-plus ceucolor"></i></a>
+     <a href="verificationAdmin.php"><i class="fas fa-user-graduate ceucolor"></i></a>
+     <a href="viewAlumniAdmin.php"><i class="fa fa-graduation-cap ceucolor"></i></a>
+     <a href="nTransactionAdmin.php"><i class="fas fa-file-upload ceucolor"></i></a>
+     <a href="view_pending_requests.php"><i class="fas fa-home ceucolor"></i></a>
         <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
         <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
         <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
    </nav>
  <!--  -->
+
    <div class="container-fluid mt-4">
      <div class="row">
        <!--  -->
@@ -77,23 +73,7 @@ if(isset($_GET['verified'])){
                    <div class="card-block">
                      <div class="cbody" style="height: 60px; width:120px;">
                        <h4 class="counter ml-5 "><b><?php echo $view->ctodolist();?></b></h4>
-                       <p class="text-center cbodytext"><b>Pending Transaction</b></p>
-                     </div>
-                   </div>
-               </div>
-           </div>
-         </div>
-
-         <div class="status pl-5 pt-4 ">
-           <div class="row no-gutters sn">
-             <div class="col-auto">
-               <img src="resource/img/verification.jpg" class="img-fluid" style="height: 60px; width:60px;"alt="">
-             </div>
-               <div class="col">
-                   <div class="card-block">
-                     <div class="cbody" style="height: 60px; width:120px;">
-                       <h4 class="counter ml-5 "><b><?php echo $view->cverification();?></b></h4>
-                       <p class="text-center cbodytext"><b>Pending Verification</b></p>
+                       <p class="text-center cbodytext"><b>Pending</b></p>
                      </div>
                    </div>
                </div>
@@ -145,58 +125,47 @@ if(isset($_GET['verified'])){
                 </div>
               </div>
           </div>
-
       </div>
-
     </div>
    </div>
  </div>
 </div>
+<div class="container-fluid mt-4 slide-in-left">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Productivity Report for( <?php if(!empty($_GET)){ echo date("M-d-Y", strtotime($_GET['cfd']))." to ".date("M-d-Y", strtotime($_GET['cld']));}else{echo $today = date("F j, Y");} ?> )</h1>
+        </div>
+   </div>
+   <form class="" action="" method="get">
+     <div class="row">
+       <div class="col-5">
+         <label for="dateFrom">From:</label>
+         <input  class="form-control" type="date" name="cfd"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+       </div>
+       <div class="col-5">
+         <label for="dateTo">To:</label>
+         <input  class="form-control" type="date" name="cld"  placeholder="dd-mm-yyyy">
+       </div>
+       <div class="col-2 mt-4 pt-2">
+         <label for="submit"></label>
+         <input type="submit" class="btn text-white" name="search" value="Search" style="background-color:#DC65A1;">
+       </div>
+     </div>
+   </form>
    <!--  -->
    <div class="container-fluid mt-4 mb-5">
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item ">
-          <a class="nav-link <?php if(empty($_GET['tab'])){echo "active";}elseif($_GET['tab']=="view"){echo "active";}?>" id="home-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="home" aria-selected="true">Pending Student Verification</a>
-        </li>
-        <li class="nav-item  ">
-          <a class="nav-link <?php if(!empty($_GET['tab'])){if($_GET['tab']=="verified"){echo "active";}} ?>" id="profile-tab" data-toggle="tab" href="#verified" role="tab" aria-controls="profile" aria-selected="false">Verified Students</a>
-        </li>
-      </ul>
-      <!--  -->
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade <?php if(empty($_GET['tab'])){ echo "show active"; }elseif($_GET['tab']=="view"){ echo "show active";}?>" id="pending" role="tabpanel" aria-labelledby="home-tab">
-        <?php
-        if(isset($_GET['submitPendingV'])){
-          $searchQ = new Search;
-          $searchQ->searchPendingV();
-        }else{
-          $view->viewPendingVer();
-        }?>
-      </div>
-      <div class="tab-pane fade <?php if(!empty($_GET['tab'])){if($_GET['tab']=="verified"){echo "show active";}} ?>" id="verified" role="tabpanel" aria-labelledby="profile-tab">
-        <?php
-        if(isset($_GET['submitVerifiedV'])){
-          $searchQ = new Search;
-          $searchQ->searchVerifiedV();
-        }else{
-          $view->viewVerifiedVer();
-        }?>
-      </div>
+     <?php
+     $view->exportundergrad();
+      $view->exportgrad();
+      ?>
+
+      <!-- <button type="button" class="btn" name="button"></button> -->
     </div>
+
+
   </div>
  </body>
- <footer id="footer" class="py-4 bg-dark text-white-50 fixed-bottom mt-5 slide-in-right">
-   <div class="container text-center">
-       <div class="row">
-           <div class="col col-sm-5 text-left">
-               <small>Copyright &copy;Centro Escolar University Office of the Registrar 2019</small>
-           </div>
-           <div class="col text-right">
-               <small>Created by: Reymart Bolasoc, Amelia Valencia , James Mangalile, Kenneth De Leon , Pamela Reyes , Ellen Mijares</small>
-           </div>
-       </div>
-   </div>
- </footer>
+
      <script src="vendor/js/jquery.js"></script>
      <script src="vendor/js/popper.js"></script>
      <script src="vendor/js/bootstrap.min.js"></script>
