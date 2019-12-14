@@ -185,18 +185,6 @@ if(isset($_GET['verified'])){
     </div>
   </div>
  </body>
- <footer id="footer" class="py-4 bg-dark text-white-50 fixed-bottom mt-5 slide-in-right">
-   <div class="container text-center">
-       <div class="row">
-           <div class="col col-sm-5 text-left">
-               <small>Copyright &copy;Centro Escolar University Office of the Registrar 2019</small>
-           </div>
-           <div class="col text-right">
-               <small>Created by: Reymart Bolasoc, Amelia Valencia , James Mangalile, Kenneth De Leon , Pamela Reyes , Ellen Mijares</small>
-           </div>
-       </div>
-   </div>
- </footer>
      <script src="vendor/js/jquery.js"></script>
      <script src="vendor/js/popper.js"></script>
      <script src="vendor/js/bootstrap.min.js"></script>

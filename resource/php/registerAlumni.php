@@ -10,9 +10,11 @@ if(!empty($_POST)) {
     $cs = $_POST['cs'];
     $yg = $_POST['yg'];
     $eaddr = $_POST['eaddr'];
+    $employer = $_POST['employer'];
+    $position = $_POST['position'];
 
 
-    $aI = new alumniInfo($sno,$lname,$fname,$mname,$dc,$nt,$cs,$yg,$eaddr);
+    $aI = new alumniInfo($sno,$lname,$fname,$mname,$dc,$nt,$cs,$yg,$eaddr,$employer,$position);
     $aI->insertAlumniInfo();
     header("location: ../../index.php");
     }

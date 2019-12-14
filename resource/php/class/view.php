@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
 require_once 'config.php';
+
 class view extends config{
 
     public function degreeCourse(){
@@ -343,7 +344,7 @@ class view extends config{
               }elseif ($row->Applied_For == 'EMI') {
               echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
             }elseif ($row->Applied_For == 'No Scholarship') {
-              echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+              echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI.". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
             }else{
               echo '<p class="inl2">NA</p></br>';
             }
@@ -375,7 +376,7 @@ class view extends config{
               }elseif ($row->Applied_For == 'EMI') {
               echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
             }elseif ($row->Applied_For == 'No Scholarship') {
-              echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+              echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI.". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
             }else{
               echo '<p class="inl2">NA</p></br>';
             }
@@ -410,7 +411,7 @@ class view extends config{
           }elseif ($row->Applied_For == 'EMI') {
           echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
         }elseif ($row->Applied_For == 'No Scholarship') {
-          echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+          echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI.". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
         }else{
           echo '<p class="inl2">NA</p></br>';
         }
@@ -435,6 +436,8 @@ class view extends config{
              }
              echo '</ul>';
 
+
+
              echo '
              <div class="container-fluid mt-4">
               <form class="" action="" method="get">
@@ -450,6 +453,7 @@ class view extends config{
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
                     <select class="form-control" name="criteria">
+                    <option selected="true" disabled="disabled">Choose an Option</option>
                      <option value="FirstName">First Name</option>
                       <option value="LastName">Last Name</option>
                       <option value="Course">Course</option>
@@ -589,6 +593,7 @@ class view extends config{
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
                     <select class="form-control" name="criteria">
+                    <option selected="true" disabled="disabled">Choose an Option</option>
                       <option value="fullname">Name</option>
                       <option value="course">Course</option>
                       <option value="status">Status</option>
@@ -716,6 +721,7 @@ class view extends config{
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
                     <select class="form-control" name="criteria">
+                    <option selected="true" disabled="disabled">Choose an Option</option>
                       <option value="fullname">Name</option>
                       <option value="course">Course</option>
                       <option value="status">Status</option>
@@ -786,9 +792,10 @@ class view extends config{
            <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Department</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Year Graduated Date</td>
-           <th class="text-center" style= "font-weight:bold; color:white;">Address</td>
            <th class="text-center" style= "font-weight:bold; color:white;">Cellphone Number</td>
-           <th class="text-center" style= "font-weight:bold; color:white;">Emailr</td>
+           <th class="text-center" style= "font-weight:bold; color:white;">Email</td>
+           <th class="text-center" style= "font-weight:bold; color:white;">Employer</td>
+           <th class="text-center" style= "font-weight:bold; color:white;">Employed Position</td>
            ';
            echo '</thead>';
 
@@ -802,10 +809,11 @@ class view extends config{
                     echo '<td class="text-center" style="color:#DC65A1;">'.$this->getCollegeSchool($row->sch_coll).'</td>';
                     // echo '<td class="text-center" style="color:#DC65A1;">'.$row->month_graduated.'</td>';
                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->yr_graduated.'</td>';
-                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->address.'</td>';
                     // echo '<td class="text-center" style="color:#DC65A1;">'.$row->home_no.'</td>';
                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->cp_no.'</td>';
                     echo '<td class="text-center" style="color:#DC65A1;">'.$row->email.'</td>';
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->employer.'</td>';
+                    echo '<td class="text-center" style="color:#DC65A1;">'.$row->emp_position.'</td>';
                  echo '</tr>';
                  }
                echo '</table>';
@@ -833,6 +841,7 @@ class view extends config{
             <div class="col-sm">
               <label for="criteria">Filter By:</label>
               <select class="form-control" name="criteria">
+              <option selected="true" disabled="disabled">Choose an Option</option>
                <option value="student_no">Student Number</option>
                 <option value="firstname">First Name</option>
                 <option value="lastname">Last Name</option>
@@ -853,87 +862,166 @@ class view extends config{
     </div>';
         }
 
-        public function pagination($total_pages,$page){
+        public function paginationSearch($total_pages,$page,$search,$criteria){
           $adjacents = 3;
-          $plimit = 1;
-          $prev = $page - 1;
-          $next = $page + 1;
-          $lastpage = ceil($total_pages/$plimit);
-          $lpm1 = $lastpage - 1;
-          $pagination = "";
-          if($lastpage > 1)
-          {
-            $pagination .= '<div style = "padding-top:10px;"class=\'pagination\'>';
-            //previous button
-            if ($page > 1)
-              $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?page='.$prev.'\'>&laquo; previous</a>';
-            else
-              $pagination.= '<span style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding-left:5px; padding-right:7px;padding-top:3px;text-decoration: none;" span class=\'disabled\'>&laquo previous</span>';
-
-            //pages
-            if ($lastpage < 7 + ($adjacents * 2))	//not enough pages to bother breaking it up
+            $plimit = 1;
+            $prev = $page - 1;
+            $next = $page + 1;
+            $lastpage = ceil($total_pages/$plimit);
+            $lpm1 = $lastpage - 1;
+            $pagination = "";
+            if($lastpage > 1)
             {
-              for ($counter = 1; $counter <= $lastpage; $counter++)
+              $pagination .= '<div style = "padding-top:10px;"class=\'pagination\'>';
+              //previous button
+              if ($page > 1)
+                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$prev.'\'>&laquo; previous</a>';
+                $pagination.= '<span style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding-left:5px; padding-right:7px;padding-top:3px;text-decoration: none;" span class=\'disabled\'>&laquo previous</span>';
+              //pages
+              if ($lastpage < 7 + ($adjacents * 2))	//not enough pages to bother breaking it up
               {
-                if ($counter == $page)
-                  $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
-                else
-                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
-              }
-            }
-            elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
-            {
-              //close to beginning; only hide later pages
-              if($page < 1 + ($adjacents * 2))
-              {
-                for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
+                for ($counter = 1; $counter <= $lastpage; $counter++)
                 {
                   if ($counter == $page)
                     $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
                   else
-                    $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
+                    $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$counter.'\'>'.$counter.'</a>';
                 }
-                $pagination .= '<span style="padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?page='.$lastpage.'\'>'.$lastpage.'</a>';
               }
-              //in middle; hide some front and some back
-              elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
+              elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
               {
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=1\'>1</a>';
-                $pagination .= '<span style="padding-top:10px;" class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
+                //close to beginning; only hide later pages
+                if($page < 1 + ($adjacents * 2))
                 {
-                  if ($counter == $page)
-                    $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"class=\'current\'>'.$counter.'</span>';
-                  else
-                    $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
+                  for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
+                  {
+                    if ($counter == $page)
+                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
+                    else
+                      $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&&submitAlumni=Submitcriteria='.$criteria.'&page='.$counter.'\'>'.$counter.'</a>';
+                  }
+                  $pagination .= '<span style="padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$lastpage.'\'>'.$lastpage.'</a>';
                 }
-                $pagination .= '<span style = "padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'viewAlumni.php?page='.$lastpage.'\'>'.$lastpage.'</a>';
+                //in middle; hide some front and some back
+                elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
+                {
+                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page=1\'>1</a>';
+                  $pagination .= '<span style="padding-top:10px;" class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+                  for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
+                  {
+                    if ($counter == $page)
+                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"class=\'current\'>'.$counter.'</span>';
+                    else
+                      $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?search='.$search.'&criteria='.$criteria.'&submitAlumni=Submit&page='.$counter.'\'>'.$counter.'</a>';
+                  }
+                  $pagination .= '<span style = "padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$lastpage.'\'>'.$lastpage.'</a>';
+                }
+                //close to end; only hide early pages
+                else
+                {
+                  $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page=1.\'>1</a>';
+                  // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=2\'>2</a>';
+                  $pagination .= '<span style="padding-top:10px;" class=\'elipses\'> &nbsp; . . . . &nbsp;</span>';
+                  for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
+                  {
+                    if ($counter == $page)
+                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding:3px; text-decoration: none; padding-left:9px;padding-right:9px;"class=\'current\'>'.$counter.'</span>';
+                    else
+                      $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$counter.'\'>'.$counter.'</a>';
+                  }
+                }
               }
-              //close to end; only hide early pages
+              if ($page < $counter - 1)
+                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$next.'\'>next &raquo;</a>';
               else
+                $pagination.=  '<span style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:10px; padding-left:10px; padding-top:2.5px;text-decoration: none;"class=\'disabled\'>next &raquo;</span>';
+              $pagination.= "</div>\n";
+            }
+            echo $pagination;
+        }
+
+
+        public function pagination($total_pages,$page){
+          $adjacents = 3;
+            $plimit = 1;
+            $prev = $page - 1;
+            $next = $page + 1;
+            $lastpage = ceil($total_pages/$plimit);
+            $lpm1 = $lastpage - 1;
+            $pagination = "";
+            if($lastpage > 1)
+            {
+              $pagination .= '<div style = "padding-top:10px;"class=\'pagination\'>';
+              //previous button
+              if ($page > 1)
+                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?page='.$prev.'\'>&laquo; previous</a>';
+              else
+                $pagination.= '<span style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding-left:5px; padding-right:7px;padding-top:3px;text-decoration: none;" span class=\'disabled\'>&laquo previous</span>';
+              //pages
+              if ($lastpage < 7 + ($adjacents * 2))	//not enough pages to bother breaking it up
               {
-                $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=1.\'>1</a>';
-                // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=2\'>2</a>';
-                $pagination .= '<span style="padding-top:10px;" class=\'elipses\'> &nbsp; . . . . &nbsp;</span>';
-                for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
+                for ($counter = 1; $counter <= $lastpage; $counter++)
                 {
                   if ($counter == $page)
-                    $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding:3px; text-decoration: none; padding-left:9px;padding-right:9px;"class=\'current\'>'.$counter.'</span>';
+                    $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
                   else
-                    $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
+                    $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
                 }
               }
+              elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
+              {
+                //close to beginning; only hide later pages
+                if($page < 1 + ($adjacents * 2))
+                {
+                  for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
+                  {
+                    if ($counter == $page)
+                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
+                    else
+                      $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
+                  }
+                  $pagination .= '<span style="padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?page='.$lastpage.'\'>'.$lastpage.'</a>';
+                }
+                //in middle; hide some front and some back
+                elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
+                {
+                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=1\'>1</a>';
+                  $pagination .= '<span style="padding-top:10px;" class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+                  for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
+                  {
+                    if ($counter == $page)
+                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"class=\'current\'>'.$counter.'</span>';
+                    else
+                      $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
+                  }
+                  $pagination .= '<span style = "padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'viewAlumni.php?page='.$lastpage.'\'>'.$lastpage.'</a>';
+                }
+                //close to end; only hide early pages
+                else
+                {
+                  $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=1.\'>1</a>';
+                  // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=2\'>2</a>';
+                  $pagination .= '<span style="padding-top:10px;" class=\'elipses\'> &nbsp; . . . . &nbsp;</span>';
+                  for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
+                  {
+                    if ($counter == $page)
+                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding:3px; text-decoration: none; padding-left:9px;padding-right:9px;"class=\'current\'>'.$counter.'</span>';
+                    else
+                      $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
+                  }
+                }
+              }
+              if ($page < $counter - 1)
+                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'viewAlumni.php?page='.$next.'\'>next &raquo;</a>';
+              else
+                $pagination.=  '<span style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:10px; padding-left:10px; padding-top:2.5px;text-decoration: none;"class=\'disabled\'>next &raquo;</span>';
+              $pagination.= "</div>\n";
             }
-
-            if ($page < $counter - 1)
-              $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'viewAlumni.php?page='.$next.'\'>next &raquo;</a>';
-            else
-              $pagination.=  '<span style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:10px; padding-left:10px; padding-top:2.5px;text-decoration: none;"class=\'disabled\'>next &raquo;</span>';
-            $pagination.= "</div>\n";
-          }
-          echo $pagination;
+            echo $pagination;
         }
 
         public function viewprinted(){
@@ -1069,6 +1157,7 @@ class view extends config{
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
                     <select class="form-control" name="criteria">
+                    <option selected="true" disabled="disabled">Choose an Option</option>
                       <option value="FirstName">First Name</option>
                       <option value="LastName">Last Name</option>
                       <option value="Course">Course</option>
@@ -1207,6 +1296,7 @@ class view extends config{
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
                     <select class="form-control" name="criteria">
+                    <option selected="true" disabled="disabled">Choose an Option</option>
                       <option value="FirstName">First Name</option>
                       <option value="LastName">Last Name</option>
                       <option value="Course">Course</option>
@@ -1358,6 +1448,7 @@ class view extends config{
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
                     <select class="form-control" name="criteria">
+                    <option selected="true" disabled="disabled">Choose an Option</option>
                       <option value="FirstName">First Name</option>
                       <option value="LastName">Last Name</option>
                       <option value="Course">Course</option>
@@ -1413,6 +1504,7 @@ class view extends config{
             $_GET['V2page'] = 1;
             $_GET['V1page'] = 1;
           }
+
           $start = ($page-1)*$limit;
 
           $total_results = $data->rowCount();
@@ -1491,6 +1583,9 @@ class view extends config{
              }
              echo '</ul>';
 
+             // $pagination =  new paginationOne;
+             // $pagination->pagination($total_pages,$page);
+
              echo '
              <div class="container-fluid mt-4">
               <form class="" action="" method="get">
@@ -1506,6 +1601,7 @@ class view extends config{
                   <div class="col-sm">
                     <label for="criteria">Filter By:</label>
                     <select class="form-control" name="criteria">
+                    <option selected="true" disabled="disabled">Choose an Option</option>
                       <option value="FirstName">First Name</option>
                       <option value="LastName">Last Name</option>
                       <option value="Course">Course</option>
@@ -1548,7 +1644,7 @@ class view extends config{
                            echo '<tr style="background-color:white;">';
                              // echo '<td class="text-center align-middle">'.$row ->id.'</td>';
                              echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->name.'</td>';
-                             echo '<td class="text-center align-middle"><a class="btn btn-outline-danger" href=resource\php\updateQuote.php?id='.$row->id.'>Change Quote</a></td>';
+                             echo '<td class="text-center align-middle"><a class="btn btn-outline-danger" href=updateQuote.php?id='.$row->id.'>Change Quote</a></td>';
                  echo '</tr>';
              }
              echo '</table>';
@@ -1928,6 +2024,7 @@ class view extends config{
                 $results =$data->rowCount();
                 echo $results.',';
               }
+
             }
 
             public function chartreleased(){

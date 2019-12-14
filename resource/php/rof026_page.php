@@ -119,6 +119,7 @@ $college= $_GET['college'];
                                 <div class="form-group col-5">
                                     <label  >&nbsp;</label>
                                  <input type="submit" value="Submit Request" class=" form-control btn btn-primary" />
+                                   <a  class="form-control btn btn-danger mt-2" href="../../view_pending_requests.php"/>Cancel</a>
                                 </div>
                                 <div class="form-group col-7">
                                     <label  >&nbsp;</label>
