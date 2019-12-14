@@ -81,7 +81,7 @@ if(isset($_GET['verified'])){
          <canvas id="released"></canvas>
        </div>
      </div>
-        <form method="post" action="export.php">
+        <form method="post" action="exportChartsHome.php">
             <button type="submit" name="export" class="btn btn-primary export heartbeat icon-2x">
                 <i class="fas fa-download"></i>
             </button>
