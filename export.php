@@ -1245,5 +1245,131 @@ echo '</table>';
      echo '</tr>';
   }
   echo '</table>';
+}elseif (isset($_GET['exportVerifiedAll'])) {
+ $result=$_SESSION['AllV'];
+
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
+
+
+  echo '<h1>Reports</h1>';
+  echo '<table style="border-collapse:collapse;">';
+  echo '<thead>';
+  echo '<th style="border: 1px solid black;">ID</th>';
+  echo '<th style="border: 1px solid black;">Student Number</th>';
+  echo '<th style="border: 1px solid black;">Last Name</th>';
+  echo '<th style="border: 1px solid black;">First Name</th>';
+  echo '<th style="border: 1px solid black;">Middle Initial</th>';
+  echo '<th style="border: 1px solid black;">Course</th>';
+  echo '<th style="border: 1px solid black;">Contact Number</th>';
+  echo '<th style="border: 1px solid black;">Status</th>';
+  echo '<th style="border: 1px solid black;">Date Graduated</th>';
+  echo '<th style="border: 1px solid black;">Applied For</th>';
+  echo '<th style="border: 1px solid black;">Purpose</th>';
+  echo '<th style="border: 1px solid black;">Due_Date</th>';
+  echo '<th style="border: 1px solid black;">Remarks</th>';
+  echo '</thead>';
+  foreach ($result as $row) {
+    echo '<tr>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['id'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['StudentNo'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['LastName'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['FirstName'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['MI'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['Course'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['contact_no'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['Status'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['Date_Grad'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['Applied_For'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['purposes'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['Due_Date'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['remarks'].'</center></td>';
+    echo '</tr>';
+      }
+  echo '</table>';
+}elseif (isset($_GET['searchExportVerified'])) {
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
+  $result = $_SESSION['resultVerifiedSearch'];
+  echo '<h1>Reports</h1>';
+  echo '<table style="border-collapse:collapse;">';
+  echo '<thead>';
+  echo '<th style="border: 1px solid black;">ID</th>';
+  echo '<th style="border: 1px solid black;">Student Number</th>';
+  echo '<th style="border: 1px solid black;">Last Name</th>';
+  echo '<th style="border: 1px solid black;">First Name</th>';
+  echo '<th style="border: 1px solid black;">Middle Initial</th>';
+  echo '<th style="border: 1px solid black;">Course</th>';
+  echo '<th style="border: 1px solid black;">Contact Number</th>';
+  echo '<th style="border: 1px solid black;">Status</th>';
+  echo '<th style="border: 1px solid black;">Date Graduated</th>';
+  echo '<th style="border: 1px solid black;">Applied For</th>';
+  echo '<th style="border: 1px solid black;">Purpose</th>';
+  echo '<th style="border: 1px solid black;">Due_Date</th>';
+  echo '<th style="border: 1px solid black;">Remarks</th>';
+  echo '</thead>';
+  foreach ($result as $row) {
+    echo '<tr>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['id'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['StudentNo'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['LastName'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['FirstName'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['MI'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['Course'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['contact_no'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['Status'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['Date_Grad'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['Applied_For'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['purposes'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['Due_Date'].'</center></td>';
+    echo '<td style="border: 1px solid black;"><center>'.$row['remarks'].'</center></td>';
+    echo '</tr>';
+      }
+  echo '</table>';
+}elseif (isset($_GET['exportVerifiedAllSearch'])) {
+  $result=$_SESSION['SearchAllV'];
+   header("Content-Type: application/xls");
+   header("Content-Disposition: attachment; filename=filename.xls");
+   header("Pragma: no-cache");
+   header("Expires: 0");
+   echo '<h1>Reports</h1>';
+   echo '<table style="border-collapse:collapse;">';
+   echo '<thead>';
+   echo '<th style="border: 1px solid black;">ID</th>';
+   echo '<th style="border: 1px solid black;">Student Number</th>';
+   echo '<th style="border: 1px solid black;">Last Name</th>';
+   echo '<th style="border: 1px solid black;">First Name</th>';
+   echo '<th style="border: 1px solid black;">Middle Initial</th>';
+   echo '<th style="border: 1px solid black;">Course</th>';
+   echo '<th style="border: 1px solid black;">Contact Number</th>';
+   echo '<th style="border: 1px solid black;">Status</th>';
+   echo '<th style="border: 1px solid black;">Date Graduated</th>';
+   echo '<th style="border: 1px solid black;">Applied For</th>';
+   echo '<th style="border: 1px solid black;">Purpose</th>';
+   echo '<th style="border: 1px solid black;">Due_Date</th>';
+   echo '<th style="border: 1px solid black;">Remarks</th>';
+   echo '</thead>';
+   foreach ($result as $row) {
+     echo '<tr>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['id'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['StudentNo'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['LastName'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['FirstName'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['MI'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['Course'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['contact_no'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['Status'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['Date_Grad'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['Applied_For'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['purposes'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['Due_Date'].'</center></td>';
+     echo '<td style="border: 1px solid black;"><center>'.$row['remarks'].'</center></td>';
+     echo '</tr>';
+       }
+   echo '</table>';
 }
 ?>
