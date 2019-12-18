@@ -154,6 +154,13 @@ isLogin();
        </div>
      </div>
    </form>
+   <form class="" action="exporttables.php" method="post">
+     <div class="row">
+       <div class="col-5">
+         <input type="text" name="data" value="" id="Input" hidden>
+         <input class="btn btn-success heartbeat ml-3 my-3" class="form-control" type="submit" value="Create New Excel File">
+       </div>
+   </form>
    <!--  -->
    <div class="container-fluid mt-4 mb-5">
      <?php
@@ -186,6 +193,16 @@ isLogin();
       var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
       $("a[href='" + anchor + "']").tab("show");
     });
+  </script>
+  <script>
+  // $(document).ready(function(){
+       // $('#create_excel').click(function(){
+            var excel_data = $('#activity').html();
+            document.getElementById("Input").value = excel_data;
+            // var page = "exporttables.php?data=" + excel_data;
+            // window.location = page;
+       // });
+  // });
   </script>
  </body>
  </html>

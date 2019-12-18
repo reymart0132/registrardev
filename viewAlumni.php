@@ -18,6 +18,7 @@ isLogin();
    <link rel="stylesheet" type="text/css"  href="resource/css/styles.css">
    <link rel="stylesheet" type="text/css"  href="resource/css/speech.css">
    <link rel="stylesheet" type="text/css"  href="vendor/css/bootstrap-select.min.css">
+      <link rel="stylesheet" type="text/css"  href="resource/css/pagination.css">
  </head>
  <body>
      <?php blocker()?>

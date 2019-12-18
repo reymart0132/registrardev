@@ -71,6 +71,7 @@ class SearchAdmin extends config{
     }else {
         $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING'";
     }
+<<<<<<< HEAD
 
     if (!empty($dateFrom) && empty($dateTo)) {
       echo "<script>alert('Both date fields are required!');</script>";
@@ -79,6 +80,16 @@ class SearchAdmin extends config{
       echo "<script>alert('Both date fields are required!');</script>";
       echo "<script type='text/javascript'>window.top.location='view_pending_requests.php';</script>"; exit;
     }
+=======
+    //
+    // if (!empty($dateFrom) && empty($dateTo)) {
+    //   echo "<script>alert('Both date fields are required!');</script>";
+    //   echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/view_pending_requests.php';</script>"; exit;
+    // }elseif (empty($dateFrom) && !empty($dateTo)) {
+    //   echo "<script>alert('Both date fields are required!');</script>";
+    //   echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/view_pending_requests.php';</script>"; exit;
+    // }
+>>>>>>> master
 
 
 
@@ -266,25 +277,36 @@ class SearchAdmin extends config{
       echo '<center>No Results Found</center>';
     }
 
+      // echo '<ul class="pagination ml-2">';
+      // for ($p=1; $p <=$total_pages; $p++) {
+      //   if (!empty($search) && !empty($criteria)) {
+      //     echo '<li class="page-item" >';
+      //     echo  '<a class= "page-link" href="?search='.$search.'&tab=view&submit=submitPending&criteria='.$criteria.'&Ppage='.$p.'&submitPending=Submit#pending">'.$p;
+      //     echo  '</a>';
+      //     echo '</li>';
+      //   }elseif(!empty($dateFrom) && !empty($dateTo)) {
+      //     echo '<li class="page-item" >';
+      //     echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=view&submit=submitPending&dateTo='.$dateTo.'&Ppage='.$p.'&submitPending=Submit#pending">'.$p;
+      //     echo  '</a>';
+      //     echo '</li>';
+      //   }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+      //     echo '<li class="page-item" >';
+      //     echo  '<a class= "page-link" href="?tab=view&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Ppage='.$p.'&submitPending=Submit#pending&submit=submitPending">'.$p;
+      //     echo  '</a>';
+      //     echo '</li>';
+      //   }
+      // }
+      // echo '</ul>';
+
       echo '<ul class="pagination ml-2">';
-      for ($p=1; $p <=$total_pages; $p++) {
+      $pagination = new paginationSearchAdmin;
         if (!empty($search) && !empty($criteria)) {
-          echo '<li class="page-item" >';
-          echo  '<a class= "page-link" href="?search='.$search.'&tab=view&submit=submitPending&criteria='.$criteria.'&Ppage='.$p.'&submitPending=Submit#pending">'.$p;
-          echo  '</a>';
-          echo '</li>';
+          $pagination->paginationSearch1($total_pages,$page,$search,$criteria);
         }elseif(!empty($dateFrom) && !empty($dateTo)) {
-          echo '<li class="page-item" >';
-          echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=view&submit=submitPending&dateTo='.$dateTo.'&Ppage='.$p.'&submitPending=Submit#pending">'.$p;
-          echo  '</a>';
-          echo '</li>';
+          $pagination->paginationSearch2($total_pages,$page,$dateFrom,$dateTo);
         }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-          echo '<li class="page-item" >';
-          echo  '<a class= "page-link" href="?tab=view&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Ppage='.$p.'&submitPending=Submit#pending&submit=submitPending">'.$p;
-          echo  '</a>';
-          echo '</li>';
+          $pagination->paginationSearch3($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
         }
-      }
       echo '</ul>';
 
     echo '
@@ -391,13 +413,13 @@ class SearchAdmin extends config{
           $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED'";
       }
 
-      if (!empty($dateFrom) && empty($dateTo)) {
-        echo "<script>alert('Both date fields are required!');</script>";
-        echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=printed';</script>"; exit;
-      }elseif (empty($dateFrom) && !empty($dateTo)) {
-        echo "<script>alert('Both date fields are required!');</script>";
-        echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=printed';</script>"; exit;
-      }
+      // if (!empty($dateFrom) && empty($dateTo)) {
+      //   echo "<script>alert('Both date fields are required!');</script>";
+      //   echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=printed';</script>"; exit;
+      // }elseif (empty($dateFrom) && !empty($dateTo)) {
+      //   echo "<script>alert('Both date fields are required!');</script>";
+      //   echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=printed';</script>"; exit;
+      // }
 
 
 
@@ -511,27 +533,38 @@ class SearchAdmin extends config{
       }
 
 
-      echo '<ul class="pagination ml-2">';
+      // echo '<ul class="pagination ml-2">';
+      //
+      //   for ($p=1; $p <=$total_pages; $p++) {
+      //     if (!empty($search) && !empty($criteria)) {
+      //       echo '<li class="page-item" >';
+      //       echo  '<a class= "page-link" href="?search='.$search.'&tab=printed&submit=submitPrinted&criteria='.$criteria.'&PRpage='.$p.'&submitPrinted=Submit#printed">'.$p;
+      //       echo  '</a>';
+      //       echo '</li>';
+      //     }elseif(!empty($dateFrom) && !empty($dateTo)) {
+      //       echo '<li class="page-item" >';
+      //       echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=printed&submit=submitPrinted&dateTo='.$dateTo.'&PRpage='.$p.'&submitPrinted=Submit#printed">'.$p;
+      //       echo  '</a>';
+      //       echo '</li>';
+      //     }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+      //       echo '<li class="page-item" >';
+      //       echo  '<a class= "page-link" href="?tab=printed&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&PRpage='.$p.'&submitPrinted=Submit#printed&submit=submitPrinted">'.$p;
+      //       echo  '</a>';
+      //       echo '</li>';
+      //     }
+      //   }
+      //   echo '</ul>';
 
-        for ($p=1; $p <=$total_pages; $p++) {
-          if (!empty($search) && !empty($criteria)) {
-            echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?search='.$search.'&tab=printed&submit=submitPrinted&criteria='.$criteria.'&PRpage='.$p.'&submitPrinted=Submit#printed">'.$p;
-            echo  '</a>';
-            echo '</li>';
-          }elseif(!empty($dateFrom) && !empty($dateTo)) {
-            echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=printed&submit=submitPrinted&dateTo='.$dateTo.'&PRpage='.$p.'&submitPrinted=Submit#printed">'.$p;
-            echo  '</a>';
-            echo '</li>';
-          }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-            echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?tab=printed&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&PRpage='.$p.'&submitPrinted=Submit#printed&submit=submitPrinted">'.$p;
-            echo  '</a>';
-            echo '</li>';
-          }
+      echo '<ul class="pagination ml-2">';
+      $pagination = new paginationSearchAdmin;
+        if (!empty($search) && !empty($criteria)) {
+          $pagination->paginationSearch4($total_pages,$page,$search,$criteria);
+        }elseif(!empty($dateFrom) && !empty($dateTo)) {
+          $pagination->paginationSearch5($total_pages,$page,$dateFrom,$dateTo);
+        }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+          $pagination->paginationSearch6($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
         }
-        echo '</ul>';
+      echo '</ul>';
 
       echo '
       <div class="container-fluid mt-4">
@@ -752,24 +785,35 @@ class SearchAdmin extends config{
 
       echo '<ul class="pagination ml-2">';
 
-        for ($p=1; $p <=$total_pages; $p++) {
+        // for ($p=1; $p <=$total_pages; $p++) {
+        //   if (!empty($search) && !empty($criteria)) {
+        //     echo '<li class="page-item" >';
+        //     echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease1&submit=submitVerfied&criteria='.$criteria.'&V1page='.$p.'&submitVerified=Submit#verified">'.$p;
+        //     echo  '</a>';
+        //     echo '</li>';
+        //   }elseif(!empty($dateFrom) && !empty($dateTo)) {
+        //     echo '<li class="page-item" >';
+        //     echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease1&submit=submitVerfied&dateTo='.$dateTo.'&V1page='.$p.'&submitVerfied=Submit#verified">'.$p;
+        //     echo  '</a>';
+        //     echo '</li>';
+        //   }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+        //     echo '<li class="page-item" >';
+        //     echo  '<a class= "page-link" href="?tab=forrelease1&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V1page='.$p.'&submitVerfied=Submit#printed&submit=submitVerfied">'.$p;
+        //     echo  '</a>';
+        //     echo '</li>';
+        //   }
+        // }
+        // echo '</ul>';
+
+        echo '<ul class="pagination ml-2">';
+        $pagination = new paginationSearchAdmin;
           if (!empty($search) && !empty($criteria)) {
-            echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease1&submit=submitVerfied&criteria='.$criteria.'&V1page='.$p.'&submitVerified=Submit#verified">'.$p;
-            echo  '</a>';
-            echo '</li>';
+            $pagination->paginationSearch10($total_pages,$page,$search,$criteria);
           }elseif(!empty($dateFrom) && !empty($dateTo)) {
-            echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease1&submit=submitVerfied&dateTo='.$dateTo.'&V1page='.$p.'&submitVerfied=Submit#verified">'.$p;
-            echo  '</a>';
-            echo '</li>';
+            $pagination->paginationSearch11($total_pages,$page,$dateFrom,$dateTo);
           }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-            echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?tab=forrelease1&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V1page='.$p.'&submitVerfied=Submit#printed&submit=submitVerfied">'.$p;
-            echo  '</a>';
-            echo '</li>';
+            $pagination->paginationSearch12($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
           }
-        }
         echo '</ul>';
 
       echo '
@@ -962,24 +1006,35 @@ class SearchAdmin extends config{
 
           echo '<ul class="pagination ml-2">';
 
-            for ($p=1; $p <=$total_pages; $p++) {
+            // for ($p=1; $p <=$total_pages; $p++) {
+            //   if (!empty($search) && !empty($criteria)) {
+            //     echo '<li class="page-item" >';
+            //     echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease1&submit=submitVerfiedAll&criteria='.$criteria.'&V2page='.$p.'&submitVerifiedAll=Submit#verifiedall">'.$p;
+            //     echo  '</a>';
+            //     echo '</li>';
+            //   }elseif(!empty($dateFrom) && !empty($dateTo)) {
+            //     echo '<li class="page-item" >';
+            //     echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease1&submit=submitVerfiedAll&dateTo='.$dateTo.'&V2page='.$p.'&submitVerfiedAll=Submit#verifiedall">'.$p;
+            //     echo  '</a>';
+            //     echo '</li>';
+            //   }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+            //     echo '<li class="page-item" >';
+            //     echo  '<a class= "page-link" href="?tab=forrelease1&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V2page='.$p.'&submitVerfiedAll=Submit#verifiedall&submit=submitVerfiedAll">'.$p;
+            //     echo  '</a>';
+            //     echo '</li>';
+            //   }
+            // }
+            // echo '</ul>';
+
+            echo '<ul class="pagination ml-2">';
+            $pagination = new paginationSearch;
               if (!empty($search) && !empty($criteria)) {
-                echo '<li class="page-item" >';
-                echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease1&submit=submitVerfiedAll&criteria='.$criteria.'&V2page='.$p.'&submitVerifiedAll=Submit#verifiedall">'.$p;
-                echo  '</a>';
-                echo '</li>';
+                $pagination->paginationSearch10($total_pages,$page,$search,$criteria);
               }elseif(!empty($dateFrom) && !empty($dateTo)) {
-                echo '<li class="page-item" >';
-                echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease1&submit=submitVerfiedAll&dateTo='.$dateTo.'&V2page='.$p.'&submitVerfiedAll=Submit#verifiedall">'.$p;
-                echo  '</a>';
-                echo '</li>';
+                $pagination->paginationSearch11($total_pages,$page,$dateFrom,$dateTo);
               }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-                echo '<li class="page-item" >';
-                echo  '<a class= "page-link" href="?tab=forrelease1&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V2page='.$p.'&submitVerfiedAll=Submit#verifiedall&submit=submitVerfiedAll">'.$p;
-                echo  '</a>';
-                echo '</li>';
+                $pagination->paginationSearch12($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
               }
-            }
             echo '</ul>';
 
           echo '
@@ -1093,13 +1148,13 @@ class SearchAdmin extends config{
                         $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
             }
 
-            if (!empty($dateFrom) && empty($dateTo)) {
-              echo "<script>alert('Both date fields are required!');</script>";
-              echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=released';</script>"; exit;
-            }elseif (empty($dateFrom) && !empty($dateTo)) {
-              echo "<script>alert('Both date fields are required!');</script>";
-              echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=released';</script>"; exit;
-            }
+            // if (!empty($dateFrom) && empty($dateTo)) {
+            //   echo "<script>alert('Both date fields are required!');</script>";
+            //   echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=released';</script>"; exit;
+            // }elseif (empty($dateFrom) && !empty($dateTo)) {
+            //   echo "<script>alert('Both date fields are required!');</script>";
+            //   echo "<script type='text/javascript'>window.top.location='view_pending_requests.php?tab=released';</script>"; exit;
+            // }
 
 
             // }
@@ -1177,27 +1232,39 @@ class SearchAdmin extends config{
            }
 
 
-            echo '<ul class="pagination ml-2">';
+            // echo '<ul class="pagination ml-2">';
+            //
+            //   for ($p=1; $p <=$total_pages; $p++) {
+            //     if (!empty($search) && !empty($criteria)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?search='.$search.'&tab=released&submit=submitReleased&criteria='.$criteria.'&Rpage='.$p.'&submitReleased=Submit#released">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }elseif(!empty($dateFrom) && !empty($dateTo)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=released&submit=submitReleased&dateTo='.$dateTo.'&Rpage='.$p.'&submitReleased=Submit#released">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?tab=released&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Rpage='.$p.'&submitReleased=Submit#released&submit=submitReleased">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }
+            //   }
+            //   echo '</ul>';
 
-              for ($p=1; $p <=$total_pages; $p++) {
-                if (!empty($search) && !empty($criteria)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?search='.$search.'&tab=released&submit=submitReleased&criteria='.$criteria.'&Rpage='.$p.'&submitReleased=Submit#released">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }elseif(!empty($dateFrom) && !empty($dateTo)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=released&submit=submitReleased&dateTo='.$dateTo.'&Rpage='.$p.'&submitReleased=Submit#released">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?tab=released&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Rpage='.$p.'&submitReleased=Submit#released&submit=submitReleased">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }
+
+            echo '<ul class="pagination ml-2">';
+            $pagination = new paginationSearchAdmin;
+              if (!empty($search) && !empty($criteria)) {
+                $pagination->paginationSearch13($total_pages,$page,$search,$criteria);
+              }elseif(!empty($dateFrom) && !empty($dateTo)) {
+                $pagination->paginationSearch14($total_pages,$page,$dateFrom,$dateTo);
+              }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+                $pagination->paginationSearch15($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
               }
-              echo '</ul>';
+            echo '</ul>';
 
             echo '
             <div class="container-fluid mt-4">
@@ -1300,13 +1367,13 @@ class SearchAdmin extends config{
             $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'PENDING'";
         }
 
-        if (!empty($dateFrom) && empty($dateTo)) {
-          echo "<script>alert('Both date fields are required!');</script>";
-          echo "<script type='text/javascript'>window.top.location='verificationAdmin.php';</script>"; exit;
-        }elseif (empty($dateFrom) && !empty($dateTo)) {
-          echo "<script>alert('Both date fields are required!');</script>";
-          echo "<script type='text/javascript'>window.top.location='verificationAdmin.php';</script>"; exit;
-        }
+        // if (!empty($dateFrom) && empty($dateTo)) {
+        //   echo "<script>alert('Both date fields are required!');</script>";
+        //   echo "<script type='text/javascript'>window.top.location='verificationAdmin.php';</script>"; exit;
+        // }elseif (empty($dateFrom) && !empty($dateTo)) {
+        //   echo "<script>alert('Both date fields are required!');</script>";
+        //   echo "<script type='text/javascript'>window.top.location='verificationAdmin.php';</script>"; exit;
+        // }
 
         if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
           $sql2 .= "AND date_recieved >= '$dateFrom' AND date_recieved <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -1376,28 +1443,38 @@ class SearchAdmin extends config{
                 echo '<center>No Results Found</center>';
               }
 
-              if ($count>=1) {
-                echo '<ul class="pagination ml-2">';
-                for ($p=1; $p <=$total_pages; $p++) {
-                  if (!empty($search) && !empty($criteria)) {
-                    echo '<li class="page-item" >';
-                    echo  '<a class= "page-link" href="?search='.$search.'&tab=view&submit=submitPendingV&criteria='.$criteria.'&Verpage='.$p.'&submitPendingV">'.$p;
-                    echo  '</a>';
-                    echo '</li>';
-                  }elseif(!empty($dateFrom) && !empty($dateTo)) {
-                    echo '<li class="page-item" >';
-                    echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=view&submit=submitPendingV&dateTo='.$dateTo.'&Verpage='.$p.'&submitPendingV">'.$p;
-                    echo  '</a>';
-                    echo '</li>';
-                  }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-                    echo '<li class="page-item" >';
-                    echo  '<a class= "page-link" href="?tab=view&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Verpage='.$p.'&submitPendingV=Submit#pending&submit=submitPendingV">'.$p;
-                    echo  '</a>';
-                    echo '</li>';
-                  }
-                }
-                echo '</ul>';
-              }
+              // if ($count>=1) {
+              //   echo '<ul class="pagination ml-2">';
+              //   for ($p=1; $p <=$total_pages; $p++) {
+              //     if (!empty($search) && !empty($criteria)) {
+              //       echo '<li class="page-item" >';
+              //       echo  '<a class= "page-link" href="?search='.$search.'&tab=view&submit=submitPendingV&criteria='.$criteria.'&Verpage='.$p.'&submitPendingV">'.$p;
+              //       echo  '</a>';
+              //       echo '</li>';
+              //     }elseif(!empty($dateFrom) && !empty($dateTo)) {
+              //       echo '<li class="page-item" >';
+              //       echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=view&submit=submitPendingV&dateTo='.$dateTo.'&Verpage='.$p.'&submitPendingV">'.$p;
+              //       echo  '</a>';
+              //       echo '</li>';
+              //     }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+              //       echo '<li class="page-item" >';
+              //       echo  '<a class= "page-link" href="?tab=view&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Verpage='.$p.'&submitPendingV=Submit#pending&submit=submitPendingV">'.$p;
+              //       echo  '</a>';
+              //       echo '</li>';
+              //     }
+              //   }
+              //   echo '</ul>';
+              // }
+              echo '<ul class="pagination ml-2">';
+      $pagination = new paginationSearchAdmin;
+        if (!empty($search) && !empty($criteria)) {
+          $pagination->paginationSearch16($total_pages,$page,$search,$criteria);
+        }elseif(!empty($dateFrom) && !empty($dateTo)) {
+          $pagination->paginationSearch17($total_pages,$page,$dateFrom,$dateTo);
+        }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+          $pagination->paginationSearch18($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
+        }
+      echo '</ul>';
 
         echo '
         <div class="container-fluid mt-4">
@@ -1553,28 +1630,39 @@ class SearchAdmin extends config{
               echo '<center>No Results Found</center>';
             }
 
-            if ($count>=1) {
-              echo '<ul class="pagination ml-2">';
-              for ($p=1; $p <=$total_pages; $p++) {
-                if (!empty($search) && !empty($criteria)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?search='.$search.'&tab=verified&submit=submitVerifiedV&criteria='.$criteria.'&Vrrpage='.$p.'&submitVerifiedV">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }elseif(!empty($dateFrom) && !empty($dateTo)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=verified&submit=submitVerifiedV&dateTo='.$dateTo.'&Vrrpage='.$p.'&submitVerifiedV">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?tab=verified&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Vrpage='.$p.'&submitVerfiedV=Submit#pending&submit=submitVerifiedV">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }
-              }
-              echo '</ul>';
-            }
+            // if ($count>=1) {
+            //   echo '<ul class="pagination ml-2">';
+            //   for ($p=1; $p <=$total_pages; $p++) {
+            //     if (!empty($search) && !empty($criteria)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?search='.$search.'&tab=verified&submit=submitVerifiedV&criteria='.$criteria.'&Vrrpage='.$p.'&submitVerifiedV">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }elseif(!empty($dateFrom) && !empty($dateTo)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=verified&submit=submitVerifiedV&dateTo='.$dateTo.'&Vrrpage='.$p.'&submitVerifiedV">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?tab=verified&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Vrpage='.$p.'&submitVerfiedV=Submit#pending&submit=submitVerifiedV">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }
+            //   }
+            //   echo '</ul>';
+            // }
+
+            echo '<ul class="pagination ml-2">';
+    $pagination = new paginationSearch;
+      if (!empty($search) && !empty($criteria)) {
+        $pagination->paginationSearch19($total_pages,$page,$search,$criteria);
+      }elseif(!empty($dateFrom) && !empty($dateTo)) {
+        $pagination->paginationSearch20($total_pages,$page,$dateFrom,$dateTo);
+      }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+        $pagination->paginationSearch21($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
+      }
+    echo '</ul>';
 
             echo '
             <div class="container-fluid mt-4">
@@ -1608,6 +1696,142 @@ class SearchAdmin extends config{
                </div>
              </form>
          </div>';
+    }
+
+    public function searchAlumni(){
+
+      if(!empty($_GET['criteria'])){
+        $criteria = $_GET['criteria'];
+      };
+      if(!empty($_GET['search'])){
+        $search = $_GET['search'];
+      };
+
+      $config = new config;
+      $con = $config->con();
+      $view =  new view;
+
+      $sql3 = "SELECT * FROM `tbl_alumni_info`";
+      $data3 = $con-> prepare($sql3);
+      $data3 ->execute();
+      $rows3 =$data3-> fetchAll(PDO::FETCH_OBJ);
+
+      $_SESSION['allAlumniSearch'] = $rows3;
+
+      if (!empty($search) && !empty($criteria)) {
+        $sql = "SELECT * FROM `tbl_alumni_info` WHERE `$criteria` LIKE '%$search%'";
+        $data = $con-> prepare($sql);
+        $data ->execute();
+        $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+        $count = $data->rowCount();
+      }else {
+        $sql = "SELECT * FROM `tbl_alumni_info`";
+        $data = $con-> prepare($sql);
+        $data ->execute();
+        $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+        $count = $data->rowCount();
+      }
+
+      $data = $con-> prepare($sql);
+      $data ->execute();
+      $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+
+      $_SESSION['viewAlumniSearch'] = $rows;
+
+      $limit = 10;
+
+      if (!isset($_GET['page'])) {
+            $page = 1;
+        } else{
+            $page = $_GET['page'];
+      }
+
+      $start = ($page-1)*$limit;
+
+      $total_results = $data->rowCount();
+      $total_pages = ceil($total_results/$limit);
+
+      if (!empty($search) && !empty($criteria)) {
+        $sql2 = "SELECT * FROM `tbl_alumni_info` WHERE `$criteria` LIKE '%$search%' LIMIT $start,$limit";
+        $data2 = $con-> prepare($sql2);
+        $data2 ->execute();
+        $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
+        $count = $data2->rowCount();
+      }else {
+        $sql2 = "SELECT * FROM `tbl_alumni_info`LIMIT $start,$limit";
+        $data2 = $con-> prepare($sql2);
+        $data2 ->execute();
+        $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
+        $count = $data2->rowCount();
+      }
+
+
+
+      echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-2" style="width:100%;">';
+      echo '<thead class="thead" style="background-color:#DC65A1;">';
+      echo '
+      <th class="text-center" style= "font-weight:bold; color:white;">Student No.</td>
+      <th class="text-center" style= "font-weight:bold; color:white;">Name</td>
+      <th class="text-center" style= "font-weight:bold; color:white;">Nationality</td>
+      <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
+      <th class="text-center" style= "font-weight:bold; color:white;">Department</td>
+      <th class="text-center" style= "font-weight:bold; color:white;">Year Graduated Date</td>
+      <th class="text-center" style= "font-weight:bold; color:white;">Address</td>
+      <th class="text-center" style= "font-weight:bold; color:white;">Cellphone Number</td>
+      <th class="text-center" style= "font-weight:bold; color:white;">Emailr</td>
+      ';
+      echo '</thead>';
+
+      if ($count>=1) {
+        foreach ($rows2 as $row) {
+           echo '<tr>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->student_no.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->firstname." ".$row ->lastname." ".$row->middlename.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$view->getNationality($row->nationality).'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$view->getCourse($row->course).'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$view->getCollegeSchool($row->sch_coll).'</td>';
+               // echo '<td class="text-center" style="color:#DC65A1;">'.$row->month_graduated.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->yr_graduated.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->address.'</td>';
+               // echo '<td class="text-center" style="color:#DC65A1;">'.$row->home_no.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->cp_no.'</td>';
+               echo '<td class="text-center" style="color:#DC65A1;">'.$row->email.'</td>';
+            echo '</tr>';
+            }
+          echo '</table>';
+          echo '<a class= "btn btn-success mb-2 float-right"href="export.php?alumniSearch">Create Excel File</a>';
+      }else {
+        echo '</table>';
+        echo '<center>No Results Found</center>';
+      }
+
+      $view =new paginationSearchAdmin;
+      $view->paginationSearchAlumni($total_pages,$page,$search,$criteria);
+      echo '
+      <div class="container-fluid mt-4">
+       <form class="" action="" method="get">
+         <div class="row">
+           <div class="col-sm">
+             <label for="criteria">Filter By:</label>
+             <select class="form-control" name="criteria">
+              <option value="student_no">Student Number</option>
+               <option value="firstname">First Name</option>
+               <option value="lastname">Last Name</option>
+               <option value="yr_graduated">Year Graduated</option>
+             </select>
+           </div>
+           <div class="col-sm mt-2">
+             <label for="search"></label>
+             <input class="form-control" type="text" name="search" placeholder="Search Here.."/>
+           </div>
+           <div class="col-sm mt-4 pt-2">
+             <label for="submit"></label>
+             <input type="submit" class="btn text-white" name="submitAlumni" value="Submit" style="background-color:#DC65A1;">
+             <a class= "btn btn-success"href="export.php?exportAllAlumniSearch">Export All</a>
+           </div>
+         </div>
+       </form>
+   </div>';
     }
   }
 ?>

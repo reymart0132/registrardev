@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/registrardev/resource/php/class/core/init.php';
-$view2 = new view;
+$view2 = new viewAdmin;
 $view = new viewAdmin;
 // $checkuser = new checkgroup;
 // $checkuser->checkadmin();
@@ -35,6 +35,7 @@ isLogin();
      <a href="viewAlumniAdmin.php"><i class="fa fa-graduation-cap ceucolor"></i></a>
      <a href="nTransactionAdmin.php"><i class="fas fa-file-upload ceucolor"></i></a>
      <a href="view_pending_requests.php"><i class="fas fa-home ceucolor"></i></a>
+        <link rel="stylesheet" type="text/css"  href="resource/css/pagination.css">
         <a href="https:/www.facebook.com/theCEUofficial/"><i class="fab fa-facebook-f ceucolor"></i></a>
         <a href="https://www.instagram.com/ceuofficial/"><i class="fab fa-instagram ceucolor"></i></a>
         <a href="https://twitter.com/ceumalolos"><i class="fab fa-twitter ceucolor"></i></a>
