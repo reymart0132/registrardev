@@ -141,10 +141,7 @@ $college = $_GET['college'];
                                             <p class="mb-0">2. ID of the Applicant and Authorized person with specimen signature(Xerox Copy)</p>
                                         </small>
                                     </div>
-                                    <div class="form-group col-5">
-                                        <label  >&nbsp;</label>
-                                     <input type="submit" value="Submit Request" class=" form-control btn btn-primary" />
-                                    </div>
+                      
                                 </div>
                                 <!--  -->
 

@@ -71,6 +71,16 @@ class SearchAdmin extends config{
     }else {
         $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING'";
     }
+<<<<<<< HEAD
+
+    if (!empty($dateFrom) && empty($dateTo)) {
+      echo "<script>alert('Both date fields are required!');</script>";
+      echo "<script type='text/javascript'>window.top.location='view_pending_requests.php';</script>"; exit;
+    }elseif (empty($dateFrom) && !empty($dateTo)) {
+      echo "<script>alert('Both date fields are required!');</script>";
+      echo "<script type='text/javascript'>window.top.location='view_pending_requests.php';</script>"; exit;
+    }
+=======
     //
     // if (!empty($dateFrom) && empty($dateTo)) {
     //   echo "<script>alert('Both date fields are required!');</script>";
@@ -79,6 +89,7 @@ class SearchAdmin extends config{
     //   echo "<script>alert('Both date fields are required!');</script>";
     //   echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/view_pending_requests.php';</script>"; exit;
     // }
+>>>>>>> master
 
 
 
@@ -183,7 +194,7 @@ class SearchAdmin extends config{
            }elseif ($row->Applied_For == 'EMI') {
            echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
          }elseif ($row->Applied_For == 'No Scholarship') {
-           echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+           echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI.". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
          }else{
            echo '<p class="inl2">NA</p></br>';
          }

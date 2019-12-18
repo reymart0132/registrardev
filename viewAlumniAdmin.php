@@ -166,7 +166,7 @@ isLogin();
         $search = new Search;
         $search->searchAlumni();
       }else {
-        $view2->viewAlumni();
+        $view->viewAlumni();
       }
        ?>
       </div>

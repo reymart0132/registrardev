@@ -107,7 +107,7 @@ class viewAdmin extends config{
           }elseif ($row->Applied_For == 'EMI') {
           echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
           }elseif ($row->Applied_For == 'No Scholarship') {
-         echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+         echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI.". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
           }else{
          echo '<p class="inl2">NA</p></br>';
         }
@@ -142,7 +142,7 @@ class viewAdmin extends config{
         }elseif ($row->Applied_For == 'EMI') {
         echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
       }elseif ($row->Applied_For == 'No Scholarship') {
-        echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+        echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI.". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
       }else{
         echo '<p class="inl2">NA</p></br>';
       }
@@ -174,7 +174,7 @@ class viewAdmin extends config{
         }elseif ($row->Applied_For == 'EMI') {
         echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
       }elseif ($row->Applied_For == 'No Scholarship') {
-        echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+        echo '<a class="btn bg-light btn-outline-success"href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI.". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
       }else{
         echo '<p class="inl2">NA</p></br>';
       }
@@ -196,7 +196,7 @@ class viewAdmin extends config{
          echo '<td class="text-center style="color:#DC65A1;" style="color:white;"><a class="btn bg-light btn-outline-success btt" href="view_pending_requests.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
          echo '<td class="text-center align-middle"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
          $af = explode(",",$row->Applied_For);
-         echo '<td class="text-center align-middle"  style="color:#DC65A1;">';
+         echo '<td class="text-center align-middle">';
            foreach ($af as $row->Applied_For) {
          if ($row->Applied_For == 'Permit to Cross Enroll') {
            echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
@@ -207,7 +207,7 @@ class viewAdmin extends config{
         }elseif ($row->Applied_For == 'EMI') {
           echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
         }elseif ($row->Applied_For == 'No Scholarship') {
-          echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+          echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI.". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
         }else{
           echo '<p class="inl2">NA</p></br>';
         }

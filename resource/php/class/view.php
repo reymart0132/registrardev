@@ -309,7 +309,7 @@ class view extends config{
                 }elseif ($row->Applied_For == 'EMI') {
                 echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
                 }elseif ($row->Applied_For == 'No Scholarship') {
-               echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+               echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI.". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
                 }else{
                echo '<p class="inl2">NA</p></br>';
               }
@@ -400,7 +400,7 @@ class view extends config{
 
                echo '<td class="text-center align-middle"><a class="btn btn-outline-success" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
                $af = explode(",",$row->Applied_For);
-               echo '<td class="text-center align-middle"  style="color:#DC65A1;">';
+               echo '<td class="text-center align-middle">';
                  foreach ($af as $row->Applied_For) {
                if ($row->Applied_For == 'Permit to Cross Enroll') {
                  echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/pceform.php?fullname='.$row->FirstName." ".$row ->LastName." ".$row->MI.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
@@ -1838,7 +1838,7 @@ class view extends config{
               $results = $results + 1;
               echo '<div id="activity">';
               if(!empty($_GET)){ $date = date("M-d-Y", strtotime($_GET['cfd']))." to ".date("M-d-Y", strtotime($_GET['cld']));}else{ $date = date("F j, Y");}
-              echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+              echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5 " style="width:100%;">';
               echo '<thead class="thead" >';
               echo '
               <tr>
@@ -2095,28 +2095,30 @@ class view extends config{
               $data1 ->execute();
               $results =$data1->rowCount();
               $results1 = $results + 4;
+              $results2 = $results + 3;
               $columns =$data1-> fetchAll(PDO::FETCH_OBJ);
               echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
-              echo '<thead class="thead" style="background-color:#DC65A1;">';
+              echo '<thead class="thead" >';
               echo '
               <tr>
-              <th class="text-center" style= "font-weight:bold; color:white;"colspan="'.$results1.'">Undergraduate</td>
+              <th class="text-center" style= "font-weight:bold;"colspan="'.$results1.'">Undergraduate</td>
               </tr> ';
               echo '<tr>';
-              echo '<th class="text-center" style= "font-weight:bold; color:white;"></td>';
+              echo '<th class="text-center" style= "font-weight:bold;"></td>';
               foreach ($columns as $col) {
-                echo '<th class="text-center align-middle" style= "font-weight:bold; color:white;">'.$col->purposes.'</td>';
+                echo '<th class="text-center align-middle" style= "font-weight:bold; ">'.$col->purposes.'</td>';
               }
               echo '
-              <th class="text-center align-middle px-3" style= "font-weight:bold; color:white;">Price</td>
-              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Transaction</td>
-              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Price</td>
+              <th class="text-center align-middle px-3" style= "font-weight:bold; ">Price</td>
+              <th class="text-center align-middle" style= "font-weight:bold; ">Total Transaction</td>
+              <th class="text-center align-middle" style= "font-weight:bold; ">Total Price</td>
               </tr>
               ';
+              $gt = 0;
               foreach ($rows as $row) {
                 $totaltrans=0;
                   echo '<tr style="background-color:white;">';
-                 echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->appliedfor.'</td>';
+                 echo '<td class="text-center align-middle" >'.$row->appliedfor.'</td>';
                  foreach($columns as $column){
                    if(isset($_GET['search'])){
                    $date = date('Y-m-d');
@@ -2135,11 +2137,16 @@ class view extends config{
                    echo '<td class="text-center">'.$res.'</td>';
                  }
                  $totalprice = $row->price * $totaltrans;
+                 $gt = $gt + $totalprice;
                  echo '<td class="text-center"><span>&#8369</span> '.$row->price.'</td>';
                 echo '<td class="text-center">'.$totaltrans.'</td>';
-                  echo '<td class="text-center">'.$totalprice.'</td>';
+                  echo '<td class="text-center"><span>&#8369</span>'.$totalprice.'</td>';
                 echo '</tr>';
               }
+              echo '<tr style="background-color:white;">';
+                 echo '<td class="text-center align-middle " colspan="'.$results2.'" > Grand Total</td>';
+                   echo '<td class="text-center"><span>&#8369</span>'.$gt.'</td>';
+              echo '</tr>';
             }
             public function exportgrad(){
               $config = new config;
@@ -2153,29 +2160,31 @@ class view extends config{
               $data1 ->execute();
               $results =$data1->rowCount();
               $results1 = $results + 4;
+              $results2 = $results + 3;
               $columns =$data1-> fetchAll(PDO::FETCH_OBJ);
               echo '<table class="table table-striped table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
-              echo '<thead class="thead" style="background-color:#DC65A1;">';
+              echo '<thead class="thead" >';
               echo '
               <tr>
-              <th class="text-center" style= "font-weight:bold; color:white;"colspan="'.$results1.'">Graduate</td>
+              <th class="text-center" style= "font-weight:bold; "colspan="'.$results1.'">Graduate</td>
               </tr>
               ';
               echo '<tr>';
-              echo '<th class="text-center" style= "font-weight:bold; color:white;"></td>';
+              echo '<th class="text-center" style= "font-weight:bold; "></td>';
               foreach ($columns as $col) {
-                echo '<th class="text-center align-middle" style= "font-weight:bold; color:white;">'.$col->purposes.'</td>';
+                echo '<th class="text-center align-middle" style= "font-weight:bold; ">'.$col->purposes.'</td>';
               }
               echo '
-              <th class="text-center align-middle px-3" style= "font-weight:bold; color:white;">Price</td>
-              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Transaction</td>
-              <th class="text-center align-middle" style= "font-weight:bold; color:white;">Total Price</td>
+              <th class="text-center align-middle px-3" style= "font-weight:bold; ">Price</td>
+              <th class="text-center align-middle" style= "font-weight:bold; ">Total Transaction</td>
+              <th class="text-center align-middle" style= "font-weight:bold; ">Total Price</td>
               </tr>
               ';
+              $gt = 0;
               foreach ($rows as $row) {
                 $totaltrans=0;
                   echo '<tr style="background-color:white;">';
-                 echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->appliedfor.'</td>';
+                 echo '<td class="text-center align-middle" >'.$row->appliedfor.'</td>';
                  foreach($columns as $column){
                    if(isset($_GET['search'])){
                    $date = date('Y-m-d');
@@ -2194,11 +2203,16 @@ class view extends config{
                    echo '<td class="text-center">'.$res.'</td>';
                  }
                  $totalprice = $row->price * $totaltrans;
+                  $gt = $gt + $totalprice;
                  echo '<td class="text-center"><span>&#8369</span> '.$row->price.'</td>';
                 echo '<td class="text-center">'.$totaltrans.'</td>';
-                  echo '<td class="text-center">'.$totalprice.'</td>';
+                  echo '<td class="text-center"><span>&#8369</span>'.$totalprice.'</td>';
                 echo '</tr>';
               }
+              echo '<tr style="background-color:white;">';
+                 echo '<td class="text-center align-middle " colspan="'.$results2.'" > Grand Total</td>';
+                   echo '<td class="text-center"><span>&#8369</span>'.$gt.'</td>';
+              echo '</tr>';
             }
             public function showprice(){
               $config = new config;
