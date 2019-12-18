@@ -70,18 +70,18 @@ class Search extends config{
 
     if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
       echo "<script>alert('Empty search area!');</script>";
-      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php';</script>"; exit;
+      echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
     }else {
       $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
     }
 
-    if (!empty($dateFrom) && empty($dateTo)) {
-      echo "<script>alert('Both date fields are required!');</script>";
-      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php';</script>"; exit;
-    }elseif (empty($dateFrom) && !empty($dateTo)) {
-      echo "<script>alert('Both date fields are required!');</script>";
-      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php';</script>"; exit;
-    }
+    // if (!empty($dateFrom) && empty($dateTo)) {
+    //   echo "<script>alert('Both date fields are required!');</script>";
+    //   echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
+    // }elseif (empty($dateFrom) && !empty($dateTo)) {
+    //   echo "<script>alert('Both date fields are required!');</script>";
+    //   echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
+    // }
 
     if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
       $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -269,24 +269,14 @@ class Search extends config{
     }
 
       echo '<ul class="pagination ml-2">';
-      for ($p=1; $p <=$total_pages; $p++) {
+      $pagination = new paginationSearch;
         if (!empty($search) && !empty($criteria)) {
-          echo '<li class="page-item" >';
-          echo  '<a class= "page-link" href="?search='.$search.'&tab=view&submit=submitPending&criteria='.$criteria.'&Ppage='.$p.'&submitPending=Submit#pending">'.$p;
-          echo  '</a>';
-          echo '</li>';
+          $pagination->paginationSearch1($total_pages,$page,$search,$criteria);
         }elseif(!empty($dateFrom) && !empty($dateTo)) {
-          echo '<li class="page-item" >';
-          echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=view&submit=submitPending&dateTo='.$dateTo.'&Ppage='.$p.'&submitPending=Submit#pending">'.$p;
-          echo  '</a>';
-          echo '</li>';
+          $pagination->paginationSearch2($total_pages,$page,$dateFrom,$dateTo);
         }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-          echo '<li class="page-item" >';
-          echo  '<a class= "page-link" href="?tab=view&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Ppage='.$p.'&submitPending=Submit#pending&submit=submitPending">'.$p;
-          echo  '</a>';
-          echo '</li>';
+          $pagination->paginationSearch3($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
         }
-      }
       echo '</ul>';
 
     echo '
@@ -391,18 +381,18 @@ class Search extends config{
 
       if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
         echo "<script>alert('Empty search area!');</script>";
-        echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=printed';</script>"; exit;
+        echo "<script type='text/javascript'>window.top.location='pending.php?tab=printed';</script>"; exit;
       }else {
         $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = '$id1'";
       }
 
-      if (!empty($dateFrom) && empty($dateTo)) {
-        echo "<script>alert('Both date fields are required!');</script>";
-        echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=printed';</script>"; exit;
-      }elseif (empty($dateFrom) && !empty($dateTo)) {
-        echo "<script>alert('Both date fields are required!');</script>";
-        echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=printed';</script>"; exit;
-      }
+      // if (!empty($dateFrom) && empty($dateTo)) {
+      //   echo "<script>alert('Both date fields are required!');</script>";
+      //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=printed';</script>"; exit;
+      // }elseif (empty($dateFrom) && !empty($dateTo)) {
+      //   echo "<script>alert('Both date fields are required!');</script>";
+      //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=printed';</script>"; exit;
+      // }
 
       if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
         $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -485,26 +475,37 @@ class Search extends config{
       }
 
 
-      echo '<ul class="pagination ml-2">';
+      // echo '<ul class="pagination ml-2">';
+      //
+      //   for ($p=1; $p <=$total_pages; $p++) {
+      //     if (!empty($search) && !empty($criteria)) {
+      //       echo '<li class="page-item" >';
+      //       echo  '<a class= "page-link" href="?search='.$search.'&tab=printed&submit=submitPrinted&criteria='.$criteria.'&PRpage='.$p.'&submitPrinted=Submit#printed">'.$p;
+      //       echo  '</a>';
+      //       echo '</li>';
+      //     }elseif(!empty($dateFrom) && !empty($dateTo)) {
+      //       echo '<li class="page-item" >';
+      //       echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=printed&submit=submitPrinted&dateTo='.$dateTo.'&PRpage='.$p.'&submitPrinted=Submit#printed">'.$p;
+      //       echo  '</a>';
+      //       echo '</li>';
+      //     }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+      //       echo '<li class="page-item" >';
+      //       echo  '<a class= "page-link" href="?tab=printed&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&PRpage='.$p.'&submitPrinted=Submit#printed&submit=submitPrinted">'.$p;
+      //       echo  '</a>';
+      //       echo '</li>';
+      //     }
+      //   }
+      //   echo '</ul>';
 
-        for ($p=1; $p <=$total_pages; $p++) {
+        echo '<ul class="pagination ml-2">';
+        $pagination = new paginationSearch;
           if (!empty($search) && !empty($criteria)) {
-            echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?search='.$search.'&tab=printed&submit=submitPrinted&criteria='.$criteria.'&PRpage='.$p.'&submitPrinted=Submit#printed">'.$p;
-            echo  '</a>';
-            echo '</li>';
+            $pagination->paginationSearch4($total_pages,$page,$search,$criteria);
           }elseif(!empty($dateFrom) && !empty($dateTo)) {
-            echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=printed&submit=submitPrinted&dateTo='.$dateTo.'&PRpage='.$p.'&submitPrinted=Submit#printed">'.$p;
-            echo  '</a>';
-            echo '</li>';
+            $pagination->paginationSearch5($total_pages,$page,$dateFrom,$dateTo);
           }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-            echo '<li class="page-item" >';
-            echo  '<a class= "page-link" href="?tab=printed&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&PRpage='.$p.'&submitPrinted=Submit#printed&submit=submitPrinted">'.$p;
-            echo  '</a>';
-            echo '</li>';
+            $pagination->paginationSearch6($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
           }
-        }
         echo '</ul>';
 
       echo '
@@ -608,18 +609,18 @@ class Search extends config{
 
         if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
           echo "<script>alert('Empty search area!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease2';</script>"; exit;
+          echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease2';</script>"; exit;
         }else {
             $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
         }
 
-        if (!empty($dateFrom) && empty($dateTo)) {
-          echo "<script>alert('Both date fields are required!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease2';</script>"; exit;
-        }elseif (empty($dateFrom) && !empty($dateTo)) {
-          echo "<script>alert('Both date fields are required!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease2';</script>"; exit;
-        }
+        // if (!empty($dateFrom) && empty($dateTo)) {
+        //   echo "<script>alert('Both date fields are required!');</script>";
+        //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease2';</script>"; exit;
+        // }elseif (empty($dateFrom) && !empty($dateTo)) {
+        //   echo "<script>alert('Both date fields are required!');</script>";
+        //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease2';</script>"; exit;
+        // }
 
 
         if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -701,27 +702,39 @@ class Search extends config{
 
       echo '</table>';
 
-        echo '<ul class="pagination ml-2">';
+        // echo '<ul class="pagination ml-2">';
+        //
+        //   for ($p=1; $p <=$total_pages; $p++) {
+        //     if (!empty($search) && !empty($criteria)) {
+        //       echo '<li class="page-item" >';
+        //       echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease2&submit=submitVerfied&criteria='.$criteria.'&V1page='.$p.'&submitVerified=Submit#verified">'.$p;
+        //       echo  '</a>';
+        //       echo '</li>';
+        //     }elseif(!empty($dateFrom) && !empty($dateTo)) {
+        //       echo '<li class="page-item" >';
+        //       echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease2&submit=submitVerfied&dateTo='.$dateTo.'&V1page='.$p.'&submitVerfied=Submit#verified">'.$p;
+        //       echo  '</a>';
+        //       echo '</li>';
+        //     }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+        //       echo '<li class="page-item" >';
+        //       echo  '<a class= "page-link" href="?tab=forrelease2&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V1page='.$p.'&submitVerfied=Submit#printed&submit=submitVerfied">'.$p;
+        //       echo  '</a>';
+        //       echo '</li>';
+        //     }
+        //   }
+        //   echo '</ul>';
 
-          for ($p=1; $p <=$total_pages; $p++) {
-            if (!empty($search) && !empty($criteria)) {
-              echo '<li class="page-item" >';
-              echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease2&submit=submitVerfied&criteria='.$criteria.'&V1page='.$p.'&submitVerified=Submit#verified">'.$p;
-              echo  '</a>';
-              echo '</li>';
-            }elseif(!empty($dateFrom) && !empty($dateTo)) {
-              echo '<li class="page-item" >';
-              echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease2&submit=submitVerfied&dateTo='.$dateTo.'&V1page='.$p.'&submitVerfied=Submit#verified">'.$p;
-              echo  '</a>';
-              echo '</li>';
-            }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-              echo '<li class="page-item" >';
-              echo  '<a class= "page-link" href="?tab=forrelease2&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V1page='.$p.'&submitVerfied=Submit#printed&submit=submitVerfied">'.$p;
-              echo  '</a>';
-              echo '</li>';
-            }
+        echo '<ul class="pagination ml-2">';
+        $pagination = new paginationSearch;
+          if (!empty($search) && !empty($criteria)) {
+            $pagination->paginationSearch7($total_pages,$page,$search,$criteria);
+          }elseif(!empty($dateFrom) && !empty($dateTo)) {
+            $pagination->paginationSearch8($total_pages,$page,$dateFrom,$dateTo);
+          }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+            $pagination->paginationSearch9($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
           }
-          echo '</ul>';
+        echo '</ul>';
+
 
         echo '
         <div class="container-fluid mt-4">
@@ -793,7 +806,9 @@ class Search extends config{
 
           $data = $con->prepare($sql);
           $data ->execute();
-          $rows=$data-> fetchAll(PDO::FETCH_OBJ);
+          $rows=$data->fetchAll(PDO::FETCH_ASSOC);
+
+          $_SESSION['SearchAllV'] = $rows;
 
           $limit = 10;
 
@@ -817,18 +832,18 @@ class Search extends config{
 
           if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
             echo "<script>alert('Empty search area!');</script>";
-            echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease1';</script>"; exit;
+            echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease1';</script>"; exit;
           }else {
                 $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
           }
 
-          if (!empty($dateFrom) && empty($dateTo)) {
-            echo "<script>alert('Both date fields are required!');</script>";
-            echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease1';</script>"; exit;
-          }elseif (empty($dateFrom) && !empty($dateTo)) {
-            echo "<script>alert('Both date fields are required!');</script>";
-            echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease1';</script>"; exit;
-          }
+          // if (!empty($dateFrom) && empty($dateTo)) {
+          //   echo "<script>alert('Both date fields are required!');</script>";
+          //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease1';</script>"; exit;
+          // }elseif (empty($dateFrom) && !empty($dateTo)) {
+          //   echo "<script>alert('Both date fields are required!');</script>";
+          //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease1';</script>"; exit;
+          // }
 
           if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
             $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -844,7 +859,7 @@ class Search extends config{
           $rows2 = $data2->fetchAll(PDO::FETCH_OBJ);
 
 
-          echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+          echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-2" style="width:100%;">';
           echo '<thead class="thead" style="background-color:#DC65A1;">';
           echo '
           <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
@@ -860,67 +875,82 @@ class Search extends config{
           <th class="text-center" style= "font-weight:bold; color:white;">Actions</td>
           ';
           echo '</thead>';
+          $count = $data->rowCount();
+          if ($count>=1) {
+            foreach ($rows2 as $row) {
+              echo '<tr>';
+                // echo '<td class="text-center">'.$row ->id.'</td>';
+                $type = $row->formtype;
+                $due= $row->Due_Date;
+                $due2 = strtotime($due);
+                $date_diff = 60*60*24*2;
 
-          foreach ($rows2 as $row) {
-            echo '<tr>';
-              // echo '<td class="text-center align-middle">'.$row ->id.'</td>';
-              $type = $row->formtype;
-              $due= $row->Due_Date;
-              $due2 = strtotime($due);
-              $date_diff = 60*60*24*2;
-
-        if($type == "special"){
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-           echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
-             echo '</tr>';
-         }else {
-          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->Course.'</br></td>';
-          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->contact_no.'</td>';
-          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->Status.'</td>';
-          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
-          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
-          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->purposes.'</td>';
-          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
-          echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-          echo '<td class="text-center align-middle"><a class="btn btn-outline-success btt" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
-            echo '</tr>';
-          }
-
+           if($type == "special"){
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+                   echo '</tr>';
+               }else {
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+                echo '<td class="text-center"><a class="btn btn-outline-success" href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+                  echo '</tr>';
+                }
               }
-          echo '</table>';
+              echo '</table>';
+              echo '<a class= "btn btn-success mb-2 float-right"href="export.php?exportVerifiedAllSearch">Create Excel File</a>';
+              }else {
+              echo '</table>';
+              echo '<center>No Requests</center>';
+              }
 
-          echo '<ul class="pagination ml-2">';
+            // for ($p=1; $p <=$total_pages; $p++) {
+            //   if (!empty($search) && !empty($criteria)) {
+            //     echo '<li class="page-item" >';
+            //     echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease1&submit=submitVerfiedAll&criteria='.$criteria.'&V2page='.$p.'&submitVerifiedAll=Submit#verifiedall">'.$p;
+            //     echo  '</a>';
+            //     echo '</li>';
+            //   }elseif(!empty($dateFrom) && !empty($dateTo)) {
+            //     echo '<li class="page-item" >';
+            //     echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease1&submit=submitVerfiedAll&dateTo='.$dateTo.'&V2page='.$p.'&submitVerfiedAll=Submit#verifiedall">'.$p;
+            //     echo  '</a>';
+            //     echo '</li>';
+            //   }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+            //     echo '<li class="page-item" >';
+            //     echo  '<a class= "page-link" href="?tab=forrelease1&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V2page='.$p.'&submitVerfiedAll=Submit#verifiedall&submit=submitVerfiedAll">'.$p;
+            //     echo  '</a>';
+            //     echo '</li>';
+            //   }
+            // }
+            // echo '</ul>';
 
-            for ($p=1; $p <=$total_pages; $p++) {
+            echo '<ul class="pagination ml-2">';
+            $pagination = new paginationSearch;
               if (!empty($search) && !empty($criteria)) {
-                echo '<li class="page-item" >';
-                echo  '<a class= "page-link" href="?search='.$search.'&tab=forrelease1&submit=submitVerfiedAll&criteria='.$criteria.'&V2page='.$p.'&submitVerifiedAll=Submit#verifiedall">'.$p;
-                echo  '</a>';
-                echo '</li>';
+                $pagination->paginationSearch10($total_pages,$page,$search,$criteria);
               }elseif(!empty($dateFrom) && !empty($dateTo)) {
-                echo '<li class="page-item" >';
-                echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=forrelease1&submit=submitVerfiedAll&dateTo='.$dateTo.'&V2page='.$p.'&submitVerfiedAll=Submit#verifiedall">'.$p;
-                echo  '</a>';
-                echo '</li>';
+                $pagination->paginationSearch11($total_pages,$page,$dateFrom,$dateTo);
               }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-                echo '<li class="page-item" >';
-                echo  '<a class= "page-link" href="?tab=forrelease1&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&V2page='.$p.'&submitVerfiedAll=Submit#verifiedall&submit=submitVerfiedAll">'.$p;
-                echo  '</a>';
-                echo '</li>';
+                $pagination->paginationSearch12($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
               }
-            }
             echo '</ul>';
+
 
           echo '
           <div class="container-fluid mt-4">
@@ -952,6 +982,7 @@ class Search extends config{
                <div class="col-sm mt-4 pt-2">
                  <label for="submit"></label>
                  <input type="submit" class="btn text-white" name="submitVerifiedAll" value="Submit" style="background-color:#DC65A1;">
+                   <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                </div>
              </div>
            </form>
@@ -1026,19 +1057,19 @@ class Search extends config{
             // }else {
               if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
                 echo "<script>alert('Empty search area!');</script>";
-                echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=released';</script>"; exit;
+                echo "<script type='text/javascript'>window.top.location='pending.php?tab=released';</script>"; exit;
               }else {
                 $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
               }
 
-              if (!empty($dateFrom) && empty($dateTo)) {
-                echo "<script>alert('Both date fields are required!');</script>";
-                echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=released';</script>"; exit;
-              }elseif (empty($dateFrom) && !empty($dateTo)) {
-                echo "<script>alert('Both date fields are required!');</script>";
-                echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=released';</script>"; exit;
-              }
-            // }
+            //   if (!empty($dateFrom) && empty($dateTo)) {
+            //     echo "<script>alert('Both date fields are required!');</script>";
+            //     echo "<script type='text/javascript'>window.top.location='pending.php?tab=released';</script>"; exit;
+            //   }elseif (empty($dateFrom) && !empty($dateTo)) {
+            //     echo "<script>alert('Both date fields are required!');</script>";
+            //     echo "<script type='text/javascript'>window.top.location='pending.php?tab=released';</script>"; exit;
+            //   }
+            // // }
 
 
             if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -1113,27 +1144,38 @@ class Search extends config{
            }
 
 
-            echo '<ul class="pagination ml-2">';
+            // echo '<ul class="pagination ml-2">';
+            //
+            //   for ($p=1; $p <=$total_pages; $p++) {
+            //     if (!empty($search) && !empty($criteria)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?search='.$search.'&tab=released&submit=submitReleased&criteria='.$criteria.'&Rpage='.$p.'&submitReleased=Submit#released">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }elseif(!empty($dateFrom) && !empty($dateTo)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=released&submit=submitReleased&dateTo='.$dateTo.'&Rpage='.$p.'&submitReleased=Submit#released">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?tab=released&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Rpage='.$p.'&submitReleased=Submit#released&submit=submitReleased">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }
+            //   }
+            //   echo '</ul>';
 
-              for ($p=1; $p <=$total_pages; $p++) {
-                if (!empty($search) && !empty($criteria)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?search='.$search.'&tab=released&submit=submitReleased&criteria='.$criteria.'&Rpage='.$p.'&submitReleased=Submit#released">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }elseif(!empty($dateFrom) && !empty($dateTo)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=released&submit=submitReleased&dateTo='.$dateTo.'&Rpage='.$p.'&submitReleased=Submit#released">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?tab=released&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Rpage='.$p.'&submitReleased=Submit#released&submit=submitReleased">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }
+            echo '<ul class="pagination ml-2">';
+            $pagination = new paginationSearch;
+              if (!empty($search) && !empty($criteria)) {
+                $pagination->paginationSearch13($total_pages,$page,$search,$criteria);
+              }elseif(!empty($dateFrom) && !empty($dateTo)) {
+                $pagination->paginationSearch14($total_pages,$page,$dateFrom,$dateTo);
+              }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+                $pagination->paginationSearch15($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
               }
-              echo '</ul>';
+            echo '</ul>';
 
             echo '
             <div class="container-fluid mt-4">
@@ -1234,18 +1276,18 @@ class Search extends config{
 
         if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
           echo "<script>alert('Empty search area!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=view';</script>"; exit;
+          echo "<script type='text/javascript'>window.top.location='verification.php?tab=view';</script>"; exit;
         }else {
             $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
         }
 
-        if (!empty($dateFrom) && empty($dateTo)) {
-          echo "<script>alert('Both date fields are required!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=view';</script>"; exit;
-        }elseif (empty($dateFrom) && !empty($dateTo)) {
-          echo "<script>alert('Both date fields are required!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=view';</script>"; exit;
-        }
+        // if (!empty($dateFrom) && empty($dateTo)) {
+        //   echo "<script>alert('Both date fields are required!');</script>";
+        //   echo "<script type='text/javascript'>window.top.location='verification.php?tab=view';</script>"; exit;
+        // }elseif (empty($dateFrom) && !empty($dateTo)) {
+        //   echo "<script>alert('Both date fields are required!');</script>";
+        //   echo "<script type='text/javascript'>window.top.location='verification.php?tab=view';</script>"; exit;
+        // }
 
 
 
@@ -1317,28 +1359,39 @@ class Search extends config{
                 echo '<center>No Results Found</center>';
               }
 
-              if ($count>=1) {
-                echo '<ul class="pagination ml-2">';
-                for ($p=1; $p <=$total_pages; $p++) {
-                  if (!empty($search) && !empty($criteria)) {
-                    echo '<li class="page-item" >';
-                    echo  '<a class= "page-link" href="?search='.$search.'&tab=view&submit=submitPendingV&criteria='.$criteria.'&Verpage='.$p.'&submitPendingV">'.$p;
-                    echo  '</a>';
-                    echo '</li>';
-                  }elseif(!empty($dateFrom) && !empty($dateTo)) {
-                    echo '<li class="page-item" >';
-                    echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=view&submit=submitPendingV&dateTo='.$dateTo.'&Verpage='.$p.'&submitPendingV">'.$p;
-                    echo  '</a>';
-                    echo '</li>';
-                  }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-                    echo '<li class="page-item" >';
-                    echo  '<a class= "page-link" href="?tab=view&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Verpage='.$p.'&submitPendingV=Submit#pending&submit=submitPendingV">'.$p;
-                    echo  '</a>';
-                    echo '</li>';
-                  }
-                }
-                echo '</ul>';
-              }
+              // if ($count>=1) {
+              //   echo '<ul class="pagination ml-2">';
+              //   for ($p=1; $p <=$total_pages; $p++) {
+              //     if (!empty($search) && !empty($criteria)) {
+              //       echo '<li class="page-item" >';
+              //       echo  '<a class= "page-link" href="?search='.$search.'&tab=view&submit=submitPendingV&criteria='.$criteria.'&Verpage='.$p.'&submitPendingV">'.$p;
+              //       echo  '</a>';
+              //       echo '</li>';
+              //     }elseif(!empty($dateFrom) && !empty($dateTo)) {
+              //       echo '<li class="page-item" >';
+              //       echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=view&submit=submitPendingV&dateTo='.$dateTo.'&Verpage='.$p.'&submitPendingV">'.$p;
+              //       echo  '</a>';
+              //       echo '</li>';
+              //     }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+              //       echo '<li class="page-item" >';
+              //       echo  '<a class= "page-link" href="?tab=view&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Verpage='.$p.'&submitPendingV=Submit#pending&submit=submitPendingV">'.$p;
+              //       echo  '</a>';
+              //       echo '</li>';
+              //     }
+              //   }
+              //   echo '</ul>';
+              // }
+
+              echo '<ul class="pagination ml-2">';
+      $pagination = new paginationSearch;
+        if (!empty($search) && !empty($criteria)) {
+          $pagination->paginationSearch16($total_pages,$page,$search,$criteria);
+        }elseif(!empty($dateFrom) && !empty($dateTo)) {
+          $pagination->paginationSearch17($total_pages,$page,$dateFrom,$dateTo);
+        }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+          $pagination->paginationSearch18($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
+        }
+      echo '</ul>';
 
         echo '
         <div class="container-fluid mt-4">
@@ -1433,19 +1486,18 @@ class Search extends config{
 
             if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
               echo "<script>alert('Empty search area!');</script>";
-              echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=verified';</script>"; exit;
+              echo "<script type='text/javascript'>window.top.location='verification.php?tab=verified';</script>"; exit;
             }else {
               $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
             }
 
-            if (!empty($dateFrom) && empty($dateTo)) {
-              echo "<script>alert('Both date fields are required!');</script>";
-              echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=verified';</script>"; exit;
-            }elseif (empty($dateFrom) && !empty($dateTo)) {
-              echo "<script>alert('Both date fields are required!');</script>";
-              echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=verified';</script>"; exit;
-            }
-
+            // if (!empty($dateFrom) && empty($dateTo)) {
+            //   echo "<script>alert('Both date fields are required!');</script>";
+            //   echo "<script type='text/javascript'>window.top.location='verification.php?tab=verified';</script>"; exit;
+            // }elseif (empty($dateFrom) && !empty($dateTo)) {
+            //   echo "<script>alert('Both date fields are required!');</script>";
+            //   echo "<script type='text/javascript'>window.top.location='verification.php?tab=verified';</script>"; exit;
+            // }
 
             if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
               $sql2 .= "AND date_recieved >= '$dateFrom' AND date_recieved <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -1485,7 +1537,7 @@ class Search extends config{
                      echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->dategrad.'</td>';
                      echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->cemail.'</td>';
                      echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->date_verified.'</td>';
-                     echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$this->getSName($row->verified_by).'</td>';
+                     echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$view->getSName($row->verified_by).'</td>';
                   echo '</tr>';
                   }
                 echo '</table>';
@@ -1495,28 +1547,39 @@ class Search extends config{
               echo '<center>No Results Found</center>';
             }
 
-            if ($count>=1) {
-              echo '<ul class="pagination ml-2">';
-              for ($p=1; $p <=$total_pages; $p++) {
-                if (!empty($search) && !empty($criteria)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?search='.$search.'&tab=verified&submit=submitVerifiedV&criteria='.$criteria.'&Vrrpage='.$p.'&submitVerifiedV">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }elseif(!empty($dateFrom) && !empty($dateTo)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=verified&submit=submitVerifiedV&dateTo='.$dateTo.'&Vrrpage='.$p.'&submitVerifiedV">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
-                  echo '<li class="page-item" >';
-                  echo  '<a class= "page-link" href="?tab=verified&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Vrpage='.$p.'&submitVerfiedV=Submit#pending&submit=submitVerifiedV">'.$p;
-                  echo  '</a>';
-                  echo '</li>';
-                }
-              }
-              echo '</ul>';
-            }
+            // if ($count>=1) {
+            //   echo '<ul class="pagination ml-2">';
+            //   for ($p=1; $p <=$total_pages; $p++) {
+            //     if (!empty($search) && !empty($criteria)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?search='.$search.'&tab=verified&submit=submitVerifiedV&criteria='.$criteria.'&Vrrpage='.$p.'&submitVerifiedV">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }elseif(!empty($dateFrom) && !empty($dateTo)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?dateFrom='.$dateFrom.'&tab=verified&submit=submitVerifiedV&dateTo='.$dateTo.'&Vrrpage='.$p.'&submitVerifiedV">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+            //       echo '<li class="page-item" >';
+            //       echo  '<a class= "page-link" href="?tab=verified&dateFrom='.$dateFrom.'&dateTo='.$dateTo.'&criteria'.$criteria.'search='.$search.'&Vrpage='.$p.'&submitVerfiedV=Submit#pending&submit=submitVerifiedV">'.$p;
+            //       echo  '</a>';
+            //       echo '</li>';
+            //     }
+            //   }
+            //   echo '</ul>';
+            // }
+
+            echo '<ul class="pagination ml-2">';
+    $pagination = new paginationSearch;
+      if (!empty($search) && !empty($criteria)) {
+        $pagination->paginationSearch19($total_pages,$page,$search,$criteria);
+      }elseif(!empty($dateFrom) && !empty($dateTo)) {
+        $pagination->paginationSearch20($total_pages,$page,$dateFrom,$dateTo);
+      }elseif (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
+        $pagination->paginationSearch21($total_pages,$page,$dateFrom,$dateTo,$criteria,$search);
+      }
+    echo '</ul>';
 
             echo '
             <div class="container-fluid mt-4">
@@ -1659,8 +1722,8 @@ class Search extends config{
         echo '<center>No Results Found</center>';
       }
 
-      $view=new view;
-      $view->paginationSearch($total_pages,$page,$search,$criteria);
+      $view =new paginationSearchAdmin;
+      $view->paginationSearchAlumni($total_pages,$page,$search,$criteria);
       echo '
       <div class="container-fluid mt-4">
        <form class="" action="" method="get">

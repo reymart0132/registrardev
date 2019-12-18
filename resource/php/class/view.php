@@ -229,7 +229,7 @@ class view extends config{
            $_SESSION['allCSV'] = $rowsAll;
            //
 
-           $limit = 10;
+           $limit = 2;
 
            if (!isset($_GET['Ppage'])) {
                  $page = 1;
@@ -427,16 +427,17 @@ class view extends config{
              echo "<center>No Requests</center>";
            }
 
-             echo '<ul class="pagination  ml-2 ">';
-             for ($p=1; $p <=$total_pages; $p++) {
-              echo '<li id = "pagelink" class="page-item">';
-              echo  '<a class= "page-link" href="?tab=view&Ppage='.$p.'">'.$p;
-              echo  '</a>';
-              echo '</li>';
-             }
-             echo '</ul>';
+             // echo '<ul class="pagination  ml-2 ">';
+             // for ($p=1; $p <=$total_pages; $p++) {
+             //  echo '<li id = "pagelink" class="page-item">';
+             //  echo  '<a class= "page-link" href="?tab=view&Ppage='.$p.'">'.$p;
+             //  echo  '</a>';
+             //  echo '</li>';
+             // }
+             // echo '</ul>';
 
-
+             $pagination = new paginationOne;
+             $pagination->pagination($total_pages,$page);
 
              echo '
              <div class="container-fluid mt-4">
@@ -569,14 +570,18 @@ class view extends config{
              echo '<center>No Results Found</center>';
            }
 
-             echo '<ul class="pagination  ml-2 ">';
-             for ($p=1; $p <=$total_pages; $p++) {
-              echo '<li id = "pagelink" class="page-item">';
-              echo  '<a class= "page-link" href="?tab=view&Verpage='.$p.'">'.$p;
-              echo  '</a>';
-              echo '</li>';
-             }
-             echo '</ul>';
+             // echo '<ul class="pagination  ml-2 ">';
+             // for ($p=1; $p <=$total_pages; $p++) {
+             //  echo '<li id = "pagelink" class="page-item">';
+             //  echo  '<a class= "page-link" href="verification.php?tab=view&Verpage='.$p.'">'.$p;
+             //  echo  '</a>';
+             //  echo '</li>';
+             // }
+             // echo '</ul>';
+
+             $pagination = new paginationOne;
+             $pagination->paginationVerification($total_pages,$page);
+
 
              echo '
              <div class="container-fluid mt-4">
@@ -637,10 +642,10 @@ class view extends config{
 
            $limit = 10;
 
-           if (!isset($_GET['Ppage'])) {
+           if (!isset($_GET['Vrpage'])) {
                  $page = 1;
              } else{
-                 $page = $_GET['Ppage'];
+                 $page = $_GET['Vrpage'];
            }
 
            if(isset($_GET['Ppage']) > 1){
@@ -697,14 +702,16 @@ class view extends config{
              echo '<center>No Verified Yet</center>';
            }
 
-             echo '<ul class="pagination  ml-2 ">';
-             for ($p=1; $p <=$total_pages; $p++) {
-              echo '<li id = "pagelink" class="page-item">';
-              echo  '<a class= "page-link" href="?tab=verified&Ppage='.$p.'">'.$p;
-              echo  '</a>';
-              echo '</li>';
-             }
-             echo '</ul>';
+             // echo '<ul class="pagination  ml-2 ">';
+             // for ($p=1; $p <=$total_pages; $p++) {
+             //  echo '<li id = "pagelink" class="page-item">';
+             //  echo  '<a class= "page-link" href="?tab=verified&Ppage='.$p.'">'.$p;
+             //  echo  '</a>';
+             //  echo '</li>';
+             // }
+             // echo '</ul>';
+             $pagination = new paginationOne;
+             $pagination->paginationVerificationVerified($total_pages,$page);
 
              echo '
              <div class="container-fluid mt-4">
@@ -832,7 +839,10 @@ class view extends config{
              // }
              // echo '</ul>';
 
-   $this->pagination($total_pages,$page);
+   // $this->pagination($total_pages,$page);
+   $pagination = new paginationOne;
+    $pagination->paginationAlumni($total_pages,$page);
+
 
        echo '
        <div class="container-fluid mt-4">
@@ -862,167 +872,167 @@ class view extends config{
     </div>';
         }
 
-        public function paginationSearch($total_pages,$page,$search,$criteria){
-          $adjacents = 3;
-            $plimit = 1;
-            $prev = $page - 1;
-            $next = $page + 1;
-            $lastpage = ceil($total_pages/$plimit);
-            $lpm1 = $lastpage - 1;
-            $pagination = "";
-            if($lastpage > 1)
-            {
-              $pagination .= '<div style = "padding-top:10px;"class=\'pagination\'>';
-              //previous button
-              if ($page > 1)
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$prev.'\'>&laquo; previous</a>';
-                $pagination.= '<span style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding-left:5px; padding-right:7px;padding-top:3px;text-decoration: none;" span class=\'disabled\'>&laquo previous</span>';
-              //pages
-              if ($lastpage < 7 + ($adjacents * 2))	//not enough pages to bother breaking it up
-              {
-                for ($counter = 1; $counter <= $lastpage; $counter++)
-                {
-                  if ($counter == $page)
-                    $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
-                  else
-                    $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$counter.'\'>'.$counter.'</a>';
-                }
-              }
-              elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
-              {
-                //close to beginning; only hide later pages
-                if($page < 1 + ($adjacents * 2))
-                {
-                  for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
-                  {
-                    if ($counter == $page)
-                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
-                    else
-                      $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&&submitAlumni=Submitcriteria='.$criteria.'&page='.$counter.'\'>'.$counter.'</a>';
-                  }
-                  $pagination .= '<span style="padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$lastpage.'\'>'.$lastpage.'</a>';
-                }
-                //in middle; hide some front and some back
-                elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
-                {
-                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page=1\'>1</a>';
-                  $pagination .= '<span style="padding-top:10px;" class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                  for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
-                  {
-                    if ($counter == $page)
-                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"class=\'current\'>'.$counter.'</span>';
-                    else
-                      $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?search='.$search.'&criteria='.$criteria.'&submitAlumni=Submit&page='.$counter.'\'>'.$counter.'</a>';
-                  }
-                  $pagination .= '<span style = "padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$lastpage.'\'>'.$lastpage.'</a>';
-                }
-                //close to end; only hide early pages
-                else
-                {
-                  $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page=1.\'>1</a>';
-                  // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=2\'>2</a>';
-                  $pagination .= '<span style="padding-top:10px;" class=\'elipses\'> &nbsp; . . . . &nbsp;</span>';
-                  for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
-                  {
-                    if ($counter == $page)
-                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding:3px; text-decoration: none; padding-left:9px;padding-right:9px;"class=\'current\'>'.$counter.'</span>';
-                    else
-                      $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$counter.'\'>'.$counter.'</a>';
-                  }
-                }
-              }
-              if ($page < $counter - 1)
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$next.'\'>next &raquo;</a>';
-              else
-                $pagination.=  '<span style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:10px; padding-left:10px; padding-top:2.5px;text-decoration: none;"class=\'disabled\'>next &raquo;</span>';
-              $pagination.= "</div>\n";
-            }
-            echo $pagination;
-        }
+        // public function paginationSearch($total_pages,$page,$search,$criteria){
+        //   $adjacents = 3;
+        //     $plimit = 1;
+        //     $prev = $page - 1;
+        //     $next = $page + 1;
+        //     $lastpage = ceil($total_pages/$plimit);
+        //     $lpm1 = $lastpage - 1;
+        //     $pagination = "";
+        //     if($lastpage > 1)
+        //     {
+        //       $pagination .= '<div style = "padding-top:10px;"class=\'pagination\'>';
+        //       //previous button
+        //       if ($page > 1)
+        //         $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$prev.'\'>&laquo; previous</a>';
+        //         $pagination.= '<span style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding-left:5px; padding-right:7px;padding-top:3px;text-decoration: none;" span class=\'disabled\'>&laquo previous</span>';
+        //       //pages
+        //       if ($lastpage < 7 + ($adjacents * 2))	//not enough pages to bother breaking it up
+        //       {
+        //         for ($counter = 1; $counter <= $lastpage; $counter++)
+        //         {
+        //           if ($counter == $page)
+        //             $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
+        //           else
+        //             $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$counter.'\'>'.$counter.'</a>';
+        //         }
+        //       }
+        //       elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
+        //       {
+        //         //close to beginning; only hide later pages
+        //         if($page < 1 + ($adjacents * 2))
+        //         {
+        //           for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
+        //           {
+        //             if ($counter == $page)
+        //               $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
+        //             else
+        //               $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&&submitAlumni=Submitcriteria='.$criteria.'&page='.$counter.'\'>'.$counter.'</a>';
+        //           }
+        //           $pagination .= '<span style="padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+        //           $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$lastpage.'\'>'.$lastpage.'</a>';
+        //         }
+        //         //in middle; hide some front and some back
+        //         elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
+        //         {
+        //           $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page=1\'>1</a>';
+        //           $pagination .= '<span style="padding-top:10px;" class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+        //           for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
+        //           {
+        //             if ($counter == $page)
+        //               $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"class=\'current\'>'.$counter.'</span>';
+        //             else
+        //               $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?search='.$search.'&criteria='.$criteria.'&submitAlumni=Submit&page='.$counter.'\'>'.$counter.'</a>';
+        //           }
+        //           $pagination .= '<span style = "padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+        //           $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$lastpage.'\'>'.$lastpage.'</a>';
+        //         }
+        //         //close to end; only hide early pages
+        //         else
+        //         {
+        //           $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page=1.\'>1</a>';
+        //           // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=2\'>2</a>';
+        //           $pagination .= '<span style="padding-top:10px;" class=\'elipses\'> &nbsp; . . . . &nbsp;</span>';
+        //           for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
+        //           {
+        //             if ($counter == $page)
+        //               $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding:3px; text-decoration: none; padding-left:9px;padding-right:9px;"class=\'current\'>'.$counter.'</span>';
+        //             else
+        //               $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$counter.'\'>'.$counter.'</a>';
+        //           }
+        //         }
+        //       }
+        //       if ($page < $counter - 1)
+        //         $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'viewAlumni.php?search='.$search.'&submitAlumni=Submit&criteria='.$criteria.'&page='.$next.'\'>next &raquo;</a>';
+        //       else
+        //         $pagination.=  '<span style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:10px; padding-left:10px; padding-top:2.5px;text-decoration: none;"class=\'disabled\'>next &raquo;</span>';
+        //       $pagination.= "</div>\n";
+        //     }
+        //     echo $pagination;
+        // }
 
 
-        public function pagination($total_pages,$page){
-          $adjacents = 3;
-            $plimit = 1;
-            $prev = $page - 1;
-            $next = $page + 1;
-            $lastpage = ceil($total_pages/$plimit);
-            $lpm1 = $lastpage - 1;
-            $pagination = "";
-            if($lastpage > 1)
-            {
-              $pagination .= '<div style = "padding-top:10px;"class=\'pagination\'>';
-              //previous button
-              if ($page > 1)
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?page='.$prev.'\'>&laquo; previous</a>';
-              else
-                $pagination.= '<span style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding-left:5px; padding-right:7px;padding-top:3px;text-decoration: none;" span class=\'disabled\'>&laquo previous</span>';
-              //pages
-              if ($lastpage < 7 + ($adjacents * 2))	//not enough pages to bother breaking it up
-              {
-                for ($counter = 1; $counter <= $lastpage; $counter++)
-                {
-                  if ($counter == $page)
-                    $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
-                  else
-                    $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
-                }
-              }
-              elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
-              {
-                //close to beginning; only hide later pages
-                if($page < 1 + ($adjacents * 2))
-                {
-                  for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
-                  {
-                    if ($counter == $page)
-                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
-                    else
-                      $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
-                  }
-                  $pagination .= '<span style="padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?page='.$lastpage.'\'>'.$lastpage.'</a>';
-                }
-                //in middle; hide some front and some back
-                elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
-                {
-                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=1\'>1</a>';
-                  $pagination .= '<span style="padding-top:10px;" class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                  for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
-                  {
-                    if ($counter == $page)
-                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"class=\'current\'>'.$counter.'</span>';
-                    else
-                      $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
-                  }
-                  $pagination .= '<span style = "padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
-                  $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'viewAlumni.php?page='.$lastpage.'\'>'.$lastpage.'</a>';
-                }
-                //close to end; only hide early pages
-                else
-                {
-                  $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=1.\'>1</a>';
-                  // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=2\'>2</a>';
-                  $pagination .= '<span style="padding-top:10px;" class=\'elipses\'> &nbsp; . . . . &nbsp;</span>';
-                  for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
-                  {
-                    if ($counter == $page)
-                      $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding:3px; text-decoration: none; padding-left:9px;padding-right:9px;"class=\'current\'>'.$counter.'</span>';
-                    else
-                      $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
-                  }
-                }
-              }
-              if ($page < $counter - 1)
-                $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'viewAlumni.php?page='.$next.'\'>next &raquo;</a>';
-              else
-                $pagination.=  '<span style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:10px; padding-left:10px; padding-top:2.5px;text-decoration: none;"class=\'disabled\'>next &raquo;</span>';
-              $pagination.= "</div>\n";
-            }
-            echo $pagination;
-        }
+        // public function pagination($total_pages,$page){
+        //   $adjacents = 3;
+        //     $plimit = 1;
+        //     $prev = $page - 1;
+        //     $next = $page + 1;
+        //     $lastpage = ceil($total_pages/$plimit);
+        //     $lpm1 = $lastpage - 1;
+        //     $pagination = "";
+        //     if($lastpage > 1)
+        //     {
+        //       $pagination .= '<div style = "padding-top:10px;"class=\'pagination\'>';
+        //       //previous button
+        //       if ($page > 1)
+        //         $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?page='.$prev.'\'>&laquo; previous</a>';
+        //       else
+        //         $pagination.= '<span style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding-left:5px; padding-right:7px;padding-top:3px;text-decoration: none;" span class=\'disabled\'>&laquo previous</span>';
+        //       //pages
+        //       if ($lastpage < 7 + ($adjacents * 2))	//not enough pages to bother breaking it up
+        //       {
+        //         for ($counter = 1; $counter <= $lastpage; $counter++)
+        //         {
+        //           if ($counter == $page)
+        //             $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
+        //           else
+        //             $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
+        //         }
+        //       }
+        //       elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
+        //       {
+        //         //close to beginning; only hide later pages
+        //         if($page < 1 + ($adjacents * 2))
+        //         {
+        //           for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
+        //           {
+        //             if ($counter == $page)
+        //               $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
+        //             else
+        //               $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
+        //           }
+        //           $pagination .= '<span style="padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+        //           $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?page='.$lastpage.'\'>'.$lastpage.'</a>';
+        //         }
+        //         //in middle; hide some front and some back
+        //         elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
+        //         {
+        //           $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=1\'>1</a>';
+        //           $pagination .= '<span style="padding-top:10px;" class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+        //           for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
+        //           {
+        //             if ($counter == $page)
+        //               $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"class=\'current\'>'.$counter.'</span>';
+        //             else
+        //               $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
+        //           }
+        //           $pagination .= '<span style = "padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+        //           $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'viewAlumni.php?page='.$lastpage.'\'>'.$lastpage.'</a>';
+        //         }
+        //         //close to end; only hide early pages
+        //         else
+        //         {
+        //           $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=1.\'>1</a>';
+        //           // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page=2\'>2</a>';
+        //           $pagination .= '<span style="padding-top:10px;" class=\'elipses\'> &nbsp; . . . . &nbsp;</span>';
+        //           for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
+        //           {
+        //             if ($counter == $page)
+        //               $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding:3px; text-decoration: none; padding-left:9px;padding-right:9px;"class=\'current\'>'.$counter.'</span>';
+        //             else
+        //               $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumni.php?page='.$counter.'\'>'.$counter.'</a>';
+        //           }
+        //         }
+        //       }
+        //       if ($page < $counter - 1)
+        //         $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'viewAlumni.php?page='.$next.'\'>next &raquo;</a>';
+        //       else
+        //         $pagination.=  '<span style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:10px; padding-left:10px; padding-top:2.5px;text-decoration: none;"class=\'disabled\'>next &raquo;</span>';
+        //       $pagination.= "</div>\n";
+        //     }
+        //     echo $pagination;
+        // }
 
         public function viewprinted(){
           $config = new config;
@@ -1132,15 +1142,18 @@ class view extends config{
           }
 
 
-             echo '<ul class="pagination  ml-2 ">';
-             for ($p=1; $p <=$total_pages; $p++) {
-              $printed  = "printed";
-              echo '<li class="page-item">';
-              echo  '<a class= "page-link" href="?tab='.$printed.'&PRpage='.$p.'">'.$p;
-              echo  '</a>';
-              echo '</li>';
-             }
-             echo '</ul>';
+             // echo '<ul class="pagination  ml-2 ">';
+             // for ($p=1; $p <=$total_pages; $p++) {
+             //  $printed  = "printed";
+             //  echo '<li class="page-item">';
+             //  echo  '<a class= "page-link" href="?tab='.$printed.'&PRpage='.$p.'">'.$p;
+             //  echo  '</a>';
+             //  echo '</li>';
+             // }
+             // echo '</ul>';
+
+             $pagination2 = new paginationOne;
+             $pagination2->paginationPrinted($total_pages,$page);
 
              echo '
              <div class="container-fluid mt-4">
@@ -1178,9 +1191,8 @@ class view extends config{
                 </div>
               </form>
           </div>';
-
-
         }
+
 
         public function viewverified2(){
           $config = new config;
@@ -1190,7 +1202,9 @@ class view extends config{
           $sql = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
           $data = $con-> prepare($sql);
           $data ->execute();
-          $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+          $rows =$data-> fetchAll(PDO::FETCH_ASSOC);
+          // var_dump($rows);
+          $_SESSION['AllV'] = $rows;
 
           $limit = 10;
 
@@ -1218,7 +1232,7 @@ class view extends config{
           $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
 
 
-          echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-5" style="width:100%;">';
+          echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-2" style="width:100%;">';
           echo '<thead class="thead" style="background-color:#DC65A1;">';
           echo '
           <th class="text-center" style= "font-weight:bold; color:white;">Student Number</td>
@@ -1235,51 +1249,63 @@ class view extends config{
           ';
           echo '</thead>';
 
-          foreach ($rows2 as $row) {
-            echo '<tr>';
-              // echo '<td class="text-center align-middle">'.$row ->id.'</td>';
-              $type = $row->formtype;
-              $due= $row->Due_Date;
-              $due2 = strtotime($due);
-              $date_diff = 60*60*24*2;
+          $count=$data2->rowCount();
 
-              if($type == "special"){
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
-             }else {
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
-               echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center"><a class="btn btn-outline-success" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
-                 echo '</tr>';
+          if ($count>=1) {
+            foreach ($rows2 as $row) {
+              echo '<tr>';
+                // echo '<td class="text-center">'.$row ->id.'</td>';
+                $type = $row->formtype;
+                $due= $row->Due_Date;
+                $due2 = strtotime($due);
+                $date_diff = 60*60*24*2;
+
+           if($type == "special"){
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->StudentNo.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Course.'</br></td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->contact_no.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Status.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Date_Grad.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Applied_For.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
+                 echo '<td class="text-center" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+                   echo '</tr>';
+               }else {
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->FirstName." ".$row ->LastName." ".$row->MI.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Course.'</br></td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->contact_no.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Status.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Date_Grad.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Applied_For.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->purposes.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
+                echo '<td class="text-center" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
+                echo '<td class="text-center"><a class="btn btn-outline-success" href="view_pending_requests.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+                  echo '</tr>';
+                }
               }
-             }
               echo '</table>';
+              echo '<a class= "btn btn-success mb-2 float-right"href="export.php?exportVerifiedAll">Create Excel File</a>';
+              }else {
+              echo '</table>';
+              echo '<center>No Requests</center>';
+              }
 
-             echo '<ul class="pagination  ml-2 ">';
-             for ($p=1; $p <=$total_pages; $p++) {
-              echo '<li class="page-item">';
-              echo  '<a class= "page-link" href="?tab=forrelease1&V2page='.$p.'">'.$p;
-              echo  '</a>';
-              echo '</li>';
-             }
-             echo '</ul>';
+             // echo '<ul class="pagination  ml-2 ">';
+             // for ($p=1; $p <=$total_pages; $p++) {
+             //  echo '<li class="page-item">';
+             //  echo  '<a class= "page-link" href="?tab=forrelease1&V2page='.$p.'">'.$p;
+             //  echo  '</a>';
+             //  echo '</li>';
+             // }
+             // echo '</ul>';
+
+             $pagination3 = new paginationOne;
+             $pagination3->paginationForRelease($total_pages,$page);
 
              echo '
              <div class="container-fluid mt-4">
@@ -1312,6 +1338,7 @@ class view extends config{
                   <div class="col-sm mt-4 pt-2">
                     <label for="submit"></label>
                     <input type="submit" class="btn text-white" name="submitVerifiedAll" value="Submit" style="background-color:#DC65A1;">
+                    <a class= "btn btn-success"href="export.php?exportAll">Export All</a>
                   </div>
                 </div>
               </form>
@@ -1424,14 +1451,17 @@ class view extends config{
               echo '<center>No Requests</center>';
               }
 
-             echo '<ul class="pagination  ml-2 ">';
-             for ($p=1; $p <=$total_pages; $p++) {
-              echo '<li class="page-item">';
-              echo  '<a class= "page-link" href="?tab=forrelease2&V1page='.$p.'">'.$p;
-              echo  '</a>';
-              echo '</li>';
-             }
-             echo '</ul>';
+             // echo '<ul class="pagination  ml-2 ">';
+             // for ($p=1; $p <=$total_pages; $p++) {
+             //  echo '<li class="page-item">';
+             //  echo  '<a class= "page-link" href="?tab=forrelease2&V1page='.$p.'">'.$p;
+             //  echo  '</a>';
+             //  echo '</li>';
+             // }
+             // echo '</ul>';
+             //
+             $pagination4 = new paginationOne;
+             $pagination4->paginationForRelease2($total_pages,$page);
 
              echo '
              <div class="container-fluid mt-4">
@@ -1574,17 +1604,17 @@ class view extends config{
                 }
 
 
-             echo '<ul class="pagination  ml-2 ">';
-             for ($p=1; $p <=$total_pages; $p++) {
-              echo '<li class="page-item">';
-              echo  '<a class= "page-link" href="?tab=released&Rpage='.$p.'">'.$p;
-              echo  '</a>';
-              echo '</li>';
-             }
-             echo '</ul>';
+             // echo '<ul class="pagination  ml-2 ">';
+             // for ($p=1; $p <=$total_pages; $p++) {
+             //  echo '<li class="page-item">';
+             //  echo  '<a class= "page-link" href="?tab=released&Rpage='.$p.'">'.$p;
+             //  echo  '</a>';
+             //  echo '</li>';
+             // }
+             // echo '</ul>';
 
-             // $pagination =  new paginationOne;
-             // $pagination->pagination($total_pages,$page);
+             $pagination =  new paginationOneAdmin;
+             $pagination->paginationReleased($total_pages,$page);
 
              echo '
              <div class="container-fluid mt-4">

@@ -223,14 +223,17 @@ class viewAdmin extends config{
          echo "<center>No Requests</center>";
        }
 
-       echo '<ul class="pagination  ml-2 ">';
-       for ($p=1; $p <=$total_pages; $p++) {
-        echo '<li id = "pagelink" class="page-item">';
-        echo  '<a class= "page-link" href="?tab=view&Ppage='.$p.'">'.$p;
-        echo  '</a>';
-        echo '</li>';
-       }
-       echo '</ul>';
+       // echo '<ul class="pagination  ml-2 ">';
+       // for ($p=1; $p <=$total_pages; $p++) {
+       //  echo '<li id = "pagelink" class="page-item">';
+       //  echo  '<a class= "page-link" href="?tab=view&Ppage='.$p.'">'.$p;
+       //  echo  '</a>';
+       //  echo '</li>';
+       // }
+       // echo '</ul>';
+
+       $pagination = new paginationOneAdmin;
+       $pagination->pagination($total_pages,$page);
 
        echo '
        <div class="container-fluid mt-4">
@@ -378,15 +381,19 @@ class viewAdmin extends config{
     }
 
 
-       echo '<ul class="pagination  ml-2 ">';
-       for ($p=1; $p <=$total_pages; $p++) {
-        $printed  = "printed";
-        echo '<li class="page-item">';
-        echo  '<a class= "page-link" href="?tab='.$printed.'&PRpage='.$p.'">'.$p;
-        echo  '</a>';
-        echo '</li>';
-       }
-       echo '</ul>';
+       // echo '<ul class="pagination  ml-2 ">';
+       // for ($p=1; $p <=$total_pages; $p++) {
+       //  $printed  = "printed";
+       //  echo '<li class="page-item">';
+       //  echo  '<a class= "page-link" href="?tab='.$printed.'&PRpage='.$p.'">'.$p;
+       //  echo  '</a>';
+       //  echo '</li>';
+       // }
+       // echo '</ul>';
+
+
+                    $pagination2 = new paginationOneAdmin;
+                    $pagination2->paginationPrinted($total_pages,$page);
 
        echo '
        <div class="container-fluid mt-4">
@@ -533,15 +540,17 @@ class viewAdmin extends config{
         echo '<center>No Requests</center>';
         }
 
-       echo '<ul class="pagination  ml-2 ">';
-       for ($p=1; $p <=$total_pages; $p++) {
-        echo '<li class="page-item">';
-        echo  '<a class= "page-link" href="?tab=forrelease1&V2page='.$p.'">'.$p;
-        echo  '</a>';
-        echo '</li>';
-       }
-       echo '</ul>';
+       // echo '<ul class="pagination  ml-2 ">';
+       // for ($p=1; $p <=$total_pages; $p++) {
+       //  echo '<li class="page-item">';
+       //  echo  '<a class= "page-link" href="?tab=forrelease1&V2page='.$p.'">'.$p;
+       //  echo  '</a>';
+       //  echo '</li>';
+       // }
+       // echo '</ul>';
 
+       $pagination4 = new paginationOneAdmin;
+       $pagination4->paginationForRelease($total_pages,$page);
        echo '
        <div class="container-fluid mt-4">
         <form class="" action="" method="get">
@@ -673,14 +682,15 @@ class viewAdmin extends config{
   echo '</table>';
 
 
-       echo '<ul class="pagination  ml-2 ">';
-       for ($p=1; $p <=$total_pages; $p++) {
-        echo '<li class="page-item">';
-        echo  '<a class= "page-link" href="?tab=forrelease1&V1page='.$p.'">'.$p;
-        echo  '</a>';
-        echo '</li>';
-       }
-       echo '</ul>';
+       // echo '<ul class="pagination  ml-2 ">';
+       // for ($p=1; $p <=$total_pages; $p++) {
+       //  echo '<li class="page-item">';
+       //  echo  '<a class= "page-link" href="?tab=forrelease1&V1page='.$p.'">'.$p;
+       //  echo  '</a>';
+       //  echo '</li>';
+       // }
+       // echo '</ul>';
+
 
        echo '
        <div class="container-fluid mt-4">
@@ -822,14 +832,17 @@ class viewAdmin extends config{
           }
 
 
-       echo '<ul class="pagination  ml-2 ">';
-       for ($p=1; $p <=$total_pages; $p++) {
-        echo '<li class="page-item">';
-        echo  '<a class= "page-link" href="?tab=released&Rpage='.$p.'">'.$p;
-        echo  '</a>';
-        echo '</li>';
-       }
-       echo '</ul>';
+       // echo '<ul class="pagination  ml-2 ">';
+       // for ($p=1; $p <=$total_pages; $p++) {
+       //  echo '<li class="page-item">';
+       //  echo  '<a class= "page-link" href="?tab=released&Rpage='.$p.'">'.$p;
+       //  echo  '</a>';
+       //  echo '</li>';
+       // }
+       // echo '</ul>';
+
+       $pagination4 = new paginationOneAdmin;
+       $pagination4->paginationReleased($total_pages,$page);
 
        echo '
        <div class="container-fluid mt-4">
@@ -1193,14 +1206,17 @@ class viewAdmin extends config{
            echo '<center>No Results Found</center>';
          }
 
-           echo '<ul class="pagination  ml-2 ">';
-           for ($p=1; $p <=$total_pages; $p++) {
-            echo '<li id = "pagelink" class="page-item">';
-            echo  '<a class= "page-link" href="?tab=view&Verpage='.$p.'">'.$p;
-            echo  '</a>';
-            echo '</li>';
-           }
-           echo '</ul>';
+           // echo '<ul class="pagination  ml-2 ">';
+           // for ($p=1; $p <=$total_pages; $p++) {
+           //  echo '<li id = "pagelink" class="page-item">';
+           //  echo  '<a class= "page-link" href="?tab=view&Verpage='.$p.'">'.$p;
+           //  echo  '</a>';
+           //  echo '</li>';
+           // }
+           // echo '</ul>';
+
+           $pagination = new paginationOneAdmin;
+           $pagination->paginationVerification($total_pages,$page);
 
            echo '
            <div class="container-fluid mt-4">
@@ -1336,14 +1352,17 @@ class viewAdmin extends config{
            echo '<center>No Verified Yet</center>';
          }
 
-           echo '<ul class="pagination  ml-2 ">';
-           for ($p=1; $p <=$total_pages; $p++) {
-            echo '<li id = "pagelink" class="page-item">';
-            echo  '<a class= "page-link" href="?tab=verified&Ppage='.$p.'">'.$p;
-            echo  '</a>';
-            echo '</li>';
-           }
-           echo '</ul>';
+           // echo '<ul class="pagination  ml-2 ">';
+           // for ($p=1; $p <=$total_pages; $p++) {
+           //  echo '<li id = "pagelink" class="page-item">';
+           //  echo  '<a class= "page-link" href="?tab=verified&Ppage='.$p.'">'.$p;
+           //  echo  '</a>';
+           //  echo '</li>';
+           // }
+           // echo '</ul>';
+
+           $pagination = new paginationOneAdmin;
+           $pagination->paginationVerificationVerified($total_pages,$page);
 
            echo '
            <div class="container-fluid mt-4">
@@ -1379,6 +1398,207 @@ class viewAdmin extends config{
             </form>
         </div>';
       }
+
+      public function viewAlumni(){
+        $config = new config;
+        $con = $config->con();
+        $user = new User();
+        $id1 = $user->data()->id;
+        $sql = "SELECT * FROM `tbl_alumni_info`";
+        $data = $con-> prepare($sql);
+        $data ->execute();
+        $rows =$data-> fetchAll(PDO::FETCH_OBJ);
+            // var_dump($rows);
+
+         $_SESSION['viewAlumni'] = $rows;
+         $sql3 = "SELECT * FROM `tbl_alumni_info`";
+         $data3 = $con-> prepare($sql3);
+         $data3 ->execute();
+         $rows3 =$data3-> fetchAll(PDO::FETCH_OBJ);
+
+         $_SESSION['allAlumni'] = $rows3;
+
+         // paginationqueryhere
+
+         $limit = 10;
+
+         if (!isset($_GET['page'])) {
+               $page = 1;
+           } else{
+               $page = $_GET['page'];
+         }
+
+         $start = ($page-1)*$limit;
+
+         $total_results = $data->rowCount();
+         $total_pages = ceil($total_results/$limit);
+
+         $sql2 = "SELECT * FROM `tbl_alumni_info` LIMIT $start,$limit";
+         $data2 = $con-> prepare($sql2);
+         $data2 ->execute();
+         $rows2 =$data2-> fetchAll(PDO::FETCH_OBJ);
+
+         $count = $data2->rowCount();
+
+         echo '<table class="table table-bordered table-sm table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mb-2" style="width:100%;">';
+         echo '<thead class="thead" style="background-color:#DC65A1;">';
+         echo '
+         <th class="text-center" style= "font-weight:bold; color:white;">Student No.</td>
+         <th class="text-center" style= "font-weight:bold; color:white;">Name</td>
+         <th class="text-center" style= "font-weight:bold; color:white;">Nationality</td>
+         <th class="text-center" style= "font-weight:bold; color:white;">Course</td>
+         <th class="text-center" style= "font-weight:bold; color:white;">Department</td>
+         <th class="text-center" style= "font-weight:bold; color:white;">Year Graduated Date</td>
+         <th class="text-center" style= "font-weight:bold; color:white;">Cellphone Number</td>
+         <th class="text-center" style= "font-weight:bold; color:white;">Email</td>
+         <th class="text-center" style= "font-weight:bold; color:white;">Employer</td>
+         <th class="text-center" style= "font-weight:bold; color:white;">Employed Position</td>
+         ';
+         echo '</thead>';
+         $view = new view;
+         if ($count>=1) {
+           foreach ($rows2 as $row) {
+              echo '<tr>';
+                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->student_no.'</td>';
+                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->firstname." ".$row ->lastname." ".$row->middlename.'</td>';
+                  echo '<td class="text-center" style="color:#DC65A1;">'.$view->getNationality($row->nationality).'</td>';
+                  echo '<td class="text-center" style="color:#DC65A1;">'.$view->getCourse($row->course).'</td>';
+                  echo '<td class="text-center" style="color:#DC65A1;">'.$view->getCollegeSchool($row->sch_coll).'</td>';
+                  // echo '<td class="text-center" style="color:#DC65A1;">'.$row->month_graduated.'</td>';
+                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->yr_graduated.'</td>';
+                  // echo '<td class="text-center" style="color:#DC65A1;">'.$row->home_no.'</td>';
+                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->cp_no.'</td>';
+                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->email.'</td>';
+                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->employer.'</td>';
+                  echo '<td class="text-center" style="color:#DC65A1;">'.$row->emp_position.'</td>';
+               echo '</tr>';
+               }
+             echo '</table>';
+             echo '<a class= "btn btn-success mb-2 float-right"href="export.php?Alumni">Create Excel File</a>';
+         }else {
+           echo '</table>';
+           echo '<center>No Data</center>';
+         }
+
+           // echo '<ul class="pagination  ml-2 ">';
+           //  for ($p=1; $p <=$total_pages  ; $p++) {
+           //  echo '<li id = "pagelink" class="page-item">';
+           //  echo  '<a class= "page-link" href="?page='.$p.'">'.$p;
+           //  echo  '</a>';
+           //  echo '</li>';
+           // }
+           // echo '</ul>';
+           $pagination = new paginationOneAdmin;
+            $pagination->paginationAlumni($total_pages,$page);
+     echo '
+     <div class="container-fluid mt-4">
+      <form class="" action="" method="get">
+        <div class="row">
+          <div class="col-sm">
+            <label for="criteria">Filter By:</label>
+            <select class="form-control" name="criteria">
+            <option selected="true" disabled="disabled">Choose an Option</option>
+             <option value="student_no">Student Number</option>
+              <option value="firstname">First Name</option>
+              <option value="lastname">Last Name</option>
+              <option value="yr_graduated">Year Graduated</option>
+            </select>
+          </div>
+          <div class="col-sm mt-2">
+            <label for="search"></label>
+            <input class="form-control" type="text" name="search" placeholder="Search Here.."/>
+          </div>
+          <div class="col-sm mt-4 pt-2">
+            <label for="submit"></label>
+            <input type="submit" class="btn text-white" name="submitAlumni" value="Submit" style="background-color:#DC65A1;">
+            <a class= "btn btn-success"href="export.php?exportAllAlumni2">Export All</a>
+          </div>
+        </div>
+      </form>
+  </div>';
+      }
+
+      // public function pagination($total_pages,$page){
+      //   $adjacents = 3;
+      //     $plimit = 1;
+      //     $prev = $page - 1;
+      //     $next = $page + 1;
+      //     $lastpage = ceil($total_pages/$plimit);
+      //     $lpm1 = $lastpage - 1;
+      //     $pagination = "";
+      //     if($lastpage > 1)
+      //     {
+      //       $pagination .= '<div style = "padding-top:10px;"class=\'pagination\'>';
+      //       //previous button
+      //       if ($page > 1)
+      //         $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumniAdmin.php?page='.$prev.'\'>&laquo; previous</a>';
+      //       else
+      //         $pagination.= '<span style="background-color:white; border: 1px solid #DC65A1;color:#DC65A1; padding-left:5px; padding-right:7px;padding-top:3px;text-decoration: none;" span clas  s=\'disabled\'>&laquo previous</span>';
+      //       //pages
+      //       if ($lastpage < 7 + ($adjacents * 2))	//not enough pages to bother breaking it up
+      //       {
+      //         for ($counter = 1; $counter <= $lastpage; $counter++)
+      //         {
+      //           if ($counter == $page)
+      //             $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
+      //           else
+      //             $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding:3px; text-decoration: none;" href=\'viewAlumniAdmin.php?page='.$counter.'\'>'.$counter.'</a>';
+      //         }
+      //       }
+      //       elseif($lastpage > 5 + ($adjacents * 2))	//enough pages to hide some
+      //       {
+      //         //close to beginning; only hide later pages
+      //         if($page < 1 + ($adjacents * 2))
+      //         {
+      //           for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
+      //           {
+      //             if ($counter == $page)
+      //               $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;" class=\'current\'>'.$counter.'</span>';
+      //             else
+      //               $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:13px;padding-right:13px;text-decoration: none; padding-top:2px;" href=\'viewAlumniAdmin.php?page='.$counter.'\'>'.$counter.'</a>';
+      //           }
+      //           $pagination .= '<span style="padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+      //           $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"  href=\'viewAlumniAdmin.php?page='.$lastpage.'\'>'.$lastpage.'</a>';
+      //         }
+      //         //in middle; hide some front and some back
+      //         elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
+      //         {
+      //           $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; padding-left:12px; color:#DC65A1;padding-right:12px;  text-decoration: none; padding-top:2px;" href=\'viewAlumniAdmin.php?page=1\'>1</a>';
+      //           $pagination .= '<span style="padding-top:10px;" class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+      //           for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
+      //           {
+      //             if ($counter == $page)
+      //               $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"class=\'current\'>'.$counter.'</span>';
+      //             else
+      //               $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;"  href=\'viewAlumniAdmin.php?page='.$counter.'\'>'.$counter.'</a>';
+      //           }
+      //           $pagination .= '<span style = "padding-top:10px;"class=\'elipses\'>&nbsp; . . . &nbsp;</span>';
+      //           $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1; padding-left:10px;padding-right:10px; text-decoration: none; padding-top:2px;"href=\'viewAlumniAdmin.php?page='.$lastpage.'\'>'.$lastpage.'</a>';
+      //         }
+      //         //close to end; only hide early pages
+      //         else
+      //         {
+      //           $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; color: #DC65A1; padding-left:13px;padding-right:13px; text-decoration: none; padding-top:2px;" href=\'viewAlumniAdmin.php?page=1.\'>1</a>';
+      //           // $pagination.= '<a style="background-color:white; border: 1px solid #d1d1d1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumniAdmin.php?page=2\'>2</a>';
+      //           $pagination .= '<span style="padding-top:10px;" class=\'elipses\'> &nbsp; . . . . &nbsp;</span>';
+      //           for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
+      //           {
+      //             if ($counter == $page)
+      //               $pagination.= '<span style="background-color:#DC65A1;color:white; border: 1px solid #DC65A1; padding:3px; text-decoration: none; padding-left:9px;padding-right:9px;"class=\'current\'>'.$counter.'</span>';
+      //             else
+      //               $pagination.= '<a style="background-color:white; color:#DC65A1; border: 1px solid #DC65A1; padding-left:10px;padding-right:10px;  text-decoration: none; padding-top:2px;" href=\'viewAlumniAdmin.php?page='.$counter.'\'>'.$counter.'</a>';
+      //           }
+      //         }
+      //       }
+      //       if ($page < $counter - 1)
+      //         $pagination.= '<a style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:15px; padding-left:15px; padding-top:3px;text-decoration: none;" href=\'viewAlumniAdmin.php?page='.$next.'\'>next &raquo;</a>';
+      //       else
+      //         $pagination.=  '<span style="background-color:white; border: 1px solid #DC65A1; color:#DC65A1;padding-right:10px; padding-left:10px; padding-top:2.5px;text-decoration: none;"class=\'disabled\'>next &raquo;</span>';
+      //       $pagination.= "</div>\n";
+      //     }
+      //     echo $pagination;
+      // }
+
     }
 
 
