@@ -1613,7 +1613,7 @@ class view extends config{
              // }
              // echo '</ul>';
 
-             $pagination =  new paginationOneAdmin;
+             $pagination =  new paginationOne;
              $pagination->paginationReleased($total_pages,$page);
 
              echo '
