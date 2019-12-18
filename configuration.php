@@ -50,7 +50,7 @@ $checkadmin->checkadmin();
                          </div>
                      </div>
                  </div>
-                 <a class="btn btn-light btn-block my-4"value="" href="AdminSra.php" style="color:white;background-color :#DC65A1; ">Update SRA Quote</a>
+                 <!-- <a class="btn btn-light btn-block my-4"value="" href="AdminSra.php" style="color:white;background-color :#DC65A1; ">Update SRA Quote</a> -->
                  <a class="btn btn-light btn-block my-4"value="" href="add-requesting-waris.php" style="color:white;background-color :#DC65A1; ">Requesting</a>
                  <a class="btn btn-light btn-block my-4"value="" href="add-new-college-chua.php" style="color:white;background-color :#DC65A1; ">Add College</a>
                  <a class="btn btn-light btn-block my-4"value="" href="AddPurpose.php" style="color:white;background-color :#DC65A1; ">Add a Reason for Request</a>

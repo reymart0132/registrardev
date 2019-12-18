@@ -70,17 +70,17 @@ class Search extends config{
 
     if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
       echo "<script>alert('Empty search area!');</script>";
-      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php';</script>"; exit;
+      echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
     }else {
       $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
     }
 
     if (!empty($dateFrom) && empty($dateTo)) {
       echo "<script>alert('Both date fields are required!');</script>";
-      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php';</script>"; exit;
+      echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
     }elseif (empty($dateFrom) && !empty($dateTo)) {
       echo "<script>alert('Both date fields are required!');</script>";
-      echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php';</script>"; exit;
+      echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
     }
 
     if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -240,7 +240,7 @@ class Search extends config{
             echo '<td class="text-center align-middle" style="color:white;"><a class="btn bg-light btn-outline-success btt" href="pending.php?printed='.$row->id.'&id='.$user->data()->id.'&tab=view">Printed </a></br></td>';
             echo '<td class="text-center align-middle"><a class="btn btn-outline-success btt" href="editTransaction.php?pid='.$row->pid.'&id='.$user->data()->id.'&tab=view&act=pending">Edit</a></br></td>';
             $af = explode(",",$row->Applied_For);
-            echo '<td class="text-center align-middle"  style="color:white; background-color:#ff5757">';
+            echo '<td class="text-center align-middle"  style="color:white;">';
             foreach ($af as $row->Applied_For) {
 
             if ($row->Applied_For == 'Permit to Cross Enroll') {
@@ -391,17 +391,17 @@ class Search extends config{
 
       if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
         echo "<script>alert('Empty search area!');</script>";
-        echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=printed';</script>"; exit;
+        echo "<script type='text/javascript'>window.top.location='pending.php?tab=printed';</script>"; exit;
       }else {
         $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = '$id1'";
       }
 
       if (!empty($dateFrom) && empty($dateTo)) {
         echo "<script>alert('Both date fields are required!');</script>";
-        echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=printed';</script>"; exit;
+        echo "<script type='text/javascript'>window.top.location='pending.php?tab=printed';</script>"; exit;
       }elseif (empty($dateFrom) && !empty($dateTo)) {
         echo "<script>alert('Both date fields are required!');</script>";
-        echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=printed';</script>"; exit;
+        echo "<script type='text/javascript'>window.top.location='pending.php?tab=printed';</script>"; exit;
       }
 
       if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -608,17 +608,17 @@ class Search extends config{
 
         if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
           echo "<script>alert('Empty search area!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease2';</script>"; exit;
+          echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease2';</script>"; exit;
         }else {
             $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
         }
 
         if (!empty($dateFrom) && empty($dateTo)) {
           echo "<script>alert('Both date fields are required!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease2';</script>"; exit;
+          echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease2';</script>"; exit;
         }elseif (empty($dateFrom) && !empty($dateTo)) {
           echo "<script>alert('Both date fields are required!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease2';</script>"; exit;
+          echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease2';</script>"; exit;
         }
 
 
@@ -817,17 +817,17 @@ class Search extends config{
 
           if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
             echo "<script>alert('Empty search area!');</script>";
-            echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease1';</script>"; exit;
+            echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease1';</script>"; exit;
           }else {
                 $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
           }
 
           if (!empty($dateFrom) && empty($dateTo)) {
             echo "<script>alert('Both date fields are required!');</script>";
-            echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease1';</script>"; exit;
+            echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease1';</script>"; exit;
           }elseif (empty($dateFrom) && !empty($dateTo)) {
             echo "<script>alert('Both date fields are required!');</script>";
-            echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=forrelease1';</script>"; exit;
+            echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease1';</script>"; exit;
           }
 
           if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -1026,17 +1026,17 @@ class Search extends config{
             // }else {
               if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
                 echo "<script>alert('Empty search area!');</script>";
-                echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=released';</script>"; exit;
+                echo "<script type='text/javascript'>window.top.location='pending.php?tab=released';</script>"; exit;
               }else {
                 $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
               }
 
               if (!empty($dateFrom) && empty($dateTo)) {
                 echo "<script>alert('Both date fields are required!');</script>";
-                echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=released';</script>"; exit;
+                echo "<script type='text/javascript'>window.top.location='pending.php?tab=released';</script>"; exit;
               }elseif (empty($dateFrom) && !empty($dateTo)) {
                 echo "<script>alert('Both date fields are required!');</script>";
-                echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/pending.php?tab=released';</script>"; exit;
+                echo "<script type='text/javascript'>window.top.location='pending.php?tab=released';</script>"; exit;
               }
             // }
 
@@ -1234,17 +1234,17 @@ class Search extends config{
 
         if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
           echo "<script>alert('Empty search area!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=view';</script>"; exit;
+          echo "<script type='text/javascript'>window.top.location='verification.php?tab=view';</script>"; exit;
         }else {
             $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
         }
 
         if (!empty($dateFrom) && empty($dateTo)) {
           echo "<script>alert('Both date fields are required!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=view';</script>"; exit;
+          echo "<script type='text/javascript'>window.top.location='verification.php?tab=view';</script>"; exit;
         }elseif (empty($dateFrom) && !empty($dateTo)) {
           echo "<script>alert('Both date fields are required!');</script>";
-          echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=view';</script>"; exit;
+          echo "<script type='text/javascript'>window.top.location='verification.php?tab=view';</script>"; exit;
         }
 
 
@@ -1433,17 +1433,17 @@ class Search extends config{
 
             if (empty($dateFrom) && empty($dateTo) && empty($search) && empty($criteria)) {
               echo "<script>alert('Empty search area!');</script>";
-              echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=verified';</script>"; exit;
+              echo "<script type='text/javascript'>window.top.location='verification.php?tab=verified';</script>"; exit;
             }else {
               $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
             }
 
             if (!empty($dateFrom) && empty($dateTo)) {
               echo "<script>alert('Both date fields are required!');</script>";
-              echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=verified';</script>"; exit;
+              echo "<script type='text/javascript'>window.top.location='verification.php?tab=verified';</script>"; exit;
             }elseif (empty($dateFrom) && !empty($dateTo)) {
               echo "<script>alert('Both date fields are required!');</script>";
-              echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/verification.php?tab=verified';</script>"; exit;
+              echo "<script type='text/javascript'>window.top.location='verification.php?tab=verified';</script>"; exit;
             }
 
 

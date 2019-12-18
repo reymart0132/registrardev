@@ -139,34 +139,41 @@ isLogin();
             <h1 class="text-center">Productivity Report for( <?php if(!empty($_GET)){ echo date("M-d-Y", strtotime($_GET['cfd']))." to ".date("M-d-Y", strtotime($_GET['cld']));}else{echo $today = date("F j, Y");} ?> )</h1>
         </div>
    </div>
-   <form class="" action="" method="get">
+   <!-- <button name="create_excel" id="create_excel" class="btn btn-success heartbeat ml-3 my-3">Create Excel File</button> -->
+
+   <div class="container">
+     <form class="" action="" method="get">
+       <div class="row">
+         <div class="col-5">
+           <label for="dateFrom">From:</label>
+           <input  class="form-control" type="date" name="cfd" id="startDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy" required>
+         </div>
+         <div class="col-5">
+           <label for="dateTo">To:</label>
+           <input  class="form-control" type="date" name="cld" id="endDate" placeholder="dd-mm-yyyy" required>
+         </div>
+         <div class="col-2 mt-4 pt-2">
+           <label for="submit"></label>
+           <input type="submit" class="btn text-white" name="search" value="Search" style="background-color:#DC65A1;">
+         </div>
+       </div>
+     </form>
+   </div>
+   <form class="" action="exporttables.php" method="post">
      <div class="row">
        <div class="col-5">
-         <label for="dateFrom">From:</label>
-         <input  class="form-control" type="date" name="cfd" id="startDate"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy" required>
+         <input type="text" name="data" value="" id="Input" hidden>
+         <input class="btn btn-success heartbeat ml-3 my-3" class="form-control" type="submit" value="Create New Excel File">
        </div>
-       <div class="col-5">
-         <label for="dateTo">To:</label>
-         <input  class="form-control" type="date" name="cld" id="endDate" placeholder="dd-mm-yyyy" required>
-       </div>
-       <div class="col-2 mt-4 pt-2">
-         <label for="submit"></label>
-         <input type="submit" class="btn text-white" name="search" value="Search" style="background-color:#DC65A1;">
-       </div>
-     </div>
    </form>
    <!--  -->
-   <div class="container-fluid mt-4 mb-5">
+   <div class="container-fluid mt-4 mb-5" id="activity">
      <?php
      $view2->exportundergrad();
       $view2->exportgrad();
       ?>
-
       <!-- <button type="button" class="btn" name="button"></button> -->
     </div>
-
-
-  </div>
  </body>
 
      <script src="vendor/js/jquery.js"></script>
@@ -187,6 +194,16 @@ isLogin();
       var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
       $("a[href='" + anchor + "']").tab("show");
     });
+  </script>
+  <script>
+  // $(document).ready(function(){
+       // $('#create_excel').click(function(){
+            var excel_data = $('#activity').html();
+            document.getElementById("Input").value = excel_data;
+            // var page = "exporttables.php?data=" + excel_data;
+            // window.location = page;
+       // });
+  // });
   </script>
  </body>
  </html>

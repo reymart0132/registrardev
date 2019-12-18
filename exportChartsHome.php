@@ -25,7 +25,7 @@ isLogin();
         alt="mdb logo">
         <h3 class="ib">
     </a>
-    <a href="exporttable.php"><i class="fas fa-table ceucolor"></i></a>
+    <a href="exporttableAdmin.php"><i class="fas fa-table ceucolor"></i></a>
     <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
     <a href="userVerification.php"><i class="fas fa-user-plus ceucolor"></i></a>
     <a href="verification.php"><i class="fas fa-user-graduate ceucolor"></i></a>
