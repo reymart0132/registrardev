@@ -158,7 +158,7 @@ class SearchAdmin extends config{
           }elseif ($row->Applied_For == 'EMI') {
           echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/EMI_page.php?firstname='.$row->FirstName.'&lastname='.$row->LastName.'&middlename='.$row->MI.'&dategrad='.$row->Date_Grad.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
         }elseif ($row->Applied_For == 'No Scholarship') {
-          echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI[0].". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
+          echo '<a class="btn bg-light btn-outline-success inl" href="resource/php/noscholarform.php?fullname='.$row->FirstName." ".$row ->MI.". ".$row->LastName.'&college='.$row->College.'&course='.$row->Course.'">'.$row->Applied_For.'</a></br>';
         }else{
           echo '<p class="inl2">NA</p></br>';
         }
@@ -270,7 +270,7 @@ class SearchAdmin extends config{
           }
         }
       echo '</table>';
-      echo '<a class= "btn btn-success mb-2 float-right"href="export.php?searchExportPending">Create Excel File</a>';
+      echo '<a class= "btn btn-success mb-2 float-right"href="export.php?searchExportPendingAdmin">Create Excel File</a>';
     }else {
       echo '</table>';
       echo '<center>No Results Found</center>';

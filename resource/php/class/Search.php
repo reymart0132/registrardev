@@ -75,7 +75,7 @@ class Search extends config{
       $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
     }
 
-<<<<<<< HEAD
+
     if (!empty($dateFrom) && empty($dateTo)) {
       echo "<script>alert('Both date fields are required!');</script>";
       echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
@@ -83,7 +83,7 @@ class Search extends config{
       echo "<script>alert('Both date fields are required!');</script>";
       echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
     }
-=======
+
     // if (!empty($dateFrom) && empty($dateTo)) {
     //   echo "<script>alert('Both date fields are required!');</script>";
     //   echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
@@ -91,7 +91,7 @@ class Search extends config{
     //   echo "<script>alert('Both date fields are required!');</script>";
     //   echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
     // }
->>>>>>> master
+
 
     if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
       $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -328,7 +328,7 @@ class Search extends config{
 
   }
 
-    //
+
     public function searchPrinted(){
 
       if(!empty($_GET['dateFrom'])){
@@ -396,7 +396,7 @@ class Search extends config{
         $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PRINTED' AND `assignee` = '$id1'";
       }
 
-<<<<<<< HEAD
+
       if (!empty($dateFrom) && empty($dateTo)) {
         echo "<script>alert('Both date fields are required!');</script>";
         echo "<script type='text/javascript'>window.top.location='pending.php?tab=printed';</script>"; exit;
@@ -404,7 +404,7 @@ class Search extends config{
         echo "<script>alert('Both date fields are required!');</script>";
         echo "<script type='text/javascript'>window.top.location='pending.php?tab=printed';</script>"; exit;
       }
-=======
+
       // if (!empty($dateFrom) && empty($dateTo)) {
       //   echo "<script>alert('Both date fields are required!');</script>";
       //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=printed';</script>"; exit;
@@ -412,7 +412,7 @@ class Search extends config{
       //   echo "<script>alert('Both date fields are required!');</script>";
       //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=printed';</script>"; exit;
       // }
->>>>>>> master
+
 
       if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
         $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -634,7 +634,6 @@ class Search extends config{
             $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
         }
 
-<<<<<<< HEAD
         if (!empty($dateFrom) && empty($dateTo)) {
           echo "<script>alert('Both date fields are required!');</script>";
           echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease2';</script>"; exit;
@@ -642,7 +641,7 @@ class Search extends config{
           echo "<script>alert('Both date fields are required!');</script>";
           echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease2';</script>"; exit;
         }
-=======
+
         // if (!empty($dateFrom) && empty($dateTo)) {
         //   echo "<script>alert('Both date fields are required!');</script>";
         //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease2';</script>"; exit;
@@ -650,7 +649,7 @@ class Search extends config{
         //   echo "<script>alert('Both date fields are required!');</script>";
         //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease2';</script>"; exit;
         // }
->>>>>>> master
+
 
 
         if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -706,7 +705,7 @@ class Search extends config{
                echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->purposes.'</td>';
                echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->Due_Date.'</td>';
                echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9">'.$row->remarks.'</br></td>';
-               echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+               echo '<td class="text-center align-middle" style="color:white; background-color:#a68df9"><a class="btn btn-light btn-outline-success"  href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
                  echo '</tr>';
              }else {
               echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->StudentNo.'</td>';
@@ -719,7 +718,7 @@ class Search extends config{
               echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->purposes.'</td>';
               echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->Due_Date.'</td>';
               echo '<td class="text-center align-middle" style="color:#DC65A1;">'.$row->remarks.'</br></td>';
-              echo '<td class="text-center align-middle"><a class="btn btn-outline-success btt" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease1">Released </a></br></td>';
+              echo '<td class="text-center align-middle"><a class="btn btn-outline-success btt" href="pending.php?released='.$row->id.'&id='.$user->data()->id.'&tab=forrelease2">Released </a></br></td>';
                 echo '</tr>';
               }
             }
@@ -867,7 +866,7 @@ class Search extends config{
                 $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'VERIFIED'";
           }
 
-<<<<<<< HEAD
+
           if (!empty($dateFrom) && empty($dateTo)) {
             echo "<script>alert('Both date fields are required!');</script>";
             echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease1';</script>"; exit;
@@ -875,7 +874,7 @@ class Search extends config{
             echo "<script>alert('Both date fields are required!');</script>";
             echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease1';</script>"; exit;
           }
-=======
+
           // if (!empty($dateFrom) && empty($dateTo)) {
           //   echo "<script>alert('Both date fields are required!');</script>";
           //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease1';</script>"; exit;
@@ -883,7 +882,7 @@ class Search extends config{
           //   echo "<script>alert('Both date fields are required!');</script>";
           //   echo "<script type='text/javascript'>window.top.location='pending.php?tab=forrelease1';</script>"; exit;
           // }
->>>>>>> master
+
 
           if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
             $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";
@@ -1102,7 +1101,7 @@ class Search extends config{
                 $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'RELEASED'";
               }
 
-<<<<<<< HEAD
+
               if (!empty($dateFrom) && empty($dateTo)) {
                 echo "<script>alert('Both date fields are required!');</script>";
                 echo "<script type='text/javascript'>window.top.location='pending.php?tab=released';</script>"; exit;
@@ -1111,7 +1110,7 @@ class Search extends config{
                 echo "<script type='text/javascript'>window.top.location='pending.php?tab=released';</script>"; exit;
               }
             // }
-=======
+
             //   if (!empty($dateFrom) && empty($dateTo)) {
             //     echo "<script>alert('Both date fields are required!');</script>";
             //     echo "<script type='text/javascript'>window.top.location='pending.php?tab=released';</script>"; exit;
@@ -1120,7 +1119,6 @@ class Search extends config{
             //     echo "<script type='text/javascript'>window.top.location='pending.php?tab=released';</script>"; exit;
             //   }
             // // }
->>>>>>> master
 
 
             if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
@@ -1332,7 +1330,7 @@ class Search extends config{
             $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
         }
 
-<<<<<<< HEAD
+
         if (!empty($dateFrom) && empty($dateTo)) {
           echo "<script>alert('Both date fields are required!');</script>";
           echo "<script type='text/javascript'>window.top.location='verification.php?tab=view';</script>"; exit;
@@ -1340,7 +1338,7 @@ class Search extends config{
           echo "<script>alert('Both date fields are required!');</script>";
           echo "<script type='text/javascript'>window.top.location='verification.php?tab=view';</script>"; exit;
         }
-=======
+
         // if (!empty($dateFrom) && empty($dateTo)) {
         //   echo "<script>alert('Both date fields are required!');</script>";
         //   echo "<script type='text/javascript'>window.top.location='verification.php?tab=view';</script>"; exit;
@@ -1348,7 +1346,7 @@ class Search extends config{
         //   echo "<script>alert('Both date fields are required!');</script>";
         //   echo "<script type='text/javascript'>window.top.location='verification.php?tab=view';</script>"; exit;
         // }
->>>>>>> master
+
 
 
 
@@ -1552,7 +1550,7 @@ class Search extends config{
               $sql2 = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'VERIFIED' AND `assignee` = '$id1'";
             }
 
-<<<<<<< HEAD
+
             if (!empty($dateFrom) && empty($dateTo)) {
               echo "<script>alert('Both date fields are required!');</script>";
               echo "<script type='text/javascript'>window.top.location='verification.php?tab=verified';</script>"; exit;
@@ -1561,7 +1559,7 @@ class Search extends config{
               echo "<script type='text/javascript'>window.top.location='verification.php?tab=verified';</script>"; exit;
             }
 
-=======
+
             // if (!empty($dateFrom) && empty($dateTo)) {
             //   echo "<script>alert('Both date fields are required!');</script>";
             //   echo "<script type='text/javascript'>window.top.location='verification.php?tab=verified';</script>"; exit;
@@ -1569,7 +1567,7 @@ class Search extends config{
             //   echo "<script>alert('Both date fields are required!');</script>";
             //   echo "<script type='text/javascript'>window.top.location='verification.php?tab=verified';</script>"; exit;
             // }
->>>>>>> master
+
 
             if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
               $sql2 .= "AND date_recieved >= '$dateFrom' AND date_recieved <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";

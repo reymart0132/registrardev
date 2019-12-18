@@ -1291,10 +1291,10 @@ class viewAdmin extends config{
 
          $limit = 10;
 
-         if (!isset($_GET['Ppage'])) {
+         if (!isset($_GET['Vrpage'])) {
                $page = 1;
            } else{
-               $page = $_GET['Ppage'];
+               $page = $_GET['Vrpage'];
          }
 
          if(isset($_GET['Ppage']) > 1){

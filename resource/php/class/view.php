@@ -843,7 +843,14 @@ class view extends config{
    $pagination = new paginationOne;
     $pagination->paginationAlumni($total_pages,$page);
 
-
+    // <div class="col-sm">
+    //   <label for="dateFrom">From:</label>
+    //   <input  class="form-control" type="date" name="dateFrom" id="startDate"  onkeydown="return false"  data-date-format="YYYY MMMM DD" placeholder="dd-mm-yyyy">
+    // </div>
+    // <div class="col-sm">
+    //   <label for="dateTo">To:</label>
+    //   <input  class="form-control" type="date" name="dateTo" id="endDate"  onkeydown="return false" placeholder="dd-mm-yyyy">
+    // </div>
        echo '
        <div class="container-fluid mt-4">
         <form class="" action="" method="get">
