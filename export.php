@@ -956,10 +956,10 @@ echo '</table>';
   }
    echo '</table>';
 }elseif(isset($_GET['SearchVerifiedVAdmin'])) {
-  // header("Content-Type: application/xls");
-  // header("Content-Disposition: attachment; filename=filename.xls");
-  // header("Pragma: no-cache");
-  // header("Expires: 0");
+  header("Content-Type: application/xls");
+  header("Content-Disposition: attachment; filename=filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
   $view= new view;
   $result = $_SESSION['resultVerAdmin'];
   echo '<h1>Reports</h1>';

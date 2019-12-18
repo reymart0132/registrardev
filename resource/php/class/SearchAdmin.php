@@ -71,7 +71,7 @@ class SearchAdmin extends config{
     }else {
         $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING'";
     }
-<<<<<<< HEAD
+
 
     if (!empty($dateFrom) && empty($dateTo)) {
       echo "<script>alert('Both date fields are required!');</script>";
@@ -80,7 +80,7 @@ class SearchAdmin extends config{
       echo "<script>alert('Both date fields are required!');</script>";
       echo "<script type='text/javascript'>window.top.location='view_pending_requests.php';</script>"; exit;
     }
-=======
+
     //
     // if (!empty($dateFrom) && empty($dateTo)) {
     //   echo "<script>alert('Both date fields are required!');</script>";
@@ -89,7 +89,6 @@ class SearchAdmin extends config{
     //   echo "<script>alert('Both date fields are required!');</script>";
     //   echo "<script type='text/javascript'>window.top.location='http://localhost/registrardev/view_pending_requests.php';</script>"; exit;
     // }
->>>>>>> master
 
 
 
