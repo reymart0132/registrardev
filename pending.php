@@ -67,9 +67,9 @@ if(isset($_GET['verified'])){
            </div>
            <div class="col-8">
                <p class="name mt-2" style="color: #dc65a1;"><b><?php $view->getNameSRA()?></b></p>
-               <!-- <div class="speech-bubble">
+               <div class="speech-bubble">
                    <p style="max-height:11vh;"><?php $view->getquote() ?></p>
-               </div> -->
+               </div>
                <!-- <div class="" style="height:20px; width:20px; background-color:red;"><p></p></div> -->
            </div>
         </div>
