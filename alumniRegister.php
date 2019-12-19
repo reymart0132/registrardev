@@ -42,8 +42,8 @@ $view = new view;
                             <td>
                                 <div class="row">
                                     <div class="form-group col-4">
-                                      <label for="studentN">Student Number</label>
-                                      <input type="text" class="form-control" id="studentN" onkeypress="return isNumber(event)" value="" name="sno" aria-describedby="emailHelp" placeholder="Enter Student Number" maxlength="10" required>
+                                      <label for="studentN">Student Number(Optional)</label>
+                                      <input type="text" class="form-control" id="studentN" onkeypress="return isNumber(event)" value="" name="sno" aria-describedby="emailHelp" placeholder="Enter Student Number" maxlength="10">
                                     </div>
                                     <div class="form-group col-4">
                                       <label for="College" >Year Graduated</label>
