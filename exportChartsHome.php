@@ -58,20 +58,21 @@ isLogin();
          </div>
        </div>
      </form>
+     <form class="" action="exportCharts.php" method="post">
+       <div class="row">
+         <div class="col-5">
+           <input type="text" name="data" value="" id="Input" hidden>
+           <input class="btn btn-success heartbeat ml-3 my-3" class="form-control" type="submit" value="Create New Excel File">
+         </div>
+     </form>
    </div>
-   <button name="create_excel" id="create_excel" class="btn btn-success">Create Excel File</button>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="vendor/js/bootstrap.min.js"></script>
     <script src="vendor/js/bootstrap-select.min.js"></script>
     <script>
-    $(document).ready(function(){
-         $('#create_excel').click(function(){
-              var excel_data = $('#activity').html();
-              var page = "exportCharts.php?data=" + excel_data;
-              window.location = page;
-         });
-    });
+    var excel_data = $('#activity').html();
+    document.getElementById("Input").value = excel_data;
     </script>
 </body>
 </html>
