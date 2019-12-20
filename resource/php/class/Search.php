@@ -75,15 +75,6 @@ class Search extends config{
       $sql2 = "SELECT * FROM `work` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
     }
 
-<<<<<<< HEAD
-    if (!empty($dateFrom) && empty($dateTo)) {
-      echo "<script>alert('Both date fields are required!');</script>";
-      echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
-    }elseif (empty($dateFrom) && !empty($dateTo)) {
-      echo "<script>alert('Both date fields are required!');</script>";
-      echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
-    }
-=======
     // if (!empty($dateFrom) && empty($dateTo)) {
     //   echo "<script>alert('Both date fields are required!');</script>";
     //   echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
@@ -91,7 +82,6 @@ class Search extends config{
     //   echo "<script>alert('Both date fields are required!');</script>";
     //   echo "<script type='text/javascript'>window.top.location='pending.php';</script>"; exit;
     // }
->>>>>>> master
 
     if (!empty($dateFrom) && !empty($dateTo) && !empty($search) && !empty($criteria)) {
       $sql2 .= "AND Date_App >= '$dateFrom' AND Date_App <= '$dateTo' AND `$criteria` LIKE '%$search%' LIMIT $start,$limit";

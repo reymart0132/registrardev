@@ -162,7 +162,7 @@ isLogin();
        </div>
    </form>
    <!--  -->
-   <div class="container-fluid mt-4 mb-5">
+   <div class="container-fluid mt-4 mb-5" id="activity">
      <?php
      $view->exportundergrad();
       $view->exportgrad();
