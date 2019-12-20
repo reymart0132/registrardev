@@ -32,7 +32,6 @@ if(isset($_GET['verified'])){
          alt="mdb logo">
          <h3 class="ib">
      </a>
-     <a href="stats.php"><i class="fas fa-chart-line ceucolor"></i></a>
      <a href="exportTableAdmin.php"><i class="fas fa-table ceucolor"></i></a>
      <a href="statsAdmin.php"><i class="fas fa-chart-line ceucolor"></i></a>
      <a href="userVerificationAdmin.php"><i class="fas fa-user-plus ceucolor"></i></a>
@@ -60,9 +59,9 @@ if(isset($_GET['verified'])){
            </div>
            <div class="col-8">
                <p class="name mt-2" style="color: #dc65a1;"><b><?php $view->getNameSRA()?></b></p>
-               <div class="speech-bubble">
+               <!-- <div class="speech-bubble">
                    <p style="max-height:11vh;"><?php $view->getquote() ?></p>
-               </div>
+               </div> -->
            </div>
         </div>
       </div>

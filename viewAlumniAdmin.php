@@ -58,9 +58,9 @@ isLogin();
            </div>
            <div class="col-8">
                <p class="name mt-2" style="color: #dc65a1;"><b><?php $view->getNameSRA()?></b></p>
-               <div class="speech-bubble">
+               <!-- <div class="speech-bubble">
                    <p style="max-height:11vh;"><?php $view->getquote() ?></p>
-               </div>
+               </div> -->
            </div>
         </div>
       </div>
@@ -163,7 +163,7 @@ isLogin();
       <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="home-tab">
       <?php
       if (isset($_GET['submitAlumni'])) {
-        $search = new Search;
+        $search = new SearchAdmin;
         $search->searchAlumni();
       }else {
         $view->viewAlumni();

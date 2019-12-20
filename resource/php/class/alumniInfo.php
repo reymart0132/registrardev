@@ -21,7 +21,8 @@ class alumniInfo{
     public function insertAlumniInfo(){
         $config = new config;
         $con = $config->con();
-          $sql1 = "INSERT INTO `tbl_alumni_info` (`student_no`,`lastname`,`firstname`,`middlename`,`nationality`,`course`,`sch_coll`,`yr_graduated`,`email`,`employer`,`emp_position`,`created`) VALUES('$this->sno','$this->lname','$this->fname','$this->mname','$this->nt','$this->dc','$this->cs','$this->yg','$this->eaddr','$this->employer','$this->position',NOW())";
+        $dateApp = date("Y/m/d") ;
+          $sql1 = "INSERT INTO `tbl_alumni_info` (`student_no`,`lastname`,`firstname`,`middlename`,`nationality`,`course`,`sch_coll`,`yr_graduated`,`email`,`employer`,`emp_position`,`created`,`date_app`) VALUES('$this->sno','$this->lname','$this->fname','$this->mname','$this->nt','$this->dc','$this->cs','$this->yg','$this->eaddr','$this->employer','$this->position',NOW(),'$dateApp')";
         // $sql1 = "INSERT INTO `tbl_alumni_info`(`student_no`, `lastname`, `firstname`, `middlename`, `dob`, `nationality`, `course`, `sch_coll`, `month_graduated`, `yr_graduated`, `address`, `home_no`, `home_fax_no`, `cp_no`, `email`, `occupation_type`,`emp_position`, `employer`, `bus_address`,`ofc_no`,`ofc_fax_no`,`updated`,`created`)VALUES('$this->sno','$this->lname','$this->fname','$this->mname','$this->dob','$this->nt','$this->dc','$this->cs','$this->mg','$this->yg','$this->addr','$this->hno','$this->hfno','$this->cno','$this->eaddr','$this->octype','$this->emppos','$this->emp','$this->baddr','$this->ofno',NULL,NOW(),NOW())";
 
         $data1 = $con->prepare($sql1);
