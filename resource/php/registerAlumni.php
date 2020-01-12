@@ -15,7 +15,6 @@ if(!empty($_POST)) {
 
 
     $aI = new alumniInfo($sno,$lname,$fname,$mname,$dc,$nt,$cs,$yg,$eaddr,$employer,$position);
-    echo "<script type='text/javascript'>alert('Success!');</script>";
     $aI->insertAlumniInfo();
     header("location: ../../index.php");
     }
