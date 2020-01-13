@@ -1288,11 +1288,6 @@ class Search extends config{
         $user = new User();
         $id1 = $user->data()->id;
         $sql = "SELECT * FROM `tbl_verification` WHERE `remarks` = 'PENDING' AND `assignee` = '$id1'";
-        $data = $con->prepare($sql);
-        $data ->execute();
-        $rows=$data-> fetchAll(PDO::FETCH_OBJ);
-
-        $_SESSION['resultPendingSearchV'] = $rows;
 
         if (!empty($search) && !empty($criteria)) {
           $sql .= "AND `$criteria` LIKE '%$search%'";
@@ -1302,6 +1297,12 @@ class Search extends config{
           $sql .= "AND date_recieved >= '$dateFrom' AND date_recieved <= '$dateTo' AND `$criteria` LIKE '%$search%'";
         }
 
+        $data = $con->prepare($sql);
+        $data ->execute();
+        $rows=$data-> fetchAll(PDO::FETCH_OBJ);
+
+        $_SESSION['resultPendingSearchV'] = $rows;
+
         $sql3 = "SELECT * FROM `work`";
         $data3 = $con-> prepare($sql3);
         $data3 ->execute();
@@ -1309,7 +1310,7 @@ class Search extends config{
         $_SESSION['VerallCSV'] = $rowsAll;
 
 
-        $limit = 10;
+        $limit = 1;
 
         if (!isset($_GET['Verpage'])) {
               $page = 1;

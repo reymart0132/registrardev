@@ -1290,7 +1290,7 @@ class SearchAdmin extends config{
         $_SESSION['VerallCSV'] = $rowsAll;
 
 
-        $limit = 10;
+        $limit = 1;
 
         if (!isset($_GET['Verpage'])) {
               $page = 1;

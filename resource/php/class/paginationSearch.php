@@ -1251,7 +1251,7 @@ $adjacents = 3;
     $pagination .= '<div class=\'pagination\'>';
     //previous button
     if ($page > 1)
-      $pagination.= '<a id="page" id"page" href=\'verification.php?criteria='.$criteria.'&search='.$search.'&tab=view&submitPendingV=Submit&Verpage='.$prev.'\'>&laquo; previous</a>';
+      $pagination.= '<a id="page"  href=\'verification.php?criteria='.$criteria.'&search='.$search.'&tab=view&submitPendingV=Submit&Verpage='.$prev.'\'>&laquo; previous</a>';
     else
       $pagination.= '<span id="spanD" span class=\'disabled\'>&laquo previous</span>';
     //pages
