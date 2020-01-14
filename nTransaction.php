@@ -183,7 +183,7 @@ $view = new view;
     <script>
     function change() {
     if (document.getElementById('a').value == '1')
-    document.getElementById("b").value = '13';
+    document.getElementById("b").value = '6';
     else if (document.getElementById('a').value == '2')
     document.getElementById("b").value = '8';
     else if (document.getElementById('a').value == '3')
@@ -238,6 +238,16 @@ $view = new view;
     document.getElementById("b").value = '2';
     else if (document.getElementById('a').value == '28')
     document.getElementById("b").value = '12';
+    else if (document.getElementById('a').value == '78')
+    document.getElementById("b").value = '11';
+    else if (document.getElementById('a').value == '85')
+    document.getElementById("b").value = '6';
+    else if (document.getElementById('a').value == '87')
+    document.getElementById("b").value = '11';
+    else if (document.getElementById('a').value == '86')
+    document.getElementById("b").value = '14';
+    else if (document.getElementById('a').value == '84')
+    document.getElementById("b").value = '11';
     };
     </script>
 
