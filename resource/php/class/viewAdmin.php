@@ -1133,7 +1133,7 @@ class viewAdmin extends config{
         $rowsAll =$data3-> fetchAll(PDO::FETCH_OBJ);
         $_SESSION['VerallCSV'] = $rowsAll;
 
-         $limit = 1;
+         $limit = 10;
 
          if (!isset($_GET['Verpage'])) {
                $page = 1;
