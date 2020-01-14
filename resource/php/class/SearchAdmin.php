@@ -1598,7 +1598,7 @@ class SearchAdmin extends config{
             // }
 
             echo '<ul class="pagination ml-2">';
-    $pagination = new paginationSearch;
+    $pagination = new paginationSearchAdmin;
       if (!empty($search) && !empty($criteria)) {
         $pagination->paginationSearch19($total_pages,$page,$search,$criteria);
       }elseif(!empty($dateFrom) && !empty($dateTo)) {
