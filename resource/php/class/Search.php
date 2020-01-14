@@ -1310,7 +1310,7 @@ class Search extends config{
         $_SESSION['VerallCSV'] = $rowsAll;
 
 
-        $limit = 1;
+        $limit = 10;
 
         if (!isset($_GET['Verpage'])) {
               $page = 1;
